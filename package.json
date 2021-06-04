@@ -2,10 +2,16 @@
   "name": "meilisearch-admin",
   "version": "0.0.0",
   "private": true,
-  "description": "Small description for meilisearch-admin goes here",
-  "repository": "",
+  "description": "Web Client for MeiliSearch",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/kaermorchen/meilisearch-admin.git"
+  },
   "license": "MIT",
-  "author": "",
+  "author": {
+    "name": "Stanislav Romanov",
+    "email": "kaermorchen@gmail.com"
+  },
   "directories": {
     "doc": "doc",
     "test": "tests"
