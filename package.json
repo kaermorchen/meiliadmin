@@ -33,6 +33,7 @@
     "@ember/test-helpers": "^2.2.5",
     "@glimmer/component": "^1.0.4",
     "@glimmer/tracking": "^1.0.4",
+    "@mdi/svg": "^5.9.55",
     "@types/ember": "^3.16.3",
     "@types/ember__application": "^3.16.2",
     "@types/ember__array": "^3.16.3",
@@ -68,6 +69,7 @@
     "ember-fetch": "^8.0.4",
     "ember-load-initializers": "^2.1.2",
     "ember-maybe-import-regenerator": "^0.1.6",
+    "ember-mdi": "^0.9.0",
     "ember-page-title": "^6.2.1",
     "ember-qunit": "^5.1.4",
     "ember-resolver": "^8.0.2",
@@ -83,7 +85,7 @@
     "prettier": "^2.2.1",
     "qunit": "^2.14.1",
     "qunit-dom": "^1.6.0",
-    "tailwindcss": "^2.0.2"
+    "tailwindcss": "^2.1.4"
   },
   "engines": {
     "node": "10.* || >= 12"

@@ -1,12 +1,18 @@
 {{page-title "Indexes"}}
 
 <div class="flex flex-row min-h-screen w-full">
-  <aside class="flex flex-col w-64">
-    <nav class="menu">
+  <aside class="flex flex-col w-64 p-base">
+    <nav>
       <ul>
         {{#each @model as |item|}}
           <li>
-            <LinkTo @route="indexes.index_element" @model={{item}}>{{item.name}}</LinkTo>
+            <LinkTo
+              @route="indexes.element"
+              @model={{item}}
+              class="flex flex-row items-center h-12 px-base text-gray-600 hover:bg-gray-100"
+            >
+              {{item.name}}
+            </LinkTo>
           </li>
         {{/each}}
       </ul>

@@ -16,7 +16,7 @@ module.exports = function (defaults) {
           {
             module: tailwind,
             options: {
-              config: './config/tailwindcss-config.js'
+              config: './config/tailwind.config.js'
             }
           }
         ],
