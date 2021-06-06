@@ -1,0 +1,18 @@
+{{page-title "Indexes"}}
+
+<div class="flex flex-row min-h-screen w-full">
+  <aside class="flex flex-col w-64">
+    <nav class="menu">
+      <ul>
+        {{#each @model as |item|}}
+          <li>
+            <LinkTo @route="indexes.index_element" @model={{item}}>{{item.name}}</LinkTo>
+          </li>
+        {{/each}}
+      </ul>
+    </nav>
+  </aside>
+  <main class="main flex flex-col flex-grow">
+    {{outlet}}
+  </main>
+</div>
