@@ -1,7 +1,6 @@
-# meilisearch-admin
+# MeiliSearch Admin
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+Admin panel for [MeiliSearch](https://www.meilisearch.com/).
 
 ## Prerequisites
 
