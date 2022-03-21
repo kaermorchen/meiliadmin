@@ -11,17 +11,17 @@ module.exports = function (defaults) {
         plugins: [
           {
             module: autoprefixer,
-            options: {}
+            options: {},
           },
           {
             module: tailwind,
             options: {
-              config: './config/tailwind.config.js'
-            }
-          }
+              config: './config/tailwind.config.js',
+            },
+          },
         ],
-      }
-    }
+      },
+    },
   });
 
   return app.toTree();
