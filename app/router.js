@@ -9,7 +9,10 @@ export default class Router extends EmberRouter {
 Router.map(function () {
   this.route('admin', function () {
     this.route('indexes', function () {
-      this.route('item', { path: '/:index_id' });
+      this.route('item', { path: '/:index_id' }, function () {
+        this.route('settings');
+        this.route('data');
+      });
     });
   });
 });
