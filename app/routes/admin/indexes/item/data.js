@@ -1,3 +1,5 @@
 import Route from '@ember/routing/route';
 
-export default class AdminIndexesItemDataRoute extends Route {}
+export default class AdminIndexesItemDataRoute extends Route {
+
+}
