@@ -9,6 +9,12 @@ module.exports = {
       spacing: {
         base: '1.5rem',
       },
+      colors: {
+        light: '#E5E7EB',
+        secondary: '#374151',
+        dark: '#1F2937',
+        primary: '#2563EB',
+      },
     },
   },
   variants: {

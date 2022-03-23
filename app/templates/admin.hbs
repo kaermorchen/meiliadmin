@@ -1,0 +1,25 @@
+<div class="relative min-h-screen flex">
+  <div class="flex flex-col w-64 h-screen px-4 py-8 bg-dark border-r border-light">
+    <h2 class="text-xl font-semibold text-light text-center flex items-center">
+      <img src="/logo.svg" alt="MeiliSearch" class="w-8 h-8 mr-2">
+      MeiliSearch Admin
+    </h2>
+
+    <div class="flex flex-col justify-between flex-1 mt-6">
+      <nav>
+        {{#each @model as |item|}}
+          <MenuItem
+            @route="admin.indexes.item"
+            @model={{item.name}}
+            @name={{capitalize item.name}}
+            class="flex flex-row items-center h-12 px-base"
+          />
+        {{/each}}
+      </nav>
+    </div>
+  </div>
+
+  <div class="flex-1">
+    {{outlet}}
+  </div>
+</div>
