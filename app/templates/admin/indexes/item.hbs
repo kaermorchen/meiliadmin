@@ -1,5 +1,10 @@
 {{page-title "Item"}}
 
-<h1>{{@model.name}}</h1>
+<h1 class="text-2xl mb-4">{{capitalize @model.name}}</h1>
+
+
+<div class="flex border-b">
+  <Tab @route="admin.indexes.item.index" @text="Data" />
+</div>
 
 {{outlet}}
