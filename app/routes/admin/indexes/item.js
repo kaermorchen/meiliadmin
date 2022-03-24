@@ -1,9 +1,7 @@
 import Route from '@ember/routing/route';
 
 export default class AdminIndexesItemRoute extends Route {
-  model({ index_id }) {
-    return this.modelFor('admin.indexes').find(
-      (item) => item.name === index_id
-    );
+  model({ uid }) {
+    return this.modelFor('admin').find((item) => item.uid === uid);
   }
 }

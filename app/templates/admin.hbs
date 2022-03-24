@@ -10,8 +10,8 @@
         {{#each @model as |item|}}
           <MenuItem
             @route="admin.indexes.item"
-            @model={{item.name}}
-            @name={{capitalize item.name}}
+            @model={{item}}
+            @name={{capitalize item.uid}}
             class="flex flex-row items-center h-12 px-base"
           />
         {{/each}}
