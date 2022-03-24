@@ -1,2 +1,10 @@
 {{page-title "Data"}}
+
+<InputText
+  @placeholder="Search"
+  @prefixIcon="magnify"
+  @value={{this.searchText}}
+  @onChange={{this.searchTextChanged}}
+/>
+
 {{outlet}}
