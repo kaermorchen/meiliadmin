@@ -1,14 +1,8 @@
 module.exports = {
-  purge: [
-    // './app/**/*.html',
-    // './app/**/*.hbs',
-  ],
+  content: ['./app/**/*.html', './app/**/*.hbs'],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
-      spacing: {
-        base: '1.5rem',
-      },
       colors: {
         light: '#E5E7EB',
         secondary: '#374151',

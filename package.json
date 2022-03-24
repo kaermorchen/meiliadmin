@@ -50,7 +50,7 @@
     "@types/ember__template": "^3.16.1",
     "@types/ember__test": "^3.16.1",
     "@types/ember__utils": "^3.16.2",
-    "autoprefixer": "^10.2.1",
+    "autoprefixer": "^10.4.4",
     "babel-eslint": "^10.1.0",
     "broccoli-asset-rev": "^3.0.0",
     "ember-auto-import": "^2.4.0",
@@ -86,7 +86,7 @@
     "prettier": "^2.5.1",
     "qunit": "^2.18.0",
     "qunit-dom": "^2.0.0",
-    "tailwindcss": "^2.1.4",
+    "tailwindcss": "^3.0.23",
     "webpack": "^5.69.1"
   },
   "engines": {
