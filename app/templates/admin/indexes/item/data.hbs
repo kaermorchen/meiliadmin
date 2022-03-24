@@ -7,4 +7,29 @@
   @onChange={{this.searchTextChanged}}
 />
 
-{{outlet}}
+{{#if this.data}}
+  {{log this.data}}
+
+  <div class="mb-4 flex items-center">
+    <MdIcon @icon="check" class="mr-1" @size="18" />
+    Hits: {{this.data.nbHits}}
+    <MdIcon @icon="clock-outline" class="ml-6 mr-1" @size="18" />
+    Time spent: {{this.data.processingTimeMs}} ms
+  </div>
+
+  <div class="mb-4">
+    <h2 class="text-xl mb-4">Results:</h2>
+    <div class="odd:bg-light">
+      {{#each this.data.hits as |item|}}
+        <div class="mb-8">
+          {{#each-in item as |key value|}}
+            <div class="grid grid-cols-3 gap-4 p-2">
+              <div>{{key}}</div>
+              <div class="col-span-2">{{value}}</div>
+            </div>
+          {{/each-in}}
+        </div>
+      {{/each}}
+    </div>
+  </div>
+{{/if}}
