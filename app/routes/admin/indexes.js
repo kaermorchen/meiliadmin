@@ -3,7 +3,6 @@ import Route from '@ember/routing/route';
 
 export default class AdminIndexesRoute extends Route {
   // @service meilisearch;
-
   // async model() {
   //   return this.modelFor('admin');
   // }

@@ -21,7 +21,7 @@
     <h2 class="text-xl mb-4">Results:</h2>
     <div class=" ">
       {{#each this.data.hits as |item|}}
-        <div class="mb-8 rounded-md overflow-hidden shadow">
+        <div class="mb-8 rounded-md border overflow-hidden shadow">
           {{#each-in item as |key value|}}
             <div class="grid grid-cols-3 gap-4 p-4 odd:bg-gray-50">
               <div>{{key}}</div>
@@ -32,4 +32,10 @@
       {{/each}}
     </div>
   </div>
+
+  <Pagination
+    @count={{this.data.nbHits}}
+    @current={{this.page}}
+    @perPage={{this.data.limit}}
+  />
 {{/if}}

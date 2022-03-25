@@ -5,6 +5,8 @@ import { trackedFunction } from 'ember-resources';
 
 export default class AdminIndexesItemDataController extends Controller {
   @tracked searchText = 'hello';
+  @tracked offset = 0;
+  @tracked page = 0;
 
   request = trackedFunction(this, async () => {
     if (typeof this.searchText !== 'string' || this.searchText.length < 1) {
