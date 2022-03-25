@@ -25,7 +25,9 @@
           {{#each-in item as |key value|}}
             <div class="grid grid-cols-3 gap-4 p-4 odd:bg-gray-50">
               <div>{{key}}</div>
-              <div class="col-span-2">{{value}}</div>
+              <div class="col-span-2">
+                {{if (eq (type-of value) "object") (stringify value) value}}
+              </div>
             </div>
           {{/each-in}}
         </div>
