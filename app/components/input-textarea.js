@@ -2,7 +2,7 @@ import Component from '@glimmer/component';
 import { guidFor } from '@ember/object/internals';
 import { action } from '@ember/object';
 
-export default class InputTextComponent extends Component {
+export default class InputTextareaComponent extends Component {
   get guid() {
     return guidFor(this);
   }
