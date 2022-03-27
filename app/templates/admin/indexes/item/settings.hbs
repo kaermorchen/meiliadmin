@@ -1,8 +1,8 @@
 {{page-title "Settings"}}
 
 {{#let (hash td="px-4 py-2 text-left whitespace-nowrap") as |classes|}}
-  <h2 class="text-xl">Attributes</h2>
-  <table class="table-auto">
+  <h2 class="text-xl mb-4">Attributes</h2>
+  <table class="mb-4 table-auto">
     <thead>
       <tr class="bg-gray-50">
         <th class={{classes.td}}>#</th>
@@ -45,3 +45,17 @@
     </tbody>
   </table>
 {{/let}}
+
+<Button
+  @text="Save"
+  @pendingText="Saving"
+  @fulfilledText="Done"
+  @rejectedText="Error"
+
+  @icon="database-arrow-up-outline"
+  @pendingIcon="clock-outline"
+  @fulfilledIcon="check"
+  @rejectedIcon="alert-circle-outline"
+
+  @onClick={{this.save}}
+/>
