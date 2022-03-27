@@ -1,0 +1,4 @@
+<label class="flex items-center cursor-pointer" {{on "click" this.onChange}} ...attributes>
+  <MdIcon @icon={{if @checked "check-box-outline" "checkbox-blank-outline"}} @size={{22}}/>
+  <span class="ml-1">{{@label}}</span>
+</label>

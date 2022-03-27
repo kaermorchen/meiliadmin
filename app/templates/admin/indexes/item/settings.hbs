@@ -1,2 +1,47 @@
 {{page-title "Settings"}}
-{{outlet}}
+
+{{#let (hash td="px-4 py-2 text-left whitespace-nowrap") as |classes|}}
+  <h2 class="text-xl">Attributes</h2>
+  <table class="table-auto">
+    <thead>
+      <tr class="bg-gray-50">
+        <th class={{classes.td}}>#</th>
+        <th class={{classes.td}}>Displayed</th>
+        <th class={{classes.td}}>Filterable</th>
+        <th class={{classes.td}}>Searchable</th>
+        <th class={{classes.td}}>Sortable</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each @model.attributes as |attribute|}}
+        <tr>
+          <td class={{classes.td}}>{{attribute.name}}</td>
+          <td class={{classes.td}}>
+            <InputCheckbox
+              @checked={{attribute.displayed}}
+              @onChange={{set attribute 'displayed'}}
+            />
+          </td>
+          <td class={{classes.td}}>
+            <InputCheckbox
+              @checked={{attribute.filterable}}
+              @onChange={{set attribute 'filterable'}}
+            />
+          </td>
+          <td class={{classes.td}}>
+            <InputCheckbox
+              @checked={{attribute.searchable}}
+              @onChange={{set attribute 'searchable'}}
+            />
+          </td>
+          <td class={{classes.td}}>
+            <InputCheckbox
+              @checked={{attribute.sortable}}
+              @onChange={{set attribute 'sortable'}}
+            />
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{/let}}
