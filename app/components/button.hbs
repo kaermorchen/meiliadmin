@@ -1,0 +1,14 @@
+<button
+  disabled={{this.disabled}}
+  type={{this.type}}
+  class="inline-flex items-center px-3 py-2 cursor-pointer border border-gray-300 rounded-md shadow-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none"
+  ...attributes
+  {{on "click" this.handleClick}}
+>
+  {{#if this.icon}}
+    <MdIcon @icon={{this.icon}} class="mx-1"/>
+  {{/if}}
+  {{#if this.text}}
+    <span class="mx-1">{{this.text}}</span>
+  {{/if}}
+</button>
