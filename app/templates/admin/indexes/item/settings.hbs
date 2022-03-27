@@ -1,7 +1,7 @@
 {{page-title "Settings"}}
 
 {{#let (hash td="px-4 py-2 text-left whitespace-nowrap") as |classes|}}
-  <h2 class="text-xl mb-4">Attributes</h2>
+  <label class="mb-2">Attributes</label>
   <table class="mb-4 table-auto">
     <thead>
       <tr class="bg-gray-50">
@@ -45,6 +45,16 @@
     </tbody>
   </table>
 {{/let}}
+
+<InputSelect
+  @label="Distinct attribute"
+  @options={{keys @model.stats.fieldDistribution}}
+  @selected={{@model.settings.distinctAttribute}}
+  @onChange={{set @model.settings 'distinctAttribute'}}
+  @allowClear={{true}}
+  as |option|>
+  {{option}}
+</InputSelect>
 
 <Button
   @text="Save"

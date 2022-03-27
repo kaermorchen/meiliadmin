@@ -6,6 +6,9 @@ const tailwind = require('tailwindcss');
 
 module.exports = function (defaults) {
   let app = new EmberApp(defaults, {
+    'ember-power-select': {
+      theme: false,
+    },
     postcssOptions: {
       compile: {
         cacheInclude: [/.*\.(css|scss|hbs)$/, /.*tailwind.config.js$/],

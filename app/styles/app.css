@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import 'ember-basic-dropdown';
 
 .md-icon {
   fill: currentColor;
