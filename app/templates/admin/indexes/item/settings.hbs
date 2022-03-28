@@ -80,9 +80,16 @@
 
 <InputTextarea
   @label="Stop-words"
-  @value={{join ', ' @model.settings.stopWords}}
-  @onChange={{this.saveStopWords}}
-  @helper="Format: of, the, to"
+  @value={{json-stringify @model.settings.stopWords}}
+  @onChange={{fn this.saveStrToJSON 'stopWords' (array)}}
+  @placeholder='["a","the"]'
+/>
+
+<InputTextarea
+  @label="Synonyms"
+  @value={{json-stringify @model.settings.synonyms}}
+  @onChange={{fn this.saveStrToJSON 'synonyms' this.emptyObj}}
+  @placeholder='{"wolverine": ["xmen", "logan"], "wow": ["world of warcraft"]}'
 />
 
 <Button

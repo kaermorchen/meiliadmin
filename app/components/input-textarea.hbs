@@ -16,7 +16,7 @@
       id={{this.id}}
       class="block w-full p-2 bg-transparent focus:outline-none"
       placeholder={{@placeholder}}
-      {{on 'input' this.onChange}}
+      {{on 'change' this.onChange}}
     >{{@value}}</textarea>
   </div>
   {{#if @helper}}

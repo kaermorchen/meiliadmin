@@ -3,12 +3,15 @@ import { action } from '@ember/object';
 import arrayEquals from 'meilisearch-admin/utils/array-equals';
 
 export default class AdminIndexesItemSettingsController extends Controller {
+  emptyObj = {};
+
   @action
-  saveStopWords(str) {
+  saveStrToJSON(prop, emptyValue, str) {
+    console.log(str, prop, emptyValue);
     if (typeof str !== 'string' || str === '') {
-      this.model.settings.stopWords = [];
+      this.model.settings[prop] = emptyValue;
     } else {
-      this.model.settings.stopWords = str.split(',').map((item) => item.trim());
+      this.model.settings[prop] = JSON.parse(str);
     }
   }
 
