@@ -10,13 +10,15 @@ module.exports = {
         primary: '#2563EB',
       },
     },
-    emberPowerSelect: theme => ({
+    emberPowerSelect: (theme) => ({
       default: {
         trigger: {
           borderRadius: theme('borderRadius.default'),
           borderColor: theme('borderColor.border'),
           fontSize: theme('fontSize.base'),
-          padding: `${theme('spacing.2')} ${theme('spacing.10')} ${theme('spacing.2')} ${theme('spacing.3')}`,
+          padding: `${theme('spacing.2')} ${theme('spacing.10')} ${theme(
+            'spacing.2'
+          )} ${theme('spacing.3')}`,
           minHeight: '42px',
           lineHeight: theme('lineHeight.normal'),
           maxWidth: theme('maxWidth.md'),
@@ -86,7 +88,7 @@ module.exports = {
           '&[aria-current="true"]': {
             backgroundColor: theme('colors.gray.light'),
             color: null,
-          }
+          },
         },
         placeholder: {
           // display: 'block',
@@ -97,7 +99,7 @@ module.exports = {
           lineHeight: theme('lineHeight.normal'),
         },
         search: {
-          paddingBottom: theme('spacing.2')
+          paddingBottom: theme('spacing.2'),
         },
         searchInput: {
           borderRadius: theme('borderRadius.default'),

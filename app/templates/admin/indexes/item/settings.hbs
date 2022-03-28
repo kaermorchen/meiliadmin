@@ -78,6 +78,12 @@
   </SortableObjects>
 </div>
 
+<InputTextarea
+  @label="Stop-words"
+  @value={{join this.returnChar @model.settings.stopWords}}
+  @onChange={{pipe (split this.returnChar) (set @model.settings 'stopWords')}}
+/>
+
 <Button
   @text="Save"
   @pendingText="Saving"

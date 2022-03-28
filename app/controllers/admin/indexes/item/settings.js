@@ -3,6 +3,8 @@ import { action } from '@ember/object';
 import arrayEquals from 'meilisearch-admin/utils/array-equals';
 
 export default class AdminIndexesItemSettingsController extends Controller {
+  returnChar = '\n';
+
   @action
   save() {
     const fields = Object.keys(this.model.stats.fieldDistribution);
