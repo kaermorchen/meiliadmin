@@ -56,6 +56,28 @@
   {{option}}
 </InputSelect>
 
+<div class="mb-4">
+  <label class="mb-2">Ranking rules</label>
+  <SortableObjects
+    @sortableObjectList={{@model.settings.rankingRules}}
+    @sortingScope="a"
+  >
+    {{#each @model.settings.rankingRules as |item|}}
+      <DraggableObject
+        @content={{item}}
+        @overrideClass="sortObject"
+        @isSortable={{true}}
+        @sortingScope="a"
+        class="flex items-center px-4 py-2 mb-2 border max-w-md"
+        @dragHandle=".md-icon"
+      >
+        <MdIcon @icon="drag-vertical" class="mr-2 -ml-2 cursor-move"/>
+        {{item}}
+      </DraggableObject>
+    {{/each}}
+  </SortableObjects>
+</div>
+
 <Button
   @text="Save"
   @pendingText="Saving"
