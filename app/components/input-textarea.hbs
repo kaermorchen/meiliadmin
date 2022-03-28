@@ -19,4 +19,7 @@
       {{on 'input' this.onChange}}
     >{{@value}}</textarea>
   </div>
+  {{#if @helper}}
+    <div class="mt-1 text-sm">{{@helper}}</div>
+  {{/if}}
 </div>

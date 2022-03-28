@@ -80,8 +80,9 @@
 
 <InputTextarea
   @label="Stop-words"
-  @value={{join this.returnChar @model.settings.stopWords}}
-  @onChange={{pipe (split this.returnChar) (set @model.settings 'stopWords')}}
+  @value={{join ', ' @model.settings.stopWords}}
+  @onChange={{this.saveStopWords}}
+  @helper="Format: of, the, to"
 />
 
 <Button

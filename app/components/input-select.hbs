@@ -15,4 +15,7 @@
     as |option select|>
     {{yield option select}}
   </PowerSelect>
+  {{#if @helper}}
+    <div class="mt-1 text-sm">{{@helper}}</div>
+  {{/if}}
 </div>

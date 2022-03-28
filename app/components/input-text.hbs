@@ -20,4 +20,7 @@
       {{on 'input' this.onChange}}
     >
   </div>
+  {{#if @helper}}
+    <div class="mt-1 text-sm">{{@helper}}</div>
+  {{/if}}
 </div>
