@@ -73,23 +73,38 @@
       >
         <MdIcon @icon="drag-vertical" class="mr-2 -ml-2 cursor-move"/>
         {{item}}
+        <MdIcon
+          @icon="close-thick"
+          @size="16"
+          class="ml-auto cursor-pointer"
+          {{on 'click' (fn this.removeRankingRule item)}}
+        />
       </DraggableObject>
     {{/each}}
   </SortableObjects>
+  {{#if this.rankingRulesFields.length}}
+    <InputSelect
+      @options={{this.rankingRulesFields}}
+      @onChange={{this.selectNewRankingRule}}
+      @placeholder="Add field"
+      as |option|>
+      {{option}}
+    </InputSelect>
+  {{/if}}
 </div>
 
 <InputTextarea
   @label="Stop-words"
   @value={{json-stringify @model.settings.stopWords}}
   @onChange={{fn this.saveStrToJSON 'stopWords' (array)}}
-  @placeholder='["a","the"]'
+  @helper='JSON format'
 />
 
 <InputTextarea
   @label="Synonyms"
   @value={{json-stringify @model.settings.synonyms}}
   @onChange={{fn this.saveStrToJSON 'synonyms' this.emptyObj}}
-  @placeholder='{"wolverine": ["xmen", "logan"], "wow": ["world of warcraft"]}'
+  @helper='JSON format'
 />
 
 <Button
