@@ -9,12 +9,12 @@
 
 <div class="mb-4 flex items-center">
   <MdIcon @icon="check" class="mr-1" @size="18" />
-  Hits: {{@model.nbHits}}
+  Hits: {{@model.data.nbHits}}
   <MdIcon @icon="clock-outline" class="ml-6 mr-1" @size="18" />
-  Time spent: {{@model.processingTimeMs}} ms
+  Time spent: {{@model.data.processingTimeMs}} ms
 </div>
 
-{{#if (gt @model.nbHits 0)}}
+{{#if (gt @model.data.nbHits 0)}}
   <div class="mb-4 flex items-center">
     <ButtonGroup @value={{this.dataView}} @onClick={{set this 'dataView'}} as |bg|>
       <bg.button
@@ -31,12 +31,12 @@
   </div>
 
   {{#if (eq this.dataView 'table')}}
-   table
+
   {{/if}}
 
-  {{#if (eq this.dataView 'map')}}
+  {{!-- {{#if (eq this.dataView 'map')}}
     map
-  {{/if}}
+  {{/if}} --}}
 
   {{!-- {{#if (eq this.dataView 'card')}}
     <div class="mb-4">
