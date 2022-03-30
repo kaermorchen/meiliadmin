@@ -5,6 +5,14 @@ import { tracked } from '@glimmer/tracking';
 export default class ButtonComponent extends Component {
   @tracked _state = 'default';
 
+  get isActive() {
+    return (
+      this.args.group &&
+      this.args.value &&
+      this.args.group.args.value === this.args.value
+    );
+  }
+
   get disabled() {
     if (this.args.disabled !== undefined) {
       return this.args.disabled;
@@ -67,7 +75,7 @@ export default class ButtonComponent extends Component {
     this.state = 'pending';
 
     try {
-      await this.args.onClick();
+      await this.args.onClick(this.args.value);
 
       if (!this.isDestroyed) {
         this.state = 'fulfilled';

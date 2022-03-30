@@ -6,6 +6,7 @@ export default class AdminIndexesItemDataController extends Controller {
   @tracked q = null;
   @tracked limit = 20;
   @tracked page = 1;
+  @tracked dataView = 'table';
 
   queryParams = ['q', 'page', 'limit'];
 

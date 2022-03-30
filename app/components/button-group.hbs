@@ -1,0 +1,7 @@
+<div class="flex items-center -space-x-px" role="group" ...attributes>
+  {{yield
+    (hash
+      button=(component "button" group=this onClick=this.buttonPressed)
+    )
+  }}
+</div>

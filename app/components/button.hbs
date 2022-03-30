@@ -1,9 +1,23 @@
 <button
   disabled={{this.disabled}}
   type={{this.type}}
-  class="inline-flex items-center px-3 py-2 cursor-pointer border border-gray-300 rounded-md shadow-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none"
-  ...attributes
+  class="
+    inline-flex
+    items-center
+    px-3
+    py-2
+    cursor-pointer
+    border
+    border-gray-300
+    bg-white
+    {{if @group "first:rounded-l-md last:rounded-r-md" "rounded-md"}}
+    text-gray-700
+    hover:bg-gray-50
+    focus:outline-none
+    {{if this.isActive "bg-gray-50"}}
+  "
   {{on "click" this.handleClick}}
+  ...attributes
 >
   {{#if this.icon}}
     <MdIcon @icon={{this.icon}} class="mx-1"/>
