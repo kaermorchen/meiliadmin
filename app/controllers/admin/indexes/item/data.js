@@ -7,8 +7,9 @@ export default class AdminIndexesItemDataController extends Controller {
   @tracked limit = 20;
   @tracked page = 1;
   @tracked dataView = 'table';
+  @tracked sort;
 
-  queryParams = ['q', 'page', 'limit'];
+  queryParams = ['q', 'page', 'limit', 'sort'];
 
   get sortedFields() {
     const fields = Object.keys(this.model.stats.fieldDistribution);
@@ -33,5 +34,14 @@ export default class AdminIndexesItemDataController extends Controller {
   @action
   searchTextChanged(value) {
     this.q = value === '' ? null : value;
+  }
+
+  @action
+  onSort(newSort) {
+    if (`${newSort}:asc` === this.sort) {
+      this.sort = `${newSort}:desc`;
+    } else {
+      this.sort = `${newSort}:asc`;
+    }
   }
 }

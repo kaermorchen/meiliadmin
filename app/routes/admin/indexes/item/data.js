@@ -12,16 +12,26 @@ export default class AdminIndexesItemDataRoute extends Route {
     page: {
       refreshModel: true,
     },
+    sort: {
+      refreshModel: true,
+    },
   };
 
-  async model({ q, page, limit }) {
+  async model({ q, page, limit, sort }) {
     const offset = limit * --page;
     const index = this.modelFor('admin.indexes.item');
+    const sortableAttributes = index.getSortableAttributes();
     const stats = index.getStats();
+    const options = { offset, limit };
+
+    if (sort) {
+      options.sort = [sort];
+    }
 
     return hash({
-      data: index.search(q, { offset, limit }),
+      data: index.search(q, options),
       index,
+      sortableAttributes,
       stats,
     });
   }

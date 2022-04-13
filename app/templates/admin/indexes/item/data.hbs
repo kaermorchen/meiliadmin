@@ -25,11 +25,16 @@
     </ButtonGroup>
   </div>
   {{#if (eq this.dataView 'table')}}
-    <RoyalTable @data={{@model.data.hits}} as |Column rowData|>
+    <RoyalTable
+      @data={{@model.data.hits}}
+      @sortingProp={{this.sort}}
+      @onSort={{this.onSort}}
+      class="w-full" as |Column rowData|
+    >
       {{#each this.sortedFields as |field|}}
-        <Column @name={{capitalize field}}>
+        <Column @name={{capitalize field}} @prop={{field}} @sortable={{includes field @model.sortableAttributes}}>
           {{#let (get rowData field) as |value|}}
-            {{if (eq (type-of value) "object") (stringify value) value}}
+            {{if (eq (type-of value) 'object') (stringify value) value}}
           {{/let}}
         </Column>
       {{/each}}
