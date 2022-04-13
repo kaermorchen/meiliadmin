@@ -31,5 +31,7 @@ export default class AdminIndexesItemDataRoute extends Route {
       controller.q = null;
       controller.page = 1;
     }
+
+    window.scrollTo(0, 0);
   }
 }
