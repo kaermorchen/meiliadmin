@@ -8,7 +8,7 @@
 }
 
 .royal-table {
-  @apply border border-gray text-left mb-4;
+  @apply table-auto w-full border border-gray text-left mb-4;
 
   thead {
     @apply bg-light;

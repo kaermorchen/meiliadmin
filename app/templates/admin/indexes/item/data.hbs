@@ -1,43 +1,43 @@
-{{page-title "Data"}}
-
+{{page-title 'Data'}}
 <InputText
   @placeholder="Search"
   @prefixIcon="magnify"
   @value={{this.q}}
   @onChange={{this.searchTextChanged}}
 />
-
 <div class="mb-4 flex items-center">
   <MdIcon @icon="check" class="mr-1" @size="18" />
-  Hits: {{@model.data.nbHits}}
+  Hits:
+  {{@model.data.nbHits}}
   <MdIcon @icon="clock-outline" class="ml-6 mr-1" @size="18" />
-  Time spent: {{@model.data.processingTimeMs}} ms
+  Time spent:
+  {{@model.data.processingTimeMs}}
+  ms
 </div>
-
 {{#if (gt @model.data.nbHits 0)}}
   <div class="mb-4 flex items-center">
-    <ButtonGroup @value={{this.dataView}} @onClick={{set this 'dataView'}} as |bg|>
-      <bg.button
-        @text="Table"
-        @icon="table"
-        @value="table"
-      />
-      <bg.button
-        @text="Map"
-        @icon="map-outline"
-        @value="map"
-      />
+    <ButtonGroup
+      @value={{this.dataView}}
+      @onClick={{set this 'dataView'}} as |bg|
+    >
+      <bg.button @text="Table" @icon="table" @value="table" />
+      <bg.button @text="Map" @icon="map-outline" @value="map" />
     </ButtonGroup>
   </div>
-
   {{#if (eq this.dataView 'table')}}
-
+    <RoyalTable @data={{@model.data.hits}} as |Column rowData|>
+      {{#each this.sortedFields as |field|}}
+        <Column @name={{capitalize field}}>
+          {{#let (get rowData field) as |value|}}
+            {{if (eq (type-of value) "object") (stringify value) value}}
+          {{/let}}
+        </Column>
+      {{/each}}
+    </RoyalTable>
   {{/if}}
-
   {{!-- {{#if (eq this.dataView 'map')}}
     map
   {{/if}} --}}
-
   {{!-- {{#if (eq this.dataView 'card')}}
     <div class="mb-4">
       {{#each @model.hits as |item|}}
@@ -53,11 +53,10 @@
         </div>
       {{/each}}
     </div>
-
-    <Pagination
-      @count={{@model.nbHits}}
-      @current={{this.page}}
-      @perPage={{@model.limit}}
-    />
   {{/if}} --}}
+  <Pagination
+    @count={{@model.data.nbHits}}
+    @current={{this.page}}
+    @perPage={{@model.data.limit}}
+  />
 {{/if}}
