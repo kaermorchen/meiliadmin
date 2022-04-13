@@ -1,20 +1,35 @@
+const light = '#FAFAFA';
+// const gray = '#EEEDEF';
+// const dark = '#55585D';
+// const text = '#33373B';
+
+// const  light = '#E5E7EB';
+// const secondary = '#374151';
+const gray = '#e1dfe2';
+const text = '#252526';
+const dark = '#1E1E1E';
+// const primary = '#2563EB';
+const primary = '#ff5caa';
+
 module.exports = {
   content: ['./app/**/*.html', './app/**/*.hbs'],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
       colors: {
-        light: '#E5E7EB',
-        secondary: '#374151',
-        dark: '#1F2937',
-        primary: '#2563EB',
+        light,
+        gray,
+        dark,
+        text,
+        primary,
       },
     },
+    // borderColor: gray,
     emberPowerSelect: (theme) => ({
       default: {
         trigger: {
           borderRadius: theme('borderRadius.default'),
-          borderColor: theme('borderColor.border'),
+          borderColor: theme('colors.gray'),
           fontSize: theme('fontSize.base'),
           padding: `${theme('spacing.2')} ${theme('spacing.10')} ${theme(
             'spacing.2'
@@ -31,7 +46,7 @@ module.exports = {
         dropdown: {
           // color: config.textColor,
           // backgroundColor: config.dropdownBackgroundColor,
-          borderColor: theme('colors.border'),
+          borderColor: theme('colors.gray'),
           // borderWidth: defaultTheme.borderWidth.default,
           // borderRadius: config.dropdownBorderRadius,
           boxShadow: theme('boxShadow.sm'),
@@ -103,7 +118,7 @@ module.exports = {
         },
         searchInput: {
           borderRadius: theme('borderRadius.default'),
-          borderColor: theme('borderColor.border'),
+          borderColor: theme('colors.gray'),
           fontSize: theme('fontSize.base'),
           padding: `${theme('spacing.2')} ${theme('spacing.3')}`,
           minHeight: '42px',

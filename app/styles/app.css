@@ -8,13 +8,13 @@
 }
 
 .royal-table {
-  @apply border border-light text-left mb-4;
+  @apply border border-gray text-left mb-4;
 
   thead {
     @apply bg-light;
 
     tr {
-      @apply border-b border-light;
+      @apply border-b border-gray;
 
       th {
         @apply px-4 py-4 text-dark font-normal whitespace-nowrap;
@@ -40,7 +40,7 @@
       }
 
       td {
-        @apply px-4 py-2 text-dark;
+        @apply px-4 py-2 text-text;
       }
     }
   }
