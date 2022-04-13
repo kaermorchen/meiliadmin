@@ -6,3 +6,42 @@
 .md-icon {
   fill: currentColor;
 }
+
+.royal-table {
+  @apply border border-light text-left mb-4;
+
+  thead {
+    @apply bg-light;
+
+    tr {
+      @apply border-b border-light;
+
+      th {
+        @apply px-4 py-4 text-dark font-normal whitespace-nowrap;
+
+        &[type="button"] {
+          @apply cursor-pointer select-none;
+        }
+
+        svg {
+          width: 1em;
+          height: 1em;
+          bottom: .1em;
+          position: relative;
+        }
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      &:nth-child(even) {
+        @apply bg-light;
+      }
+
+      td {
+        @apply px-4 py-2 text-dark;
+      }
+    }
+  }
+}

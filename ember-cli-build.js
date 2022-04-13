@@ -13,16 +13,9 @@ module.exports = function (defaults) {
       compile: {
         cacheInclude: [/.*\.(css|scss|hbs)$/, /.*tailwind.config.js$/],
         plugins: [
-          {
-            module: autoprefixer,
-            options: {},
-          },
-          {
-            module: tailwind,
-            options: {
-              config: './config/tailwind.config.js',
-            },
-          },
+          require('tailwindcss/nesting'),
+          require('tailwindcss')('./config/tailwind.config.js'),
+          require('autoprefixer'),
         ],
       },
     },
