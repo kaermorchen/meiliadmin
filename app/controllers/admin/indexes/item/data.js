@@ -38,7 +38,9 @@ export default class AdminIndexesItemDataController extends Controller {
 
   @action
   onSort(newSort) {
-    if (`${newSort}:asc` === this.sort) {
+    if (`${newSort}:desc` === this.sort) {
+      this.sort = null;
+    } else if (`${newSort}:asc` === this.sort) {
       this.sort = `${newSort}:desc`;
     } else {
       this.sort = `${newSort}:asc`;
