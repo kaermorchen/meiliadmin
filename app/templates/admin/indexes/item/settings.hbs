@@ -42,7 +42,7 @@
   <label class="mb-2">
     Ranking rules
   </label>
-  <SortableObjects
+  {{!-- <SortableObjects
     @sortableObjectList={{@model.settings.rankingRules}}
     @sortingScope="a"
   >
@@ -65,7 +65,7 @@
         />
       </DraggableObject>
     {{/each}}
-  </SortableObjects>
+  </SortableObjects> --}}
   {{#if this.rankingRulesFields.length}}
     <InputSelect
       @options={{this.rankingRulesFields}}
