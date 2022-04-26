@@ -1,15 +1,15 @@
 {{page-title 'Data'}}
 <InputText
   @placeholder="Search"
-  @prefixIcon="magnify"
+  @prefixIcon={{this.Magnify}}
   @value={{this.q}}
   @onChange={{this.searchTextChanged}}
 />
 <div class="mb-4 flex items-center">
-  <MdIcon @icon="check" class="mr-1" @size="18" />
+  <MdIcon::Check class="mr-1" @size="18" />
   Hits:
   {{@model.data.nbHits}}
-  <MdIcon @icon="clock-outline" class="ml-6 mr-1" @size="18" />
+  <MdIcon::ClockOutline class="ml-6 mr-1" @size="18" />
   Time spent:
   {{@model.data.processingTimeMs}}
   ms
@@ -20,8 +20,8 @@
       @value={{this.dataView}}
       @onClick={{set this 'dataView'}} as |bg|
     >
-      <bg.button @text="Table" @icon="table" @value="table" />
-      <bg.button @text="Map" @icon="map-outline" @value="map" />
+      <bg.button @text="Table" @icon={{this.Table}} @value="table" />
+      <bg.button @text="Map" @icon={{this.MapOutline}} @value="map" />
     </ButtonGroup>
   </div>
   {{#if (eq this.dataView 'table')}}

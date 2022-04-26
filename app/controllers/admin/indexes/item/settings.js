@@ -1,9 +1,11 @@
 import Controller from '@ember/controller';
 import { action, get } from '@ember/object';
 import arrayEquals from 'meilisearch-admin/utils/array-equals';
+import DatabaseArrowUpOutline from 'ember-mdi/components/md-icon/database-arrow-up-outline';
 
 export default class AdminIndexesItemSettingsController extends Controller {
   emptyObj = {};
+  DatabaseArrowUpOutline = DatabaseArrowUpOutline;
 
   get rankingRulesFields() {
     const arr = [];

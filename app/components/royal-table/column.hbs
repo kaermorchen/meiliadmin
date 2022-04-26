@@ -9,11 +9,10 @@
     {{! DOTO: align is depricated, use styles align instead }}
   >
     {{#if @sortable}}
-      {{! TODO: add ensure-safe-component }}
       {{#let
         (if
           @sortingIconComponent
-          (component @sortingIconComponent)
+          @sortingIconComponent
           (component 'royal-table/column/sorting-icon')
         ) as |SortingIcon|
       }}
@@ -36,7 +35,7 @@
     {{#if (has-block)}}
       {{yield}}
     {{else if @bodyComponent}}
-      {{#let (component @bodyComponent) as |BodyComponent|}}
+      {{#let @bodyComponent as |BodyComponent|}}
         <BodyComponent @data={{@data}} />
       {{/let}}
     {{else}}

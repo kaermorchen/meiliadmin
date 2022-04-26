@@ -3,10 +3,6 @@
 @tailwind utilities;
 @import 'ember-basic-dropdown';
 
-.md-icon {
-  fill: currentColor;
-}
-
 .royal-table {
   @apply table-auto border border-gray text-left mb-4;
 

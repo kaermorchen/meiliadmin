@@ -1,15 +1,13 @@
 <div class="mb-4">
   {{#if @label}}
-    <label for={{this.id}} class="block font-medium mb-1 text-dark">{{@label}}</label>
+    <label for={{this.id}} class="block font-medium mb-1 text-dark">
+      {{@label}}
+    </label>
   {{/if}}
   <div class="relative flex items-center border rounded-md border-gray">
     {{#if @prefixIcon}}
-      <MdIcon
-        @icon={{@prefixIcon}}
-        class="h-8 w-8 pl-2"
-      />
+      <@prefixIcon class="h-8 w-8 pl-2" />
     {{/if}}
-
     <textarea
       type="text"
       name={{@name}}
@@ -17,9 +15,13 @@
       class="block w-full p-2 bg-transparent focus:outline-none"
       placeholder={{@placeholder}}
       {{on 'change' this.onChange}}
-    >{{@value}}</textarea>
+    >
+      {{@value}}
+    </textarea>
   </div>
   {{#if @helper}}
-    <div class="mt-1 text-sm">{{@helper}}</div>
+    <div class="mt-1 text-sm">
+      {{@helper}}
+    </div>
   {{/if}}
 </div>
