@@ -32,7 +32,6 @@
     "@ember/test-helpers": "^2.6.0",
     "@glimmer/component": "^1.0.4",
     "@glimmer/tracking": "^1.0.4",
-    "@mdi/svg": "^5.9.55",
     "@types/ember": "^3.16.3",
     "@types/ember__application": "^3.16.2",
     "@types/ember__array": "^3.16.3",
@@ -69,13 +68,12 @@
     "ember-export-application-global": "^2.0.1",
     "ember-fetch": "^8.1.1",
     "ember-load-initializers": "^2.1.2",
-    "ember-mdi": "^0.9.0",
+    "ember-mdi": "github:kaermorchen/ember-mdi#feature/addon-v2",
     "ember-page-title": "^7.0.0",
     "ember-power-select": "^5.0.4",
     "ember-qunit": "^5.1.5",
     "ember-resolver": "^8.0.3",
     "ember-resources": "^4.4.0",
-    "ember-royal-table": "github:kaermorchen/ember-royal-table#master",
     "ember-set-helper": "^2.0.1",
     "ember-source": "~4.2.0",
     "ember-template-lint": "^4.2.0",
@@ -94,12 +92,17 @@
     "qunit-dom": "^2.0.0",
     "tailwindcss": "^3.0.23",
     "tailwindcss-ember-power-select": "^0.4.1",
-    "webpack": "^5.69.1"
+    "webpack": "^5.72.0"
   },
   "engines": {
     "node": "12.* || 14.* || >= 16"
   },
   "ember": {
     "edition": "octane"
+  },
+  "dependencies": {
+    "@embroider/compat": "^1.6.0",
+    "@embroider/core": "^1.6.0",
+    "@embroider/webpack": "^1.6.0"
   }
 }
