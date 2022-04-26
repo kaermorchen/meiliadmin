@@ -1,0 +1,46 @@
+{{#if this.isHead}}
+  {{! template-lint-disable no-invalid-interactive }}
+  <th
+    role={{if @sortable 'button'}}
+    align={{@align}}
+    ...attributes
+    {{on 'click' this.handleClickHead}}
+    {{on 'click' this.handleSort}}
+    {{! DOTO: align is depricated, use styles align instead }}
+  >
+    {{#if @sortable}}
+      {{! TODO: add ensure-safe-component }}
+      {{#let
+        (if
+          @sortingIconComponent
+          (component @sortingIconComponent)
+          (component 'royal-table/column/sorting-icon')
+        ) as |SortingIcon|
+      }}
+        <SortingIcon
+          @sortable={{@sortable}}
+          @isSorted={{this.isSorted}}
+          @isAscSorted={{this.isAscSorted}}
+          @isDescSorted={{this.isDescSorted}}
+        />
+      {{/let}}
+    {{/if}}
+    {{#if (has-block 'name')}}
+      {{yield to='name'}}
+    {{else}}
+      {{@name}}
+    {{/if}}
+  </th>
+{{else if this.isBody}}
+  <td align={{@align}} ...attributes>
+    {{#if (has-block)}}
+      {{yield}}
+    {{else if @bodyComponent}}
+      {{#let (component @bodyComponent) as |BodyComponent|}}
+        <BodyComponent @data={{@data}} />
+      {{/let}}
+    {{else}}
+      {{get @data @prop}}
+    {{/if}}
+  </td>
+{{/if}}
