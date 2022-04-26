@@ -30,6 +30,9 @@
   "devDependencies": {
     "@ember/optional-features": "^2.0.0",
     "@ember/test-helpers": "^2.6.0",
+    "@embroider/compat": "^1.6.0",
+    "@embroider/core": "^1.6.0",
+    "@embroider/webpack": "^1.6.0",
     "@glimmer/component": "^1.0.4",
     "@glimmer/tracking": "^1.0.4",
     "@types/ember": "^3.16.3",
@@ -97,10 +100,5 @@
   },
   "ember": {
     "edition": "octane"
-  },
-  "dependencies": {
-    "@embroider/compat": "^1.6.0",
-    "@embroider/core": "^1.6.0",
-    "@embroider/webpack": "^1.6.0"
   }
 }
