@@ -1,6 +1,5 @@
 import Controller from '@ember/controller';
-import DatabaseOutline from 'ember-mdi/components/md-icon/database-outline';
-import CogOutline from 'ember-mdi/components/md-icon/cog-outline';
+import { DatabaseOutline, CogOutline } from 'ember-mdi/icons';
 
 export default class AdminIndexesItemController extends Controller {
   DatabaseOutline = DatabaseOutline;

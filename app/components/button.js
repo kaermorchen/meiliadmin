@@ -1,9 +1,7 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
-import ClockOutline from 'ember-mdi/components/md-icon/clock-outline';
-import Check from 'ember-mdi/components/md-icon/check';
-import AlertCircleOutline from 'ember-mdi/components/md-icon/alert-circle-outline';
+import { ClockOutline, Check, AlertCircleOutline } from 'ember-mdi/icons';
 
 export default class ButtonComponent extends Component {
   @tracked _state = 'default';
@@ -35,8 +33,6 @@ export default class ButtonComponent extends Component {
       return this.args.fulfilledIcon ?? Check;
     } else if (this.isRejected) {
       return this.args.rejectedIcon ?? AlertCircleOutline;
-    } else if (this.isSettled) {
-      return this.args.settledIcon;
     }
 
     return this.args.icon ?? null;

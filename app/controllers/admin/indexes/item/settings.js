@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import { action, get } from '@ember/object';
 import arrayEquals from 'meilisearch-admin/utils/array-equals';
-import DatabaseArrowUpOutline from 'ember-mdi/components/md-icon/database-arrow-up-outline';
+import { DatabaseArrowUpOutline } from 'ember-mdi/icons';
 
 export default class AdminIndexesItemSettingsController extends Controller {
   emptyObj = {};
