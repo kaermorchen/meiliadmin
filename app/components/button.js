@@ -1,7 +1,6 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
-import { ClockOutline, Check, AlertCircleOutline } from 'ember-mdi/icons';
 
 export default class ButtonComponent extends Component {
   @tracked _state = 'default';
@@ -24,18 +23,6 @@ export default class ButtonComponent extends Component {
 
   get type() {
     return this.args.type ?? 'button';
-  }
-
-  get icon() {
-    if (this.isPending) {
-      return this.args.pendingIcon ?? ClockOutline;
-    } else if (this.isFulfilled) {
-      return this.args.fulfilledIcon ?? Check;
-    } else if (this.isRejected) {
-      return this.args.rejectedIcon ?? AlertCircleOutline;
-    }
-
-    return this.args.icon ?? null;
   }
 
   get state() {
@@ -62,7 +49,7 @@ export default class ButtonComponent extends Component {
   }
 
   get text() {
-    return this.args[`${this.state}Text`] || this.args.text;
+    return this.args[`${this.state}Text`] ?? this.args.text;
   }
 
   @action
@@ -71,13 +58,17 @@ export default class ButtonComponent extends Component {
       return;
     }
 
-    this.state = 'pending';
-
     try {
-      await this.args.onClick(this.args.value);
+      const maybePromise = this.args.onClick(this.args.value);
 
-      if (!this.isDestroyed) {
-        this.state = 'fulfilled';
+      if (typeof maybePromise?.then === 'function') {
+        this.state = 'pending';
+
+        await maybePromise;
+
+        if (!this.isDestroyed) {
+          this.state = 'fulfilled';
+        }
       }
     } catch (error) {
       if (!this.isDestroyed) {
