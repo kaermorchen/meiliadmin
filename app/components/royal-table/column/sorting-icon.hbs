@@ -1,11 +1,11 @@
 <span ...attributes>
   {{#if @sortable}}
     {{#if @isAscSorted}}
-      🠗
+      <MdIcon::ArrowDown />
     {{else if @isDescSorted}}
-      🠕
+      <MdIcon::ArrowUp />
     {{else}}
-      ⬍
+      <MdIcon::ArrowUpDown />
     {{/if}}
   {{/if}}
 </span>
