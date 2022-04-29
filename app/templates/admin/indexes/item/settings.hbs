@@ -44,30 +44,23 @@
   <label class="mb-2">
     Ranking rules
   </label>
-  {{!-- <SortableObjects
-    @sortableObjectList={{@model.settings.rankingRules}}
-    @sortingScope="a"
-  >
+  <div {{sortable-group onChange=this.reorderItems}}>
     {{#each @model.settings.rankingRules as |item|}}
-      <DraggableObject
-        @content={{item}}
-        @overrideClass="sortObject"
-        @isSortable={{true}}
-        @sortingScope="a"
+      <div
         class="flex items-center px-4 py-2 mb-2 border border-gray max-w-md"
-        @dragHandle=".md-icon"
+        {{sortable-item model=item}}
       >
-        <MdIcon @icon="drag-vertical" class="mr-2 -ml-2 cursor-move" />
+        <MdIcon::DragVertical class="mr-2 -ml-2 cursor-move" />
         {{item}}
-        <MdIcon
-          @icon="close-thick"
+        <MdIcon::CloseThick
           @size="16"
           class="ml-auto cursor-pointer"
           {{on 'click' (fn this.removeRankingRule item)}}
+          {{!-- {{sortable-handle}} --}}
         />
-      </DraggableObject>
+      </div>
     {{/each}}
-  </SortableObjects> --}}
+  </div>
   {{#if this.rankingRulesFields.length}}
     <InputSelect
       @options={{this.rankingRulesFields}}

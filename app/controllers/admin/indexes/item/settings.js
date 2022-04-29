@@ -1,5 +1,5 @@
 import Controller from '@ember/controller';
-import { action, get } from '@ember/object';
+import { action, get, set } from '@ember/object';
 import arrayEquals from 'meilisearch-admin/utils/array-equals';
 import { ContentSaveOutline } from 'ember-mdi/icons';
 
@@ -59,5 +59,10 @@ export default class AdminIndexesItemSettingsController extends Controller {
     });
 
     return this.model.index.updateSettings(settings);
+  }
+
+  @action
+  reorderItems(itemModels) {
+    set(this.model.settings, 'rankingRules', itemModels);
   }
 }
