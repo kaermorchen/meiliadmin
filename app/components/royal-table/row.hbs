@@ -1,0 +1,23 @@
+<tr ...attributes>
+  {{yield
+    (component
+      'royal-table/column'
+      place=@place
+      prop=@prop
+      sortable=@sortable
+      onClickHead=@onClickHead
+      onSort=@onSort
+      sortingProp=@sortingProp
+      sortingIconComponent=@sortingIconComponent
+      data=@data
+      parent=@parent
+    )
+  }}
+</tr>
+{{#if (has-block 'expandedView')}}
+  {{#if @data.expanded}}
+    <tr>
+      <td colspan={{@parent.columns.length}}>{{yield to="expandedView"}}</td>
+    </tr>
+  {{/if}}
+{{/if}}

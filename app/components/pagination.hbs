@@ -1,6 +1,8 @@
 {{#if (gt this.totalPages 1)}}
   <nav class="flex justify-center relative z-0 my-4" aria-label="Pagination">
-    {{#let "inline-flex items-center justify-center px-2 mx-1 font-display text-lg" as |commonClasses|}}
+    {{#let
+      'inline-flex items-center justify-center px-2 mx-1 font-display text-lg' as |commonClasses|
+    }}
       {{#if this.previousPage}}
         <LinkTo
           @route={{this.router.currentRouteName}}
@@ -9,15 +11,18 @@
           class={{commonClasses}}
           title="Previous page"
         >
-          <MdIcon @icon="chevron-left" />
+          <MdIcon::ChevronLeft />
         </LinkTo>
       {{/if}}
-
       {{#each this.availablePages as |i|}}
         {{#if (eq @current i)}}
-          <span class="{{commonClasses}} border rounded">{{i}}</span>
-        {{else if (eq "..." i)}}
-          <span class={{commonClasses}}>{{i}}</span>
+          <span class="{{commonClasses}} border rounded">
+            {{i}}
+          </span>
+        {{else if (eq '...' i)}}
+          <span class={{commonClasses}}>
+            {{i}}
+          </span>
         {{else}}
           <LinkTo
             @route={{this.router.currentRouteName}}
@@ -29,7 +34,6 @@
           </LinkTo>
         {{/if}}
       {{/each}}
-
       {{#if this.nextPage}}
         <LinkTo
           @route={{this.router.currentRouteName}}
@@ -38,7 +42,7 @@
           class={{commonClasses}}
           title="Next page"
         >
-          <MdIcon @icon="chevron-right" />
+          <MdIcon::ChevronRight />
         </LinkTo>
       {{/if}}
     {{/let}}

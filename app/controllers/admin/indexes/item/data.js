@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
+import { Magnify, Table, MapOutline } from 'ember-mdi/icons';
 
 export default class AdminIndexesItemDataController extends Controller {
   @tracked q = null;
@@ -10,6 +11,10 @@ export default class AdminIndexesItemDataController extends Controller {
   @tracked sort;
 
   queryParams = ['q', 'page', 'limit', 'sort'];
+
+  Magnify = Magnify;
+  Table = Table;
+  MapOutline = MapOutline;
 
   get sortedFields() {
     const fields = Object.keys(this.model.stats.fieldDistribution);

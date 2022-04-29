@@ -1,0 +1,25 @@
+<table class="royal-table" ...attributes>
+  {{#if @caption}}
+    <caption>
+      {{@caption}}
+    </caption>
+  {{/if}}
+  <thead>
+    {{yield
+      (component
+        'royal-table/row'
+        place='head'
+        onClickHead=@onClickHead
+        onSort=@onSort
+        sortingProp=@sortingProp
+        sortingIconComponent=@sortingIconComponent
+        parent=this
+      )
+    }}
+  </thead>
+  <tbody>
+    {{#each @data as |item index|}}
+      {{yield (component 'royal-table/row' place='body' data=item parent=this) item index}}
+    {{/each}}
+  </tbody>
+</table>

@@ -2,32 +2,34 @@
 <label class="mb-2">
   Attributes
 </label>
-<RoyalTable @data={{@model.attributes}} as |Column dataRow|>
-  <Column @prop="name" />
-  <Column @name="Displayed">
-    <InputCheckbox
-      @checked={{dataRow.displayed}}
-      @onChange={{set dataRow 'displayed'}}
-    />
-  </Column>
-  <Column @name="Filterable">
-    <InputCheckbox
-      @checked={{dataRow.filterable}}
-      @onChange={{set dataRow 'filterable'}}
-    />
-  </Column>
-  <Column @name="Searchable">
-    <InputCheckbox
-      @checked={{dataRow.searchable}}
-      @onChange={{set dataRow 'searchable'}}
-    />
-  </Column>
-  <Column @name="Sortable">
-    <InputCheckbox
-      @checked={{dataRow.sortable}}
-      @onChange={{set dataRow 'sortable'}}
-    />
-  </Column>
+<RoyalTable @data={{@model.attributes}} as |Row data|>
+  <Row as |Column|>
+    <Column @prop="name" />
+    <Column @name="Displayed">
+      <InputCheckbox
+        @checked={{data.displayed}}
+        @onChange={{set data 'displayed'}}
+      />
+    </Column>
+    <Column @name="Filterable">
+      <InputCheckbox
+        @checked={{data.filterable}}
+        @onChange={{set data 'filterable'}}
+      />
+    </Column>
+    <Column @name="Searchable">
+      <InputCheckbox
+        @checked={{data.searchable}}
+        @onChange={{set data 'searchable'}}
+      />
+    </Column>
+    <Column @name="Sortable">
+      <InputCheckbox
+        @checked={{data.sortable}}
+        @onChange={{set data 'sortable'}}
+      />
+    </Column>
+  </Row>
 </RoyalTable>
 <InputSelect
   @label="Distinct attribute"
@@ -42,30 +44,23 @@
   <label class="mb-2">
     Ranking rules
   </label>
-  <SortableObjects
-    @sortableObjectList={{@model.settings.rankingRules}}
-    @sortingScope="a"
-  >
+  <div {{sortable-group onChange=this.reorderItems}}>
     {{#each @model.settings.rankingRules as |item|}}
-      <DraggableObject
-        @content={{item}}
-        @overrideClass="sortObject"
-        @isSortable={{true}}
-        @sortingScope="a"
+      <div
         class="flex items-center px-4 py-2 mb-2 border border-gray max-w-md"
-        @dragHandle=".md-icon"
+        {{sortable-item model=item}}
       >
-        <MdIcon @icon="drag-vertical" class="mr-2 -ml-2 cursor-move" />
+        <MdIcon::DragVertical class="mr-2 -ml-2 cursor-move" />
         {{item}}
-        <MdIcon
-          @icon="close-thick"
+        <MdIcon::CloseThick
           @size="16"
           class="ml-auto cursor-pointer"
           {{on 'click' (fn this.removeRankingRule item)}}
+          {{!-- {{sortable-handle}} --}}
         />
-      </DraggableObject>
+      </div>
     {{/each}}
-  </SortableObjects>
+  </div>
   {{#if this.rankingRulesFields.length}}
     <InputSelect
       @options={{this.rankingRulesFields}}
@@ -93,9 +88,6 @@
   @pendingText="Saving"
   @fulfilledText="Done"
   @rejectedText="Error"
-  @icon="database-arrow-up-outline"
-  @pendingIcon="clock-outline"
-  @fulfilledIcon="check"
-  @rejectedIcon="alert-circle-outline"
+  @icon={{this.ContentSaveOutline}}
   @onClick={{this.save}}
 />

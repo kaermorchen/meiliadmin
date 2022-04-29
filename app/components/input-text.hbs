@@ -1,15 +1,13 @@
 <div class="mb-4">
   {{#if @label}}
-    <label for={{this.id}} class="block font-medium mb-1 text-dark">{{@label}}</label>
+    <label for={{this.id}} class="block font-medium mb-1 text-dark">
+      {{@label}}
+    </label>
   {{/if}}
   <div class="relative flex items-center border rounded-md border-gray">
     {{#if @prefixIcon}}
-      <MdIcon
-        @icon={{@prefixIcon}}
-        class="h-8 w-8 pl-2"
-      />
+      <@prefixIcon class="h-8 w-8 pl-2" />
     {{/if}}
-
     <input
       type="text"
       name={{@name}}
@@ -18,9 +16,11 @@
       placeholder={{@placeholder}}
       value={{@value}}
       {{on 'input' this.onChange}}
-    >
+    />
   </div>
   {{#if @helper}}
-    <div class="mt-1 text-sm">{{@helper}}</div>
+    <div class="mt-1 text-sm">
+      {{@helper}}
+    </div>
   {{/if}}
 </div>

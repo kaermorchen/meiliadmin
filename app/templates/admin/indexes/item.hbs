@@ -3,8 +3,8 @@
 <h1 class="text-2xl mb-4">{{capitalize @model.uid}}</h1>
 
 <div class="flex mb-4">
-  <Tab @route="admin.indexes.item.data" @text="Data" @icon="database-outline" @model={{@model}} />
-  <Tab @route="admin.indexes.item.settings" @text="Settings" @icon="cog-outline" @model={{@model}} />
+  <Tab @route="admin.indexes.item.data" @text="Data" @icon={{this.DatabaseOutline}} @model={{@model}} />
+  <Tab @route="admin.indexes.item.settings" @text="Settings" @icon={{this.CogOutline}} @model={{@model}} />
 </div>
 
 {{outlet}}

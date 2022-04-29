@@ -25,20 +25,6 @@ export default class ButtonComponent extends Component {
     return this.args.type ?? 'button';
   }
 
-  get icon() {
-    if (this.isPending && this.args.pendingIcon) {
-      return this.args.pendingIcon;
-    } else if (this.isFulfilled && this.args.fulfilledIcon) {
-      return this.args.fulfilledIcon;
-    } else if (this.isRejected && this.args.rejectedIcon) {
-      return this.args.rejectedIcon;
-    } else if (this.isSettled && this.args.settledIcon) {
-      return this.args.settledIcon;
-    }
-
-    return this.args.icon ?? null;
-  }
-
   get state() {
     return this.args.state ?? this._state;
   }
@@ -63,7 +49,7 @@ export default class ButtonComponent extends Component {
   }
 
   get text() {
-    return this.args[`${this.state}Text`] || this.args.text;
+    return this.args[`${this.state}Text`] ?? this.args.text;
   }
 
   @action
@@ -72,13 +58,17 @@ export default class ButtonComponent extends Component {
       return;
     }
 
-    this.state = 'pending';
-
     try {
-      await this.args.onClick(this.args.value);
+      const maybePromise = this.args.onClick(this.args.value);
 
-      if (!this.isDestroyed) {
-        this.state = 'fulfilled';
+      if (typeof maybePromise?.then === 'function') {
+        this.state = 'pending';
+
+        await maybePromise;
+
+        if (!this.isDestroyed) {
+          this.state = 'fulfilled';
+        }
       }
     } catch (error) {
       if (!this.isDestroyed) {
