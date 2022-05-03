@@ -26,10 +26,12 @@ export default class Index {
     return query(`${this.indexPath}/settings`);
   }
 
-  search(q) {
+  search(q, options = {}) {
+    options.q = q;
+
     return query(`${this.indexPath}/search`, {
       method: 'POST',
-      body: JSON.stringify({ q }),
+      body: JSON.stringify(options),
     });
   }
 }
