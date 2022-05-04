@@ -1,11 +1,13 @@
 import Controller from '@ember/controller';
 import { action, get, set } from '@ember/object';
 import arrayEquals from 'meilisearch-admin/utils/array-equals';
-import { ContentSaveOutline } from 'ember-mdi/icons';
+import { ContentSaveOutline, Check, CircleMedium } from 'ember-mdi/icons';
 
 export default class AdminIndexesItemSettingsController extends Controller {
   emptyObj = {};
   ContentSaveOutline = ContentSaveOutline;
+  Check = Check;
+  CircleMedium = CircleMedium;
 
   get rankingRulesFields() {
     const arr = [];
@@ -64,5 +66,18 @@ export default class AdminIndexesItemSettingsController extends Controller {
   @action
   reorderItems(itemModels) {
     set(this.model.settings, 'rankingRules', itemModels);
+  }
+
+  @action
+  setAttributeValue(arr, item) {
+    if (arr.length === 0 && arr[0] === '*') {
+      arr = [];
+    }
+
+    if (arr.includes(item)) {
+      arr = arr.filter((i) => i !== item);
+    } else {
+      arr.push(item);
+    }
   }
 }

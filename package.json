@@ -76,7 +76,7 @@
     "ember-power-select": "^5.0.4",
     "ember-qunit": "^5.1.5",
     "ember-resolver": "^8.0.3",
-    "ember-resources": "^4.4.0",
+    "ember-resources": "^4.7.1",
     "ember-set-helper": "^2.0.1",
     "ember-sortable": "^3.0.1",
     "ember-source": "~4.2.0",

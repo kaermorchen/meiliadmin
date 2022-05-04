@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors');
+
 const light = '#FAFAFA';
 // const gray = '#EEEDEF';
 // const dark = '#55585D';
@@ -18,10 +20,21 @@ module.exports = {
     extend: {
       colors: {
         light,
-        gray,
+        // gray,
         dark,
         text,
         primary,
+
+        gray: {
+          light: colors.gray['100'],
+          DEFAULT: colors.gray['500'],
+          dark: colors.gray['800'],
+        },
+        green: {
+          light: colors.emerald['100'],
+          DEFAULT: colors.emerald['500'],
+          dark: colors.emerald['800'],
+        },
       },
     },
     // borderColor: gray,

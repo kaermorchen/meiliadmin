@@ -1,7 +1,31 @@
 {{page-title 'Settings'}}
-<label class="mb-2">
-  Attributes
+<label class="text-xl mb-2 block">
+  Displayed attributes
 </label>
+<div class="mb-4">
+  {{#each @model.index.fields as |item|}}
+    {{#let
+      (or
+        @model.index.allAttributesAreDisplayed
+        (includes item @model.index.displayedAttributes.value)
+      ) as |checked|
+    }}
+      <Badge
+        @label={{item}}
+        @icon={{if checked this.Check this.CircleMedium}}
+        @style={{if checked 'success'}}
+        class="cursor-pointer"
+        {{on
+          'click'
+          (fn
+            this.setAttributeValue @model.index.displayedAttributes.value item
+          )
+        }}
+      />
+    {{/let}}
+  {{/each}}
+</div>
+{{!--
 <RoyalTable @data={{@model.attributes}} as |Row data|>
   <Row as |Column|>
     <Column @prop="name" />
@@ -56,7 +80,6 @@
           @size="16"
           class="ml-auto cursor-pointer"
           {{on 'click' (fn this.removeRankingRule item)}}
-          {{!-- {{sortable-handle}} --}}
         />
       </div>
     {{/each}}
@@ -90,4 +113,4 @@
   @rejectedText="Error"
   @icon={{this.ContentSaveOutline}}
   @onClick={{this.save}}
-/>
+/> --}}

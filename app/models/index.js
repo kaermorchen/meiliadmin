@@ -1,7 +1,13 @@
 import query from '../utils/query';
 import { TrackedArray } from 'tracked-built-ins';
+import { trackedFunction } from 'ember-resources/util/function';
 
 export default class Index {
+  stats = trackedFunction(this, () => query(`${this.indexPath}/stats`));
+  displayedAttributes = trackedFunction(this, () =>
+    query(`${this.indexPath}/settings/displayed-attributes`)
+  );
+
   constructor(data) {
     for (const key in data) {
       this[key] = data[key];
@@ -10,6 +16,14 @@ export default class Index {
 
   get indexPath() {
     return `indexes/${this.uid}`;
+  }
+
+  get allAttributesAreDisplayed() {
+    return (
+      this.displayedAttributes.value &&
+      this.displayedAttributes.value.length === 1 &&
+      this.displayedAttributes.value[0] === '*'
+    );
   }
 
   getSortableAttributes() {
@@ -33,5 +47,11 @@ export default class Index {
       method: 'POST',
       body: JSON.stringify(options),
     });
+  }
+
+  get fields() {
+    return this.stats.value
+      ? Object.keys(this.stats.value.fieldDistribution)
+      : [];
   }
 }
