@@ -2,12 +2,12 @@
 <label class="text-xl mb-2 block">
   Displayed attributes
 </label>
-<div class="mb-4">
+<div class="mb-2">
   {{#each @model.index.fields as |item|}}
     {{#let
       (or
-        @model.index.allAttributesAreDisplayed
-        (includes item @model.index.displayedAttributes.value)
+        (eq @model.displayedAttributes.firstObject '*')
+        (includes item @model.displayedAttributes)
       ) as |checked|
     }}
       <Badge
@@ -15,15 +15,21 @@
         @icon={{if checked this.Check this.CircleMedium}}
         @style={{if checked 'success'}}
         class="cursor-pointer"
-        {{on
-          'click'
-          (fn
-            this.setAttributeValue @model.index.displayedAttributes.value item
-          )
-        }}
+        {{on 'click' (fn this.setAttributeValue 'displayedAttributes' item)}}
       />
     {{/let}}
   {{/each}}
+</div>
+<div class="mb-4">
+  <Button
+    @text="Update"
+    @onClick={{fn
+      this.update
+      'updateDisplayedAttributes'
+      @model.displayedAttributes
+    }}
+  />
+  <Button @text="Reset" @onClick={{fn this.reset 'resetDisplayedAttributes'}} />
 </div>
 {{!--
 <RoyalTable @data={{@model.attributes}} as |Row data|>

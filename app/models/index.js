@@ -5,7 +5,9 @@ import { trackedFunction } from 'ember-resources/util/function';
 export default class Index {
   stats = trackedFunction(this, () => query(`${this.indexPath}/stats`));
   displayedAttributes = trackedFunction(this, () =>
-    query(`${this.indexPath}/settings/displayed-attributes`)
+    query(`${this.indexPath}/settings/displayed-attributes`).then(
+      (arr) => new TrackedArray(arr)
+    )
   );
 
   constructor(data) {
@@ -24,6 +26,23 @@ export default class Index {
       this.displayedAttributes.value.length === 1 &&
       this.displayedAttributes.value[0] === '*'
     );
+  }
+
+  getDisplayedAttributes() {
+    return query(`${this.indexPath}/settings/displayed-attributes`);
+  }
+
+  updateDisplayedAttributes(value) {
+    return query(`${this.indexPath}/settings/displayed-attributes`, {
+      method: 'POST',
+      body: JSON.stringify(value),
+    });
+  }
+
+  resetDisplayedAttributes() {
+    return query(`${this.indexPath}/settings/displayed-attributes`, {
+      method: 'DELETE',
+    });
   }
 
   getSortableAttributes() {

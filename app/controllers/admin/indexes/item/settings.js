@@ -2,6 +2,7 @@ import Controller from '@ember/controller';
 import { action, get, set } from '@ember/object';
 import arrayEquals from 'meilisearch-admin/utils/array-equals';
 import { ContentSaveOutline, Check, CircleMedium } from 'ember-mdi/icons';
+import { TrackedArray } from 'tracked-built-ins';
 
 export default class AdminIndexesItemSettingsController extends Controller {
   emptyObj = {};
@@ -69,15 +70,29 @@ export default class AdminIndexesItemSettingsController extends Controller {
   }
 
   @action
-  setAttributeValue(arr, item) {
-    if (arr.length === 0 && arr[0] === '*') {
-      arr = [];
+  setAttributeValue(key, item) {
+    let arr = this.model[key];
+
+    if (arr.length === 1 && arr[0] === '*') {
+      arr = Array.from(this.model.index.fields);
     }
 
     if (arr.includes(item)) {
       arr = arr.filter((i) => i !== item);
     } else {
-      arr.push(item);
+      arr = arr.concat([item]);
     }
+
+    set(this.model, key, arr);
+  }
+
+  @action
+  update(key, value) {
+    this.model.index[key](value);
+  }
+
+  @action
+  reset(key) {
+    this.model.index[key]();
   }
 }
