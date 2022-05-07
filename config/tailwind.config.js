@@ -7,11 +7,11 @@ const light = '#FAFAFA';
 
 // const  light = '#E5E7EB';
 // const secondary = '#374151';
-const gray = '#e1dfe2';
+// const gray = '#e1dfe2';
 const text = '#252526';
 const dark = '#1E1E1E';
 // const primary = '#2563EB';
-const primary = '#ff5caa';
+// const primary = '#ff5caa';
 
 module.exports = {
   content: ['./app/**/*.html', './app/**/*.hbs'],
@@ -23,7 +23,11 @@ module.exports = {
         // gray,
         dark,
         text,
-        primary,
+        primary: {
+          light: colors.pink['100'],
+          DEFAULT: colors.pink['500'],
+          dark: colors.pink['800'],
+        },
 
         gray: {
           light: colors.gray['100'],

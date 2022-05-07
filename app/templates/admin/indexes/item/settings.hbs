@@ -23,13 +23,20 @@
 <div class="mb-4">
   <Button
     @text="Update"
+    @style="primary"
+    @size="small"
     @onClick={{fn
       this.update
       'updateDisplayedAttributes'
       @model.displayedAttributes
     }}
   />
-  <Button @text="Reset" @onClick={{fn this.reset 'resetDisplayedAttributes'}} />
+  <Button
+    @text="Reset"
+    @size="small"
+    @style="outline"
+    @onClick={{fn this.reset 'resetDisplayedAttributes'}}
+  />
 </div>
 {{!--
 <RoyalTable @data={{@model.attributes}} as |Row data|>

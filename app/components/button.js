@@ -5,6 +5,14 @@ import { tracked } from '@glimmer/tracking';
 export default class ButtonComponent extends Component {
   @tracked _state = 'default';
 
+  get style() {
+    return this.args.style ?? 'default';
+  }
+
+  get size() {
+    return this.args.size ?? 'default';
+  }
+
   get isActive() {
     return (
       this.args.group &&
