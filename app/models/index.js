@@ -45,6 +45,23 @@ export default class Index {
     });
   }
 
+  getSearchableAttributes() {
+    return query(`${this.indexPath}/settings/searchable-attributes`);
+  }
+
+  updateSearchableAttributes(value) {
+    return query(`${this.indexPath}/settings/searchable-attributes`, {
+      method: 'POST',
+      body: JSON.stringify(value),
+    });
+  }
+
+  resetSearchableAttributes() {
+    return query(`${this.indexPath}/settings/searchable-attributes`, {
+      method: 'DELETE',
+    });
+  }
+
   getSortableAttributes() {
     return query(`${this.indexPath}/settings/sortable-attributes`).then(
       (result) => new TrackedArray(result)

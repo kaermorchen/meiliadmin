@@ -38,6 +38,45 @@
     @onClick={{fn this.reset 'resetDisplayedAttributes'}}
   />
 </div>
+<label class="text-xl mb-2 block">
+  Searchable attributes
+</label>
+<div class="mb-2">
+  {{#each @model.index.fields as |item|}}
+    {{#let
+      (or
+        (eq @model.searchableAttributes.firstObject '*')
+        (includes item @model.searchableAttributes)
+      ) as |checked|
+    }}
+      <Badge
+        @label={{item}}
+        @icon={{if checked this.Check this.CircleMedium}}
+        @style={{if checked 'success'}}
+        class="cursor-pointer"
+        {{on 'click' (fn this.setAttributeValue 'searchableAttributes' item)}}
+      />
+    {{/let}}
+  {{/each}}
+</div>
+<div class="mb-4">
+  <Button
+    @text="Update"
+    @style="primary"
+    @size="small"
+    @onClick={{fn
+      this.update
+      'updateSearchableAttributes'
+      @model.searchableAttributes
+    }}
+  />
+  <Button
+    @text="Reset"
+    @size="small"
+    @style="outline"
+    @onClick={{fn this.reset 'resetSearchableAttributes'}}
+  />
+</div>
 {{!--
 <RoyalTable @data={{@model.attributes}} as |Row data|>
   <Row as |Column|>

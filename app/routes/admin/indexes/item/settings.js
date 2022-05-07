@@ -43,6 +43,7 @@ export default class AdminIndexesItemSettingsRoute extends Route {
       index,
       stats,
       displayedAttributes: index.getDisplayedAttributes(),
+      searchableAttributes: index.getSearchableAttributes(),
     });
   }
 }
