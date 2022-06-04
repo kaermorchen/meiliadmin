@@ -9,6 +9,7 @@ export default class AdminRoute extends Route {
     return hash({
       indexes: this.meilisearch.getIndexes(),
       health: this.meilisearch.getHealth(),
+      version: this.meilisearch.getVersion(),
     });
   }
 }

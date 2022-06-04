@@ -12,4 +12,8 @@ export default class MeilisearchService extends Service {
   getHealth() {
     return query('health');
   }
+
+  getVersion() {
+    return query('version');
+  }
 }

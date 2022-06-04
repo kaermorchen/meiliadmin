@@ -16,12 +16,12 @@
           />
         {{/each}}
       </nav>
-      <div class="flex flex-row items-center h-12 px-4" title={{@model.health.status}}>
-        <span class="mr-1 text-gray">Status:</span>
+      <div class="flex flex-row items-center h-12 px-4">
+        <span class="mr-1 text-gray" title="The version of a running Meilisearch instance">v{{@model.version.pkgVersion}}</span>
         {{#if (eq @model.health.status "available")}}
-          <this.CheckboxMarkedCircle class="text-green" @size={{18}}/>
+          <this.CheckboxMarkedCircle class="text-green" @size={{18}} @title={{@model.health.status}}/>
         {{else}}
-          <this.AlertCircle class="text-yellow" @size={{18}}/>
+          <this.AlertCircle class="text-yellow" @size={{18}} @title={{@model.health.status}}/>
         {{/if}}
       </div>
     </div>
