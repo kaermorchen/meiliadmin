@@ -8,4 +8,8 @@ export default class MeilisearchService extends Service {
       indexes.map((item) => new Index(item))
     );
   }
+
+  getHealth() {
+    return query('health');
+  }
 }

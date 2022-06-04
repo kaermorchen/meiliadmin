@@ -28,16 +28,20 @@ module.exports = {
           DEFAULT: colors.pink['500'],
           dark: colors.pink['800'],
         },
-
         gray: {
           light: colors.gray['100'],
           DEFAULT: colors.gray['500'],
           dark: colors.gray['800'],
         },
+        yellow: {
+          light: colors.yellow['100'],
+          DEFAULT: colors.yellow['400'],
+          dark: colors.yellow['700'],
+        },
         green: {
-          light: colors.emerald['100'],
-          DEFAULT: colors.emerald['500'],
-          dark: colors.emerald['800'],
+          light: colors.green['100'],
+          DEFAULT: colors.green['400'],
+          dark: colors.green['800'],
         },
       },
     },

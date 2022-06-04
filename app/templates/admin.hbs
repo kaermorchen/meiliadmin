@@ -7,7 +7,7 @@
 
     <div class="flex flex-col justify-between flex-1 mt-6">
       <nav>
-        {{#each @model as |item|}}
+        {{#each @model.indexes as |item|}}
           <MenuItem
             @route="admin.indexes.item"
             @model={{item}}
@@ -16,6 +16,14 @@
           />
         {{/each}}
       </nav>
+      <div class="flex flex-row items-center h-12 px-4" title={{@model.health.status}}>
+        <span class="mr-1 text-gray">Status:</span>
+        {{#if (eq @model.health.status "available")}}
+          <this.CheckboxMarkedCircle class="text-green" @size={{18}}/>
+        {{else}}
+          <this.AlertCircle class="text-yellow" @size={{18}}/>
+        {{/if}}
+      </div>
     </div>
   </div>
 
