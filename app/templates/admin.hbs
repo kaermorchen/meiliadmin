@@ -1,22 +1,23 @@
 <div class="relative min-h-screen flex">
-  <div class="flex flex-col w-64 h-screen px-4 py-8 bg-dark border-r border-gray">
-    <h2 class="text-xl font-semibold text-light text-center flex items-center">
+  <div class="flex flex-col w-64 min-h-screen px-4 py-8 border-r">
+    <h2 class="flex items-center text-xl mb-8">
       <img src="/logo.svg" alt="MeiliSearch" class="w-8 h-8 mr-2">
       MeiliSearch Admin
     </h2>
 
-    <div class="flex flex-col justify-between flex-1 mt-6">
+    <div class="flex flex-col flex-1">
       <nav>
+        <div class="px-4 py-2 text-sm text-gray">Indexes</div>
         {{#each @model.indexes as |item|}}
-          <MenuItem
+          <LinkTo
             @route="admin.indexes.item"
             @model={{item}}
-            @name={{capitalize item.uid}}
-            class="flex flex-row items-center h-12 px-4"
-          />
+            class="flex items-center px-4 py-2 font-semibold text-lg text-gray-dark hover:text-black">
+            {{capitalize item.uid}}
+          </LinkTo>
         {{/each}}
       </nav>
-      <div class="flex flex-row items-center h-12 px-4">
+      <div class="flex flex-row items-center mt-auto px-4">
         <span class="mr-1 text-gray" title="The version of a running Meilisearch instance">v{{@model.version.pkgVersion}}</span>
         {{#if (eq @model.health.status "available")}}
           <this.CheckboxMarkedCircle class="text-green" @size={{18}} @title={{@model.health.status}}/>

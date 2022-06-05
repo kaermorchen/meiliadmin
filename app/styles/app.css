@@ -4,13 +4,13 @@
 @import 'ember-basic-dropdown';
 
 .royal-table {
-  @apply table-auto border border-gray text-left mb-4;
+  @apply table-auto border text-left mb-4;
 
   thead {
     @apply bg-light;
 
     tr {
-      @apply border-b border-gray;
+      @apply border-b;
 
       th {
         @apply px-4 py-4 text-dark font-normal whitespace-nowrap;

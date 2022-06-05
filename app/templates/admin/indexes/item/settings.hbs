@@ -125,7 +125,7 @@ TODO: refactoting
   <div {{sortable-group onChange=this.reorderItems}}>
     {{#each @model.settings.rankingRules as |item|}}
       <div
-        class="flex items-center px-4 py-2 mb-2 border border-gray max-w-md"
+        class="flex items-center px-4 py-2 mb-2 border max-w-md"
         {{sortable-item model=item}}
       >
         <MdIcon::DragVertical class="mr-2 -ml-2 cursor-move" />

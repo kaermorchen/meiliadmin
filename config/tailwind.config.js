@@ -15,9 +15,10 @@ const dark = '#1E1E1E';
 
 module.exports = {
   content: ['./app/**/*.html', './app/**/*.hbs'],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: 'media',
   theme: {
     extend: {
+      borderColor: (theme) => theme('colors.gray.light'),
       colors: {
         light,
         // gray,
@@ -28,10 +29,18 @@ module.exports = {
           DEFAULT: colors.pink['500'],
           dark: colors.pink['800'],
         },
+        // gray: {
+        //   light: colors.gray['100'],
+        //   DEFAULT: colors.gray['500'],
+        //   dark: colors.gray['800'],
+        // },
         gray: {
-          light: colors.gray['100'],
-          DEFAULT: colors.gray['500'],
-          dark: colors.gray['800'],
+          light: '#e5eaef',
+          DEFAULT: '#A1A6B0',
+          dark: '#676d7c',
+        },
+        black: {
+          DEFAULT: '#222228',
         },
         yellow: {
           light: colors.yellow['100'],
@@ -45,7 +54,7 @@ module.exports = {
         },
       },
     },
-    // borderColor: gray,
+
     // emberPowerSelect: (theme) => ({
     //   default: {
     //     trigger: {
