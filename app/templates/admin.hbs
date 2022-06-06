@@ -14,7 +14,7 @@
               @route="admin.indexes.item"
               @model={{item}}
               class={{linkClass}}>
-              {{capitalize item.uid}}
+              <MdIcon::CircleMedium class="mr-1" /> {{capitalize item.uid}}
             </LinkTo>
           {{/each}}
           {{!-- TODO: add link "create new index" --}}
