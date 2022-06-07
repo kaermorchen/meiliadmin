@@ -5,25 +5,31 @@
   @value={{this.q}}
   @onChange={{this.searchTextChanged}}
 />
-<div class="mb-4 flex items-center">
-  <MdIcon::Check class="mr-1" @size="18" />
-  Hits:
-  {{@model.data.nbHits}}
-  <MdIcon::ClockOutline class="ml-6 mr-1" @size="18" />
-  Time spent:
-  {{@model.data.processingTimeMs}}
-  ms
-</div>
-{{#if (gt @model.data.nbHits 0)}}
-  <div class="mb-4 flex items-center">
+
+<div class="flex items-center mb-4">
+  {{#if (gt @model.data.nbHits 0)}}
     <ButtonGroup
       @value={{this.dataView}}
       @onClick={{set this 'dataView'}} as |bg|
     >
-      <bg.button @text="Table" @icon={{this.Table}} @value="table" />
-      <bg.button @text="Map" @icon={{this.MapOutline}} @value="map" />
+      {{#each-in this.views as |viewType Icon|}}
+        <bg.button @text={{capitalize viewType}} @icon={{Icon}} @value={{viewType}} />
+      {{/each-in}}
     </ButtonGroup>
+  {{/if}}
+
+  <div class="flex items-center ml-auto">
+    <MdIcon::Check class="mr-1" @size="18" />
+    Hits:
+    {{@model.data.nbHits}}
+    <MdIcon::ClockOutline class="ml-6 mr-1" @size="18" />
+    Time spent:
+    {{@model.data.processingTimeMs}}
+    ms
   </div>
+</div>
+
+{{#if (gt @model.data.nbHits 0)}}
   {{#if (eq this.dataView 'table')}}
     <RoyalTable
       @data={{@model.data.hits}}
@@ -45,22 +51,7 @@
   {{!-- {{#if (eq this.dataView 'map')}}
     map
   {{/if}} --}}
-  {{!-- {{#if (eq this.dataView 'card')}}
-    <div class="mb-4">
-      {{#each @model.hits as |item|}}
-        <div class="mb-8 rounded-md border overflow-hidden shadow">
-          {{#each-in item as |key value|}}
-            <div class="grid grid-cols-3 gap-4 p-4 odd:bg-gray-50">
-              <div>{{key}}</div>
-              <div class="col-span-2">
-                {{if (eq (type-of value) "object") (stringify value) value}}
-              </div>
-            </div>
-          {{/each-in}}
-        </div>
-      {{/each}}
-    </div>
-  {{/if}} --}}
+
   <Pagination
     @count={{@model.data.nbHits}}
     @current={{this.page}}

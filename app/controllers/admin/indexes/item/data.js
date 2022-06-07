@@ -13,8 +13,12 @@ export default class AdminIndexesItemDataController extends Controller {
   queryParams = ['q', 'page', 'limit', 'sort'];
 
   Magnify = Magnify;
-  Table = Table;
-  MapOutline = MapOutline;
+
+  // key: view name, value: icon
+  views = {
+    table: Table,
+    map: MapOutline,
+  };
 
   get sortedFields() {
     const fields = Object.keys(this.model.stats.fieldDistribution);
