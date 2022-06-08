@@ -13,7 +13,11 @@
       @onClick={{set this 'dataView'}} as |bg|
     >
       {{#each-in this.views as |viewType Icon|}}
-        <bg.button @text={{capitalize viewType}} @icon={{Icon}} @value={{viewType}} />
+        <bg.button
+          @text={{capitalize viewType}}
+          @icon={{Icon}}
+          @value={{viewType}}
+        />
       {{/each-in}}
     </ButtonGroup>
   {{/if}}

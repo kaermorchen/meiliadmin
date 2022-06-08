@@ -1,20 +1,20 @@
 {{#let
-  'inline-flex items-center cursor-pointer border border-transparent hover:opacity-80 active:opacity-60 focus:outline-none'
+  'inline-flex items-center cursor-pointer border hover:opacity-80 active:opacity-60 focus:outline-none'
   (hash
-    primary='text-white bg-primary'
-    default='text-white bg-gray'
-    outline='text-gray'
+    primary='text-primary border-primary'
+    default='text-black border-gray-dark'
   )
   (hash
-    small='px-2.5 py-1.5 text-sm' default='px-3 py-2 leading-4 text-sm'
-  ) as |commonClasses styleClasses sizeClasses|
+    small='px-2.5 py-1.5 text-sm'
+    default='px-3 py-2 leading-4 text-sm'
+  )
+  as |commonClasses styleClasses sizeClasses|
 }}
   <button
     disabled={{this.disabled}}
     type={{this.type}}
     class="{{commonClasses}}
-
-      {{get styleClasses this.style}}
+      {{get styleClasses (if this.isActive 'primary' this.style)}}
 
       {{get sizeClasses this.size}}
 
