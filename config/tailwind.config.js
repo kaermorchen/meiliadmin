@@ -1,4 +1,8 @@
 const colors = require('tailwindcss/colors');
+const path = require('node:path');
+const defaultTheme = require('tailwindcss/defaultTheme');
+const appEntry = path.join(__dirname, 'app');
+const relevantFilesGlob = '**/*.{html,js,ts,hbs,gjs,gts}';
 
 const light = '#FAFAFA';
 // const gray = '#EEEDEF';
@@ -14,7 +18,7 @@ const dark = '#1E1E1E';
 // const primary = '#ff5caa';
 
 module.exports = {
-  content: ['./app/**/*.html', './app/**/*.hbs'],
+  content: [path.join(appEntry, relevantFilesGlob)],
   darkMode: 'media',
   theme: {
     extend: {
