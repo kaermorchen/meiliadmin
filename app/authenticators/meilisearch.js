@@ -1,5 +1,4 @@
 import Base from 'ember-simple-auth/authenticators/base';
-// import query from '../utils/query';
 
 function makeRequest({ url, key }) {
   const headers = new Headers({
@@ -10,6 +9,7 @@ function makeRequest({ url, key }) {
     headers.append('Authorization', `Bearer ${key}`);
   }
 
+  // TODO: how to check session?
   const req = new Request(new URL('/version', url), { headers });
 
   return fetch(req).then(() => ({ url, key }));
