@@ -7,7 +7,7 @@ export default class LoginController extends Controller {
   @service session;
 
   @tracked errorMessage;
-  @tracked url = 'http://127.0.0.1:7700';
+  @tracked url;
   @tracked key;
 
   @action
@@ -21,9 +21,5 @@ export default class LoginController extends Controller {
     } catch (error) {
       this.errorMessage = error.error || error;
     }
-
-    // if (this.session.isAuthenticated) {
-    //   this.transitionToRoute('index');
-    // }
   }
 }
