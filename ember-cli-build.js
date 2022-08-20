@@ -12,6 +12,9 @@ module.exports = function (defaults) {
     'ember-power-select': {
       theme: false,
     },
+    'ember-simple-auth': {
+      useSessionSetupMethod: true,
+    },
   });
 
   return require('@embroider/compat').compatBuild(app, Webpack, {
