@@ -1,14 +1,19 @@
-const host = 'http://127.0.0.1:7700';
+import { instance } from '../instance-initializers/application';
 
-export default function query(path, options) {
-  const url = `${host}/${path}`;
-  const defaultOptions = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
+export default function query(path, options = {}) {
+  const session = instance.lookup('service:session');
+  const { url, key } = session.data.authenticated;
+  const defaultHeaders = { 'Content-Type': 'application/json' };
+  const headers = new Headers(Object.assign(defaultHeaders, options.headers));
 
-  return fetch(url, Object.assign(defaultOptions, options)).then((response) =>
-    response.json()
+  if (key) {
+    headers.append('Authorization', `Bearer ${key}`);
+  }
+
+  const req = new Request(
+    new URL(path, url),
+    Object.assign(options, { headers })
   );
+
+  return fetch(req).then((res) => res.json());
 }
