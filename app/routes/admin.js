@@ -4,6 +4,11 @@ import { hash } from 'rsvp';
 
 export default class AdminRoute extends Route {
   @service meilisearch;
+  @service session;
+
+  beforeModel(transition) {
+    this.session.requireAuthentication(transition, 'login');
+  }
 
   async model() {
     return hash({

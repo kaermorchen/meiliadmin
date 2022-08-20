@@ -1,44 +1,78 @@
-<div class="relative min-h-screen flex">
-  <div class="flex flex-col w-64 min-h-screen px-4 py-8 border-r">
-    <h2 class="flex items-center text-xl mb-8">
-      <img src="/logo.svg" alt="MeiliSearch" class="w-8 h-8 mr-2">
+<div class='relative min-h-screen flex'>
+  <div class='flex flex-col w-64 min-h-screen px-4 py-8 border-r'>
+    <h2 class='flex items-center text-xl mb-8'>
+      <img src='/logo.svg' alt='MeiliSearch' class='w-8 h-8 mr-2' />
       MeiliSearch Admin
     </h2>
 
-    <div class="flex flex-col flex-1">
-      {{#let "flex items-center px-4 py-2 font-semibold text-lg text-gray-dark hover:text-black" as |linkClass|}}
+    <div class='flex flex-col flex-1'>
+      {{#let
+        'flex items-center px-4 py-2 font-semibold text-lg text-gray-dark hover:text-black'
+        as |linkClass|
+      }}
         <nav>
-          <div class="px-4 py-2 text-sm text-gray">Indexes</div>
+          <div class='px-4 py-2 text-sm text-gray'>Indexes</div>
           {{#each @model.indexes as |item|}}
             <LinkTo
-              @route="admin.indexes.item"
+              @route='admin.indexes.item'
               @model={{item}}
-              class={{linkClass}}>
-              <MdIcon::CircleMedium class="mr-1" /> {{capitalize item.uid}}
+              class={{linkClass}}
+            >
+              <MdIcon::CircleMedium class='mr-1' />
+              {{capitalize item.uid}}
             </LinkTo>
           {{/each}}
-          {{!-- TODO: add link "create new index" --}}
-          <div class="border-t my-4" />
-          <a href="https://docs.meilisearch.com/" class={{linkClass}} target="_blank" rel="noopener noreferrer">
-            <MdIcon::HelpCircleOutline class="mr-1" /> Documentation
+          {{! TODO: add link "create new index" }}
+          <div class='border-t my-4'></div>
+          <a
+            href='https://docs.meilisearch.com/'
+            class={{linkClass}}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <MdIcon::HelpCircleOutline class='mr-1' />
+            Documentation
           </a>
-          <a href="https://github.com/kaermorchen/meilisearch-admin" class={{linkClass}} target="_blank" rel="noopener noreferrer">
-            <MdIcon::Github class="mr-1" /> MeiliSearch Admin
+          <a
+            href='https://github.com/kaermorchen/meilisearch-admin'
+            class={{linkClass}}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <MdIcon::Github class='mr-1' />
+            MeiliSearch Admin
           </a>
+
+          {{#if this.session.isAuthenticated}}
+            <button type="button" {{on 'click' this.invalidateSession}} class={{linkClass}}>Logout</button>
+          {{else}}
+            <LinkTo @route='login' class={{linkClass}}>Login</LinkTo>
+          {{/if}}
         </nav>
       {{/let}}
-      <div class="flex flex-row items-center mt-auto px-4 pt-2">
-        <span class="mr-1 text-gray" title="The version of a running Meilisearch instance">v{{@model.version.pkgVersion}}</span>
-        {{#if (eq @model.health.status "available")}}
-          <this.CheckboxMarkedCircle class="text-green" @size={{18}} @title={{@model.health.status}}/>
+      <div class='flex flex-row items-center mt-auto px-4 pt-2'>
+        <span
+          class='mr-1 text-gray'
+          title='The version of a running Meilisearch instance'
+        >v{{@model.version.pkgVersion}}</span>
+        {{#if (eq @model.health.status 'available')}}
+          <this.CheckboxMarkedCircle
+            class='text-green'
+            @size={{18}}
+            @title={{@model.health.status}}
+          />
         {{else}}
-          <this.AlertCircle class="text-yellow" @size={{18}} @title={{@model.health.status}}/>
+          <this.AlertCircle
+            class='text-yellow'
+            @size={{18}}
+            @title={{@model.health.status}}
+          />
         {{/if}}
       </div>
     </div>
   </div>
 
-  <div class="flex-1 p-4">
+  <div class='flex-1 p-4'>
     {{outlet}}
   </div>
 </div>
