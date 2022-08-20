@@ -1,22 +1,42 @@
 {{page-title 'Login'}}
 
-<form {{on 'submit' this.authenticate}}>
-  <label for='identification'>Login</label>
-  <input
-    id='identification'
-    placeholder='Enter Login'
-    value={{this.identification}}
-    {{on 'change' this.updateIdentification}}
-  />
-  <label for='password'>Password</label>
-  <input
-    id='password'
-    placeholder='Enter Password'
-    value={{this.password}}
-    {{on 'change' this.updatePassword}}
-  />
-  <button type='submit'>Login</button>
-  {{#if this.errorMessage}}
-    <p>{{this.errorMessage}}</p>
-  {{/if}}
-</form>
+<div class='min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8'>
+  <div class='sm:mx-auto sm:w-full sm:max-w-md'>
+    <div class='bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10'>
+      <form class='space-y-6' {{on 'submit' this.authenticate}}>
+        <InputText
+          @label='URL'
+          @value={{this.url}}
+          @required={{true}}
+          @onChange={{set this 'url'}}
+          class='mt-1'
+        />
+
+        <InputText
+          @label='Key'
+          @value={{this.key}}
+          @onChange={{set this 'key'}}
+          class='mt-1'
+        />
+
+        {{!-- <div class='flex items-center justify-between'>
+          <div class='flex items-center'>
+            <InputCheckbox
+              @checked={{this.rememberMe}}
+              @onChange={{set this 'rememberMe'}}
+            />
+            <label for='remember-me' class='ml-2 block text-sm text-gray-900'>
+              Remember me
+            </label>
+          </div>
+        </div> --}}
+
+        <Button type='submit' @text='Sign in' @style='primary' class="w-full flex justify-center" />
+
+        {{#if this.errorMessage}}
+          <p>{{this.errorMessage}}</p>
+        {{/if}}
+      </form>
+    </div>
+  </div>
+</div>

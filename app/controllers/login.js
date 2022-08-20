@@ -4,35 +4,26 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
 export default class LoginController extends Controller {
-  @tracked errorMessage;
   @service session;
+
+  @tracked errorMessage;
+  @tracked url = 'http://127.0.0.1:7700';
+  @tracked key;
 
   @action
   async authenticate(e) {
     e.preventDefault();
-    let { identification, password } = this;
+
+    let { url, key } = this;
+
     try {
-      await this.session.authenticate(
-        'authenticator:oauth2',
-        identification,
-        password
-      );
+      await this.session.authenticate('authenticator:meilisearch', url, key);
     } catch (error) {
       this.errorMessage = error.error || error;
     }
 
-    if (this.session.isAuthenticated) {
-      // What to do with all this success?
-    }
-  }
-
-  @action
-  updateIdentification(e) {
-    this.identification = e.target.value;
-  }
-
-  @action
-  updatePassword(e) {
-    this.password = e.target.value;
+    // if (this.session.isAuthenticated) {
+    //   this.transitionToRoute('index');
+    // }
   }
 }
