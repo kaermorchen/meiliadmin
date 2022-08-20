@@ -43,11 +43,11 @@
             MeiliSearch Admin
           </a>
 
-          {{#if this.session.isAuthenticated}}
-            <button type="button" {{on 'click' this.invalidateSession}} class={{linkClass}}>Logout</button>
-          {{else}}
-            <LinkTo @route='login' class={{linkClass}}>Login</LinkTo>
-          {{/if}}
+          <button
+            type='button'
+            {{on 'click' this.invalidateSession}}
+            class={{linkClass}}
+          ><MdIcon::Logout class='mr-1'/>Logout</button>
         </nav>
       {{/let}}
       <div class='flex flex-row items-center mt-auto px-4 pt-2'>

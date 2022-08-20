@@ -1,7 +1,7 @@
 <div class="mb-4">
   {{#if @label}}
-    <label for={{this.id}} class="block font-medium mb-1 text-dark">
-      {{@label}}
+    <label for={{this.id}} class="block font-medium mb-1 text-dark {{if @required "after:content-['*'] after:text-red-500"}}">
+      {{~@label~}}
     </label>
   {{/if}}
   <div class="relative flex items-center border rounded-md">
@@ -15,6 +15,7 @@
       class="block w-full p-2 bg-transparent focus:outline-none"
       placeholder={{@placeholder}}
       value={{@value}}
+      required={{@required}}
       {{on 'input' this.onChange}}
     />
   </div>

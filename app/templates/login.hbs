@@ -2,41 +2,53 @@
 
 <div class='min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8'>
   <div class='sm:mx-auto sm:w-full sm:max-w-md'>
-    <div class='bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10'>
+    <div class='bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10 mb-4'>
       <form class='space-y-6' {{on 'submit' this.authenticate}}>
+        <h1 class='text-2xl text-center'>MeiliSearch Admin</h1>
+
         <InputText
           @label='URL'
           @value={{this.url}}
           @required={{true}}
           @onChange={{set this 'url'}}
+          @placeholder='https://example.com'
           class='mt-1'
         />
 
         <InputText
-          @label='Key'
+          @label='API key'
           @value={{this.key}}
           @onChange={{set this 'key'}}
           class='mt-1'
         />
 
-        {{!-- <div class='flex items-center justify-between'>
-          <div class='flex items-center'>
-            <InputCheckbox
-              @checked={{this.rememberMe}}
-              @onChange={{set this 'rememberMe'}}
-            />
-            <label for='remember-me' class='ml-2 block text-sm text-gray-900'>
-              Remember me
-            </label>
-          </div>
-        </div> --}}
-
-        <Button type='submit' @text='Sign in' @style='primary' class="w-full flex justify-center" />
+        <Button
+          type='submit'
+          @text='Sign in'
+          @style='primary'
+          class='w-full flex justify-center'
+        />
 
         {{#if this.errorMessage}}
-          <p>{{this.errorMessage}}</p>
+          {{this.errorMessage}}
         {{/if}}
       </form>
     </div>
+
+    <p class='text-center mb-4'>
+      <a
+        href='https://www.meilisearch.com/'
+        title='Website Meilisearch'
+      >Meilisearch</a>
+      — an open-source, lightning-fast, and hyper-relevant search engine that
+      fits effortlessly into your apps, websites, and workflow.
+    </p>
+    <p class='flex items-center justify-center'>
+      <MdIcon::Github @size='20' class='mr-1' />
+      <a
+        href='https://github.com/kaermorchen/meilisearch-admin'
+        title='Meilisearch Admin on GitHub'
+      >Meilisearch Admin</a>
+    </p>
   </div>
 </div>
