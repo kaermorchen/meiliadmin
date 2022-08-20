@@ -1,7 +1,12 @@
 {{#if (gt this.totalPages 1)}}
-  <nav class="flex justify-center relative z-0 my-4" aria-label="Pagination">
+  <nav
+    class='flex justify-center relative z-0'
+    aria-label='Pagination'
+    ...attributes
+  >
     {{#let
-      'inline-flex items-center justify-center px-2 mx-1 font-display text-lg' as |commonClasses|
+      'inline-flex items-center justify-center px-2 mx-1 font-display text-lg'
+      as |commonClasses|
     }}
       {{#if this.previousPage}}
         <LinkTo
@@ -9,14 +14,14 @@
           @models={{if @model (array @model) (array)}}
           @query={{hash page=this.previousPage}}
           class={{commonClasses}}
-          title="Previous page"
+          title='Previous page'
         >
           <MdIcon::ChevronLeft />
         </LinkTo>
       {{/if}}
       {{#each this.availablePages as |i|}}
         {{#if (eq @current i)}}
-          <span class="{{commonClasses}} border rounded">
+          <span class='{{commonClasses}} border rounded'>
             {{i}}
           </span>
         {{else if (eq '...' i)}}
@@ -40,7 +45,7 @@
           @models={{if @model (array @model) (array)}}
           @query={{hash page=this.nextPage}}
           class={{commonClasses}}
-          title="Next page"
+          title='Next page'
         >
           <MdIcon::ChevronRight />
         </LinkTo>

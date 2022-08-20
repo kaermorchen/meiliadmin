@@ -1,64 +1,60 @@
 {{page-title 'Data'}}
 <InputText
-  @placeholder="Search"
+  @placeholder='Search'
   @prefixIcon={{this.Magnify}}
   @value={{this.q}}
   @onChange={{this.searchTextChanged}}
 />
 
-<div class="flex items-center mb-4">
-  {{#if (gt @model.data.estimatedTotalHits 0)}}
-    <ButtonGroup
-      @value={{this.dataView}}
-      @onClick={{set this 'dataView'}} as |bg|
-    >
-      {{#each-in this.views as |viewType Icon|}}
-        <bg.button
-          @text={{capitalize viewType}}
-          @icon={{Icon}}
-          @value={{viewType}}
-        />
-      {{/each-in}}
-    </ButtonGroup>
-  {{/if}}
-
-  <div class="flex items-center ml-auto">
-    <MdIcon::Check class="mr-1" @size="18" />
+{{!-- <div class='flex items-center mb-4'>
+  <div class='flex items-center ml-auto'>
+    <MdIcon::Check class='mr-1' @size='18' />
     Hits:
     {{@model.data.estimatedTotalHits}}
-    <MdIcon::ClockOutline class="ml-6 mr-1" @size="18" />
+    <MdIcon::ClockOutline class='ml-6 mr-1' @size='18' />
     Time spent:
     {{@model.data.processingTimeMs}}
     ms
   </div>
-</div>
+</div> --}}
 
 {{#if (gt @model.data.estimatedTotalHits 0)}}
-  {{#if (eq this.dataView 'table')}}
-    <RoyalTable
-      @data={{@model.data.hits}}
-      @sortingProp={{this.sort}}
-      @onSort={{this.onSort}}
-      class="w-full" as |Row data|
-    >
-      <Row as |Column|>
-        {{#each this.sortedFields as |field|}}
-          <Column @name={{capitalize field}} @prop={{field}} @sortable={{includes field @model.sortableAttributes}}>
-            {{#let (get data field) as |value|}}
-              {{if (eq (type-of value) 'object') (stringify value) value}}
-            {{/let}}
-          </Column>
-        {{/each}}
-      </Row>
-    </RoyalTable>
-  {{/if}}
-  {{!-- {{#if (eq this.dataView 'map')}}
-    map
-  {{/if}} --}}
+  <RoyalTable
+    @data={{@model.data.hits}}
+    @sortingProp={{this.sort}}
+    @onSort={{this.onSort}}
+    class='w-full'
+    as |Row data|
+  >
+    <Row as |Column|>
+      {{#each-in @model.stats.fieldDistribution as |field|}}
+        <Column
+          @name={{capitalize field}}
+          @prop={{field}}
+          @sortable={{includes field @model.sortableAttributes}}
+        >
+          {{#let (get data field) as |value|}}
+            {{if (eq (type-of value) 'object') (stringify value) value}}
+          {{/let}}
+        </Column>
+      {{/each-in}}
+    </Row>
+  </RoyalTable>
 
-  <Pagination
-    @count={{@model.data.estimatedTotalHits}}
-    @current={{this.page}}
-    @perPage={{@model.data.limit}}
-  />
+  <div class='flex items-center'>
+    {{this.fromHits}}
+    —
+    {{this.toHits}}
+    of
+    {{@model.data.estimatedTotalHits}}
+
+    <Pagination
+      @count={{@model.data.estimatedTotalHits}}
+      @current={{this.page}}
+      @perPage={{@model.data.limit}}
+      class='ml-auto'
+    />
+  </div>
+{{else}}
+  No results found
 {{/if}}

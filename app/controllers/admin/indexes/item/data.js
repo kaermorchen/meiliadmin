@@ -20,6 +20,14 @@ export default class AdminIndexesItemDataController extends Controller {
     map: MapOutline,
   };
 
+  get fromHits() {
+    return 1 + this.model.data.offset;
+  }
+
+  get toHits() {
+    return this.model.data.offset + this.model.data.hits.length;
+  }
+
   get sortedFields() {
     const fields = Object.keys(this.model.stats.fieldDistribution);
     const primaryKey = this.model.index.primaryKey ?? 'id';
