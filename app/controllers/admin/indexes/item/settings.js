@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import { action, get, set } from '@ember/object';
 import arrayEquals from 'meilisearch-admin/utils/array-equals';
-import { ContentSaveOutline, Check, CircleMedium } from 'ember-mdi/icons';
+import { ContentSaveOutline, Check, CircleMedium } from 'ember-mdi';
 import { TrackedArray } from 'tracked-built-ins';
 
 export default class AdminIndexesItemSettingsController extends Controller {
