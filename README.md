@@ -1,4 +1,4 @@
-# MeiliSearch Admin
+# MeiliAdmin
 
 Admin panel for [MeiliSearch](https://www.meilisearch.com/).
 
@@ -14,7 +14,7 @@ You will need the following things properly installed on your computer.
 ## Installation
 
 * `git clone <repository-url>` this repository
-* `cd meilisearch-admin`
+* `cd meiliadmin`
 * `npm install`
 
 ## Running / Development

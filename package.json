@@ -1,11 +1,11 @@
 {
-  "name": "meilisearch-admin",
+  "name": "meiliadmin",
   "version": "0.0.0",
   "private": true,
   "description": "Admin panel for MeiliSearch",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/kaermorchen/meilisearch-admin.git"
+    "url": "git+ssh://git@github.com/kaermorchen/meiliadmin.git"
   },
   "author": {
     "name": "Stanislav Romanov",

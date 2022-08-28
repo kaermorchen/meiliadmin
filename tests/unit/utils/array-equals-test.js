@@ -1,4 +1,4 @@
-import arrayEquals from 'meilisearch-admin/utils/array-equals';
+import arrayEquals from 'meiliadmin/utils/array-equals';
 import { module, test } from 'qunit';
 
 module('Unit | Utility | arrayEquals', function () {

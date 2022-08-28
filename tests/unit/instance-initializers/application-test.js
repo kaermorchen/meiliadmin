@@ -1,7 +1,7 @@
 import Application from '@ember/application';
 
-import config from 'meilisearch-admin/config/environment';
-import { initialize } from 'meilisearch-admin/instance-initializers/application';
+import config from 'meiliadmin/config/environment';
+import { initialize } from 'meiliadmin/instance-initializers/application';
 import { module, test } from 'qunit';
 import Resolver from 'ember-resolver';
 import { run } from '@ember/runloop';

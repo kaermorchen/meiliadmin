@@ -1,5 +1,5 @@
 import { module, test } from 'qunit';
-import { setupTest } from 'meilisearch-admin/tests/helpers';
+import { setupTest } from 'meiliadmin/tests/helpers';
 
 module('Unit | Controller | login', function (hooks) {
   setupTest(hooks);

@@ -2,7 +2,7 @@
 
 module.exports = function (environment) {
   let ENV = {
-    modulePrefix: 'meilisearch-admin',
+    modulePrefix: 'meiliadmin',
     environment,
     rootURL: '/',
     locationType: 'history',

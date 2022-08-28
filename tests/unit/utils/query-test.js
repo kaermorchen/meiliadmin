@@ -1,4 +1,4 @@
-import query from 'meilisearch-admin/utils/query';
+import query from 'meiliadmin/utils/query';
 import { module, test } from 'qunit';
 
 module('Unit | Utility | query', function () {

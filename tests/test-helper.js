@@ -1,5 +1,5 @@
-import Application from 'meilisearch-admin/app';
-import config from 'meilisearch-admin/config/environment';
+import Application from 'meiliadmin/app';
+import config from 'meiliadmin/config/environment';
 import * as QUnit from 'qunit';
 import { setApplication } from '@ember/test-helpers';
 import { setup } from 'qunit-dom';
