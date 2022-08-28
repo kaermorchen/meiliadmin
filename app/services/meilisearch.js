@@ -16,4 +16,8 @@ export default class MeilisearchService extends Service {
   getVersion() {
     return query('version');
   }
+
+  getStats() {
+    return query('stats');
+  }
 }

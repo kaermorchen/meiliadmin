@@ -14,7 +14,7 @@
       }}
         <nav>
           <div class='px-4 py-2 text-sm text-gray'>Indexes</div>
-          {{#each @model.indexes as |item|}}
+          {{#each @model as |item|}}
             <LinkTo
               @route='admin.indexes.item'
               @model={{item}}
@@ -52,25 +52,6 @@
           ><Icons::Logout class='mr-1' />Logout</button>
         </nav>
       {{/let}}
-      <div class='flex flex-row items-center mt-auto px-4 pt-2'>
-        <span
-          class='mr-1 text-gray'
-          title='The version of a running Meilisearch instance'
-        >v{{@model.version.pkgVersion}}</span>
-        {{#if (eq @model.health.status 'available')}}
-          <Icons::CheckboxMarkedCircle
-            class='text-green'
-            @size={{18}}
-            @title={{@model.health.status}}
-          />
-        {{else}}
-          <Icons::AlertCircle
-            class='text-yellow'
-            @size={{18}}
-            @title={{@model.health.status}}
-          />
-        {{/if}}
-      </div>
     </div>
   </div>
 
