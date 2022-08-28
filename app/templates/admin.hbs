@@ -58,13 +58,13 @@
           title='The version of a running Meilisearch instance'
         >v{{@model.version.pkgVersion}}</span>
         {{#if (eq @model.health.status 'available')}}
-          <this.CheckboxMarkedCircle
+          <Icons::CheckboxMarkedCircle
             class='text-green'
             @size={{18}}
             @title={{@model.health.status}}
           />
         {{else}}
-          <this.AlertCircle
+          <Icons::AlertCircle
             class='text-yellow'
             @size={{18}}
             @title={{@model.health.status}}
