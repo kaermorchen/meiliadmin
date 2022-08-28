@@ -18,7 +18,7 @@
               @model={{item}}
               class={{linkClass}}
             >
-              <MdIcon::CircleMedium class='mr-1' />
+              <Icons::CircleMedium class='mr-1' />
               {{capitalize item.uid}}
             </LinkTo>
           {{/each}}
@@ -30,7 +30,7 @@
             target='_blank'
             rel='noopener noreferrer'
           >
-            <MdIcon::HelpCircleOutline class='mr-1' />
+            <Icons::HelpCircleOutline class='mr-1' />
             Documentation
           </a>
           <a
@@ -39,7 +39,7 @@
             target='_blank'
             rel='noopener noreferrer'
           >
-            <MdIcon::Github class='mr-1' />
+            <Icons::Github class='mr-1' />
             MeiliSearch Admin
           </a>
 
@@ -47,7 +47,7 @@
             type='button'
             {{on 'click' this.invalidateSession}}
             class={{linkClass}}
-          ><MdIcon::Logout class='mr-1'/>Logout</button>
+          ><Icons::Logout class='mr-1'/>Logout</button>
         </nav>
       {{/let}}
       <div class='flex flex-row items-center mt-auto px-4 pt-2'>

@@ -128,9 +128,9 @@ TODO: refactoting
         class="flex items-center px-4 py-2 mb-2 border max-w-md"
         {{sortable-item model=item}}
       >
-        <MdIcon::DragVertical class="mr-2 -ml-2 cursor-move" />
+        <Icons::DragVertical class="mr-2 -ml-2 cursor-move" />
         {{item}}
-        <MdIcon::CloseThick
+        <Icons::CloseThick
           @size="16"
           class="ml-auto cursor-pointer"
           {{on 'click' (fn this.removeRankingRule item)}}

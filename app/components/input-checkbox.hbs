@@ -1,8 +1,8 @@
 <label class="flex items-center cursor-pointer" {{on "click" this.onChange}} ...attributes>
   {{#if @checked}}
-    <MdIcon::CheckboxOutline @size={{22}}/>
+    <Icons::CheckboxOutline @size={{22}}/>
   {{else}}
-    <MdIcon::CheckboxBlankOutline @size={{22}}/>
+    <Icons::CheckboxBlankOutline @size={{22}}/>
   {{/if}}
   <span class="ml-1">{{@label}}</span>
 </label>

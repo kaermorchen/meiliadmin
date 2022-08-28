@@ -23,7 +23,7 @@
     {{on 'click' this.handleClick}}
   >
     {{#if this.isPending}}
-      <MdIcon::Loading @spin={{true}} class="mx-1" />
+      <Icons::Loading @spin={{true}} class="mx-1" />
     {{else if @icon}}
       <@icon class="mx-1" />
     {{/if}}

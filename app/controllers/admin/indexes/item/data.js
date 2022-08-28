@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
-import { Magnify, Table, MapOutline } from 'ember-mdi/icons';
+import { Magnify, Table, MapOutline } from 'ember-mdi';
 
 export default class AdminIndexesItemDataController extends Controller {
   @tracked q = null;
