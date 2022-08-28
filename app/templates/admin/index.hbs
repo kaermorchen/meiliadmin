@@ -1,24 +1,35 @@
-<dl class='grid grid-cols-1 md:grid-cols-4 gap-5'>
-  <Stat @title='Status'>
-    <div class='flex items-center'>
+<dl class='grid grid-cols-1 md:grid-cols-2 gap-5'>
+  <Stat @title='Status' @value={{capitalize @model.health.status}}>
+    <:icon>
       {{#if (eq @model.health.status 'available')}}
-        <Icons::CheckboxMarkedCircle class='text-green mr-1' @size={{26}} />
+        <Icons::CheckboxMarkedCircle class='text-green' @size={{40}} />
       {{else}}
-        <Icons::AlertCircle class='text-yellow mr-1' @size={{26}} />
+        <Icons::AlertCircle class='text-yellow' @size={{40}} />
       {{/if}}
-      {{capitalize @model.health.status}}
-    </div>
+    </:icon>
   </Stat>
   <Stat
     @title='Database size'
     @value={{format-bytes @model.stats.databaseSize}}
-  />
+  >
+    <:icon>
+      <Icons::DatabaseOutline @size={{40}} />
+    </:icon>
+  </Stat>
   <Stat
     @title='Last update'
     @value={{date-time-format @model.stats.lastUpdate}}
-  />
+  >
+    <:icon>
+      <Icons::Calendar @size={{40}} />
+    </:icon>
+  </Stat>
   <Stat
     @title='The version of the Meilisearch instance'
     @value={{@model.version.pkgVersion}}
-  />
+  >
+    <:icon>
+      <Icons::SourceBranch @size={{40}} />
+    </:icon>
+  </Stat>
 </dl>
