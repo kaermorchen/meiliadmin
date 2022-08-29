@@ -7,7 +7,10 @@ export default class AdminIndexRoute extends Route {
   @service session;
 
   async model() {
+    const indexes = this.modelFor('admin');
+
     return hash({
+      indexes,
       health: this.meilisearch.getHealth(),
       version: this.meilisearch.getVersion(),
       stats: this.meilisearch.getStats(),
