@@ -12,6 +12,7 @@ Router.map(function () {
       this.route('item', { path: '/:uid' }, function () {
         this.route('settings');
         this.route('data');
+        this.route('info');
       });
     });
   });

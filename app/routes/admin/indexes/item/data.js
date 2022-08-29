@@ -20,8 +20,6 @@ export default class AdminIndexesItemDataRoute extends Route {
   async model({ q, page, limit, sort }) {
     const offset = limit * --page;
     const index = this.modelFor('admin.indexes.item');
-    const sortableAttributes = index.getSortableAttributes();
-    const stats = index.getStats();
     const options = { offset, limit };
 
     if (sort) {
@@ -29,10 +27,10 @@ export default class AdminIndexesItemDataRoute extends Route {
     }
 
     return hash({
-      data: index.search(q, options),
       index,
-      sortableAttributes,
-      stats,
+      data: index.search(q, options),
+      sortableAttributes: index.getSortableAttributes(),
+      stats: index.getStats(),
     });
   }
 

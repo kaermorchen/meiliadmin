@@ -1,0 +1,21 @@
+<h2 class='text-2xl mb-4'>Info</h2>
+
+<dl>
+  <DescriptionItem
+    @title='Number of documents'
+    @value={{@model.stats.numberOfDocuments}}
+  />
+  <DescriptionItem @title='Is indexing' @value={{@model.stats.isIndexing}} />
+  <DescriptionItem @title='Field distribution'>
+    <RoyalTable
+      @data={{obj-to-array @model.stats.fieldDistribution}}
+      class='w-full'
+      as |Row|
+    >
+      <Row as |Column|>
+        <Column @name='Field' @prop='key' />
+        <Column @name='Count' @prop='value' />
+      </Row>
+    </RoyalTable>
+  </DescriptionItem>
+</dl>
