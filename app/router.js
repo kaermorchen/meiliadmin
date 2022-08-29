@@ -15,6 +15,9 @@ Router.map(function () {
         this.route('info');
       });
     });
+    this.route('keys', function () {
+      this.route('key');
+    });
   });
   this.route('login');
 });

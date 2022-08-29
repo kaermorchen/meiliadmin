@@ -20,4 +20,8 @@ export default class MeilisearchService extends Service {
   getStats() {
     return query('stats');
   }
+
+  getKeys() {
+    return query('keys');
+  }
 }

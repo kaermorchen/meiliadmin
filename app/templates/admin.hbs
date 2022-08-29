@@ -25,6 +25,10 @@
           {{/each}}
           {{! TODO: add link "create new index" }}
           <div class='border-t my-4'></div>
+          <LinkTo @route='admin.keys' class={{linkClass}}>
+            <Icons::KeyOutline class='mr-1' />
+            Keys
+          </LinkTo>
           <a
             href='https://docs.meilisearch.com/'
             class={{linkClass}}

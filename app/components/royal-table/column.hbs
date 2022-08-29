@@ -26,8 +26,10 @@
     {{/if}}
     {{#if (has-block 'name')}}
       {{yield to='name'}}
-    {{else}}
+    {{else if @name}}
       {{@name}}
+    {{else if @prop}}
+      {{capitalize @prop}}
     {{/if}}
   </th>
 {{else if this.isBody}}
