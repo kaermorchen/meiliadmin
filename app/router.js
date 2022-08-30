@@ -11,9 +11,9 @@ Router.map(function () {
     this.route('indexes', function () {
       this.route('item', { path: '/:uid' }, function () {
         this.route('settings');
-        this.route('data');
         this.route('info');
         this.route('edit');
+        this.route('documents');
       });
       this.route('new');
     });

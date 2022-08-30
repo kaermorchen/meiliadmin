@@ -5,6 +5,6 @@ export default class AdminIndexesItemIndexRoute extends Route {
   @service router;
 
   beforeModel() {
-    this.router.transitionTo('admin.indexes.item.data');
+    this.router.transitionTo('admin.indexes.item.documents');
   }
 }

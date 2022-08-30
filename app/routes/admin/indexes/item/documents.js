@@ -1,7 +1,7 @@
 import Route from '@ember/routing/route';
 import { hash } from 'rsvp';
 
-export default class AdminIndexesItemDataRoute extends Route {
+export default class AdminIndexesItemDocumentsRoute extends Route {
   queryParams = {
     q: {
       refreshModel: true,

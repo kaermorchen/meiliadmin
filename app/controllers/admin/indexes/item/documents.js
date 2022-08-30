@@ -3,7 +3,7 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import { Magnify, Table, MapOutline } from 'ember-mdi';
 
-export default class AdminIndexesItemDataController extends Controller {
+export default class AdminIndexesItemDocumentsController extends Controller {
   @tracked q = null;
   @tracked limit = 20;
   @tracked page = 1;
