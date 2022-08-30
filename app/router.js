@@ -13,6 +13,7 @@ Router.map(function () {
         this.route('settings');
         this.route('data');
         this.route('info');
+        this.route('edit');
       });
     });
     this.route('keys', function () {

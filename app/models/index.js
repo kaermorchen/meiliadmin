@@ -88,4 +88,11 @@ export default class Index {
   //     ? Object.keys(this.stats.value.fieldDistribution)
   //     : [];
   // }
+
+  save(data) {
+    return query(this.indexPath, {
+      method: 'PATCH',
+      body: JSON.stringify(data),
+    });
+  }
 }

@@ -1,0 +1,16 @@
+<Headers::H1>Edit {{@model.uid}}</Headers::H1>
+
+<form {{on 'submit' this.save}}>
+  <InputText
+    @label='Primary key'
+    @name='primaryKey'
+    @value={{@model.primaryKey}}
+    @required={{true}}
+  />
+
+  <Button
+    type='submit'
+    @text='Save'
+    @style='primary'
+  />
+</form>
