@@ -16,7 +16,7 @@ Router.map(function () {
       });
     });
     this.route('keys', function () {
-      this.route('key');
+      this.route('key', { path: '/:uid' });
     });
   });
   this.route('login');

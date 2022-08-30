@@ -24,4 +24,8 @@ export default class MeilisearchService extends Service {
   getKeys() {
     return query('keys');
   }
+
+  getKey(uid) {
+    return query(`keys/${uid}`);
+  }
 }

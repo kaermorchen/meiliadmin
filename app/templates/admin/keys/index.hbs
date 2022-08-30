@@ -1,0 +1,13 @@
+<h1 class='text-3xl mb-4'>Keys</h1>
+
+<RoyalTable @data={{@model.results}} class='w-full' as |Row data|>
+  <Row as |Column|>
+    <Column @prop='name'>
+      <LinkTo @route='admin.keys.key' @model={{data.uid}}>
+        {{data.name}}
+      </LinkTo>
+    </Column>
+    <Column @prop='actions' />
+    <Column @prop='indexes' />
+  </Row>
+</RoyalTable>
