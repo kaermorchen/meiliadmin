@@ -1,5 +1,9 @@
 <h1 class='text-3xl mb-4'>Indexes</h1>
 
+<LinkTo @route='admin.indexes.new' class='block mb-4'>
+  Create new index
+</LinkTo>
+
 <RoyalTable @data={{@model.results}} class='w-full' as |Row data|>
   <Row as |Column|>
     <Column @prop='uid'>

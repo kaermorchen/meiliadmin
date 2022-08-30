@@ -10,7 +10,7 @@ export default class Index {
   //   )
   // );
 
-  constructor(data) {
+  constructor(data = {}) {
     for (const key in data) {
       this[key] = data[key];
     }
@@ -18,6 +18,10 @@ export default class Index {
 
   get indexPath() {
     return `indexes/${this.uid}`;
+  }
+
+  get isNew() {
+    return Boolean(!this.uid);
   }
 
   // get allAttributesAreDisplayed() {
@@ -90,8 +94,11 @@ export default class Index {
   // }
 
   save(data) {
-    return query(this.indexPath, {
-      method: 'PATCH',
+    const path = this.isNew ? 'indexes' : this.indexPath;
+    const method = this.isNew ? 'POST' : 'PATCH';
+
+    return query(path, {
+      method: method,
       body: JSON.stringify(data),
     });
   }

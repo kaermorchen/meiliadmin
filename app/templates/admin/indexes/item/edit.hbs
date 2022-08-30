@@ -1,6 +1,21 @@
-<Headers::H1>Edit {{@model.uid}}</Headers::H1>
+<Headers::H1>
+  {{#if @model.isNew}}
+    Create new index
+  {{else}}
+    Edit
+    {{@model.uid}}
+  {{/if}}
+</Headers::H1>
 
 <form {{on 'submit' this.save}}>
+  {{#if @model.isNew}}
+    <InputText
+      @label='UID'
+      @name='uid'
+      @required={{true}}
+    />
+  {{/if}}
+
   <InputText
     @label='Primary key'
     @name='primaryKey'
@@ -8,9 +23,5 @@
     @required={{true}}
   />
 
-  <Button
-    type='submit'
-    @text='Save'
-    @style='primary'
-  />
+  <Button type='submit' @text='Save' @style='primary' />
 </form>
