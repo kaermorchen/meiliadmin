@@ -28,4 +28,12 @@ export default class MeilisearchService extends Service {
   getKey(uid) {
     return query(`keys/${uid}`);
   }
+
+  getTasks() {
+    return query('tasks');
+  }
+
+  getTask(uid) {
+    return query(`tasks/${uid}`);
+  }
 }

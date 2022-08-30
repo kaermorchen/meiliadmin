@@ -1,0 +1,45 @@
+<h1 class='text-3xl mb-4'>Tasks</h1>
+
+<RoyalTable @data={{@model.results}} class='w-full' as |Row data|>
+  <Row as |Column|>
+    <Column @prop='uid' />
+    <Column @prop='indexUid' />
+    <Column @prop='status' />
+    <Column @prop='type' />
+    <Column @prop='details' />
+    <Column @prop='duration' />
+    <Column @prop='enqueuedAt'>
+      {{date-time-format
+        data.expiresAt
+        year='numeric'
+        month='numeric'
+        day='numeric'
+        hour='numeric'
+        minute='numeric'
+        second='numeric'
+      }}
+    </Column>
+    <Column @prop='startedAt'>
+      {{date-time-format
+        data.expiresAt
+        year='numeric'
+        month='numeric'
+        day='numeric'
+        hour='numeric'
+        minute='numeric'
+        second='numeric'
+      }}
+    </Column>
+    <Column @prop='finishedAt'>
+      {{date-time-format
+        data.expiresAt
+        year='numeric'
+        month='numeric'
+        day='numeric'
+        hour='numeric'
+        minute='numeric'
+        second='numeric'
+      }}
+    </Column>
+  </Row>
+</RoyalTable>

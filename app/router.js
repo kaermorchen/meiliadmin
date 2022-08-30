@@ -18,6 +18,7 @@ Router.map(function () {
     this.route('keys', function () {
       this.route('key', { path: '/:uid' });
     });
+    this.route('tasks', function () {});
   });
   this.route('login');
 });

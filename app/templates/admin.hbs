@@ -25,7 +25,11 @@
           {{/each}}
           {{! TODO: add link "create new index" }}
           <div class='border-t my-4'></div>
-          <LinkTo @route='admin.keys' class={{linkClass}}>
+          <LinkTo @route='admin.tasks.index' class={{linkClass}}>
+            <Icons::FormatListChecks class='mr-1' />
+            Tasks
+          </LinkTo>
+          <LinkTo @route='admin.keys.index' class={{linkClass}}>
             <Icons::KeyOutline class='mr-1' />
             Keys
           </LinkTo>
