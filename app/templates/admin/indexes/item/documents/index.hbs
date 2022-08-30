@@ -1,0 +1,68 @@
+<InputText
+  @placeholder='Search'
+  @prefixIcon={{this.Magnify}}
+  @value={{this.q}}
+  @onChange={{this.searchTextChanged}}
+/>
+
+{{!-- <div class='flex items-center mb-4'>
+  <div class='flex items-center ml-auto'>
+    <Icons::Check class='mr-1' @size='18' />
+    Hits:
+    {{@model.data.estimatedTotalHits}}
+    <Icons::ClockOutline class='ml-6 mr-1' @size='18' />
+    Time spent:
+    {{@model.data.processingTimeMs}}
+    ms
+  </div>
+</div> --}}
+
+{{#if (gt @model.data.estimatedTotalHits 0)}}
+  <RoyalTable
+    @data={{@model.data.hits}}
+    @sortingProp={{this.sort}}
+    @onSort={{this.onSort}}
+    class='w-full'
+    as |Row data|
+  >
+    <Row as |Column|>
+      {{#each-in @model.stats.fieldDistribution as |field|}}
+        <Column
+          @name={{capitalize field}}
+          @prop={{field}}
+          @sortable={{includes field @model.sortableAttributes}}
+        >
+          {{#let (get data field) as |value|}}
+            {{if (eq (type-of value) 'object') (stringify value) value}}
+          {{/let}}
+        </Column>
+      {{/each-in}}
+      <Column>
+        <LinkTo
+          @route='admin.indexes.item.documents.document'
+          @models={{array @model.index.uid (get data @model.index.primaryKey)}}
+        >
+          <Icons::PencilOutline class='mr-1' />
+          Edit
+        </LinkTo>
+      </Column>
+    </Row>
+  </RoyalTable>
+
+  <div class='flex items-center'>
+    {{this.fromHits}}
+    —
+    {{this.toHits}}
+    of
+    {{@model.data.estimatedTotalHits}}
+
+    <Pagination
+      @count={{@model.data.estimatedTotalHits}}
+      @current={{this.page}}
+      @perPage={{@model.data.limit}}
+      class='ml-auto'
+    />
+  </div>
+{{else}}
+  No results found
+{{/if}}

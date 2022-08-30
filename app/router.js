@@ -13,7 +13,9 @@ Router.map(function () {
         this.route('settings');
         this.route('info');
         this.route('edit');
-        this.route('documents');
+        this.route('documents', function () {
+          this.route('document', { path: '/:uid' });
+        });
       });
       this.route('new');
     });
