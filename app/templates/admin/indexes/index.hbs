@@ -2,7 +2,11 @@
 
 <RoyalTable @data={{@model.results}} class='w-full' as |Row data|>
   <Row as |Column|>
-    <Column @prop='uid' />
+    <Column @prop='uid'>
+      <LinkTo @route='admin.indexes.item' @model={{data.uid}}>
+        {{data.uid}}
+      </LinkTo>
+    </Column>
     <Column @prop='primaryKey' />
     <Column @prop='createdAt'>
       {{date-time-format

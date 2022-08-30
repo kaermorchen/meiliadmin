@@ -36,7 +36,7 @@
 </dl>
 
 <h2 class='text-2xl mb-4'>Indexes</h2>
-<RoyalTable @data={{@model.indexes}} class='w-full' as |Row data|>
+<RoyalTable @data={{@model.indexes.results}} class='w-full' as |Row data|>
   <Row as |Column|>
     <Column @name='UID' @prop='uid'>
       <LinkTo @route='admin.indexes.item' @model={{data.uid}}>

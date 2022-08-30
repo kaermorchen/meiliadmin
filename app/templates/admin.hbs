@@ -12,7 +12,7 @@
         as |linkClass|
       }}
         <nav>
-          <div class='px-4 py-2 text-sm text-gray'>Indexes</div>
+          {{!-- <div class='px-4 py-2 text-sm text-gray'>Indexes</div>
           {{#each @model.results as |item|}}
             <LinkTo
               @route='admin.indexes.item'
@@ -22,9 +22,11 @@
               <Icons::CircleMedium class='mr-1' />
               {{capitalize item.uid}}
             </LinkTo>
-          {{/each}}
-          {{! TODO: add link "create new index" }}
-          <div class='border-t my-4'></div>
+          {{/each}} --}}
+          <LinkTo @route='admin.indexes.index' class={{linkClass}}>
+            <Icons::FolderMultipleOutline class='mr-1' />
+            Indexes
+          </LinkTo>
           <LinkTo @route='admin.tasks.index' class={{linkClass}}>
             <Icons::FormatListChecks class='mr-1' />
             Tasks

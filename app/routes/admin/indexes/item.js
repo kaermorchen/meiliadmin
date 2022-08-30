@@ -1,7 +1,10 @@
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
 export default class AdminIndexesItemRoute extends Route {
+  @service meilisearch;
+
   model({ uid }) {
-    return this.modelFor('admin').find((item) => item.uid === uid);
+    return this.meilisearch.getIndex(uid);
   }
 }
