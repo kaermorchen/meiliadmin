@@ -13,7 +13,7 @@
       }}
         <nav>
           <div class='px-4 py-2 text-sm text-gray'>Indexes</div>
-          {{#each @model as |item|}}
+          {{#each @model.results as |item|}}
             <LinkTo
               @route='admin.indexes.item'
               @model={{item}}

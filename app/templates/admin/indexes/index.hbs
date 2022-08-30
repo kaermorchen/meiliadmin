@@ -1,0 +1,30 @@
+<h1 class='text-3xl mb-4'>Indexes</h1>
+
+<RoyalTable @data={{@model.results}} class='w-full' as |Row data|>
+  <Row as |Column|>
+    <Column @prop='uid' />
+    <Column @prop='primaryKey' />
+    <Column @prop='createdAt'>
+      {{date-time-format
+        data.createdAt
+        year='numeric'
+        month='numeric'
+        day='numeric'
+        hour='numeric'
+        minute='numeric'
+        second='numeric'
+      }}
+    </Column>
+    <Column @prop='updatedAt'>
+      {{date-time-format
+        data.updatedAt
+        year='numeric'
+        month='numeric'
+        day='numeric'
+        hour='numeric'
+        minute='numeric'
+        second='numeric'
+      }}
+    </Column>
+  </Row>
+</RoyalTable>
