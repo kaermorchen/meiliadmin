@@ -42,22 +42,24 @@
         </Column>
       {{/each-in}}
       <Column>
-        <LinkTo
-          @route='admin.indexes.item.documents.document'
-          @models={{array @model.index.uid (get data @model.index.primaryKey)}}
-          class="inline-flex items-center"
-        >
-          <Icons::FileDocumentOutline class='mr-1' />
-          View
-        </LinkTo>
-        <LinkTo
-          @route='admin.indexes.item.documents.document.edit'
-          @models={{array @model.index.uid (get data @model.index.primaryKey)}}
-          class="inline-flex items-center"
-        >
-          <Icons::PencilOutline class='mr-1' />
-          Edit
-        </LinkTo>
+        {{#let (array @model.index.uid (get data @model.index.primaryKey)) as |models|}}
+          <LinkTo
+            @route='admin.indexes.item.documents.document'
+            @models={{models}}
+            class="inline-flex items-center"
+          >
+            <Icons::FileDocumentOutline class='mr-1' />
+            View
+          </LinkTo>
+          <LinkTo
+            @route='admin.indexes.item.documents.document.edit'
+            @models={{models}}
+            class="inline-flex items-center"
+          >
+            <Icons::PencilOutline class='mr-1' />
+            Edit
+          </LinkTo>
+        {{/let}}
       </Column>
     </Row>
   </RoyalTable>
