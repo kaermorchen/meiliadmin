@@ -10,8 +10,8 @@ export default class MeilisearchService extends Service {
     });
   }
 
-  getIndex(uid) {
-    return query(`indexes/${uid}`).then((item) => new Index(item));
+  getIndex(index_uid) {
+    return query(`indexes/${index_uid}`).then((item) => new Index(item));
   }
 
   getHealth() {
