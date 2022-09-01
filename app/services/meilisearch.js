@@ -14,6 +14,12 @@ export default class MeilisearchService extends Service {
     return query(`indexes/${index_uid}`).then((item) => new Index(item));
   }
 
+  deleteIndex(index_uid) {
+    return query(`indexes/${index_uid}`, {
+      method: 'DELETE',
+    });
+  }
+
   getHealth() {
     return query('health');
   }
