@@ -1,0 +1,29 @@
+<form {{on 'submit' this.save}}>
+  {{#each-in @model.document as |key value|}}
+    {{#let (type-of value) as |type|}}
+      {{#if (eq 'number' type)}}
+        <InputText
+          @label={{capitalize key}}
+          @value={{value}}
+          @onChange={{set @model.document key}}
+        />
+      {{else if (eq 'boolean' type)}}
+        <InputCheckbox
+          @label={{capitalize key}}
+          @checked={{value}}
+          @onChange={{set @model.document key}}
+        />
+      {{else if (eq '_geo' key)}}
+        {{!-- TODO: add map --}}
+      {{else}}
+        <InputTextarea
+          @label={{capitalize key}}
+          @value={{value}}
+          @onChange={{set @model.document key}}
+        />
+      {{/if}}
+    {{/let}}
+  {{/each-in}}
+
+  <Button type='submit' @text='Save' @style='primary' />
+</form>

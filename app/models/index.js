@@ -38,6 +38,13 @@ export default class Index {
     );
   }
 
+  saveDocument(document) {
+    return query(`${this.path}/documents`, {
+      method: 'PUT',
+      body: JSON.stringify(document),
+    });
+  }
+
   search(q, options = {}) {
     options.q = q;
 
