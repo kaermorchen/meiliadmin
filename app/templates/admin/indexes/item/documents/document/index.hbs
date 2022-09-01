@@ -1,0 +1,7 @@
+{{#each-in @model.document as |key value|}}
+  {{#if (eq '_geo' key)}}
+    {{! TODO: add map }}
+  {{else}}
+    <FormElement @label={{capitalize key}} @value={{stringify value}} />
+  {{/if}}
+{{/each-in}}

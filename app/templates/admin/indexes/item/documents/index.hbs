@@ -47,6 +47,14 @@
           @models={{array @model.index.uid (get data @model.index.primaryKey)}}
           class="inline-flex items-center"
         >
+          <Icons::FileDocumentOutline class='mr-1' />
+          View
+        </LinkTo>
+        <LinkTo
+          @route='admin.indexes.item.documents.document.edit'
+          @models={{array @model.index.uid (get data @model.index.primaryKey)}}
+          class="inline-flex items-center"
+        >
           <Icons::PencilOutline class='mr-1' />
           Edit
         </LinkTo>

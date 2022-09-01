@@ -14,7 +14,9 @@ Router.map(function () {
         this.route('info');
         this.route('edit');
         this.route('documents', function () {
-          this.route('document', { path: '/:document_id' });
+          this.route('document', { path: '/:document_id' }, function () {
+            this.route('edit');
+          });
           this.route('new');
         });
       });
