@@ -1,3 +1,4 @@
+import jsonParse from '../helpers/json-parse';
 import query from '../utils/query';
 // import { TrackedArray } from 'tracked-built-ins';
 // import { trackedFunction } from 'ember-resources/util/function';
@@ -40,8 +41,8 @@ export default class Index {
 
   saveDocument(document) {
     return query(`${this.path}/documents`, {
-      method: 'PUT',
-      body: JSON.stringify(document),
+      method: 'POST',
+      body: JSON.stringify([JSON.parse(document)]),
     });
   }
 

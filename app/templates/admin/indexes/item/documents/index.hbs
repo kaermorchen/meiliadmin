@@ -17,6 +17,10 @@
   </div>
 </div> --}}
 
+<LinkTo @route='admin.indexes.item.documents.new' @model={{@model.index}} class='block mb-4'>
+  Create new document
+</LinkTo>
+
 {{#if (gt @model.data.estimatedTotalHits 0)}}
   <RoyalTable
     @data={{@model.data.hits}}

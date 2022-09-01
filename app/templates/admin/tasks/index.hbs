@@ -6,7 +6,12 @@
     <Column @prop='indexUid' />
     <Column @prop='status' />
     <Column @prop='type' />
-    <Column @prop='details' />
+    <Column @prop='details'>
+      {{stringify data.details}}
+    </Column>
+    <Column @prop='error'>
+      {{stringify data.error}}
+    </Column>
     <Column @prop='duration' />
     <Column @prop='enqueuedAt'>
       {{date-time-format

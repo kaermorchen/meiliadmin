@@ -6,6 +6,9 @@ export default class AdminIndexesItemDocumentsDocumentController extends Control
   save(event) {
     event.preventDefault();
 
-    this.model.index.saveDocument(this.model.document);
+    const formData = new FormData(event.currentTarget);
+    const data = formData.get('document');
+
+    this.model.index.saveDocument(data);
   }
 }
