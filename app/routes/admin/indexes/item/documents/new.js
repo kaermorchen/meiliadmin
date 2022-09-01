@@ -3,8 +3,8 @@ import Document from '../../../../../models/document';
 import { hash } from 'rsvp';
 
 export default class AdminIndexesItemDocumentsNewRoute extends Route {
-  templateName = 'admin.indexes.item.documents.document';
-  controllerName = 'admin.indexes.item.documents.document';
+  templateName = 'admin.indexes.item.documents.document.edit';
+  controllerName = 'admin.indexes.item.documents.document.edit';
 
   model() {
     const index = this.modelFor('admin.indexes.item');
