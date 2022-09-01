@@ -4,9 +4,9 @@ import query from '../utils/query';
 
 export default class MeilisearchService extends Service {
   getIndexes() {
-    return query('indexes').then((result) => {
-      result.results = result.results.map((item) => new Index(item));
-      return result;
+    return query('indexes').then((data) => {
+      data.results = data.results.map((item) => new Index(item));
+      return data;
     });
   }
 

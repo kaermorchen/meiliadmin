@@ -34,7 +34,7 @@ export default class Index {
 
   getDocument(uid) {
     return query(`${this.path}/documents/${uid}`).then(
-      (result) => new Document(this, result)
+      (result) => new Document(result)
     );
   }
 
