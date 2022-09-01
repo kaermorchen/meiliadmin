@@ -46,6 +46,14 @@ export default class Index {
     });
   }
 
+  deleteDocument(document) {
+    const document_id = document[this.primaryKey];
+
+    return query(`${this.path}/documents/${document_id}`, {
+      method: 'DELETE',
+    });
+  }
+
   search(q, options = {}) {
     options.q = q;
 

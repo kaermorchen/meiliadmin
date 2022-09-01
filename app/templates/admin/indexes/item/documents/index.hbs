@@ -59,6 +59,14 @@
             <Icons::PencilOutline class='mr-1' />
             Edit
           </LinkTo>
+          <LinkTo
+            @route='admin.indexes.item.documents.document.delete'
+            @models={{models}}
+            class="inline-flex items-center"
+          >
+            <Icons::TrashCanOutline class='mr-1' />
+            Delete
+          </LinkTo>
         {{/let}}
       </Column>
     </Row>

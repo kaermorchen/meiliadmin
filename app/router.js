@@ -16,6 +16,7 @@ Router.map(function () {
         this.route('documents', function () {
           this.route('document', { path: '/:document_id' }, function () {
             this.route('edit');
+            this.route('delete');
           });
           this.route('new');
         });
