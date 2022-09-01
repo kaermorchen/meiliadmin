@@ -1,11 +1,4 @@
-<Headers::H1>
-  {{#if @model.isNew}}
-    Create new index
-  {{else}}
-    Edit
-    {{@model.uid}}
-  {{/if}}
-</Headers::H1>
+<Headers::H1 @title={{if @model.isNew "Create new index" "Edit"}} />
 
 <form {{on 'submit' this.save}}>
   {{#if @model.isNew}}
