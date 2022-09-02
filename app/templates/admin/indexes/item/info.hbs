@@ -1,21 +1,21 @@
 <Headers::H2 @title='Info' />
 
-<dl>
-  <DescriptionItem
-    @title='Number of documents'
-    @value={{@model.stats.numberOfDocuments}}
-  />
-  <DescriptionItem @title='Is indexing' @value={{@model.stats.isIndexing}} />
-  <DescriptionItem @title='Field distribution'>
-    <RoyalTable
-      @data={{obj-to-array @model.stats.fieldDistribution}}
-      class='w-full'
-      as |Row|
-    >
-      <Row as |Column|>
-        <Column @name='Field' @prop='key' />
-        <Column @name='Count' @prop='value' />
-      </Row>
-    </RoyalTable>
-  </DescriptionItem>
-</dl>
+<Form::Element
+  @label='Number of documents'
+  @value={{@model.stats.numberOfDocuments}}
+/>
+
+<Form::Element @label='Is indexing' @value={{@model.stats.isIndexing}} />
+
+<Form::Element @label='Field distribution'>
+  <RoyalTable
+    @data={{obj-to-array @model.stats.fieldDistribution}}
+    class='w-full'
+    as |Row|
+  >
+    <Row as |Column|>
+      <Column @name='Field' @prop='key' />
+      <Column @name='Count' @prop='value' />
+    </Row>
+  </RoyalTable>
+</Form::Element>
