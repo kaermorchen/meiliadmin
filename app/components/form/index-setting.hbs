@@ -1,0 +1,13 @@
+<form class='mb-4' {{on 'submit' this.save}}>
+  <InputTextarea
+    @label={{namelize @name}}
+    @name={{@name}}
+    @value={{this.value}}
+    @required={{true}}
+    @onChange={{set this 'value'}}
+  />
+
+  <Button type='submit' @text='Save' @style='primary' />
+  <Button @text='Cancel' @onClick={{this.cancel}} />
+  <Button @text='Reset' @onClick={{this.reset}} />
+</form>

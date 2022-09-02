@@ -61,10 +61,12 @@ export default class ButtonComponent extends Component {
   }
 
   @action
-  async handleClick() {
+  async handleClick(event) {
     if (typeof this.args.onClick !== 'function') {
       return;
     }
+
+    event.preventDefault();
 
     try {
       const maybePromise = this.args.onClick(this.args.value);

@@ -66,30 +66,22 @@ export default class Index {
     });
   }
 
-  // get allAttributesAreDisplayed() {
-  //   return (
-  //     this.displayedAttributes.value &&
-  //     this.displayedAttributes.value.length === 1 &&
-  //     this.displayedAttributes.value[0] === '*'
-  //   );
-  // }
+  getDisplayedAttributes() {
+    return query(`${this.path}/settings/displayed-attributes`);
+  }
 
-  // getDisplayedAttributes() {
-  //   return query(`${this.path}/settings/displayed-attributes`);
-  // }
+  updateDisplayedAttributes(value) {
+    return query(`${this.path}/settings/displayed-attributes`, {
+      method: 'PUT',
+      body: JSON.stringify(value),
+    });
+  }
 
-  // updateDisplayedAttributes(value) {
-  //   return query(`${this.path}/settings/displayed-attributes`, {
-  //     method: 'POST',
-  //     body: JSON.stringify(value),
-  //   });
-  // }
-
-  // resetDisplayedAttributes() {
-  //   return query(`${this.path}/settings/displayed-attributes`, {
-  //     method: 'DELETE',
-  //   });
-  // }
+  resetDisplayedAttributes() {
+    return query(`${this.path}/settings/displayed-attributes`, {
+      method: 'DELETE',
+    });
+  }
 
   // getSearchableAttributes() {
   //   return query(`${this.path}/settings/searchable-attributes`);
