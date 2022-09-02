@@ -1,6 +1,4 @@
 import query from '../utils/query';
-// import { TrackedArray } from 'tracked-built-ins';
-// import { trackedFunction } from 'ember-resources/util/function';
 import Document from './document';
 import { dasherize } from '@ember/string';
 
@@ -9,6 +7,22 @@ export default class Index {
     for (const key in data) {
       this[key] = data[key];
     }
+  }
+
+  get settingNames() {
+    return [
+      'displayedAttributes',
+      'distinctAttribute',
+      'faceting',
+      'filterableAttributes',
+      'pagination',
+      'rankingRules',
+      'searchableAttributes',
+      'sortableAttributes',
+      'stopWords',
+      'synonyms',
+      'typoTolerance',
+    ];
   }
 
   get path() {
@@ -83,72 +97,4 @@ export default class Index {
       method: 'DELETE',
     });
   }
-
-  getDisplayedAttributes() {
-    return query(`${this.path}/settings/displayed-attributes`);
-  }
-
-  updateDisplayedAttributes(value) {
-    return query(`${this.path}/settings/displayed-attributes`, {
-      method: 'PUT',
-      body: JSON.stringify(value),
-    });
-  }
-
-  resetDisplayedAttributes() {
-    return query(`${this.path}/settings/displayed-attributes`, {
-      method: 'DELETE',
-    });
-  }
-
-  getDistinctAttribute() {
-    return query(`${this.path}/settings/distinct-attribute`);
-  }
-
-  updateDistinctAttribute(value) {
-    return query(`${this.path}/settings/distinct-attribute`, {
-      method: 'PUT',
-      body: JSON.stringify(value),
-    });
-  }
-
-  resetDistinctAttribute() {
-    return query(`${this.path}/settings/distinct-attribute`, {
-      method: 'DELETE',
-    });
-  }
-
-  // getSearchableAttributes() {
-  //   return query(`${this.path}/settings/searchable-attributes`);
-  // }
-
-  // updateSearchableAttributes(value) {
-  //   return query(`${this.path}/settings/searchable-attributes`, {
-  //     method: 'POST',
-  //     body: JSON.stringify(value),
-  //   });
-  // }
-
-  // resetSearchableAttributes() {
-  //   return query(`${this.path}/settings/searchable-attributes`, {
-  //     method: 'DELETE',
-  //   });
-  // }
-
-  // get fields() {
-  //   return this.stats.value
-  //     ? Object.keys(this.stats.value.fieldDistribution)
-  //     : [];
-  // }
-
-  // getSettings() {
-  //   return query(`${this.path}/settings`);
-  // }
-
-  // stats = trackedFunction(this, () => query(`${this.path}/stats`));
-  // displayedAttributes = trackedFunction(this, () =>
-  //   query(`${this.path}/settings/displayed-attributes`).then(
-  //     (arr) => new TrackedArray(arr)
-  //   )
-  // );
 }
