@@ -1,4 +1,3 @@
-import jsonParse from '../helpers/json-parse';
 import query from '../utils/query';
 // import { TrackedArray } from 'tracked-built-ins';
 // import { trackedFunction } from 'ember-resources/util/function';
@@ -26,12 +25,6 @@ export default class Index {
   getStats() {
     return query(`${this.path}/stats`);
   }
-
-  // getDocuments(searchParams) {
-  //   return query(`${this.path}/documents`, {
-  //     body: searchParams,
-  //   });
-  // }
 
   getDocument(uid) {
     return query(`${this.path}/documents/${uid}`).then(
