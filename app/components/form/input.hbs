@@ -1,27 +1,22 @@
-<div class="mb-4">
-  {{#if @label}}
-    <label for={{this.id}} class="block font-medium mb-1 text-dark {{if @required "after:content-['*'] after:text-red-500"}}">
-      {{~@label~}}
-    </label>
-  {{/if}}
-  <div class="relative flex items-center border rounded-md">
+<Form::Element
+  @label={{@label}}
+  @for={{this.id}}
+  @required={{@required}}
+  @helper={{@helper}}
+>
+  <div class='relative flex items-center border rounded-md'>
     {{#if @prefixIcon}}
-      <@prefixIcon class="h-8 w-8 pl-2" />
+      <@prefixIcon class='h-8 w-8 pl-2' />
     {{/if}}
     <input
-      type="text"
+      type='text'
       name={{@name}}
       id={{this.id}}
-      class="block w-full p-2 bg-transparent focus:outline-none"
+      class='block w-full p-2 bg-transparent focus:outline-none'
       placeholder={{@placeholder}}
       value={{@value}}
       required={{@required}}
       {{on 'input' this.onChange}}
     />
   </div>
-  {{#if @helper}}
-    <div class="mt-1 text-sm">
-      {{@helper}}
-    </div>
-  {{/if}}
-</div>
+</Form::Element>

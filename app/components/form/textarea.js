@@ -1,20 +1,3 @@
-import Component from '@glimmer/component';
-import { guidFor } from '@ember/object/internals';
-import { action } from '@ember/object';
+import FormInputComponent from './input';
 
-export default class FormTextareaComponent extends Component {
-  get guid() {
-    return guidFor(this);
-  }
-
-  get id() {
-    return this.args.id ?? this.guid;
-  }
-
-  @action
-  onChange(event) {
-    if (this.args.onChange) {
-      this.args.onChange(event.target.value, event);
-    }
-  }
-}
+export default class FormTextareaComponent extends FormInputComponent {}
