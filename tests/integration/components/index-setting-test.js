@@ -3,22 +3,22 @@ import { setupRenderingTest } from 'meiliadmin/tests/helpers';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
-module('Integration | Component | form/index-setting', function (hooks) {
+module('Integration | Component | index-setting', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`<Form::IndexSetting />`);
+    await render(hbs`<IndexSetting />`);
 
     assert.dom(this.element).hasText('');
 
     // Template block usage:
     await render(hbs`
-      <Form::IndexSetting>
+      <IndexSetting>
         template block text
-      </Form::IndexSetting>
+      </IndexSetting>
     `);
 
     assert.dom(this.element).hasText('template block text');

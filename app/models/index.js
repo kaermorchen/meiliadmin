@@ -2,6 +2,7 @@ import query from '../utils/query';
 // import { TrackedArray } from 'tracked-built-ins';
 // import { trackedFunction } from 'ember-resources/util/function';
 import Document from './document';
+import { dasherize } from '@ember/string';
 
 export default class Index {
   constructor(data = {}) {
@@ -66,6 +67,23 @@ export default class Index {
     });
   }
 
+  getSetting(name) {
+    return query(`${this.path}/settings/${dasherize(name)}`);
+  }
+
+  updateSetting(name, value) {
+    return query(`${this.path}/settings/${dasherize(name)}`, {
+      method: 'PUT',
+      body: JSON.stringify(value),
+    });
+  }
+
+  resetSetting(name) {
+    return query(`${this.path}/settings/${dasherize(name)}`, {
+      method: 'DELETE',
+    });
+  }
+
   getDisplayedAttributes() {
     return query(`${this.path}/settings/displayed-attributes`);
   }
@@ -79,6 +97,23 @@ export default class Index {
 
   resetDisplayedAttributes() {
     return query(`${this.path}/settings/displayed-attributes`, {
+      method: 'DELETE',
+    });
+  }
+
+  getDistinctAttribute() {
+    return query(`${this.path}/settings/distinct-attribute`);
+  }
+
+  updateDistinctAttribute(value) {
+    return query(`${this.path}/settings/distinct-attribute`, {
+      method: 'PUT',
+      body: JSON.stringify(value),
+    });
+  }
+
+  resetDistinctAttribute() {
+    return query(`${this.path}/settings/distinct-attribute`, {
       method: 'DELETE',
     });
   }

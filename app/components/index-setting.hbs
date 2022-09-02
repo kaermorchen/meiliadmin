@@ -1,4 +1,4 @@
-<form class='mb-4' {{on 'submit' this.save}}>
+<FormElement>
   <InputTextarea
     @label={{namelize @name}}
     @name={{@name}}
@@ -7,7 +7,7 @@
     @onChange={{set this 'value'}}
   />
 
-  <Button type='submit' @text='Save' @style='primary' />
-  <Button @text='Cancel' @onClick={{this.cancel}} />
+  <Button @text='Save' @style='primary' @onClick={{this.save}} />
+  <Button @text='Cancel' @onClick={{this.setInitialValue}} />
   <Button @text='Reset' @onClick={{this.reset}} />
-</form>
+</FormElement>
