@@ -9,9 +9,6 @@ function isProduction() {
 
 module.exports = function (defaults) {
   let app = new EmberApp(defaults, {
-    'ember-power-select': {
-      theme: false,
-    },
     'ember-simple-auth': {
       useSessionSetupMethod: true,
     },
