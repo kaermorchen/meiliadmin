@@ -2,6 +2,6 @@
   {{#if (eq '_geo' key)}}
     {{! TODO: add map }}
   {{else}}
-    <FormElement @label={{capitalize key}} @value={{stringify value}} />
+    <Form::Element @label={{namelize key}} @value={{stringify value}} />
   {{/if}}
 {{/each-in}}

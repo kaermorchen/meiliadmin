@@ -4,7 +4,7 @@
       <form class='space-y-6' {{on 'submit' this.authenticate}}>
         <Headers::H1 class='text-center' @title="MeiliAdmin"/>
 
-        <InputText
+        <Form::Input
           @label='URL'
           @value={{this.url}}
           @required={{true}}
@@ -13,7 +13,7 @@
           class='mt-1'
         />
 
-        <InputText
+        <Form::Input
           @label='API key'
           @value={{this.key}}
           @onChange={{set this 'key'}}

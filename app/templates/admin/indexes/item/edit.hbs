@@ -2,14 +2,14 @@
 
 <form {{on 'submit' this.save}}>
   {{#if @model.isNew}}
-    <InputText
+    <Form::Input
       @label='UID'
       @name='uid'
       @required={{true}}
     />
   {{/if}}
 
-  <InputText
+  <Form::Input
     @label='Primary key'
     @name='primaryKey'
     @value={{@model.primaryKey}}

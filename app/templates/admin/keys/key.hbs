@@ -1,11 +1,11 @@
 <Headers::H1 @title={{@model.name}} />
 
-<FormElement @label='description' @value={{@model.description}} />
-<FormElement @label='key' @value={{@model.key}} />
-<FormElement @label='uid' @value={{@model.uid}} />
-<FormElement @label='actions' @value={{@model.actions}} />
-<FormElement @label='indexes' @value={{@model.indexes}} />
-<FormElement @label='expiresAt'>
+<Form::Element @label='description' @value={{@model.description}} />
+<Form::Element @label='key' @value={{@model.key}} />
+<Form::Element @label='uid' @value={{@model.uid}} />
+<Form::Element @label='actions' @value={{@model.actions}} />
+<Form::Element @label='indexes' @value={{@model.indexes}} />
+<Form::Element @label='expiresAt'>
   {{date-time-format
     @model.expiresAt
     year='numeric'
@@ -15,8 +15,8 @@
     minute='numeric'
     second='numeric'
   }}
-</FormElement>
-<FormElement @label='createdAt'>
+</Form::Element>
+<Form::Element @label='createdAt'>
   {{date-time-format
     @model.createdAt
     year='numeric'
@@ -26,8 +26,8 @@
     minute='numeric'
     second='numeric'
   }}
-</FormElement>
-<FormElement @label='updatedAt'>
+</Form::Element>
+<Form::Element @label='updatedAt'>
   {{date-time-format
     @model.updatedAt
     year='numeric'
@@ -37,4 +37,4 @@
     minute='numeric'
     second='numeric'
   }}
-</FormElement>
+</Form::Element>

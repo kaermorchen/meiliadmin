@@ -1,7 +1,7 @@
 <div class="mb-4">
   {{#if @label}}
     <label for={{@for}} class="block font-medium mb-1 text-dark {{if @required "after:content-['*'] after:text-red-500"}}">
-      {{~ capitalize @label ~}}
+      {{~ @label ~}}
     </label>
   {{/if}}
 

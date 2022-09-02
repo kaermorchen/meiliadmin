@@ -1,5 +1,5 @@
-<FormElement>
-  <InputTextarea
+<Form::Element>
+  <Form::Textarea
     @label={{namelize @name}}
     @name={{@name}}
     @value={{this.value}}
@@ -10,4 +10,4 @@
   <Button @text='Save' @style='primary' @onClick={{this.save}} />
   <Button @text='Cancel' @onClick={{this.setInitialValue}} />
   <Button @text='Reset' @onClick={{this.reset}} />
-</FormElement>
+</Form::Element>

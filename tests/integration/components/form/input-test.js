@@ -1,24 +1,24 @@
 import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
+import { setupRenderingTest } from 'meiliadmin/tests/helpers';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
-module('Integration | Component | input-text', function (hooks) {
+module('Integration | Component | form/input', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`<InputText />`);
+    await render(hbs`<Form::Input />`);
 
     assert.dom(this.element).hasText('');
 
     // Template block usage:
     await render(hbs`
-      <InputText>
+      <Form::Input>
         template block text
-      </InputText>
+      </Form::Input>
     `);
 
     assert.dom(this.element).hasText('template block text');
