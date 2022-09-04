@@ -42,6 +42,7 @@ module.exports = function (defaults) {
       webpackConfig: {
         module: {
           rules: [
+            { test: /\.ttf$/, type: 'asset/resource' },
             {
               // When webpack sees an import for a CSS files
               test: /\.css$/i,

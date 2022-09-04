@@ -1,5 +1,5 @@
 <form {{on 'submit' this.save}}>
-  <Form::Textarea @name='document' @value={{stringify @model.document}} />
+  <MonacoEditor @value={{stringify @model.document}} @language='json'/>
 
   <Button type='submit' @text='Save' @style='primary' />
 </form>
