@@ -48,9 +48,13 @@ export default class Index {
   }
 
   saveDocument(document) {
+    if (typeof document === 'string') {
+      document = JSON.parse(document);
+    }
+
     return query(`${this.path}/documents`, {
       method: 'POST',
-      body: JSON.stringify([JSON.parse(document)]),
+      body: JSON.stringify([document]),
     });
   }
 

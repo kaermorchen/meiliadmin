@@ -1,5 +1,7 @@
-<form {{on 'submit' this.save}}>
-  <MonacoEditor @value={{stringify @model.document}} @language='json'/>
+<MonacoEditor
+  @value={{stringify @model.document}}
+  @language='json'
+  @onChange={{set this.model 'document'}}
+/>
 
-  <Button type='submit' @text='Save' @style='primary' />
-</form>
+<Button type='submit' @text='Save' @style='primary' @onClick={{this.save}} />
