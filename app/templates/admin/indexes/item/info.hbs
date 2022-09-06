@@ -11,11 +11,9 @@
   <RoyalTable
     @data={{obj-to-array @model.stats.fieldDistribution}}
     class='w-full'
-    as |Row|
+    as |Column|
   >
-    <Row as |Column|>
-      <Column @name='Field' @prop='key' />
-      <Column @name='Count' @prop='value' />
-    </Row>
+    <Column @name='Field' @prop='key' />
+    <Column @name='Count' @prop='value' />
   </RoyalTable>
 </Form::Element>

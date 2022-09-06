@@ -9,20 +9,13 @@
     {{! DOTO: align is depricated, use styles align instead }}
   >
     {{#if @sortable}}
-      {{#let
-        (if
-          @sortingIconComponent
-          @sortingIconComponent
-          (component 'royal-table/column/sorting-icon')
-        ) as |SortingIcon|
-      }}
-        <SortingIcon
-          @sortable={{@sortable}}
-          @isSorted={{this.isSorted}}
-          @isAscSorted={{this.isAscSorted}}
-          @isDescSorted={{this.isDescSorted}}
-        />
-      {{/let}}
+      {{#if this.isAscSorted}}
+        <Icons::ArrowDown />
+      {{else if this.isDescSorted}}
+        <Icons::ArrowUp />
+      {{else}}
+        <Icons::ArrowUpDown />
+      {{/if}}
     {{/if}}
     {{#if (has-block 'name')}}
       {{yield to='name'}}

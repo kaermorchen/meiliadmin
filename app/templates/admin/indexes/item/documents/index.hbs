@@ -17,7 +17,11 @@
   </div>
 </div> --}}
 
-<LinkTo @route='admin.indexes.item.documents.new' @model={{@model.index}} class='block mb-4'>
+<LinkTo
+  @route='admin.indexes.item.documents.new'
+  @model={{@model.index}}
+  class='block mb-4'
+>
   Create new document
 </LinkTo>
 
@@ -27,49 +31,50 @@
     @sortingProp={{this.sort}}
     @onSort={{this.onSort}}
     class='w-full'
-    as |Row data|
+    as |Column data|
   >
-    <Row as |Column|>
-      {{#each-in @model.stats.fieldDistribution as |field|}}
-        <Column
-          @name={{capitalize field}}
-          @prop={{field}}
-          @sortable={{includes field @model.sortableAttributes}}
-        >
-          {{#let (get data field) as |value|}}
-            {{if (eq (type-of value) 'object') (stringify value) value}}
-          {{/let}}
-        </Column>
-      {{/each-in}}
-      <Column>
-        {{#let (array @model.index.uid (get data @model.index.primaryKey)) as |models|}}
-          <LinkTo
-            @route='admin.indexes.item.documents.document'
-            @models={{models}}
-            class="inline-flex items-center"
-          >
-            <Icons::FileDocumentOutline class='mr-1' />
-            View
-          </LinkTo>
-          <LinkTo
-            @route='admin.indexes.item.documents.document.edit'
-            @models={{models}}
-            class="inline-flex items-center"
-          >
-            <Icons::PencilOutline class='mr-1' />
-            Edit
-          </LinkTo>
-          <LinkTo
-            @route='admin.indexes.item.documents.document.delete'
-            @models={{models}}
-            class="inline-flex items-center"
-          >
-            <Icons::TrashCanOutline class='mr-1' />
-            Delete
-          </LinkTo>
+    {{#each-in @model.stats.fieldDistribution as |field|}}
+      <Column
+        @name={{capitalize field}}
+        @prop={{field}}
+        @sortable={{includes field @model.sortableAttributes}}
+      >
+        {{#let (get data field) as |value|}}
+          {{if (eq (type-of value) 'object') (stringify value) value}}
         {{/let}}
       </Column>
-    </Row>
+    {{/each-in}}
+    <Column>
+      {{#let
+        (array @model.index.uid (get data @model.index.primaryKey))
+        as |models|
+      }}
+        <LinkTo
+          @route='admin.indexes.item.documents.document'
+          @models={{models}}
+          class='inline-flex items-center'
+        >
+          <Icons::FileDocumentOutline class='mr-1' />
+          View
+        </LinkTo>
+        <LinkTo
+          @route='admin.indexes.item.documents.document.edit'
+          @models={{models}}
+          class='inline-flex items-center'
+        >
+          <Icons::PencilOutline class='mr-1' />
+          Edit
+        </LinkTo>
+        <LinkTo
+          @route='admin.indexes.item.documents.document.delete'
+          @models={{models}}
+          class='inline-flex items-center'
+        >
+          <Icons::TrashCanOutline class='mr-1' />
+          Delete
+        </LinkTo>
+      {{/let}}
+    </Column>
   </RoyalTable>
 
   <div class='flex items-center'>

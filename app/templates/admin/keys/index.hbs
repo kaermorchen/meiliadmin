@@ -1,13 +1,11 @@
-<Headers::H1 @title="Keys"/>
+<Headers::H1 @title='Keys' />
 
-<RoyalTable @data={{@model.results}} class='w-full' as |Row data|>
-  <Row as |Column|>
-    <Column @prop='name'>
-      <LinkTo @route='admin.keys.key' @model={{data.uid}}>
-        {{data.name}}
-      </LinkTo>
-    </Column>
-    <Column @prop='actions' />
-    <Column @prop='indexes' />
-  </Row>
+<RoyalTable @data={{@model.results}} class='w-full' as |Column data|>
+  <Column @prop='name'>
+    <LinkTo @route='admin.keys.key' @model={{data.uid}}>
+      {{data.name}}
+    </LinkTo>
+  </Column>
+  <Column @prop='actions' />
+  <Column @prop='indexes' />
 </RoyalTable>

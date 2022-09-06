@@ -1,50 +1,48 @@
-<Headers::H1 @title="Tasks" />
+<Headers::H1 @title='Tasks' />
 
-<RoyalTable @data={{@model.results}} class='w-full' as |Row data|>
-  <Row as |Column|>
-    <Column @prop='uid' />
-    <Column @prop='indexUid' />
-    <Column @prop='status' />
-    <Column @prop='type' />
-    <Column @prop='details'>
-      {{stringify data.details}}
-    </Column>
-    <Column @prop='error'>
-      {{stringify data.error}}
-    </Column>
-    <Column @prop='duration' />
-    <Column @prop='enqueuedAt'>
-      {{date-time-format
-        data.enqueuedAt
-        year='numeric'
-        month='numeric'
-        day='numeric'
-        hour='numeric'
-        minute='numeric'
-        second='numeric'
-      }}
-    </Column>
-    <Column @prop='startedAt'>
-      {{date-time-format
-        data.startedAt
-        year='numeric'
-        month='numeric'
-        day='numeric'
-        hour='numeric'
-        minute='numeric'
-        second='numeric'
-      }}
-    </Column>
-    <Column @prop='finishedAt'>
-      {{date-time-format
-        data.finishedAt
-        year='numeric'
-        month='numeric'
-        day='numeric'
-        hour='numeric'
-        minute='numeric'
-        second='numeric'
-      }}
-    </Column>
-  </Row>
+<RoyalTable @data={{@model.results}} class='w-full' as |Column data|>
+  <Column @prop='uid' />
+  <Column @prop='indexUid' />
+  <Column @prop='status' />
+  <Column @prop='type' />
+  <Column @prop='details'>
+    {{stringify data.details}}
+  </Column>
+  <Column @prop='error'>
+    {{stringify data.error}}
+  </Column>
+  <Column @prop='duration' />
+  <Column @prop='enqueuedAt'>
+    {{date-time-format
+      data.enqueuedAt
+      year='numeric'
+      month='numeric'
+      day='numeric'
+      hour='numeric'
+      minute='numeric'
+      second='numeric'
+    }}
+  </Column>
+  <Column @prop='startedAt'>
+    {{date-time-format
+      data.startedAt
+      year='numeric'
+      month='numeric'
+      day='numeric'
+      hour='numeric'
+      minute='numeric'
+      second='numeric'
+    }}
+  </Column>
+  <Column @prop='finishedAt'>
+    {{date-time-format
+      data.finishedAt
+      year='numeric'
+      month='numeric'
+      day='numeric'
+      hour='numeric'
+      minute='numeric'
+      second='numeric'
+    }}
+  </Column>
 </RoyalTable>

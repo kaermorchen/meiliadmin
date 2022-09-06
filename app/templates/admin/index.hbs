@@ -40,35 +40,33 @@
   <LinkTo @route='admin.indexes.index'>Indexes</LinkTo>
 </Headers::H2>
 
-<RoyalTable @data={{@model.indexes.results}} class='w-full' as |Row data|>
-  <Row as |Column|>
-    <Column @name='UID' @prop='uid'>
-      <LinkTo @route='admin.indexes.item' @model={{data.uid}}>
-        {{data.uid}}
-      </LinkTo>
-    </Column>
-    <Column @name='Primary key' @prop='primaryKey' />
-    <Column @name='Created at' @prop='createdAt'>
-      {{date-time-format
-        data.createdAt
-        year='numeric'
-        month='numeric'
-        day='numeric'
-        hour='numeric'
-        minute='numeric'
-        second='numeric'
-      }}
-    </Column>
-    <Column @name='Updated at' @prop='updatedAt'>
-      {{date-time-format
-        data.updatedAt
-        year='numeric'
-        month='numeric'
-        day='numeric'
-        hour='numeric'
-        minute='numeric'
-        second='numeric'
-      }}
-    </Column>
-  </Row>
+<RoyalTable @data={{@model.indexes.results}} class='w-full' as |Column data|>
+  <Column @name='UID' @prop='uid'>
+    <LinkTo @route='admin.indexes.item' @model={{data.uid}}>
+      {{data.uid}}
+    </LinkTo>
+  </Column>
+  <Column @name='Primary key' @prop='primaryKey' />
+  <Column @name='Created at' @prop='createdAt'>
+    {{date-time-format
+      data.createdAt
+      year='numeric'
+      month='numeric'
+      day='numeric'
+      hour='numeric'
+      minute='numeric'
+      second='numeric'
+    }}
+  </Column>
+  <Column @name='Updated at' @prop='updatedAt'>
+    {{date-time-format
+      data.updatedAt
+      year='numeric'
+      month='numeric'
+      day='numeric'
+      hour='numeric'
+      minute='numeric'
+      second='numeric'
+    }}
+  </Column>
 </RoyalTable>
