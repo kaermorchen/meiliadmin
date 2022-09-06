@@ -18,7 +18,8 @@ export default class FormIndexSettingComponent extends Component {
 
   @action
   async setInitialValue() {
-    this.value = await this.args.index.getSetting(this.args.name);
+    const result = await this.args.index.getSetting(this.args.name);
+    this.value = JSON.stringify(result);
   }
 
   @action

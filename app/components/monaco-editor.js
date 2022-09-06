@@ -26,8 +26,8 @@ export default class MonacoEditorComponent extends Component {
     // Autoresize height of element
     this.editor.onDidContentSizeChange(() => {
       const contentHeight = Math.min(
-        Math.max(this.editor.getContentHeight(), 180),
-        500
+        Math.max(this.editor.getContentHeight(), 160),
+        420
       );
 
       el.style.height = `${contentHeight}px`;
@@ -36,18 +36,14 @@ export default class MonacoEditorComponent extends Component {
   }
 
   @action
-  updateValue(el, value) {
-    if (typeof value !== 'string') {
-      value = JSON.stringify(value);
-    }
-
+  updateValue(el, [value]) {
     if (value !== this.editor.getValue()) {
       this.editor?.setValue(value);
     }
   }
 
   @action
-  sendValue() {
+  triggerSendValue() {
     this.args.sendValue?.(this.editor.getValue());
   }
 
