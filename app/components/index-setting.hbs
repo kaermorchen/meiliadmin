@@ -1,10 +1,9 @@
-<Form::Element>
-  <Form::Textarea
-    @label={{namelize @name}}
-    @name={{@name}}
-    @value={{this.value}}
-    @required={{true}}
+<Form::Element @label={{namelize @name}}>
+  <MonacoEditor
+    @value={{json-stringify this.value}}
+    @language='json'
     @onChange={{set this 'value'}}
+    class="h-80"
   />
 
   <Button @text='Save' @style='primary' @onClick={{this.save}} />

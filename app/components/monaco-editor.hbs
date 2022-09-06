@@ -1,1 +1,8 @@
-<div {{did-insert this.initEditor}} class="mb-4" ...attributes></div>
+<div
+  {{did-insert this.initEditor}}
+  {{did-update this.updateValue @value}}
+  class='border mb-4'
+  ...attributes
+></div>
+
+{{yield (hash editor=this.editor sendValue=this.sendValue)}}
