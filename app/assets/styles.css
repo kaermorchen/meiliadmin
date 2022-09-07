@@ -4,11 +4,15 @@
 
 @layer base {
   :root {
-    --color-gray-darkest: #242424;
-    --color-gray-dark: #424242;
-    --color-gray: #616161;
-    --color-gray-light: #C7C7C7;
-    --color-gray-lightest: #D1D1D1;
+    --color-gray-darkest: 36 36 36;
+    --color-gray-dark: 66 66 66;
+    --color-gray: 97 97 97;
+    --color-gray-light: 199 199 199;
+    --color-gray-lightest: 209 209 209;
+  }
+
+  body {
+    @apply text-gray-dark;
   }
 }
 

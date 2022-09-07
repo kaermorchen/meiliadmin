@@ -11,8 +11,8 @@ module.exports = {
           darkest: 'rgb(var(--color-gray-darkest) / <alpha-value>)',
           dark: 'rgb(var(--color-gray-dark) / <alpha-value>)',
           DEFAULT: 'rgb(var(--color-gray) / <alpha-value>)',
-          light: 'rgb(var(--color-light) / <alpha-value>)',
-          lightest: 'rgb(var(--color-lightest) / <alpha-value>)',
+          light: 'rgb(var(--color-gray-light) / <alpha-value>)',
+          lightest: 'rgb(var(--color-gray-lightest) / <alpha-value>)',
         },
         primary: {
           light: colors.pink['100'],
