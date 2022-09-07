@@ -1,46 +1,23 @@
 const colors = require('tailwindcss/colors');
 
-const light = '#FAFAFA';
-// const gray = '#EEEDEF';
-// const dark = '#55585D';
-// const text = '#33373B';
-
-// const  light = '#E5E7EB';
-// const secondary = '#374151';
-// const gray = '#e1dfe2';
-const text = '#252526';
-const dark = '#1E1E1E';
-// const primary = '#2563EB';
-// const primary = '#ff5caa';
-
 module.exports = {
   content: ['./app/**/*.{html,hbs}'],
   darkMode: 'media',
   theme: {
     extend: {
-      borderColor: (theme) => theme('colors.gray.light'),
+      borderColor: (theme) => theme('colors.gray.lightest'),
       colors: {
-        light,
-        // gray,
-        dark,
-        text,
+        gray: {
+          darkest: 'rgb(var(--color-gray-darkest) / <alpha-value>)',
+          dark: 'rgb(var(--color-gray-dark) / <alpha-value>)',
+          DEFAULT: 'rgb(var(--color-gray) / <alpha-value>)',
+          light: 'rgb(var(--color-light) / <alpha-value>)',
+          lightest: 'rgb(var(--color-lightest) / <alpha-value>)',
+        },
         primary: {
           light: colors.pink['100'],
           DEFAULT: colors.pink['500'],
           dark: colors.pink['800'],
-        },
-        // gray: {
-        //   light: colors.gray['100'],
-        //   DEFAULT: colors.gray['500'],
-        //   dark: colors.gray['800'],
-        // },
-        gray: {
-          light: '#e5eaef',
-          DEFAULT: '#A1A6B0',
-          dark: '#676d7c',
-        },
-        black: {
-          DEFAULT: '#222228',
         },
         yellow: {
           light: colors.yellow['100'],

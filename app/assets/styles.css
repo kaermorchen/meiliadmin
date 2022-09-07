@@ -2,17 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --color-gray-darkest: #242424;
+    --color-gray-dark: #424242;
+    --color-gray: #616161;
+    --color-gray-light: #C7C7C7;
+    --color-gray-lightest: #D1D1D1;
+  }
+}
+
 .royal-table {
   @apply table-auto border text-left mb-4;
 
   thead {
-    @apply bg-light;
+    @apply bg-gray-light;
 
     tr {
       @apply border-b;
 
       th {
-        @apply px-4 py-4 text-dark font-normal whitespace-nowrap;
+        @apply px-4 py-4 text-gray-dark font-normal whitespace-nowrap;
 
         &[type="button"] {
           @apply cursor-pointer select-none;
@@ -31,11 +41,11 @@
   tbody {
     tr {
       &:nth-child(even) {
-        @apply bg-light;
+        @apply bg-gray-light;
       }
 
       td {
-        @apply px-4 py-2 text-text align-top;
+        @apply px-4 py-2 text-gray-darkest align-top;
       }
     }
   }
