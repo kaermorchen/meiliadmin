@@ -5,13 +5,14 @@ module.exports = {
   darkMode: 'media',
   theme: {
     extend: {
-      borderColor: (theme) => theme('colors.gray.lightest'),
+      borderColor: (theme) => theme('colors.gray.lighter'),
       colors: {
         gray: {
           darkest: 'rgb(var(--color-gray-darkest) / <alpha-value>)',
           dark: 'rgb(var(--color-gray-dark) / <alpha-value>)',
           DEFAULT: 'rgb(var(--color-gray) / <alpha-value>)',
           light: 'rgb(var(--color-gray-light) / <alpha-value>)',
+          lighter: 'rgb(var(--color-gray-lighter) / <alpha-value>)',
           lightest: 'rgb(var(--color-gray-lightest) / <alpha-value>)',
         },
         primary: {

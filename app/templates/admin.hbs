@@ -11,7 +11,7 @@
       'flex items-center px-4 py-2 font-semibold text-lg text-gray-dark'
       as |classLink|
     }}
-      <nav class='flex flex-col flex-1'>
+      <nav class='flex flex-col flex-1 mb-4'>
         {{!-- <div class='px-4 py-2 text-sm text-gray'>Indexes</div>
           {{#each @model.results as |item|}}
             <LinkTo
@@ -36,7 +36,7 @@
           Keys
         </LinkTo>
 
-        <div class="border-b my-4"></div>
+        <Divider />
 
         <a
           href='https://docs.meilisearch.com/'
@@ -56,15 +56,20 @@
           <Icons::Github class='fill-gray mr-2' />
           MeiliAdmin
         </a>
+
+        <Divider />
+
         <button
           type='button'
           {{on 'click' this.invalidateSession}}
-          class='{{classLink}} mt-auto'
+          class={{classLink}}
         >
           <Icons::Logout class='fill-gray mr-2' />
           Logout
         </button>
       </nav>
+
+      <ThemeToggler />
     {{/let}}
   </div>
 

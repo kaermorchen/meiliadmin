@@ -8,11 +8,16 @@
     --color-gray-dark: 66 66 66;
     --color-gray: 97 97 97;
     --color-gray-light: 199 199 199;
-    --color-gray-lightest: 209 209 209;
+    --color-gray-lighter: 209 209 209;
+    --color-gray-lightest: 245 245 245;
   }
 
   body {
     @apply text-gray-dark;
+  }
+
+  p {
+    @apply mb-4;
   }
 }
 
