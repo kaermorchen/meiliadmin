@@ -1,15 +1,6 @@
-<Headers::H2 @title='Stats' />
+<Headers::H2 @title='Statistics' />
 
-<dl class='grid grid-cols-1 md:grid-cols-2 gap-5 mb-8'>
-  <Stat @title='Status' @value={{capitalize @model.health.status}}>
-    <:icon>
-      {{#if (eq @model.health.status 'available')}}
-        <Icons::CheckboxMarkedCircle class='text-green' @size={{40}} />
-      {{else}}
-        <Icons::AlertCircle class='text-yellow' @size={{40}} />
-      {{/if}}
-    </:icon>
-  </Stat>
+<dl class='grid lg:grid-cols-3 gap-5 mb-4'>
   <Stat
     @title='Database size'
     @value={{format-bytes @model.stats.databaseSize}}
