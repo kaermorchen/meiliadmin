@@ -3,13 +3,40 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
+  @define-mixin light-vars {
     --color-gray-darkest: 36 36 36;
     --color-gray-dark: 66 66 66;
     --color-gray: 97 97 97;
     --color-gray-light: 199 199 199;
     --color-gray-lighter: 209 209 209;
     --color-gray-lightest: 245 245 245;
+  }
+
+  @define-mixin dark-vars {
+    --color-gray-darkest: 245 245 245;
+    --color-gray-dark: 209 209 209;
+    --color-gray: 199 199 199;
+    --color-gray-light: 97 97 97;
+    --color-gray-lighter: 66 66 66;
+    --color-gray-lightest: 36 36 36;
+  }
+
+  :root {
+    @mixin light-vars;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      @mixin dark-vars;
+    }
+  }
+
+  :root[data-theme='light'] {
+    @mixin light-vars;
+  }
+
+  :root[data-theme='dark'] {
+    @mixin dark-vars;
   }
 
   body {
@@ -33,14 +60,14 @@
       th {
         @apply px-4 py-4 text-gray-dark font-normal whitespace-nowrap;
 
-        &[type="button"] {
+        &[type='button'] {
           @apply cursor-pointer select-none;
         }
 
         svg {
           width: 1em;
           height: 1em;
-          bottom: .1em;
+          bottom: 0.1em;
           position: relative;
         }
       }
