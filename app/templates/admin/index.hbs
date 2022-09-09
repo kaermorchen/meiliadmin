@@ -6,7 +6,7 @@
     @value={{format-bytes @model.stats.databaseSize}}
   >
     <:icon>
-      <Icons::DatabaseOutline @size={{40}} />
+      <Icons::DatabaseOutline @size={{40}} class='fill-base-2' />
     </:icon>
   </Stat>
   <Stat
@@ -14,15 +14,12 @@
     @value={{date-time-format @model.stats.lastUpdate}}
   >
     <:icon>
-      <Icons::Calendar @size={{40}} />
+      <Icons::Calendar @size={{40}} class='fill-base-2' />
     </:icon>
   </Stat>
-  <Stat
-    @title='The version of the Meilisearch instance'
-    @value={{@model.version.pkgVersion}}
-  >
+  <Stat @title='The version' @value={{@model.version.pkgVersion}}>
     <:icon>
-      <Icons::SourceBranch @size={{40}} />
+      <Icons::SourceBranch @size={{40}} class='fill-base-2' />
     </:icon>
   </Stat>
 </dl>

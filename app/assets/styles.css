@@ -52,15 +52,13 @@
 }
 
 .royal-table {
-  @apply table-auto border text-left mb-4;
+  @apply table-auto text-left mb-4;
 
   thead {
-    @apply bg-base-4;
-
     tr {
-      @apply border-b;
-
       th {
+        @apply bg-base-6;
+        @apply first:rounded-l last:rounded-r;
         @apply px-4 py-4 text-base-2 font-normal whitespace-nowrap;
 
         &[type='button'] {
@@ -79,12 +77,8 @@
 
   tbody {
     tr {
-      &:nth-child(even) {
-        @apply bg-base-4;
-      }
-
       td {
-        @apply px-4 py-2 text-base-6 align-top;
+        @apply px-4 py-3 align-top;
       }
     }
   }

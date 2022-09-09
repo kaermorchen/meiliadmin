@@ -1,14 +1,14 @@
 <div
-  class='px-4 py-5 base-7 shadow rounded-lg overflow-hidden sm:p-6'
+  class='px-4 py-5 bg-base-6 rounded overflow-hidden sm:p-6'
   ...attributes
 >
   <div class='flex items-center'>
     <div class="mr-2">{{yield to='icon'}}</div>
     <div>
-      <dt class='text-sm font-medium text-base-3 truncate'>
+      <dt class='text-sm font-medium text-base-2 truncate'>
         {{@title}}
       </dt>
-      <dd class='text-3xl font-semibold text-base-3'>
+      <dd class='text-3xl font-semibold text-base-1'>
         {{#if (has-block)}}
           {{yield}}
         {{else}}

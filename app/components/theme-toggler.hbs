@@ -1,4 +1,4 @@
-<div class='grid grid-cols-3 gap-1 p-1 rounded bg-base-5'>
+<div class='grid grid-cols-3 gap-1 p-1 rounded bg-base-6'>
   {{#each this.themes as |item|}}
     {{#let (eq item.id this.theme) as |selected|}}
       <Button
@@ -6,7 +6,7 @@
         @icon={{item.icon}}
         @onClick={{fn this.changeTheme item.id}}
         @size='sm'
-        class='border-none {{if selected "base-7 shadow-sm"}}'
+        class='border-none {{if selected "bg-base-7 shadow-sm"}}'
       />
     {{/let}}
   {{/each}}

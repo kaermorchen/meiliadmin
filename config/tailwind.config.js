@@ -5,7 +5,9 @@ module.exports = {
   darkMode: 'media',
   theme: {
     extend: {
-      borderColor: (theme) => theme('colors.base.5'),
+      borderColor: ({ theme }) => ({
+        DEFAULT: theme('colors.base.5'),
+      }),
       colors: {
         base: {
           1: 'rgb(var(--color-base-1) / <alpha-value>)',
