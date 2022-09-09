@@ -128,7 +128,7 @@ body {
   width: var(--sidenav-width);
   transition-property: transform;
   transform: translate3d(-100%, 0, 0);
-  @apply bg-base-7 p-4;
+  @apply bg-base-7 p-4 pt-0;
 }
 
 .main {
