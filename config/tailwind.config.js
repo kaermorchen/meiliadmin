@@ -5,15 +5,16 @@ module.exports = {
   darkMode: 'media',
   theme: {
     extend: {
-      borderColor: (theme) => theme('colors.gray.lighter'),
+      borderColor: (theme) => theme('colors.base.5'),
       colors: {
-        gray: {
-          darkest: 'rgb(var(--color-gray-darkest) / <alpha-value>)',
-          dark: 'rgb(var(--color-gray-dark) / <alpha-value>)',
-          DEFAULT: 'rgb(var(--color-gray) / <alpha-value>)',
-          light: 'rgb(var(--color-gray-light) / <alpha-value>)',
-          lighter: 'rgb(var(--color-gray-lighter) / <alpha-value>)',
-          lightest: 'rgb(var(--color-gray-lightest) / <alpha-value>)',
+        base: {
+          1: 'rgb(var(--color-base-1) / <alpha-value>)',
+          2: 'rgb(var(--color-base-2) / <alpha-value>)',
+          3: 'rgb(var(--color-base-3) / <alpha-value>)',
+          4: 'rgb(var(--color-base-4) / <alpha-value>)',
+          5: 'rgb(var(--color-base-5) / <alpha-value>)',
+          6: 'rgb(var(--color-base-6) / <alpha-value>)',
+          7: 'rgb(var(--color-base-7) / <alpha-value>)',
         },
         primary: {
           light: colors.pink['100'],

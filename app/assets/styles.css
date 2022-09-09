@@ -4,21 +4,23 @@
 
 @layer base {
   @define-mixin light-vars {
-    --color-gray-darkest: 36 36 36;
-    --color-gray-dark: 66 66 66;
-    --color-gray: 97 97 97;
-    --color-gray-light: 199 199 199;
-    --color-gray-lighter: 209 209 209;
-    --color-gray-lightest: 245 245 245;
+    --color-base-1: 36 36 36;
+    --color-base-2: 66 66 66;
+    --color-base-3: 97 97 97;
+    --color-base-4: 199 199 199;
+    --color-base-5: 209 209 209;
+    --color-base-6: 245 245 245;
+    --color-base-7: 255 255 255;
   }
 
   @define-mixin dark-vars {
-    --color-gray-darkest: 245 245 245;
-    --color-gray-dark: 209 209 209;
-    --color-gray: 199 199 199;
-    --color-gray-light: 97 97 97;
-    --color-gray-lighter: 66 66 66;
-    --color-gray-lightest: 36 36 36;
+    --color-base-1: 255 255 255;
+    --color-base-2: 245 245 245;
+    --color-base-3: 209 209 209;
+    --color-base-4: 199 199 199;
+    --color-base-5: 97 97 97;
+    --color-base-6: 66 66 66;
+    --color-base-7: 36 36 36;
   }
 
   :root {
@@ -40,7 +42,8 @@
   }
 
   body {
-    @apply text-gray-dark;
+    @apply text-base-2;
+    @apply bg-base-7;
   }
 
   p {
@@ -52,13 +55,13 @@
   @apply table-auto border text-left mb-4;
 
   thead {
-    @apply bg-gray-light;
+    @apply bg-base-4;
 
     tr {
       @apply border-b;
 
       th {
-        @apply px-4 py-4 text-gray-dark font-normal whitespace-nowrap;
+        @apply px-4 py-4 text-base-2 font-normal whitespace-nowrap;
 
         &[type='button'] {
           @apply cursor-pointer select-none;
@@ -77,11 +80,11 @@
   tbody {
     tr {
       &:nth-child(even) {
-        @apply bg-gray-light;
+        @apply bg-base-4;
       }
 
       td {
-        @apply px-4 py-2 text-gray-darkest align-top;
+        @apply px-4 py-2 text-base-6 align-top;
       }
     }
   }

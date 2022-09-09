@@ -8,11 +8,11 @@
     </LinkTo>
 
     {{#let
-      'flex items-center px-4 py-2 font-semibold text-lg text-gray-dark'
+      'flex items-center px-4 py-2 font-semibold text-lg text-base-2'
       as |classLink|
     }}
       <nav class='flex flex-col flex-1 mb-4'>
-        {{!-- <div class='px-4 py-2 text-sm text-gray'>Indexes</div>
+        {{!-- <div class='px-4 py-2 text-sm text-base-3'>Indexes</div>
           {{#each @model.results as |item|}}
             <LinkTo
               @route='admin.indexes.item'
@@ -24,15 +24,15 @@
             </LinkTo>
           {{/each}} --}}
         <LinkTo @route='admin.indexes.index' class={{classLink}}>
-          <Icons::FolderMultipleOutline class='fill-gray mr-2' />
+          <Icons::FolderMultipleOutline class='fill-base-3 mr-2' />
           Indexes
         </LinkTo>
         <LinkTo @route='admin.tasks.index' class={{classLink}}>
-          <Icons::FormatListChecks class='fill-gray mr-2' />
+          <Icons::FormatListChecks class='fill-base-3 mr-2' />
           Tasks
         </LinkTo>
         <LinkTo @route='admin.keys.index' class={{classLink}}>
-          <Icons::KeyOutline class='fill-gray mr-2' />
+          <Icons::KeyOutline class='fill-base-3 mr-2' />
           Keys
         </LinkTo>
 
@@ -44,7 +44,7 @@
           target='_blank'
           rel='noopener noreferrer'
         >
-          <Icons::HelpCircleOutline class='fill-gray mr-2' />
+          <Icons::HelpCircleOutline class='fill-base-3 mr-2' />
           Documentation
         </a>
         <a
@@ -53,7 +53,7 @@
           target='_blank'
           rel='noopener noreferrer'
         >
-          <Icons::Github class='fill-gray mr-2' />
+          <Icons::Github class='fill-base-3 mr-2' />
           MeiliAdmin
         </a>
 
@@ -64,7 +64,7 @@
           {{on 'click' this.invalidateSession}}
           class={{classLink}}
         >
-          <Icons::Logout class='fill-gray mr-2' />
+          <Icons::Logout class='fill-base-3 mr-2' />
           Logout
         </button>
       </nav>
