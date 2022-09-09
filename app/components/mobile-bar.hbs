@@ -1,0 +1,20 @@
+<div class="mobile-bar" ...attributes>
+  <button
+    type='button'
+    class='inline-flex items-center lg:hidden'
+    aria-label='Toggle sidebar'
+    {{on 'click' this.toggleSidebar}}
+  >
+    <Icons::Menu @title='Menu' />
+  </button>
+
+  <LinkTo @route="index" class='text-2xl font-display flex-1 flex items-center justify-center'>
+    MeiliAdmin
+  </LinkTo>
+</div>
+{{!-- <a
+  href='/'
+  title='{{@siteName}}'
+  class='text-2xl font-display flex-1 flex items-center justify-center lg:mt-6'
+  {{on 'click' this.closeSidebar}}
+>{{@siteName}}</a> --}}

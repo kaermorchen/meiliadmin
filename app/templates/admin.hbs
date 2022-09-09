@@ -1,18 +1,16 @@
-<div class='relative min-h-screen flex'>
-  <div class='flex flex-col w-64 min-h-screen px-4 py-4 border-r'>
-    <LinkTo
-      @route='admin'
-      class='flex items-center justify-center font-semibold text-xl mt-4 mb-8'
-    >
-      MeiliAdmin
-    </LinkTo>
+<div class='app'>
+  <MobileBar class='fixed flex shadow-sm lg:hidden' />
 
-    {{#let
-      'flex items-center px-4 py-2 font-semibold text-lg text-base-2'
-      as |classLink|
-    }}
-      <nav class='flex flex-col flex-1 mb-4'>
-        {{!-- <div class='px-4 py-2 text-sm text-base-3'>Indexes</div>
+  <aside class='sidenav'>
+    <SidenavBackground />
+    <div class='sidenav-sections'>
+      <MobileBar class='relative flex mb-4' />
+      {{#let
+        'flex items-center px-4 py-2 font-semibold text-lg text-base-2'
+        as |classLink|
+      }}
+        <nav class='flex flex-col flex-1 mb-4'>
+          {{!-- <div class='px-4 py-2 text-sm text-base-3'>Indexes</div>
           {{#each @model.results as |item|}}
             <LinkTo
               @route='admin.indexes.item'
@@ -23,57 +21,58 @@
               {{capitalize item.uid}}
             </LinkTo>
           {{/each}} --}}
-        <LinkTo @route='admin.indexes.index' class={{classLink}}>
-          <Icons::FolderMultipleOutline class='fill-base-3 mr-2' />
-          Indexes
-        </LinkTo>
-        <LinkTo @route='admin.tasks.index' class={{classLink}}>
-          <Icons::FormatListChecks class='fill-base-3 mr-2' />
-          Tasks
-        </LinkTo>
-        <LinkTo @route='admin.keys.index' class={{classLink}}>
-          <Icons::KeyOutline class='fill-base-3 mr-2' />
-          Keys
-        </LinkTo>
+          <LinkTo @route='admin.indexes.index' class={{classLink}}>
+            <Icons::FolderMultipleOutline class='fill-base-3 mr-2' />
+            Indexes
+          </LinkTo>
+          <LinkTo @route='admin.tasks.index' class={{classLink}}>
+            <Icons::FormatListChecks class='fill-base-3 mr-2' />
+            Tasks
+          </LinkTo>
+          <LinkTo @route='admin.keys.index' class={{classLink}}>
+            <Icons::KeyOutline class='fill-base-3 mr-2' />
+            Keys
+          </LinkTo>
 
-        <Divider />
+          <Divider />
 
-        <a
-          href='https://docs.meilisearch.com/'
-          class={{classLink}}
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          <Icons::HelpCircleOutline class='fill-base-3 mr-2' />
-          Documentation
-        </a>
-        <a
-          href='https://github.com/kaermorchen/meiliadmin'
-          class={{classLink}}
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          <Icons::Github class='fill-base-3 mr-2' />
-          MeiliAdmin
-        </a>
+          <a
+            href='https://docs.meilisearch.com/'
+            class={{classLink}}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <Icons::HelpCircleOutline class='fill-base-3 mr-2' />
+            Documentation
+          </a>
+          <a
+            href='https://github.com/kaermorchen/meiliadmin'
+            class={{classLink}}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <Icons::Github class='fill-base-3 mr-2' />
+            MeiliAdmin
+          </a>
 
-        <Divider />
+          <Divider />
 
-        <button
-          type='button'
-          {{on 'click' this.invalidateSession}}
-          class={{classLink}}
-        >
-          <Icons::Logout class='fill-base-3 mr-2' />
-          Logout
-        </button>
-      </nav>
+          <button
+            type='button'
+            {{on 'click' this.invalidateSession}}
+            class={{classLink}}
+          >
+            <Icons::Logout class='fill-base-3 mr-2' />
+            Logout
+          </button>
+        </nav>
 
-      <ThemeToggler />
-    {{/let}}
-  </div>
+        <ThemeToggler />
+      {{/let}}
+    </div>
+  </aside>
 
-  <div class='flex-1 p-4'>
+  <main class='main'>
     {{outlet}}
-  </div>
+  </main>
 </div>

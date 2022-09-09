@@ -25,6 +25,22 @@
 
   :root {
     @mixin light-vars;
+
+    --sidenav-width: 300px;
+    --header-height: 3.5rem;
+
+    --spacing-1: 0.25rem;
+    --spacing-2: 0.5rem;
+    --spacing-3: 0.75rem;
+    --spacing-4: 1rem;
+
+    --z-index-scroll-link: 10;
+    --z-index-mobile-bar: 20;
+    --z-index-sidenav: 30;
+    --z-index-modal-overlay: 40;
+    --z-index-modal: 50;
+    --z-index-dropdown: 60;
+    --z-index-context-menu: 70;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -48,6 +64,137 @@
 
   p {
     @apply mb-4;
+  }
+}
+
+body {
+  &.sidebar-is-opened {
+    overflow: hidden;
+
+    .sidenav {
+      visibility: visible;
+    }
+
+    .sidenav-background {
+      opacity: 1;
+    }
+
+    .sidenav-sections {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 1fr auto;
+  grid-template-areas: 'main';
+
+  min-height: 100vh;
+}
+
+.sidenav {
+  grid-area: sidenav;
+  position: fixed;
+  z-index: var(--z-index-sidenav);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  visibility: hidden;
+  transition-property: visibility;
+  @apply border-r;
+}
+
+.sidenav-background {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transition-property: opacity;
+  transform: translateZ(0);
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.sidenav-sections {
+  transition-duration: 200ms;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: var(--sidenav-width);
+  transition-property: transform;
+  transform: translate3d(-100%, 0, 0);
+  @apply bg-base-7 p-4;
+}
+
+.main {
+  grid-area: main;
+  padding: calc(var(--spacing-4) + var(--header-height)) var(--spacing-4) var(--spacing-4);
+  @apply bg-base-7;
+}
+
+.mobile-bar {
+  top: 0;
+  left: 0;
+  height: var(--header-height);
+  width: 100%;
+  z-index: var(--z-index-mobile-bar);
+  align-items: center;
+  overflow: hidden;
+  /* min-width: calc(var(--sidenav-width) - 2px); */
+  @apply bg-base-7;
+
+  & > button {
+    position: absolute;
+    padding: var(--spacing-3);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+
+    &:focus {
+      outline: 0;
+    }
+  }
+}
+
+@media (min-width: theme("screens.lg")) {
+  body.sidebar-is-opened {
+    overflow: initial;
+  }
+
+  .app {
+    grid-template-columns: var(--sidenav-width) calc(100% - var(--sidenav-width));
+    grid-template-areas: "sidenav main";
+  }
+
+  .sidenav {
+    position: relative;
+    visibility: visible;
+  }
+
+  .sidenav-background {
+    opacity: 0;
+    display: none;
+  }
+
+  .sidenav-sections {
+    position: relative;
+    transform: none;
+    transition-duration: none;
+    position: initial;
+    top: initial;
+    bottom: initial;
+    left: initial;
+    width: auto;
+    transition-property: initial;
+  }
+
+  .main {
+    padding: var(--spacing-4);
   }
 }
 

@@ -34,6 +34,15 @@ module.exports = {
           dark: colors.green['800'],
         },
       },
+      zIndex: {
+        'scroll-link': '10',
+        'mobile-bar': '20',
+        sidenav: '30',
+        'modal-overlay': '40',
+        modal: '50',
+        dropdown: '60',
+        'context-menu': '70',
+      },
     },
   },
   variants: {
