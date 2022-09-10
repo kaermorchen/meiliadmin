@@ -33,16 +33,23 @@
     class='w-full'
     as |Column data|
   >
+    <Column
+      @name={{capitalize @model.index.primaryKey}}
+      @prop={{@model.index.primaryKey}}
+      @sortable={{includes @model.index.primaryKey @model.sortableAttributes}}
+    />
     {{#each-in @model.stats.fieldDistribution as |field|}}
-      <Column
-        @name={{capitalize field}}
-        @prop={{field}}
-        @sortable={{includes field @model.sortableAttributes}}
-      >
-        {{#let (get data field) as |value|}}
-          {{if (eq (type-of value) 'object') (stringify value) value}}
-        {{/let}}
-      </Column>
+      {{#if (not-eq field @model.index.primaryKey)}}
+        <Column
+          @name={{capitalize field}}
+          @prop={{field}}
+          @sortable={{includes field @model.sortableAttributes}}
+        >
+          {{#let (get data field) as |value|}}
+            {{if (eq (type-of value) 'object') (stringify value) value}}
+          {{/let}}
+        </Column>
+      {{/if}}
     {{/each-in}}
     <Column>
       {{#let
