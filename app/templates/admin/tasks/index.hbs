@@ -6,10 +6,10 @@
   <Column @prop='status' />
   <Column @prop='type' />
   <Column @prop='details'>
-    {{stringify data.details}}
+    {{json-stringify data.details}}
   </Column>
   <Column @prop='error'>
-    {{stringify data.error}}
+    {{json-stringify data.error}}
   </Column>
   <Column @prop='duration' />
   <Column @prop='enqueuedAt'>

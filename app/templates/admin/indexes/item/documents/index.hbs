@@ -82,7 +82,7 @@
           @sortable={{includes field @model.sortableAttributes}}
         >
           {{#let (get data field) as |value|}}
-            {{if (eq (type-of value) 'object') (stringify value) value}}
+            {{if (eq (type-of value) 'object') (json-stringify value) value}}
           {{/let}}
         </Column>
       {{/if}}
