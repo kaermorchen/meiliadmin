@@ -68,6 +68,7 @@
     "ember-cli-terser": "^4.0.2",
     "ember-composable-helpers": "^5.0.0",
     "ember-fetch": "^8.1.1",
+    "ember-headlessui": "^0.13.0",
     "ember-load-initializers": "^2.1.2",
     "ember-mdi": "2.0.0-beta.1",
     "ember-qunit": "^5.1.5",

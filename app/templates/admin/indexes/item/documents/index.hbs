@@ -58,35 +58,45 @@
         </Column>
       {{/if}}
     {{/each-in}}
-    <Column>
+    <Column class='relative'>
       {{#let
         (array @model.index.uid (get data @model.index.primaryKey))
-        as |models|
+        'flex items-center px-4 py-2 text-sm hover:bg-base-6 hover:text-base-1'
+        as |models linkClasses|
       }}
-        <LinkTo
-          @route='admin.indexes.item.documents.document'
-          @models={{models}}
-          class='inline-flex items-center'
-        >
-          <Icons::FileDocumentOutline class='mr-1' />
-          View
-        </LinkTo>
-        <LinkTo
-          @route='admin.indexes.item.documents.document.edit'
-          @models={{models}}
-          class='inline-flex items-center'
-        >
-          <Icons::PencilOutline class='mr-1' />
-          Edit
-        </LinkTo>
-        <LinkTo
-          @route='admin.indexes.item.documents.document.delete'
-          @models={{models}}
-          class='inline-flex items-center'
-        >
-          <Icons::TrashCanOutline class='mr-1' />
-          Delete
-        </LinkTo>
+        <Menu as |menu|>
+          <menu.Button class='inline-flex items-center'>
+            <Icons::DotsHorizontal />
+          </menu.Button>
+          <menu.Items
+            class='absolute z-dropdown right-0 w-28 mt-2 py-1 origin-top-right bg-base-7 border rounded shadow-sm outline-none'
+          >
+            <LinkTo
+              @route='admin.indexes.item.documents.document'
+              @models={{models}}
+              class={{linkClasses}}
+            >
+              <Icons::FileDocumentOutline @size={{18}} class='mr-1' />
+              View
+            </LinkTo>
+            <LinkTo
+              @route='admin.indexes.item.documents.document.edit'
+              @models={{models}}
+              class={{linkClasses}}
+            >
+              <Icons::PencilOutline @size={{18}} class='mr-1' />
+              Edit
+            </LinkTo>
+            <LinkTo
+              @route='admin.indexes.item.documents.document.delete'
+              @models={{models}}
+              class={{linkClasses}}
+            >
+              <Icons::TrashCanOutline @size={{18}} class='mr-1' />
+              Delete
+            </LinkTo>
+          </menu.Items>
+        </Menu>
       {{/let}}
     </Column>
   </RoyalTable>
