@@ -30,7 +30,7 @@ export default class MonacoEditorComponent extends Component {
         420
       );
 
-      el.style.height = `${contentHeight}px`;
+      el.style.height = `${contentHeight + 1}px`;
       this.editor.layout();
     });
   }

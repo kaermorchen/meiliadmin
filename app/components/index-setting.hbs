@@ -1,13 +1,18 @@
 <Form::Element @label={{namelize @name}}>
   <MonacoEditor
-    @value={{this.value}}
+    @value={{json-stringify this.value}}
     @language='json'
     @sendValue={{this.save}}
     class='h-40'
     as |monaco|
   >
-    <Button @text='Save' @style='primary' @onClick={{monaco.triggerSendValue}} />
-    <Button @text='Cancel' @onClick={{this.setInitialValue}} />
-    <Button @text='Reset' @onClick={{this.reset}} />
+    <Button
+      @text='Save'
+      @style='primary'
+      @size='sm'
+      @onClick={{monaco.triggerSendValue}}
+    />
+    <Button @text='Cancel' @size='sm' @onClick={{this.setInitialValue}} />
+    <Button @text='Reset' @size='sm' @onClick={{this.reset}} />
   </MonacoEditor>
 </Form::Element>

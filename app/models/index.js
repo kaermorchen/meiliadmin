@@ -90,8 +90,12 @@ export default class Index {
   }
 
   updateSetting(name, value) {
+    const method = ['faceting', 'pagination', 'typo-tolerance'].includes(name)
+      ? 'PATCH'
+      : 'PUT';
+
     return query(`${this.path}/settings/${dasherize(name)}`, {
-      method: 'PUT',
+      method: method,
       body: JSON.stringify(value),
     });
   }
