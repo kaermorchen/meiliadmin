@@ -15,7 +15,7 @@
   />
 
   {{#if this.sortValues.length}}
-    <div class='inline relative mb-4 sm:ml-4'>
+    <div class='relative mb-4 sm:ml-4'>
       <Listbox @value={{this.sort}} @onChange={{set this 'sort'}} as |listbox|>
         <listbox.Button
           class='inline-flex items-center justify-center min-w-min w-24 px-3 py-2 border rounded cursor-pointer'
@@ -37,7 +37,7 @@
             </options.Option>
           {{/each}}
 
-          <Divider class="my-1"/>
+          <Divider class='my-1' />
 
           <options.Option @value={{null}} class='outline-none'>
             <div
@@ -51,20 +51,27 @@
     </div>
   {{/if}}
 
-  <div class='inline relative mb-4 sm:ml-4'>
+  <div class='relative mb-4 sm:ml-4'>
     <Menu as |menu|>
       <menu.Button as |menuButton|>
         <Button @style='link' @onClick={{menuButton.toggleMenu}} class='w-auto'>
           <Icons::DotsHorizontal />
         </Button>
       </menu.Button>
+
       <menu.Items
         class='absolute z-dropdown right-0 w-28 min-w-min mt-2 py-1 origin-top-right bg-base-7 border rounded shadow-sm outline-none'
+        {{sortable-group onChange=(set this 'attributes')}}
       >
         {{#each this.attributes as |item|}}
           <div
             class='flex items-center px-4 py-2 text-sm hover:bg-base-6 hover:text-base-1 cursor-pointer'
+            {{sortable-item model=item}}
           >
+            <Icons::DragHorizontal
+              {{sortable-handle}}
+              class='mr-2 cursor-move'
+            />
             <Form::Checkbox
               @checked={{not (includes item this.hiddenFields)}}
               @label={{namelize item}}
@@ -98,27 +105,8 @@
     class='w-full'
     as |Column data|
   >
-    {{#if (not (includes @model.index.primaryKey this.hiddenFields))}}
-      <Column
-        @name={{capitalize @model.index.primaryKey}}
-        @prop={{@model.index.primaryKey}}
-        @sortable={{includes @model.index.primaryKey @model.sortableAttributes}}
-      >
-        <LinkTo
-          @route='admin.indexes.item.documents.document'
-          @model={{get data @model.index.primaryKey}}
-        >
-          {{get data @model.index.primaryKey}}
-        </LinkTo>
-      </Column>
-    {{/if}}
     {{#each this.attributes as |field|}}
-      {{#if
-        (and
-          (not-eq field @model.index.primaryKey)
-          (not (includes field this.hiddenFields))
-        )
-      }}
+      {{#if (not (includes field this.hiddenFields))}}
         <Column
           @name={{capitalize field}}
           @prop={{field}}

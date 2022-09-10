@@ -76,7 +76,7 @@
     "ember-resources": "^4.7.1",
     "ember-set-helper": "^2.0.1",
     "ember-simple-auth": "^4.2.2",
-    "ember-sortable": "^3.0.1",
+    "ember-sortable": "^4.0.0",
     "ember-source": "~4.6.0",
     "ember-template-imports": "^3.1.1",
     "ember-template-lint": "^4.10.1",

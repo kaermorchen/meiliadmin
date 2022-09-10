@@ -10,6 +10,7 @@ export default class AdminIndexesItemDocumentsIndexController extends Controller
   @tracked dataView = 'table';
   @tracked sort;
   @tracked hiddenFields = [];
+  @tracked attributes;
 
   queryParams = ['q', 'page', 'limit', 'sort'];
 
@@ -20,17 +21,6 @@ export default class AdminIndexesItemDocumentsIndexController extends Controller
     table: Table,
     map: MapOutline,
   };
-
-  get attributes() {
-    if (
-      this.model.displayedAttributes.length > 1 &&
-      this.model.displayedAttributes[0] !== '*'
-    ) {
-      return this.model.displayedAttributes;
-    } else {
-      return Object.keys(this.model.stats.fieldDistribution);
-    }
-  }
 
   get fromHits() {
     return 1 + this.model.data.offset;
@@ -49,26 +39,6 @@ export default class AdminIndexesItemDocumentsIndexController extends Controller
 
     return result;
   }
-
-  // get sortedFields() {
-  //   const fields = Object.keys(this.model.stats.fieldDistribution);
-  //   const primaryKey = this.model.index.primaryKey ?? 'id';
-  //   const sortedArray = fields
-  //     .filter((item) => item !== primaryKey)
-  //     .sort((a, b) => {
-  //       if (a > b || a.charAt(0) === '_') {
-  //         return 1;
-  //       }
-
-  //       if (a < b) {
-  //         return -1;
-  //       }
-
-  //       return 0;
-  //     });
-
-  //   return [primaryKey].concat(sortedArray);
-  // }
 
   @action
   toggleHiddenField(name) {

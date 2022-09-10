@@ -35,6 +35,19 @@ export default class AdminIndexesItemDocumentsIndexRoute extends Route {
     });
   }
 
+  setupController(controller, model) {
+    super.setupController(controller, model);
+
+    if (
+      model.displayedAttributes.length > 1 &&
+      model.displayedAttributes[0] !== '*'
+    ) {
+      controller.attributes = model.displayedAttributes;
+    } else {
+      controller.attributes = Object.keys(model.stats.fieldDistribution);
+    }
+  }
+
   resetController(controller, isExiting) {
     if (isExiting) {
       controller.q = null;
