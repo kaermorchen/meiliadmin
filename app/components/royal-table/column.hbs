@@ -8,22 +8,25 @@
     {{on 'click' this.handleSort}}
     {{! DOTO: align is depricated, use styles align instead }}
   >
-    {{#if @sortable}}
-      {{#if this.isAscSorted}}
-        <Icons::ArrowDown />
-      {{else if this.isDescSorted}}
-        <Icons::ArrowUp />
-      {{else}}
-        <Icons::ArrowUpDown />
+    <span class='inline-flex items-center'>
+      {{#if (has-block 'name')}}
+        {{yield to='name'}}
+      {{else if @name}}
+        {{@name}}
+      {{else if @prop}}
+        {{capitalize @prop}}
       {{/if}}
-    {{/if}}
-    {{#if (has-block 'name')}}
-      {{yield to='name'}}
-    {{else if @name}}
-      {{@name}}
-    {{else if @prop}}
-      {{capitalize @prop}}
-    {{/if}}
+
+      {{#if @sortable}}
+        {{#if this.isAscSorted}}
+          <Icons::ArrowDownThin class="fill-base-3 ml-0.5" @size={{14}} />
+        {{else if this.isDescSorted}}
+          <Icons::ArrowUpThin class="fill-base-3 ml-0.5" @size={{14}} />
+        {{else}}
+          <Icons::ArrowUpDown class="fill-base-3 ml-0.5" @size={{14}} />
+        {{/if}}
+      {{/if}}
+    </span>
   </th>
 {{else if this.isBody}}
   <td align={{@align}} ...attributes>

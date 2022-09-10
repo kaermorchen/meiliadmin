@@ -209,13 +209,6 @@ body {
         &[type='button'] {
           @apply cursor-pointer select-none;
         }
-
-        svg {
-          width: 1em;
-          height: 1em;
-          bottom: 0.1em;
-          position: relative;
-        }
       }
     }
   }
