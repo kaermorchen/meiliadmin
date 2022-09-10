@@ -1,70 +1,78 @@
-<div class='relative min-h-screen flex'>
-  <div class='flex flex-col w-64 min-h-screen px-4 py-8 border-r'>
-    <Headers::H2 class='mb-8'>
-      <LinkTo @route='admin' class='flex items-center justify-center text-xl'>
-        MeiliAdmin
-      </LinkTo>
-    </Headers::H2>
+<div class='app'>
+  <MobileBar class='fixed flex shadow-sm lg:hidden' />
 
-    <div class='flex flex-col flex-1'>
+  <aside class='sidenav'>
+    <SidenavBackground />
+    <div class='sidenav-sections'>
+      <MobileBar class='relative flex mb-4' />
       {{#let
-        'flex items-center px-4 py-2 font-semibold text-lg text-gray-dark hover:text-black'
-        as |linkClass|
+        'flex items-center px-4 py-2 font-semibold text-lg text-base-2'
+        as |classLink|
       }}
-        <nav>
-          {{!-- <div class='px-4 py-2 text-sm text-gray'>Indexes</div>
+        <nav class='flex flex-col flex-1 mb-4'>
+          {{!-- <div class='px-4 py-2 text-sm text-base-3'>Indexes</div>
           {{#each @model.results as |item|}}
             <LinkTo
               @route='admin.indexes.item'
               @model={{item}}
-              class={{linkClass}}
+              class={{classLink}}
             >
               <Icons::CircleMedium class='mr-1' />
               {{capitalize item.uid}}
             </LinkTo>
           {{/each}} --}}
-          <LinkTo @route='admin.indexes.index' class={{linkClass}}>
-            <Icons::FolderMultipleOutline class='mr-1' />
+          <LinkTo @route='admin.indexes.index' class={{classLink}}>
+            <Icons::FolderMultipleOutline class='fill-base-3 mr-2' />
             Indexes
           </LinkTo>
-          <LinkTo @route='admin.tasks.index' class={{linkClass}}>
-            <Icons::FormatListChecks class='mr-1' />
+          <LinkTo @route='admin.tasks.index' class={{classLink}}>
+            <Icons::FormatListChecks class='fill-base-3 mr-2' />
             Tasks
           </LinkTo>
-          <LinkTo @route='admin.keys.index' class={{linkClass}}>
-            <Icons::KeyOutline class='mr-1' />
+          <LinkTo @route='admin.keys.index' class={{classLink}}>
+            <Icons::KeyOutline class='fill-base-3 mr-2' />
             Keys
           </LinkTo>
+
+          <Divider />
+
           <a
             href='https://docs.meilisearch.com/'
-            class={{linkClass}}
+            class={{classLink}}
             target='_blank'
             rel='noopener noreferrer'
           >
-            <Icons::HelpCircleOutline class='mr-1' />
+            <Icons::HelpCircleOutline class='fill-base-3 mr-2' />
             Documentation
           </a>
           <a
             href='https://github.com/kaermorchen/meiliadmin'
-            class={{linkClass}}
+            class={{classLink}}
             target='_blank'
             rel='noopener noreferrer'
           >
-            <Icons::Github class='mr-1' />
+            <Icons::Github class='fill-base-3 mr-2' />
             MeiliAdmin
           </a>
+
+          <Divider />
 
           <button
             type='button'
             {{on 'click' this.invalidateSession}}
-            class={{linkClass}}
-          ><Icons::Logout class='mr-1' />Logout</button>
+            class={{classLink}}
+          >
+            <Icons::Logout class='fill-base-3 mr-2' />
+            Logout
+          </button>
         </nav>
+
+        <ThemeToggler />
       {{/let}}
     </div>
-  </div>
+  </aside>
 
-  <div class='flex-1 p-4'>
+  <main class='main'>
     {{outlet}}
-  </div>
+  </main>
 </div>

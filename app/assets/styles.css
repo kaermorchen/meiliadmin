@@ -2,26 +2,220 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  @define-mixin light-vars {
+    --color-base-1: 36 36 36;
+    --color-base-2: 66 66 66;
+    --color-base-3: 97 97 97;
+    --color-base-4: 199 199 199;
+    --color-base-5: 209 209 209;
+    --color-base-6: 245 245 245;
+    --color-base-7: 255 255 255;
+  }
+
+  @define-mixin dark-vars {
+    --color-base-1: 255 255 255;
+    --color-base-2: 245 245 245;
+    --color-base-3: 209 209 209;
+    --color-base-4: 199 199 199;
+    --color-base-5: 97 97 97;
+    --color-base-6: 66 66 66;
+    --color-base-7: 36 36 36;
+  }
+
+  :root {
+    @mixin light-vars;
+
+    --sidenav-width: 300px;
+    --header-height: 3.5rem;
+
+    --spacing-1: 0.25rem;
+    --spacing-2: 0.5rem;
+    --spacing-3: 0.75rem;
+    --spacing-4: 1rem;
+
+    --z-index-scroll-link: 10;
+    --z-index-mobile-bar: 20;
+    --z-index-sidenav: 30;
+    --z-index-modal-overlay: 40;
+    --z-index-modal: 50;
+    --z-index-dropdown: 60;
+    --z-index-context-menu: 70;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      @mixin dark-vars;
+    }
+  }
+
+  :root[data-theme='light'] {
+    @mixin light-vars;
+  }
+
+  :root[data-theme='dark'] {
+    @mixin dark-vars;
+  }
+
+  body {
+    @apply text-base-2;
+    @apply bg-base-7;
+  }
+
+  p {
+    @apply mb-4;
+  }
+}
+
+body {
+  &.sidebar-is-opened {
+    overflow: hidden;
+
+    .sidenav {
+      visibility: visible;
+    }
+
+    .sidenav-background {
+      opacity: 1;
+    }
+
+    .sidenav-sections {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 1fr auto;
+  grid-template-areas: 'main';
+
+  min-height: 100vh;
+}
+
+.sidenav {
+  grid-area: sidenav;
+  position: fixed;
+  z-index: var(--z-index-sidenav);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  visibility: hidden;
+  transition-property: visibility;
+  @apply border-r;
+}
+
+.sidenav-background {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transition-property: opacity;
+  transform: translateZ(0);
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.sidenav-sections {
+  transition-duration: 200ms;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: var(--sidenav-width);
+  transition-property: transform;
+  transform: translate3d(-100%, 0, 0);
+  @apply bg-base-7 p-4 pt-0;
+}
+
+.main {
+  grid-area: main;
+  padding: calc(var(--spacing-4) + var(--header-height)) var(--spacing-4) var(--spacing-4);
+  @apply bg-base-7;
+}
+
+.mobile-bar {
+  top: 0;
+  left: 0;
+  height: var(--header-height);
+  width: 100%;
+  z-index: var(--z-index-mobile-bar);
+  align-items: center;
+  overflow: hidden;
+  /* min-width: calc(var(--sidenav-width) - 2px); */
+  @apply bg-base-7;
+
+  & > button {
+    position: absolute;
+    padding: var(--spacing-3);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+
+    &:focus {
+      outline: 0;
+    }
+  }
+}
+
+@media (min-width: theme("screens.lg")) {
+  body.sidebar-is-opened {
+    overflow: initial;
+  }
+
+  .app {
+    grid-template-columns: var(--sidenav-width) calc(100% - var(--sidenav-width));
+    grid-template-areas: "sidenav main";
+  }
+
+  .sidenav {
+    position: relative;
+    visibility: visible;
+  }
+
+  .sidenav-background {
+    opacity: 0;
+    display: none;
+  }
+
+  .sidenav-sections {
+    position: relative;
+    transform: none;
+    transition-duration: none;
+    position: initial;
+    top: initial;
+    bottom: initial;
+    left: initial;
+    width: auto;
+    transition-property: initial;
+  }
+
+  .main {
+    padding: var(--spacing-4);
+  }
+}
+
 .royal-table {
-  @apply table-auto border text-left mb-4;
+  @apply table-auto text-left mb-4;
 
   thead {
-    @apply bg-light;
-
     tr {
-      @apply border-b;
-
       th {
-        @apply px-4 py-4 text-dark font-normal whitespace-nowrap;
+        @apply bg-base-6;
+        @apply first:rounded-l last:rounded-r;
+        @apply px-4 py-4 text-base-2 font-normal whitespace-nowrap;
 
-        &[type="button"] {
+        &[type='button'] {
           @apply cursor-pointer select-none;
         }
 
         svg {
           width: 1em;
           height: 1em;
-          bottom: .1em;
+          bottom: 0.1em;
           position: relative;
         }
       }
@@ -30,12 +224,8 @@
 
   tbody {
     tr {
-      &:nth-child(even) {
-        @apply bg-light;
-      }
-
       td {
-        @apply px-4 py-2 text-text align-top;
+        @apply px-4 py-3 align-top;
       }
     }
   }

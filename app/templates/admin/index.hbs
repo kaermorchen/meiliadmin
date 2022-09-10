@@ -1,21 +1,12 @@
-<Headers::H2 @title='Stats' />
+<Headers::H2 @title='Statistics' />
 
-<dl class='grid grid-cols-1 md:grid-cols-2 gap-5 mb-8'>
-  <Stat @title='Status' @value={{capitalize @model.health.status}}>
-    <:icon>
-      {{#if (eq @model.health.status 'available')}}
-        <Icons::CheckboxMarkedCircle class='text-green' @size={{40}} />
-      {{else}}
-        <Icons::AlertCircle class='text-yellow' @size={{40}} />
-      {{/if}}
-    </:icon>
-  </Stat>
+<dl class='grid lg:grid-cols-3 gap-5 mb-4'>
   <Stat
     @title='Database size'
     @value={{format-bytes @model.stats.databaseSize}}
   >
     <:icon>
-      <Icons::DatabaseOutline @size={{40}} />
+      <Icons::DatabaseOutline @size={{40}} class='fill-base-2' />
     </:icon>
   </Stat>
   <Stat
@@ -23,15 +14,12 @@
     @value={{date-time-format @model.stats.lastUpdate}}
   >
     <:icon>
-      <Icons::Calendar @size={{40}} />
+      <Icons::Calendar @size={{40}} class='fill-base-2' />
     </:icon>
   </Stat>
-  <Stat
-    @title='The version of the Meilisearch instance'
-    @value={{@model.version.pkgVersion}}
-  >
+  <Stat @title='The version' @value={{@model.version.pkgVersion}}>
     <:icon>
-      <Icons::SourceBranch @size={{40}} />
+      <Icons::SourceBranch @size={{40}} class='fill-base-2' />
     </:icon>
   </Stat>
 </dl>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-theme='light'>
   <head>
     <meta charset="utf-8">
     <title>MeiliAdmin</title>
@@ -8,7 +8,7 @@
 
     {{content-for "head"}}
 
-    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/vendor.css">
+    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/vendor.css" onload="localStorage&&localStorage.theme&&(document.documentElement.dataset.theme=localStorage.theme)">
     <link integrity="" rel="stylesheet" href="{{rootURL}}assets/meiliadmin.css">
 
     {{content-for "head-footer"}}

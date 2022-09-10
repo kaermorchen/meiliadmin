@@ -1,14 +1,27 @@
 import Component from '@glimmer/component';
-import { action } from '@ember/object';
+import { action, get } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import { hbs } from 'ember-template-imports';
 import { Loading } from 'ember-mdi';
 import { on } from '@ember/modifier';
 import eq from '../helpers/eq';
 
-export const commonClasses =
-  'inline-flex items-center px-3 py-2 leading-4 text-sm cursor-pointer border hover:opacity-80 active:opacity-60 focus:outline-none text-black border-gray-dark';
-export const primaryStyleClasses = 'text-primary border-primary';
+export const sizes = {
+  sm: 'text-sm py-0.5',
+  md: 'px-3 py-2',
+  lg: 'px-4 py-3',
+};
+
+export const iconSizes = {
+  sm: 18,
+  md: 22,
+  lg: 24,
+};
+
+export const styles = {
+  default: 'border rounded',
+  primary: 'border rounded text-primary border-primary',
+};
 
 export default class ButtonComponent extends Component {
   static template = hbs`
@@ -16,22 +29,20 @@ export default class ButtonComponent extends Component {
       disabled={{this.disabled}}
       type={{this.type}}
       class="
-        {{commonClasses}}
-        {{if (eq this.style 'primary') primaryStyleClasses}}
-        {{if @group 'first:rounded-l-md last:rounded-r-md' 'rounded-md'}}
+        inline-flex items-center justify-center
+        {{get sizes this.size}}
+        {{get styles this.style}}
       "
       ...attributes
       {{on 'click' this.handleClick}}
     >
       {{#if this.isPending}}
-        <Loading @spin={{true}} class="mx-1" />
+        <Loading @spin={{true}} @size={{get iconSizes this.size}} />
       {{else if @icon}}
-        <@icon class="mx-1" />
+        <@icon @size={{get iconSizes this.size}} />
       {{/if}}
       {{#if this.text}}
-        <span class="mx-1">
-          {{this.text}}
-        </span>
+        {{this.text}}
       {{/if}}
     </button>
   `;
@@ -43,7 +54,7 @@ export default class ButtonComponent extends Component {
   }
 
   get size() {
-    return this.args.size ?? 'default';
+    return this.args.size ?? 'md';
   }
 
   get isActive() {
