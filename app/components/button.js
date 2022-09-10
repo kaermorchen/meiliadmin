@@ -29,7 +29,7 @@ export default class ButtonComponent extends Component {
       disabled={{this.disabled}}
       type={{this.type}}
       class="
-        inline-flex items-center justify-center
+        inline-flex items-center justify-center w-24 min-w-min
         {{get sizes this.size}}
         {{get styles this.style}}
       "
