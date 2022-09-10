@@ -37,7 +37,14 @@
       @name={{capitalize @model.index.primaryKey}}
       @prop={{@model.index.primaryKey}}
       @sortable={{includes @model.index.primaryKey @model.sortableAttributes}}
-    />
+    >
+      <LinkTo
+        @route='admin.indexes.item.documents.document'
+        @model={{get data @model.index.primaryKey}}
+      >
+        {{get data @model.index.primaryKey}}
+      </LinkTo>
+    </Column>
     {{#each-in @model.stats.fieldDistribution as |field|}}
       {{#if (not-eq field @model.index.primaryKey)}}
         <Column
