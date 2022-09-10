@@ -120,7 +120,6 @@ body {
 }
 
 .sidenav-sections {
-  transition-duration: 200ms;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -145,7 +144,6 @@ body {
   z-index: var(--z-index-mobile-bar);
   align-items: center;
   overflow: hidden;
-  /* min-width: calc(var(--sidenav-width) - 2px); */
   @apply bg-base-7;
 
   & > button {
