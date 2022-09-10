@@ -215,6 +215,10 @@ body {
 
   tbody {
     tr {
+      &:hover {
+        @apply bg-base-6;
+      }
+
       td {
         @apply px-4 py-3 align-top;
       }
