@@ -40,6 +40,32 @@
       </Listbox>
     </div>
   {{/if}}
+
+  <div class='inline relative mb-4 sm:ml-4'>
+    <Menu as |menu|>
+      <menu.Button as |menuButton|>
+        <Button @style='link' @onClick={{menuButton.toggleMenu}} class='w-auto'>
+          <Icons::DotsHorizontal />
+        </Button>
+      </menu.Button>
+      <menu.Items
+        class='absolute z-dropdown right-0 w-28 min-w-min mt-2 py-1 origin-top-right bg-base-7 border rounded shadow-sm outline-none'
+      >
+        {{#each this.attributes as |item|}}
+          <div
+            class='flex items-center px-4 py-2 text-sm hover:bg-base-6 hover:text-base-1 cursor-pointer'
+          >
+            <Form::Checkbox
+              @checked={{not (includes item this.hiddenFields)}}
+              @label={{namelize item}}
+              @onChange={{fn this.toggleHiddenField item}}
+              class="w-full whitespace-nowrap"
+            />
+          </div>
+        {{/each}}
+      </menu.Items>
+    </Menu>
+  </div>
 </div>
 
 {{!-- <div class='flex items-center mb-4'>
@@ -62,20 +88,22 @@
     class='w-full'
     as |Column data|
   >
-    <Column
-      @name={{capitalize @model.index.primaryKey}}
-      @prop={{@model.index.primaryKey}}
-      @sortable={{includes @model.index.primaryKey @model.sortableAttributes}}
-    >
-      <LinkTo
-        @route='admin.indexes.item.documents.document'
-        @model={{get data @model.index.primaryKey}}
+    {{#if (not (includes @model.index.primaryKey this.hiddenFields))}}
+      <Column
+        @name={{capitalize @model.index.primaryKey}}
+        @prop={{@model.index.primaryKey}}
+        @sortable={{includes @model.index.primaryKey @model.sortableAttributes}}
       >
-        {{get data @model.index.primaryKey}}
-      </LinkTo>
-    </Column>
-    {{#each-in @model.stats.fieldDistribution as |field|}}
-      {{#if (not-eq field @model.index.primaryKey)}}
+        <LinkTo
+          @route='admin.indexes.item.documents.document'
+          @model={{get data @model.index.primaryKey}}
+        >
+          {{get data @model.index.primaryKey}}
+        </LinkTo>
+      </Column>
+    {{/if}}
+    {{#each this.attributes as |field|}}
+      {{#if (and (not-eq field @model.index.primaryKey) (not (includes field this.hiddenFields)))}}
         <Column
           @name={{capitalize field}}
           @prop={{field}}
@@ -86,7 +114,7 @@
           {{/let}}
         </Column>
       {{/if}}
-    {{/each-in}}
+    {{/each}}
     <Column class='relative'>
       {{#let
         (array @model.index.uid (get data @model.index.primaryKey))

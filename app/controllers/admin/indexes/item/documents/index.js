@@ -9,6 +9,7 @@ export default class AdminIndexesItemDocumentsIndexController extends Controller
   @tracked page = 1;
   @tracked dataView = 'table';
   @tracked sort;
+  @tracked hiddenFields = [];
 
   queryParams = ['q', 'page', 'limit', 'sort'];
 
@@ -19,6 +20,17 @@ export default class AdminIndexesItemDocumentsIndexController extends Controller
     table: Table,
     map: MapOutline,
   };
+
+  get attributes() {
+    if (
+      this.model.displayedAttributes.length > 1 &&
+      this.model.displayedAttributes[0] !== '*'
+    ) {
+      return this.model.displayedAttributes;
+    } else {
+      return Object.keys(this.model.stats.fieldDistribution);
+    }
+  }
 
   get fromHits() {
     return 1 + this.model.data.offset;
@@ -57,6 +69,15 @@ export default class AdminIndexesItemDocumentsIndexController extends Controller
 
   //   return [primaryKey].concat(sortedArray);
   // }
+
+  @action
+  toggleHiddenField(name) {
+    if (this.hiddenFields.includes(name)) {
+      this.hiddenFields = this.hiddenFields.filter((item) => item !== name);
+    } else {
+      this.hiddenFields = this.hiddenFields.concat([name]);
+    }
+  }
 
   @action
   searchTextChanged(value) {
