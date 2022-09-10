@@ -6,14 +6,14 @@
   Create new document
 </LinkTo>
 
-<div class='sm:flex mb-4'>
+<div class='sm:flex'>
   <Form::Input
     @placeholder='Search'
     @prefixIcon={{this.Magnify}}
     @value={{this.q}}
     @onChange={{this.searchTextChanged}}
   />
-  <div class='inline relative sm:ml-4'>
+  <div class='inline relative mb-4 sm:ml-4'>
     <Listbox @value={{this.sort}} @onChange={{set this 'sort'}} as |listbox|>
       <listbox.Button
         class='inline-flex items-center justify-center min-w-min w-24 px-3 py-2 border rounded cursor-pointer'
