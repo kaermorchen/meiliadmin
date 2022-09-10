@@ -28,25 +28,35 @@ export default class AdminIndexesItemDocumentsIndexController extends Controller
     return this.model.data.offset + this.model.data.hits.length;
   }
 
-  get sortedFields() {
-    const fields = Object.keys(this.model.stats.fieldDistribution);
-    const primaryKey = this.model.index.primaryKey ?? 'id';
-    const sortedArray = fields
-      .filter((item) => item !== primaryKey)
-      .sort((a, b) => {
-        if (a > b || a.charAt(0) === '_') {
-          return 1;
-        }
+  get sortValues() {
+    const result = [];
 
-        if (a < b) {
-          return -1;
-        }
+    this.model.sortableAttributes.forEach((item) => {
+      result.push(`${item}:asc`, `${item}:desc`);
+    });
 
-        return 0;
-      });
-
-    return [primaryKey].concat(sortedArray);
+    return result;
   }
+
+  // get sortedFields() {
+  //   const fields = Object.keys(this.model.stats.fieldDistribution);
+  //   const primaryKey = this.model.index.primaryKey ?? 'id';
+  //   const sortedArray = fields
+  //     .filter((item) => item !== primaryKey)
+  //     .sort((a, b) => {
+  //       if (a > b || a.charAt(0) === '_') {
+  //         return 1;
+  //       }
+
+  //       if (a < b) {
+  //         return -1;
+  //       }
+
+  //       return 0;
+  //     });
+
+  //   return [primaryKey].concat(sortedArray);
+  // }
 
   @action
   searchTextChanged(value) {

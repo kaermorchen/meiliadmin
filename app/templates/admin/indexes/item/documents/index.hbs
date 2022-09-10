@@ -1,9 +1,43 @@
-<Form::Input
-  @placeholder='Search'
-  @prefixIcon={{this.Magnify}}
-  @value={{this.q}}
-  @onChange={{this.searchTextChanged}}
-/>
+<LinkTo
+  @route='admin.indexes.item.documents.new'
+  @model={{@model.index}}
+  class='block mb-4'
+>
+  Create new document
+</LinkTo>
+
+<div class='sm:flex mb-4'>
+  <Form::Input
+    @placeholder='Search'
+    @prefixIcon={{this.Magnify}}
+    @value={{this.q}}
+    @onChange={{this.searchTextChanged}}
+  />
+  <div class='inline relative sm:ml-4'>
+    <Listbox @value={{this.sort}} @onChange={{set this 'sort'}} as |listbox|>
+      <listbox.Button
+        class='inline-flex items-center justify-center min-w-min w-24 px-3 py-2 border rounded cursor-pointer'
+      >
+        <Icons::Sort class='mr-1' />
+        {{if this.sort this.sort 'Sort'}}
+      </listbox.Button>
+      <listbox.Options
+        class='absolute z-dropdown right-0 w-28 min-w-min mt-2 py-1 origin-top-right bg-base-7 border rounded shadow-sm outline-none'
+        as |options|
+      >
+        {{#each this.sortValues as |item|}}
+          <options.Option @value={{item}} class='outline-none'>
+            <div
+              class='flex items-center px-4 py-2 text-sm hover:bg-base-6 hover:text-base-1 cursor-pointer'
+            >
+              {{item}}
+            </div>
+          </options.Option>
+        {{/each}}
+      </listbox.Options>
+    </Listbox>
+  </div>
+</div>
 
 {{!-- <div class='flex items-center mb-4'>
   <div class='flex items-center ml-auto'>
@@ -16,14 +50,6 @@
     ms
   </div>
 </div> --}}
-
-<LinkTo
-  @route='admin.indexes.item.documents.new'
-  @model={{@model.index}}
-  class='block mb-4'
->
-  Create new document
-</LinkTo>
 
 {{#if (gt @model.data.estimatedTotalHits 0)}}
   <RoyalTable
