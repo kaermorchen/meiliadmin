@@ -21,6 +21,7 @@ export const iconSizes = {
 export const styles = {
   default: 'border rounded',
   primary: 'border rounded text-primary border-primary',
+  link: '',
 };
 
 export default class ButtonComponent extends Component {
@@ -41,7 +42,10 @@ export default class ButtonComponent extends Component {
       {{else if @icon}}
         <@icon @size={{get iconSizes this.size}} />
       {{/if}}
-      {{#if this.text}}
+
+      {{#if (has-block)}}
+        {{yield}}
+      {{else if this.text}}
         {{this.text}}
       {{/if}}
     </button>
