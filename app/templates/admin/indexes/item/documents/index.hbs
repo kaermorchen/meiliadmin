@@ -36,6 +36,16 @@
               </div>
             </options.Option>
           {{/each}}
+
+          <Divider class="my-1"/>
+
+          <options.Option @value={{null}} class='outline-none'>
+            <div
+              class='flex items-center px-4 py-2 text-sm hover:bg-base-6 hover:text-base-1 cursor-pointer'
+            >
+              Clear
+            </div>
+          </options.Option>
         </listbox.Options>
       </Listbox>
     </div>
@@ -59,7 +69,7 @@
               @checked={{not (includes item this.hiddenFields)}}
               @label={{namelize item}}
               @onChange={{fn this.toggleHiddenField item}}
-              class="w-full whitespace-nowrap"
+              class='w-full whitespace-nowrap'
             />
           </div>
         {{/each}}
@@ -103,7 +113,12 @@
       </Column>
     {{/if}}
     {{#each this.attributes as |field|}}
-      {{#if (and (not-eq field @model.index.primaryKey) (not (includes field this.hiddenFields)))}}
+      {{#if
+        (and
+          (not-eq field @model.index.primaryKey)
+          (not (includes field this.hiddenFields))
+        )
+      }}
         <Column
           @name={{capitalize field}}
           @prop={{field}}
