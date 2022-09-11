@@ -1,7 +1,7 @@
 <LinkTo
   @route='admin.indexes.item.documents.new'
   @model={{@model.index}}
-  class='block mb-4'
+  class='inline-block mb-4'
 >
   Create new document
 </LinkTo>
@@ -23,8 +23,8 @@
         <listbox.Button
           class='inline-flex items-center px-3 py-2 border rounded cursor-pointer'
         >
-          <Icons::Sort class='mr-1' />
-          {{if this.sort this.sort 'Sort'}}
+          {{!-- <Icons::Sort class='mr-1' /> --}}
+          Sort: {{if this.sort this.sort 'none'}}
         </listbox.Button>
         <listbox.Options
           class='absolute z-dropdown right-0 w-28 min-w-min mt-2 py-1 origin-top-right bg-base-7 border rounded shadow-sm outline-none'
@@ -83,8 +83,8 @@
   <div class='relative mb-4 sm:ml-4 sm:flex-none'>
     <Menu as |menu|>
       <menu.Button as |menuButton|>
-        <Button @style='link' @onClick={{menuButton.toggleMenu}} class='w-auto'>
-          <Icons::DotsHorizontal />
+        <Button @onClick={{menuButton.toggleMenu}} class='w-auto'>
+          <Icons::CogOutline />
         </Button>
       </menu.Button>
 
