@@ -15,5 +15,11 @@ export default function query(path, options = {}) {
     Object.assign(options, { headers })
   );
 
-  return fetch(req).then((res) => res.json());
+  return fetch(req).then((response) => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error('Network response was not OK');
+    }
+  });
 }
