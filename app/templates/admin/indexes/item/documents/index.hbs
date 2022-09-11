@@ -18,7 +18,7 @@
 
   {{! sort }}
   {{#if this.sortValues.length}}
-    <div class='relative mb-4 sm:ml-auto sm:flex-none'>
+    <div class='relative mb-4 sm:flex-none'>
       <Listbox @value={{this.sort}} @onChange={{set this 'sort'}} as |listbox|>
         <listbox.Button
           class='inline-flex items-center px-3 py-2 border rounded cursor-pointer'
