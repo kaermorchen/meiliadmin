@@ -12,15 +12,21 @@ function makeRequest({ url, key }) {
   // TODO: how to check session?
   const req = new Request(new URL('/version', url), { headers });
 
-  return fetch(req).then(() => ({ url, key }));
+  return fetch(req).then((response) => {
+    if (response.ok) {
+      return { url, key };
+    } else {
+      throw new Error('Network response was not OK');
+    }
+  });
 }
 
 export default class MeilisearchAuthenticator extends Base {
-  restore({ url, key }) {
-    return makeRequest({ url, key });
+  restore(data) {
+    return makeRequest(data);
   }
 
-  authenticate(url, key) {
-    return makeRequest({ url, key });
+  authenticate(data) {
+    return makeRequest(data);
   }
 }

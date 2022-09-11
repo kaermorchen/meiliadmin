@@ -10,14 +10,12 @@
           @required={{true}}
           @onChange={{set this 'url'}}
           @placeholder='https://example.com'
-          class='mt-1'
         />
 
         <Form::Input
           @label='API key'
           @value={{this.key}}
           @onChange={{set this 'key'}}
-          class='mt-1'
         />
 
         <Button
@@ -28,7 +26,9 @@
         />
 
         {{#if this.errorMessage}}
-          {{this.errorMessage}}
+          <p class="text-red">
+            {{this.errorMessage}}
+          </p>
         {{/if}}
       </form>
     </div>

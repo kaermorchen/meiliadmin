@@ -33,6 +33,11 @@ module.exports = {
           DEFAULT: colors.green['400'],
           dark: colors.green['800'],
         },
+        red: {
+          light: colors.red['100'],
+          DEFAULT: colors.red['400'],
+          dark: colors.red['800'],
+        },
       },
       zIndex: {
         'scroll-link': '10',

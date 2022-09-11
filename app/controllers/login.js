@@ -14,10 +14,15 @@ export default class LoginController extends Controller {
   async authenticate(e) {
     e.preventDefault();
 
+    this.errorMessage = null;
+
     let { url, key } = this;
 
     try {
-      await this.session.authenticate('authenticator:meilisearch', url, key);
+      await this.session.authenticate('authenticator:meilisearch', {
+        url,
+        key,
+      });
     } catch (error) {
       this.errorMessage = error.error || error;
     }
