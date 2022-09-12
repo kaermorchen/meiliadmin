@@ -18,13 +18,14 @@
 
   {{! sort }}
   {{#if this.sortValues.length}}
-    <div class='relative mb-4 sm:flex-none'>
+    <div class='relative mb-4 sm:ml-4 sm:flex-none'>
       <Listbox @value={{this.sort}} @onChange={{set this 'sort'}} as |listbox|>
         <listbox.Button
           class='inline-flex items-center px-3 py-2 border rounded cursor-pointer'
         >
-          {{!-- <Icons::Sort class='mr-1' /> --}}
-          Sort: {{if this.sort this.sort 'none'}}
+          {{! <Icons::Sort class='mr-1' /> }}
+          Sort:
+          {{if this.sort this.sort 'none'}}
         </listbox.Button>
         <listbox.Options
           class='absolute z-dropdown right-0 w-28 min-w-min mt-2 py-1 origin-top-right bg-base-7 border rounded shadow-sm outline-none'
@@ -60,7 +61,8 @@
       <listbox.Button
         class='inline-flex items-center px-3 py-2 border rounded cursor-pointer'
       >
-        Limit: {{this.limit}}
+        Limit:
+        {{this.limit}}
       </listbox.Button>
       <listbox.Options
         class='absolute z-dropdown right-0 w-28 min-w-min mt-2 py-1 origin-top-right bg-base-7 border rounded shadow-sm outline-none'
@@ -90,7 +92,7 @@
 
       <menu.Items
         class='absolute z-dropdown right-0 w-28 min-w-min mt-2 py-1 origin-top-right bg-base-7 border rounded shadow-sm outline-none'
-        {{sortable-group onChange=(set this 'attributes')}}
+        {{sortable-group onChange=(set this 'attributesToRetrieve')}}
       >
         {{#each this.attributes as |item|}}
           <div
@@ -102,12 +104,29 @@
               class='mr-2 cursor-move'
             />
             <Form::Checkbox
-              @checked={{not (includes item this.hiddenFields)}}
+              @checked={{includes item this.attributes}}
               @label={{namelize item}}
-              @onChange={{fn this.toggleHiddenField item}}
+              @onChange={{fn this.toggleAttribute item}}
               class='w-full whitespace-nowrap'
             />
           </div>
+        {{/each}}
+        {{#each this.originalAttributes as |item|}}
+          {{#if (not (includes item this.attributes))}}
+            <div
+              class='flex items-center px-4 py-2 text-sm hover:bg-base-6 hover:text-base-1 cursor-pointer'
+            >
+              <Icons::DragHorizontal
+                class='mr-2 cursor-not-allowed'
+              />
+              <Form::Checkbox
+                @checked={{includes item this.attributes}}
+                @label={{namelize item}}
+                @onChange={{fn this.toggleAttribute item}}
+                class='w-full whitespace-nowrap'
+              />
+            </div>
+          {{/if}}
         {{/each}}
       </menu.Items>
     </Menu>
