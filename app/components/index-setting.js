@@ -4,6 +4,7 @@ import { tracked } from '@glimmer/tracking';
 
 export default class FormIndexSettingComponent extends Component {
   @tracked value;
+  @tracked error;
 
   constructor() {
     super(...arguments);
@@ -13,16 +14,24 @@ export default class FormIndexSettingComponent extends Component {
 
   @action
   save(newValue) {
-    this.args.index.updateSetting(this.args.name, JSON.parse(newValue));
+    this.error = null;
+
+    try {
+      this.args.index.updateSetting(this.args.name, JSON.parse(newValue));
+    } catch (error) {
+      this.error = error.error || error;
+    }
   }
 
   @action
   async setInitialValue() {
     this.value = await this.args.index.getSetting(this.args.name);
+    this.error = null;
   }
 
   @action
   async reset() {
-    this.args.index.resetSetting(this.args.name);
+    await this.args.index.resetSetting(this.args.name);
+    this.error = null;
   }
 }

@@ -35,7 +35,7 @@ module.exports = {
         },
         red: {
           light: colors.red['100'],
-          DEFAULT: colors.red['400'],
+          DEFAULT: colors.red['500'],
           dark: colors.red['800'],
         },
       },

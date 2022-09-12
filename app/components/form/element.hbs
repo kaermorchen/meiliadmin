@@ -15,6 +15,14 @@
     {{@value}}
   {{/if}}
 
+  {{#if @errors.length}}
+    {{#each @errors as |item|}}
+      <div class='mt-1 text-sm text-red'>
+        {{item}}
+      </div>
+    {{/each}}
+  {{/if}}
+
   {{#if @helper}}
     <div class='mt-1 text-sm'>
       {{@helper}}
