@@ -1,4 +1,6 @@
-<Headers::H1 @title={{if @model.isNew 'Create new index' 'Edit'}} />
+{{#if @model.isNew}}
+  <Headers::H1 @title='Create new index' />
+{{/if}}
 
 <form {{on 'submit' this.save}}>
   {{#if @model.isNew}}
@@ -15,3 +17,5 @@
   <Button type='submit' @text='Save' @style='primary' />
   <Button @text='Cancel' @onClick={{this.cancel}} />
 </form>
+
+<Toast @text="HO-HO-HO" />
