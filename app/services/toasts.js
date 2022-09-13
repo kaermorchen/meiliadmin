@@ -1,12 +1,12 @@
 import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
-import Toast from '../components/toast';
+import SuccessToast from '../components/success-toast';
 import { hbs } from 'ember-template-imports';
 import { fn } from '@ember/helper';
 
 export default class ToastsService extends Service {
   @tracked container = [];
-  @tracked plate = [];
+  @tracked queue = [];
 
   constructor() {
     super();
@@ -21,7 +21,7 @@ export default class ToastsService extends Service {
       this.container = this.container.filter((item) => item !== wrapper);
     };
 
-    const wrapper = hbs`<Toast @text={{text}} @onClose={{onClose}} />`;
+    const wrapper = hbs`<SuccessToast @text={{text}} @onClose={{onClose}} />`;
 
     this.container = this.container.concat([wrapper]);
   }

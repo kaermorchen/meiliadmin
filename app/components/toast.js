@@ -12,7 +12,7 @@ export default class ToastComponent extends Component {
   }
 
   @action
-  registerInPlate() {
+  registerInQueue() {
     this.toasts.add(this);
 
     registerDestructor(this, () => {
