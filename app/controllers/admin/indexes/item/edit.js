@@ -10,12 +10,12 @@ export default class AdminIndexesItemEditController extends Controller {
   save(event) {
     event.preventDefault();
 
-    const formData = new FormData(event.currentTarget);
-    const data = Object.fromEntries(formData.entries());
+    // const formData = new FormData(event.currentTarget);
+    // const data = Object.fromEntries(formData.entries());
 
-    this.model.save(data);
+    // this.model.save(data);
 
-    this.toasts.add('Hello World!');
+    this.toasts.successToast({ text: 'Hello World!' });
   }
 
   @action
