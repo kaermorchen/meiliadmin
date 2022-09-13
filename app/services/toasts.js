@@ -1,8 +1,7 @@
 import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
-import SuccessToast from '../components/success-toast';
 import { hbs } from 'ember-template-imports';
-import { fn } from '@ember/helper';
+import SuccessToast from '../components/success-toast';
 
 export default class ToastsService extends Service {
   @tracked container = [];

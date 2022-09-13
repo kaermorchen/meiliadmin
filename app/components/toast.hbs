@@ -1,8 +1,10 @@
 {{#in-element this.toasts.destinationElement insertBefore=null}}
   <div
-    class='flex items-center p-4 w-full max-w-xs border rounded shadow-sm'
+    class='absolute flex items-center p-4 w-full max-w-xs border rounded bg-base-7 shadow-sm'
     role='alert'
+    style={{this.style}}
     {{did-insert this.didInsert}}
+    ...attributes
   >
     {{yield (hash triggerOnClose=this.triggerOnClose)}}
   </div>
