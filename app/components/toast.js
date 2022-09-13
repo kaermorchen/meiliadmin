@@ -6,14 +6,17 @@ import { action } from '@ember/object';
 export default class ToastComponent extends Component {
   @service toasts;
 
-  constructor(owner, args) {
-    super(owner, args);
-
-    // registerDestructor(this, this.destroy);
+  @action
+  triggerOnClose() {
+    this.args.onClose?.();
   }
 
   @action
-  destroyFromPlate() {
-    this.args?.willDestroy();
+  registerInPlate() {
+    this.toasts.add(this);
+
+    registerDestructor(this, () => {
+      this.toasts.remove(this);
+    });
   }
 }

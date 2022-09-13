@@ -1,22 +1,27 @@
-<div
-  class='flex items-center p-4 w-full max-w-xs border rounded shadow-sm'
-  role='alert'
->
-  <div class='inline-flex flex-shrink-0 justify-center items-center self-start'>
-    <Icons::Loading @spin={{true}} class='mr-4' />
-  </div>
-
-  <div>
-    {{@text}}
-  </div>
-
-  <button
-    type='button'
-    class='ml-auto self-start'
-    {{! data-dismiss-target='#toast-default' }}
-    aria-label='Close'
-    {{on 'click' this.destroyFromPlate}}
+{{#in-element this.toasts.destinationElement insertBefore=null}}
+  <div
+    class='flex items-center p-4 w-full max-w-xs border rounded shadow-sm'
+    role='alert'
+    {{did-insert this.registerInPlate}}
   >
-    <Icons::Close />
-  </button>
-</div>
+    <div
+      class='inline-flex flex-shrink-0 justify-center items-center self-start'
+    >
+      <Icons::Loading @spin={{true}} class='mr-4' />
+    </div>
+
+    <div>
+      {{@text}}
+    </div>
+
+    <button
+      type='button'
+      class='ml-auto self-start'
+      {{! data-dismiss-target='#toast-default' }}
+      aria-label='Close'
+      {{on 'click' this.triggerOnClose}}
+    >
+      <Icons::Close />
+    </button>
+  </div>
+{{/in-element}}

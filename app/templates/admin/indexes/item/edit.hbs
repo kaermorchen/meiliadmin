@@ -18,4 +18,6 @@
   <Button @text='Cancel' @onClick={{this.cancel}} />
 </form>
 
-{{!-- <Toast @text="HO-HO-HO" /> --}}
+{{!-- {{#unless this.show}}
+  <Toast @text="HO-HO-HO" @onClose={{fn (set this 'show') true}} />
+{{/unless}} --}}
