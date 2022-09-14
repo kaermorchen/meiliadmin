@@ -14,8 +14,8 @@ export const sizes = {
 
 export const iconSizes = {
   sm: 18,
-  md: 22,
-  lg: 24,
+  md: 20,
+  lg: 22,
 };
 
 export const styles = {
@@ -37,10 +37,12 @@ export default class ButtonComponent extends Component {
       ...attributes
       {{on 'click' this.handleClick}}
     >
-      {{#if this.isPending}}
-        <Loading @spin={{true}} @size={{get iconSizes this.size}} />
-      {{else if @icon}}
-        <@icon @size={{get iconSizes this.size}} />
+      {{#if this.icon}}
+        <this.icon
+          @spin={{this.isPending}}
+          @size={{get iconSizes this.size}}
+          class="mr-1"
+        />
       {{/if}}
 
       {{#if (has-block)}}
@@ -52,6 +54,10 @@ export default class ButtonComponent extends Component {
   `;
 
   @tracked _state = 'default';
+
+  get icon() {
+    return this.isPending ? Loading : this.args?.icon;
+  }
 
   get style() {
     return this.args.style ?? 'default';
@@ -84,6 +90,7 @@ export default class ButtonComponent extends Component {
   get state() {
     return this.args.state ?? this._state;
   }
+
   set state(state) {
     this._state = state;
   }

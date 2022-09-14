@@ -14,6 +14,8 @@
     @required={{true}}
   />
 
-  <Button type='submit' @text='Save' @style='primary' />
-  <Button @text='Cancel' @onClick={{this.cancel}} />
+  <div class='flex items-center'>
+    <Button type='submit' @text='Save' @style='primary' @state={{if this.isSaving 'pending'}} />
+    <Button @text='Cancel' @onClick={{this.cancel}} class="ml-2"/>
+  </div>
 </form>
