@@ -1,11 +1,16 @@
 {{#in-element this.toasts.destinationElement insertBefore=null}}
   <div
-    class='absolute flex items-center p-4 w-full max-w-xs border rounded bg-base-7 shadow-sm'
+    class='absolute w-full max-w-xs border rounded bg-base-7 shadow-sm'
     role='alert'
     style={{this.style}}
     {{did-insert this.didInsert}}
     ...attributes
   >
-    {{yield (hash triggerOnClose=this.triggerOnClose)}}
+    <div class='p-4'>
+      {{yield (hash triggerOnClose=this.triggerOnClose)}}
+    </div>
+    {{!-- {{#if this.autoCloseDuration}} --}}
+    <ProgressBar @value={{this.autoCloseDuration}} />
+    {{!-- {{/if}} --}}
   </div>
 {{/in-element}}
