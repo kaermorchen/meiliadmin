@@ -71,6 +71,7 @@
     "ember-headlessui": "^0.13.0",
     "ember-load-initializers": "^2.1.2",
     "ember-mdi": "2.0.0-beta.1",
+    "ember-modifier": "4.0.0-beta.1",
     "ember-qunit": "^5.1.5",
     "ember-resolver": "^8.0.3",
     "ember-resources": "^4.7.1",
@@ -99,7 +100,7 @@
     "qunit": "^2.19.1",
     "qunit-dom": "^2.0.0",
     "tailwindcss": "^3.1.8",
-    "tracked-built-ins": "^2.0.1",
+    "tracked-built-ins": "^3.1.0",
     "webpack": "^5.74.0"
   },
   "engines": {

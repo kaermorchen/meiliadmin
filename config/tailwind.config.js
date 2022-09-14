@@ -23,20 +23,25 @@ module.exports = {
           DEFAULT: colors.pink['500'],
           dark: colors.pink['800'],
         },
-        yellow: {
-          light: colors.yellow['100'],
-          DEFAULT: colors.yellow['400'],
-          dark: colors.yellow['700'],
-        },
-        green: {
+        success: {
           light: colors.green['100'],
           DEFAULT: colors.green['400'],
           dark: colors.green['800'],
         },
-        red: {
+        danger: {
           light: colors.red['100'],
           DEFAULT: colors.red['500'],
           dark: colors.red['800'],
+        },
+        warning: {
+          light: colors.yellow['100'],
+          DEFAULT: colors.yellow['400'],
+          dark: colors.yellow['700'],
+        },
+        info: {
+          light: colors.blue['100'],
+          DEFAULT: colors.blue['400'],
+          dark: colors.blue['700'],
         },
       },
       zIndex: {

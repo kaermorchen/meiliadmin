@@ -1,1 +1,1 @@
-export { Heart as default } from 'ember-mdi';
+export { Loading as default } from 'ember-mdi';

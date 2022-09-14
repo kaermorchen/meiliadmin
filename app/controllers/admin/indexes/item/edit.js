@@ -4,15 +4,18 @@ import { inject as service } from '@ember/service';
 
 export default class AdminIndexesItemEditController extends Controller {
   @service router;
+  @service toasts;
 
   @action
-  save(event) {
+  async save(event) {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
     const data = Object.fromEntries(formData.entries());
 
-    this.model.save(data);
+    const task = await this.model.save(data);
+
+    this.toasts.taskToast(task);
   }
 
   @action
