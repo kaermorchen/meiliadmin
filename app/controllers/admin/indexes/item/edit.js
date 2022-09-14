@@ -7,15 +7,15 @@ export default class AdminIndexesItemEditController extends Controller {
   @service toasts;
 
   @action
-  save(event) {
+  async save(event) {
     event.preventDefault();
 
-    // const formData = new FormData(event.currentTarget);
-    // const data = Object.fromEntries(formData.entries());
+    const formData = new FormData(event.currentTarget);
+    const data = Object.fromEntries(formData.entries());
 
-    // this.model.save(data);
+    const task = await this.model.save(data);
 
-    this.toasts.successToast({ text: 'Hello World!' });
+    this.toasts.taskToast(task);
   }
 
   @action
