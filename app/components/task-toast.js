@@ -9,6 +9,7 @@ export default class TaskToastComponent extends Component {
   @service meilisearch;
 
   @tracked task;
+  @tracked autoClose;
 
   constructor(owner, args) {
     super(owner, args);
@@ -31,16 +32,41 @@ export default class TaskToastComponent extends Component {
     }
   }
 
+  get status() {
+    if (this.isEnqueued) {
+      return 'info';
+    } else if (this.isFailed) {
+      return 'danger';
+    } else if (this.isSucceeded) {
+      return 'success';
+    } else {
+      return null;
+    }
+  }
+
   get color() {
-    switch (this.taskStatus) {
-      case 'enqueued':
-        return 'text-info';
-      case 'succeeded':
-        return 'text-success';
-      case 'failed':
-        return 'text-danger';
-      default:
-        return null;
+    // Current classes need for taiwind builder
+    if (this.isEnqueued) {
+      return 'text-info';
+    } else if (this.isFailed) {
+      return 'text-danger';
+    } else if (this.isSucceeded) {
+      return 'text-success';
+    } else {
+      return null;
+    }
+  }
+
+  get bg() {
+    // Current classes need for taiwind builder
+    if (this.isEnqueued) {
+      return 'bg-info';
+    } else if (this.isFailed) {
+      return 'bg-danger';
+    } else if (this.isSucceeded) {
+      return 'bg-success';
+    } else {
+      return null;
     }
   }
 
@@ -75,6 +101,7 @@ export default class TaskToastComponent extends Component {
 
       if (this.isSucceeded) {
         this.clearInterval();
+        this.autoClose = true;
       }
     });
   }

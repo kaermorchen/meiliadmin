@@ -13,10 +13,6 @@ export default class ToastComponent extends Component {
   @tracked width;
   @tracked height;
 
-  get autoCloseValue() {
-    return this.args?.autoCloseDuration ?? 3000;
-  }
-
   get autoCloseDuration() {
     return this.args?.autoCloseDuration ?? 3000;
   }

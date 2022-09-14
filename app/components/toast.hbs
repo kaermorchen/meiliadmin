@@ -9,8 +9,12 @@
     <div class='p-4'>
       {{yield (hash triggerOnClose=this.triggerOnClose)}}
     </div>
-    {{!-- {{#if this.autoCloseDuration}} --}}
-    <ProgressBar @value={{this.autoCloseDuration}} />
-    {{!-- {{/if}} --}}
+    {{#if @autoClose}}
+      <ProgressBar
+        @duration={{this.autoCloseDuration}}
+        @onFinish={{this.triggerOnClose}}
+        class={{@closeIndicatorClass}}
+      />
+    {{/if}}
   </div>
 {{/in-element}}

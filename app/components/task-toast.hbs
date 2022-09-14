@@ -1,4 +1,4 @@
-<Toast>
+<Toast @autoClose={{this.autoClose}} @onClose={{@onClose}} @closeIndicatorClass={{this.bg}} as |toast|>
   <div class='flex items-center'>
     {{#if this.icon}}
       <div
@@ -30,7 +30,7 @@
       class='ml-auto self-start'
       {{! data-dismiss-target='#toast-default' }}
       aria-label='Close'
-      {{on 'click' @onClose}}
+      {{on 'click' toast.triggerOnClose}}
     >
       <Icons::Close />
     </button>
