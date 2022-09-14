@@ -1,4 +1,9 @@
-<Toast @autoClose={{this.autoClose}} @onClose={{@onClose}} @closeIndicatorClass={{this.bg}} as |toast|>
+<Toast
+  @autoClose={{this.autoClose}}
+  @onClose={{@onClose}}
+  @closeIndicatorClass={{this.bg}}
+  as |toast|
+>
   <div class='flex items-center'>
     {{#if this.icon}}
       <div
@@ -9,7 +14,7 @@
     {{/if}}
 
     <div>
-      <div class='mb-2'>Task {{this.taskType}} Uid:{{this.taskUid}}</div>
+      <div class='mb-2'>Task {{this.taskType}} uid:{{this.taskUid}}</div>
       <div class={{if this.task.error 'mb-2'}}>
         Status:
         <span class={{this.color}}>{{this.taskStatus}}</span>

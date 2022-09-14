@@ -99,8 +99,11 @@ export default class TaskToastComponent extends Component {
     this.meilisearch.getTask(this.taskUid).then((task) => {
       this.task = task;
 
-      if (this.isSucceeded) {
+      if (!this.isEnqueued) {
         this.clearInterval();
+      }
+
+      if (this.isSucceeded) {
         this.autoClose = true;
       }
     });
