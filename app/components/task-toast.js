@@ -72,6 +72,10 @@ export default class TaskToastComponent extends Component {
   reloadTask() {
     this.meilisearch.getTask(this.taskUid).then((task) => {
       this.task = task;
+
+      if (this.isSucceeded) {
+        this.clearInterval();
+      }
     });
   }
 
