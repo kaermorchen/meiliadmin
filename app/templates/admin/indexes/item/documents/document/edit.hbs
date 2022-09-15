@@ -1,17 +1,18 @@
-<Form::Element @errors={{array this.error}}>
-  <MonacoEditor
-    @value={{json-stringify @model.document}}
-    @language='json'
-    @sendValue={{this.save}}
-    as |monaco|
-  >
-    <Button
-      type='submit'
-      @text='Save'
-      @style='primary'
-      @onClick={{monaco.invokeSendValue}}
+<div class='mb-4'>
+  <Form::Element @errors={{array this.error}}>
+    <MonacoEditor
+      @value={{json-stringify @model.document}}
+      @language='json'
+      @sendValue={{this.save}}
+      @invoker={{this.invoker}}
     />
+  </Form::Element>
 
-    <Button @text='Cancel' @onClick={{this.cancel}} />
-  </MonacoEditor>
-</Form::Element>
+  <Button
+    type='submit'
+    @text='Save'
+    @style='primary'
+    @onClick={{fn this.invoker.invoke 'invokeSendValue'}}
+  />
+  <Button @text='Cancel' @onClick={{this.cancel}} />
+</div>
