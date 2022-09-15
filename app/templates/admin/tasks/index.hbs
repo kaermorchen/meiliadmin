@@ -3,7 +3,9 @@
 <RoyalTable @data={{@model.results}} class='w-full' as |Column data|>
   <Column @prop='uid' />
   <Column @prop='indexUid' />
-  <Column @prop='status' />
+  <Column @prop='status'>
+    <Badge @label={{data.status}} @style='success'/>
+  </Column>
   <Column @prop='type' />
   <Column @prop='details'>
     {{json-stringify data.details}}
@@ -46,3 +48,7 @@
     }}
   </Column>
 </RoyalTable>
+
+<div class='flex items-center'>
+
+</div>
