@@ -40,8 +40,11 @@ export default class MeilisearchService extends Service {
     return query(`keys/${uid}`);
   }
 
-  getTasks() {
-    return query('tasks');
+  getTasks(params) {
+    // Clear from undefined fields
+    Object.keys(params).forEach((key) => params[key] ?? delete params[key]);
+
+    return query(`tasks?${new URLSearchParams(params)}`);
   }
 
   getTask(uid) {

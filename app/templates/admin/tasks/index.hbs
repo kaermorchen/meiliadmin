@@ -1,58 +1,91 @@
 <Headers::H1 @title='Tasks' />
 
-<RoyalTable @data={{@model.results}} class='w-full' as |Column data|>
-  <Column @prop='uid'>
-    <LinkTo @route='admin.tasks.task' @model={{data.uid}}>{{data.uid}}</LinkTo>
-  </Column>
-  <Column @prop='indexUid'>
-    <LinkTo @route='admin.indexes.item' @model={{data.indexUid}}>{{data.indexUid}}</LinkTo>
-  </Column>
-  <Column @prop='status'>
-    <Badge @label={{data.status}} @style='success' />
-  </Column>
-  <Column @prop='type' />
-  <Column @prop='details'>
-    {{json-stringify data.details}}
-  </Column>
-  <Column @prop='error'>
-    {{json-stringify data.error}}
-  </Column>
-  <Column @prop='duration' />
-  <Column @prop='enqueuedAt'>
-    {{date-time-format
-      data.enqueuedAt
-      year='numeric'
-      month='numeric'
-      day='numeric'
-      hour='numeric'
-      minute='numeric'
-      second='numeric'
-    }}
-  </Column>
-  <Column @prop='startedAt'>
-    {{date-time-format
-      data.startedAt
-      year='numeric'
-      month='numeric'
-      day='numeric'
-      hour='numeric'
-      minute='numeric'
-      second='numeric'
-    }}
-  </Column>
-  <Column @prop='finishedAt'>
-    {{date-time-format
-      data.finishedAt
-      year='numeric'
-      month='numeric'
-      day='numeric'
-      hour='numeric'
-      minute='numeric'
-      second='numeric'
-    }}
-  </Column>
-</RoyalTable>
-
-<div class='flex items-center'>
-
+<div class='sm:flex sm:flex-nowrap'>
+  <div class='relative mb-4 sm:ml-4 sm:flex-none'>
+    <Listbox @value={{this.limit}} @onChange={{set this 'limit'}} as |listbox|>
+      <listbox.Button
+        class='inline-flex items-center px-3 py-2 border rounded cursor-pointer'
+      >
+        Limit:
+        {{this.limit}}
+      </listbox.Button>
+      <listbox.Options
+        class='absolute z-dropdown right-0 w-28 min-w-min mt-2 py-1 origin-top-right bg-base-7 border rounded shadow-sm outline-none'
+        as |options|
+      >
+        {{#each (array 20 50 100 500) as |item|}}
+          <options.Option @value={{item}} class='outline-none'>
+            <div
+              class='flex items-center px-4 py-2 text-sm hover:bg-base-6 hover:text-base-1 cursor-pointer'
+            >
+              {{item}}
+            </div>
+          </options.Option>
+        {{/each}}
+      </listbox.Options>
+    </Listbox>
+  </div>
 </div>
+
+{{#if @model.tasks.results.length}}
+  <RoyalTable @data={{@model.tasks.results}} class='w-full' as |Column data|>
+    <Column @prop='uid'>
+      <LinkTo
+        @route='admin.tasks.task'
+        @model={{data.uid}}
+      >{{data.uid}}</LinkTo>
+    </Column>
+    <Column @prop='indexUid'>
+      <LinkTo
+        @route='admin.indexes.item'
+        @model={{data.indexUid}}
+      >{{data.indexUid}}</LinkTo>
+    </Column>
+    <Column @prop='status'>
+      <Badge @label={{data.status}} @style='success' />
+    </Column>
+    <Column @prop='type' />
+    <Column @prop='details'>
+      {{json-stringify data.details}}
+    </Column>
+    <Column @prop='error'>
+      {{json-stringify data.error}}
+    </Column>
+    <Column @prop='duration' />
+    <Column @prop='enqueuedAt'>
+      {{date-time-format
+        data.enqueuedAt
+        year='numeric'
+        month='numeric'
+        day='numeric'
+        hour='numeric'
+        minute='numeric'
+        second='numeric'
+      }}
+    </Column>
+    <Column @prop='startedAt'>
+      {{date-time-format
+        data.startedAt
+        year='numeric'
+        month='numeric'
+        day='numeric'
+        hour='numeric'
+        minute='numeric'
+        second='numeric'
+      }}
+    </Column>
+    <Column @prop='finishedAt'>
+      {{date-time-format
+        data.finishedAt
+        year='numeric'
+        month='numeric'
+        day='numeric'
+        hour='numeric'
+        minute='numeric'
+        second='numeric'
+      }}
+    </Column>
+  </RoyalTable>
+{{else}}
+  No results found
+{{/if}}
