@@ -1,18 +1,20 @@
-<Form::Element @label={{namelize @name}} @errors={{array this.error}}>
-  <MonacoEditor
-    @value={{json-stringify this.value}}
-    @language='json'
-    @sendValue={{this.save}}
-    class='h-40'
-    as |monaco|
-  >
-    <Button
-      @text='Save'
-      @style='primary'
-      @size='sm'
-      @onClick={{monaco.invokeSendValue}}
+<div class='mb-4'>
+  <Form::Element @label={{namelize @name}} @errors={{array this.error}}>
+    <MonacoEditor
+      @value={{json-stringify this.value}}
+      @language='json'
+      @sendValue={{this.save}}
+      @invoker={{this.invoker}}
+      class='h-40'
     />
-    <Button @text='Cancel' @size='sm' @onClick={{this.setInitialValue}} />
-    <Button @text='Reset' @size='sm' @onClick={{this.reset}} />
-  </MonacoEditor>
-</Form::Element>
+  </Form::Element>
+
+  <Button
+    @text='Save'
+    @style='primary'
+    @size='sm'
+    @onClick={{fn this.invoker.invoke 'invokeSendValue'}}
+  />
+  <Button @text='Cancel' @size='sm' @onClick={{this.setInitialValue}} />
+  <Button @text='Reset' @size='sm' @onClick={{this.reset}} />
+</div>

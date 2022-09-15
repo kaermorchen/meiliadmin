@@ -3,6 +3,12 @@ import Component from '@glimmer/component';
 import * as monaco from 'monaco-editor/esm/vs/editor/editor.api.js';
 
 export default class MonacoEditorComponent extends Component {
+  constructor(owner, args) {
+    super(owner, args);
+
+    this.args.invoker?.subscribe(this);
+  }
+
   @action
   initEditor(el) {
     this.editor = monaco.editor.create(el, {

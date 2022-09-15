@@ -1,6 +1,7 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
+import ActionInvoker from '../lib/action-invoker';
 
 export default class FormIndexSettingComponent extends Component {
   @tracked value;
@@ -8,6 +9,8 @@ export default class FormIndexSettingComponent extends Component {
 
   constructor() {
     super(...arguments);
+
+    this.invoker = new ActionInvoker();
 
     this.setInitialValue();
   }
