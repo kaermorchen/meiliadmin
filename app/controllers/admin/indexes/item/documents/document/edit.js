@@ -6,8 +6,10 @@ import ActionInvoker from 'meiliadmin/lib/action-invoker';
 
 export default class AdminIndexesItemDocumentsDocumentEditController extends Controller {
   @service router;
+  @service toasts;
 
   @tracked error;
+  @tracked isSaving;
 
   constructor() {
     super(...arguments);
@@ -16,11 +18,17 @@ export default class AdminIndexesItemDocumentsDocumentEditController extends Con
   }
 
   @action
-  save(value) {
+  async save(value) {
     this.error = null;
 
+    this.isSaving = true;
+
     try {
-      this.model.index.saveDocument(JSON.parse(value));
+      const task = await this.model.index.saveDocument(JSON.parse(value));
+
+      this.isSaving = false;
+
+      this.toasts.taskToast(task);
     } catch (error) {
       this.error = error.error || error;
     }

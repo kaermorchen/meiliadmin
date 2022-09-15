@@ -4,10 +4,13 @@ import { inject as service } from '@ember/service';
 
 export default class AdminIndexesItemDocumentsDocumentDeleteController extends Controller {
   @service router;
+  @service toasts;
 
   @action
   delete() {
-    this.model.index.deleteDocument(this.model.document);
+    return this.model.index
+      .deleteDocument(this.model.document)
+      .then(this.toasts.taskToast);
   }
 
   @action

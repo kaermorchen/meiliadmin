@@ -2,8 +2,11 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import ActionInvoker from '../lib/action-invoker';
+import { inject as service } from '@ember/service';
 
 export default class FormIndexSettingComponent extends Component {
+  @service toasts;
+
   @tracked value;
   @tracked error;
 
@@ -20,7 +23,9 @@ export default class FormIndexSettingComponent extends Component {
     this.error = null;
 
     try {
-      this.args.index.updateSetting(this.args.name, JSON.parse(newValue));
+      return this.args.index
+        .updateSetting(this.args.name, JSON.parse(newValue))
+        .then(this.toasts.taskToast);
     } catch (error) {
       this.error = error.error || error;
     }
@@ -33,8 +38,15 @@ export default class FormIndexSettingComponent extends Component {
   }
 
   @action
-  async reset() {
-    await this.args.index.resetSetting(this.args.name);
+  reset() {
     this.error = null;
+
+    try {
+      return this.args.index
+        .resetSetting(this.args.name)
+        .then(this.toasts.taskToast);
+    } catch (error) {
+      this.error = error.error || error;
+    }
   }
 }

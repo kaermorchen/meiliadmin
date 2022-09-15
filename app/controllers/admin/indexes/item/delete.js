@@ -5,10 +5,13 @@ import { inject as service } from '@ember/service';
 export default class AdminIndexesItemDeleteController extends Controller {
   @service meilisearch;
   @service router;
+  @service toasts;
 
   @action
   delete() {
-    this.meilisearch.deleteIndex(this.model.uid);
+    return this.meilisearch
+      .deleteIndex(this.model.uid)
+      .then(this.toasts.taskToast);
   }
 
   @action

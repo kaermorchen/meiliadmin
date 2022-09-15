@@ -13,6 +13,7 @@
     @text='Save'
     @style='primary'
     @onClick={{fn this.invoker.invoke 'invokeSendValue'}}
+    @state={{if this.isSaving 'pending'}}
   />
   <Button @text='Cancel' @onClick={{this.cancel}} />
 </div>
