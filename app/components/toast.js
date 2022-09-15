@@ -42,7 +42,7 @@ export default class ToastComponent extends Component {
   }
 
   @action
-  triggerOnClose() {
+  invokeOnClose() {
     this.args.onClose?.();
   }
 

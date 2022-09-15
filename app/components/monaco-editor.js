@@ -43,7 +43,7 @@ export default class MonacoEditorComponent extends Component {
   }
 
   @action
-  triggerSendValue() {
+  invokeSendValue() {
     this.args.sendValue?.(this.editor.getValue());
   }
 

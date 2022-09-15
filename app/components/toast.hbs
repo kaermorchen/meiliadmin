@@ -7,12 +7,12 @@
     ...attributes
   >
     <div class='p-4'>
-      {{yield (hash triggerOnClose=this.triggerOnClose)}}
+      {{yield (hash invokeOnClose=this.invokeOnClose)}}
     </div>
     {{#if @autoClose}}
       <ProgressBar
         @duration={{this.autoCloseDuration}}
-        @onFinish={{this.triggerOnClose}}
+        @onFinish={{this.invokeOnClose}}
         class={{@closeIndicatorClass}}
       />
     {{/if}}
