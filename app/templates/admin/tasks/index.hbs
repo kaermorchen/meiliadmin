@@ -1,10 +1,14 @@
 <Headers::H1 @title='Tasks' />
 
 <RoyalTable @data={{@model.results}} class='w-full' as |Column data|>
-  <Column @prop='uid' />
-  <Column @prop='indexUid' />
+  <Column @prop='uid'>
+    <LinkTo @route='admin.tasks.task' @model={{data.uid}}>{{data.uid}}</LinkTo>
+  </Column>
+  <Column @prop='indexUid'>
+    <LinkTo @route='admin.indexes.item' @model={{data.indexUid}}>{{data.indexUid}}</LinkTo>
+  </Column>
   <Column @prop='status'>
-    <Badge @label={{data.status}} @style='success'/>
+    <Badge @label={{data.status}} @style='success' />
   </Column>
   <Column @prop='type' />
   <Column @prop='details'>
