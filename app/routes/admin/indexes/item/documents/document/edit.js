@@ -13,4 +13,10 @@ export default class AdminIndexesItemDocumentsDocumentEditRoute extends Route {
       document: index.getDocument(document_id),
     });
   }
+
+  resetController(controller, isExiting) {
+    if (isExiting) {
+      controller.error = null;
+    }
+  }
 }

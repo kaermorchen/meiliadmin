@@ -6,7 +6,7 @@ import { tracked } from '@glimmer/tracking';
 export default class LoginController extends Controller {
   @service session;
 
-  @tracked errorMessage;
+  @tracked error;
   @tracked url;
   @tracked key;
 
@@ -14,7 +14,7 @@ export default class LoginController extends Controller {
   async authenticate(e) {
     e.preventDefault();
 
-    this.errorMessage = null;
+    this.error = null;
 
     let { url, key } = this;
 
@@ -24,7 +24,7 @@ export default class LoginController extends Controller {
         key,
       });
     } catch (error) {
-      this.errorMessage = error.error || error;
+      this.error = error.error || error;
     }
   }
 }

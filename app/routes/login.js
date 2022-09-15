@@ -7,4 +7,10 @@ export default class LoginRoute extends Route {
   beforeModel() {
     this.session.prohibitAuthentication('admin');
   }
+
+  resetController(controller, isExiting) {
+    if (isExiting) {
+      controller.error = null;
+    }
+  }
 }

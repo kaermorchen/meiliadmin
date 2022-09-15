@@ -1,15 +1,17 @@
-<MonacoEditor
-  @value={{json-stringify @model.document}}
-  @language='json'
-  @sendValue={{this.save}}
-  as |monaco|
->
-  <Button
-    type='submit'
-    @text='Save'
-    @style='primary'
-    @onClick={{monaco.triggerSendValue}}
-  />
+<Form::Element @errors={{array this.error}}>
+  <MonacoEditor
+    @value={{json-stringify @model.document}}
+    @language='json'
+    @sendValue={{this.save}}
+    as |monaco|
+  >
+    <Button
+      type='submit'
+      @text='Save'
+      @style='primary'
+      @onClick={{monaco.triggerSendValue}}
+    />
 
-  <Button @text='Cancel' @onClick={{this.cancel}} />
-</MonacoEditor>
+    <Button @text='Cancel' @onClick={{this.cancel}} />
+  </MonacoEditor>
+</Form::Element>
