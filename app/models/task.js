@@ -1,3 +1,14 @@
+export const taskStatuses = ['enqueued', 'processing', 'succeeded', 'failed'];
+export const taskTypes = [
+  'indexCreation',
+  'indexUpdate',
+  'indexDeletion',
+  'documentAdditionOrUpdate',
+  'documentDeletion',
+  'settingsUpdate',
+  'dumpCreation',
+];
+
 export default class Task {
   constructor(data = {}) {
     for (const key in data) {

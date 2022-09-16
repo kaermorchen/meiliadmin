@@ -25,6 +25,17 @@
           </div>
         </options.Option>
       {{/each}}
+      {{#if @allowClear}}
+        <Divider class='my-1' />
+
+        <options.Option @value={{null}} class='outline-none'>
+          <div
+            class='flex items-center px-4 py-2 text-sm hover:bg-base-6 hover:text-base-1 cursor-pointer'
+          >
+            Clear
+          </div>
+        </options.Option>
+      {{/if}}
     </listbox.Options>
   </Listbox>
 </Form::Element>

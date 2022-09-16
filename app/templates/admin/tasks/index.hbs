@@ -7,41 +7,37 @@
     @value={{nu-co this.indexUid 'none'}}
     @values={{map-by 'uid' @model.indexes.results}}
     @onChange={{set this 'indexUid'}}
+    @allowClear={{true}}
+  />
+
+  {{! status }}
+  <Form::Listbox
+    @listboxLabel={{"Status: "}}
+    @value={{nu-co this.status 'none'}}
+    @values={{this.taskStatuses}}
+    @onChange={{set this 'status'}}
+    @allowClear={{true}}
+    class='sm:ml-4 sm:flex-none'
+  />
+
+  {{! status }}
+  <Form::Listbox
+    @listboxLabel={{"Type: "}}
+    @value={{nu-co this.type 'none'}}
+    @values={{this.taskTypes}}
+    @onChange={{set this 'type'}}
+    @allowClear={{true}}
+    class='sm:ml-4 sm:flex-none'
   />
 
   {{! limit }}
   <Form::Listbox
-    @listboxLabel={{concat "Limit: " this.limit}}
-    @value={{this.limit}}
+    @listboxLabel={{"Limit: "}}
+    @value={{nu-co this.limit 'none'}}
     @values={{array 20 50 100 500}}
     @onChange={{set this 'limit'}}
     class='sm:ml-4 sm:flex-none'
   />
-
-  <div class='relative mb-4 sm:ml-4 sm:flex-none'>
-    <Listbox @value={{this.limit}} @onChange={{set this 'limit'}} as |listbox|>
-      <listbox.Button
-        class='inline-flex items-center px-3 py-2 border rounded cursor-pointer'
-      >
-        Limit:
-        {{this.limit}}
-      </listbox.Button>
-      <listbox.Options
-        class='absolute z-dropdown right-0 w-28 min-w-min mt-2 py-1 origin-top-right bg-base-7 border rounded shadow-sm outline-none'
-        as |options|
-      >
-        {{#each (array 20 50 100 500) as |item|}}
-          <options.Option @value={{item}} class='outline-none'>
-            <div
-              class='flex items-center px-4 py-2 text-sm hover:bg-base-6 hover:text-base-1 cursor-pointer'
-            >
-              {{item}}
-            </div>
-          </options.Option>
-        {{/each}}
-      </listbox.Options>
-    </Listbox>
-  </div>
 </div>
 
 {{#if @model.tasks.results.length}}
