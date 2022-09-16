@@ -2,8 +2,22 @@
 
 <div class='sm:flex sm:flex-nowrap'>
   {{! indexUid }}
+  <Form::Listbox
+    @listboxLabel={{"Index: "}}
+    @value={{nu-co this.indexUid 'none'}}
+    @values={{map-by 'uid' @model.indexes.results}}
+    @onChange={{set this 'indexUid'}}
+  />
 
   {{! limit }}
+  <Form::Listbox
+    @listboxLabel={{concat "Limit: " this.limit}}
+    @value={{this.limit}}
+    @values={{array 20 50 100 500}}
+    @onChange={{set this 'limit'}}
+    class='sm:ml-4 sm:flex-none'
+  />
+
   <div class='relative mb-4 sm:ml-4 sm:flex-none'>
     <Listbox @value={{this.limit}} @onChange={{set this 'limit'}} as |listbox|>
       <listbox.Button
