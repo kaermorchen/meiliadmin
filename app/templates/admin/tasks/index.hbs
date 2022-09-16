@@ -1,6 +1,9 @@
 <Headers::H1 @title='Tasks' />
 
 <div class='sm:flex sm:flex-nowrap'>
+  {{! indexUid }}
+
+  {{! limit }}
   <div class='relative mb-4 sm:ml-4 sm:flex-none'>
     <Listbox @value={{this.limit}} @onChange={{set this 'limit'}} as |listbox|>
       <listbox.Button

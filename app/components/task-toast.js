@@ -4,7 +4,9 @@ import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { Loading, Check, AlertOctagonOutline } from 'ember-mdi';
+import Task from '../models/task';
 
+// TODO: refactor for using more inside Task logic
 export default class TaskToastComponent extends Component {
   @service meilisearch;
 
@@ -97,7 +99,7 @@ export default class TaskToastComponent extends Component {
   @action
   reloadTask() {
     this.meilisearch.getTask(this.taskUid).then((task) => {
-      this.task = task;
+      this.task = new Task(task);
 
       if (this.isSucceeded || this.isFailed) {
         this.clearInterval();

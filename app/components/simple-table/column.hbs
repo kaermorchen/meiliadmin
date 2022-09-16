@@ -11,6 +11,8 @@
     <span class='inline-flex items-center'>
       {{#if (has-block 'name')}}
         {{yield to='name'}}
+      {{else if @headComponent}}
+        <@headComponent @data={{@data}} />
       {{else if @name}}
         {{@name}}
       {{else if @prop}}
