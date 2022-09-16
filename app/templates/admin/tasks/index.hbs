@@ -3,7 +3,7 @@
 <div class='sm:flex sm:flex-nowrap'>
   {{! indexUid }}
   <Form::Listbox
-    @listboxLabel={{"Index: "}}
+    @listboxLabel={{'Index: '}}
     @value={{nu-co this.indexUid 'none'}}
     @values={{map-by 'uid' @model.indexes.results}}
     @onChange={{set this 'indexUid'}}
@@ -12,7 +12,7 @@
 
   {{! status }}
   <Form::Listbox
-    @listboxLabel={{"Status: "}}
+    @listboxLabel={{'Status: '}}
     @value={{nu-co this.status 'none'}}
     @values={{this.taskStatuses}}
     @onChange={{set this 'status'}}
@@ -22,7 +22,7 @@
 
   {{! status }}
   <Form::Listbox
-    @listboxLabel={{"Type: "}}
+    @listboxLabel={{'Type: '}}
     @value={{nu-co this.type 'none'}}
     @values={{this.taskTypes}}
     @onChange={{set this 'type'}}
@@ -32,7 +32,7 @@
 
   {{! limit }}
   <Form::Listbox
-    @listboxLabel={{"Limit: "}}
+    @listboxLabel={{'Limit: '}}
     @value={{nu-co this.limit 'none'}}
     @values={{array 20 50 100 500}}
     @onChange={{set this 'limit'}}
@@ -40,8 +40,8 @@
   />
 </div>
 
-{{#if @model.tasks.results.length}}
-  <SimpleTable @data={{@model.tasks.results}} class='w-full' as |Column data|>
+{{#if this.tasks.results.length}}
+  <SimpleTable @data={{this.tasks.results}} class='w-full' as |Column data|>
     <Column @prop='uid'>
       <LinkTo
         @route='admin.tasks.task'
@@ -58,7 +58,7 @@
       <Badge @label={{data.status}} @style={{data.style}} />
     </Column>
     <Column @prop='type' />
-    <Column @prop='details'>
+    {{!-- <Column @prop='details'>
       {{json-stringify data.details}}
     </Column>
     <Column @prop='error'>
@@ -97,7 +97,7 @@
         minute='numeric'
         second='numeric'
       }}
-    </Column>
+    </Column> --}}
     <Column @prop='finishedAt'>
       {{date-time-format
         data.finishedAt
@@ -110,6 +110,20 @@
       }}
     </Column>
   </SimpleTable>
+
+  {{#if this.tasks.next}}
+    <div class='flex justify-center'>
+      <Button
+        @text='Load more'
+        @onClick={{fn (set this 'from') this.tasks.next}}
+        @state={{if this.tasks.isLoading 'pending'}}
+      />
+    </div>
+  {{/if}}
+{{else if this.tasks.isLoading}}
+  <div class='flex justify-center py-4'>
+    <Icons::Loading @size={{30}} @spin={{true}}/>
+  </div>
 {{else}}
   No results found
 {{/if}}
