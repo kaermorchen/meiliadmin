@@ -1,5 +1,6 @@
 import Service from '@ember/service';
 import Index from '../models/index';
+import Task from '../models/task';
 import query from '../utils/query';
 
 export default class MeilisearchService extends Service {
@@ -44,10 +45,13 @@ export default class MeilisearchService extends Service {
     // Clear from undefined fields
     Object.keys(params).forEach((key) => params[key] ?? delete params[key]);
 
-    return query(`tasks?${new URLSearchParams(params)}`);
+    return query(`tasks?${new URLSearchParams(params)}`).then((data) => {
+      data.results = data.results.map((item) => new Task(item));
+      return data;
+    });
   }
 
   getTask(uid) {
-    return query(`tasks/${uid}`);
+    return query(`tasks/${uid}`).then((item) => new Task(item));
   }
 }

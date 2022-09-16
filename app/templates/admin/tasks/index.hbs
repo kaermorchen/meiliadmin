@@ -42,14 +42,25 @@
       >{{data.indexUid}}</LinkTo>
     </Column>
     <Column @prop='status'>
-      <Badge @label={{data.status}} @style='success' />
+      <Badge @label={{data.status}} @style={{data.style}} />
     </Column>
     <Column @prop='type' />
     <Column @prop='details'>
       {{json-stringify data.details}}
     </Column>
     <Column @prop='error'>
-      {{json-stringify data.error}}
+      {{#if data.isFailed}}
+        {{#if data.error.link}}
+          <a
+            href={{data.error.link}}
+            class='text-danger'
+            target='_blank'
+            rel='noopener noreferrer'
+          >{{data.error.message}}</a>
+        {{else}}
+          <span class='text-danger'>{{data.error.message}}</span>
+        {{/if}}
+      {{/if}}
     </Column>
     <Column @prop='duration' />
     <Column @prop='enqueuedAt'>
