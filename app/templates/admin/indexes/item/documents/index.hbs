@@ -146,7 +146,7 @@
 </div> --}}
 
 {{#if (gt @model.data.estimatedTotalHits 0)}}
-  <RoyalTable
+  <SimpleTable
     @data={{@model.data.hits}}
     @sortingProp={{this.sort}}
     @onSort={{this.onSort}}
@@ -207,7 +207,7 @@
         </Menu>
       {{/let}}
     </Column>
-  </RoyalTable>
+  </SimpleTable>
 
   <div class='flex items-center'>
     {{this.fromHits}}

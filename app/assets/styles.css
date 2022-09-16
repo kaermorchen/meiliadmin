@@ -196,7 +196,7 @@ body {
   }
 }
 
-.royal-table {
+.simple-table {
   @apply table-auto text-left mb-4;
 
   thead {

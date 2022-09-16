@@ -1,19 +1,19 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
+// import { registerDestructor } from '@ember/destroyable';
 
-export default class RoyalTableColumnComponent extends Component {
-  constructor() {
-    super(...arguments);
+export default class SimpleTableColumnComponent extends Component {
+  // constructor() {
+  //   super(...arguments);
 
-    if (this.isHead) {
-      this.args?.parent?.registerColumn(this);
-    }
-  }
+  //   if (this.isHead) {
+  //     this.args.parent?.registerColumn(this);
 
-  willDestroy() {
-    super.willDestroy(...arguments);
-    this.args?.parent?.unregisterColumn(this);
-  }
+  //     registerDestructor(this, () => {
+  //       this.args.parent?.unregisterColumn(this);
+  //     });
+  //   }
+  // }
 
   get isHead() {
     return this.args.place === 'head';
@@ -37,15 +37,13 @@ export default class RoyalTableColumnComponent extends Component {
 
   @action
   handleClickHead(e) {
-    if (typeof this.args.onClickHead === 'function') {
-      this.args.onClickHead(this.args.prop, this, e);
-    }
+    this.args.onClickHead?.(this.args.prop, this, e);
   }
 
   @action
   handleSort(e) {
-    if (this.args.sortable && typeof this.args.onSort === 'function') {
-      this.args.onSort(this.args.prop, this, e);
+    if (this.args.sortable) {
+      this.args.onSort?.(this.args.prop, this, e);
     }
   }
 }

@@ -1,5 +1,5 @@
 <div class='max-w-screen overflow-x-auto'>
-  <table class='royal-table' ...attributes>
+  <table class='simple-table' ...attributes>
     {{#if @caption}}
       <caption>
         {{@caption}}
@@ -9,7 +9,7 @@
       <tr>
         {{yield
           (component
-            'royal-table/column'
+            'simple-table/column'
             place='head'
             onClickHead=@onClickHead
             onSort=@onSort
@@ -24,7 +24,7 @@
       {{#each @data as |item index|}}
         <tr>
           {{yield
-            (component 'royal-table/column' place='body' data=item parent=this)
+            (component 'simple-table/column' place='body' data=item parent=this)
             item
             index
           }}

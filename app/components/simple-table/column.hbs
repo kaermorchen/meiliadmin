@@ -2,11 +2,11 @@
   {{! template-lint-disable no-invalid-interactive }}
   <th
     role={{if @sortable 'button'}}
+    {{! DOTO: align is depricated, use styles align instead }}
     align={{@align}}
     ...attributes
     {{on 'click' this.handleClickHead}}
     {{on 'click' this.handleSort}}
-    {{! DOTO: align is depricated, use styles align instead }}
   >
     <span class='inline-flex items-center'>
       {{#if (has-block 'name')}}
@@ -18,13 +18,15 @@
       {{/if}}
 
       {{#if @sortable}}
-        {{#if this.isAscSorted}}
-          <Icons::ArrowDownThin class="fill-base-3 ml-0.5" @size={{14}} />
-        {{else if this.isDescSorted}}
-          <Icons::ArrowUpThin class="fill-base-3 ml-0.5" @size={{14}} />
-        {{else}}
-          <Icons::ArrowUpDown class="fill-base-3 ml-0.5" @size={{14}} />
-        {{/if}}
+        {{#let 'fill-base-3 ml-0.5' 14 as |class size|}}
+          {{#if this.isAscSorted}}
+            <Icons::ArrowDownThin class={{class}} @size={{size}} />
+          {{else if this.isDescSorted}}
+            <Icons::ArrowUpThin class={{class}} @size={{size}} />
+          {{else}}
+            <Icons::ArrowUpDown class={{class}} @size={{size}} />
+          {{/if}}
+        {{/let}}
       {{/if}}
     </span>
   </th>
@@ -33,9 +35,7 @@
     {{#if (has-block)}}
       {{yield}}
     {{else if @bodyComponent}}
-      {{#let @bodyComponent as |BodyComponent|}}
-        <BodyComponent @data={{@data}} />
-      {{/let}}
+      <@bodyComponent @data={{@data}} />
     {{else}}
       {{get @data @prop}}
     {{/if}}

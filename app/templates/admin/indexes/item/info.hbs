@@ -8,12 +8,12 @@
 <Form::Element @label='Is indexing' @value={{@model.stats.isIndexing}} />
 
 <Form::Element @label='Field distribution'>
-  <RoyalTable
+  <SimpleTable
     @data={{obj-to-array @model.stats.fieldDistribution}}
     class='w-full'
     as |Column|
   >
     <Column @name='Field' @prop='key' />
     <Column @name='Count' @prop='value' />
-  </RoyalTable>
+  </SimpleTable>
 </Form::Element>

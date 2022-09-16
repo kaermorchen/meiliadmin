@@ -4,7 +4,7 @@
   Create new index
 </LinkTo>
 
-<RoyalTable @data={{@model.results}} class='w-full' as |Column data|>
+<SimpleTable @data={{@model.results}} class='w-full' as |Column data|>
   <Column @prop='uid'>
     <LinkTo @route='admin.indexes.item' @model={{data.uid}}>
       {{data.uid}}
@@ -33,4 +33,4 @@
       second='numeric'
     }}
   </Column>
-</RoyalTable>
+</SimpleTable>

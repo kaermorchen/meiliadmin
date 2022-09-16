@@ -28,7 +28,7 @@
   <LinkTo @route='admin.indexes.index'>Indexes</LinkTo>
 </Headers::H2>
 
-<RoyalTable @data={{@model.indexes.results}} class='w-full' as |Column data|>
+<SimpleTable @data={{@model.indexes.results}} class='w-full' as |Column data|>
   <Column @name='UID' @prop='uid'>
     <LinkTo @route='admin.indexes.item' @model={{data.uid}}>
       {{data.uid}}
@@ -57,4 +57,4 @@
       second='numeric'
     }}
   </Column>
-</RoyalTable>
+</SimpleTable>

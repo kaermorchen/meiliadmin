@@ -28,7 +28,7 @@
 </div>
 
 {{#if @model.tasks.results.length}}
-  <RoyalTable @data={{@model.tasks.results}} class='w-full' as |Column data|>
+  <SimpleTable @data={{@model.tasks.results}} class='w-full' as |Column data|>
     <Column @prop='uid'>
       <LinkTo
         @route='admin.tasks.task'
@@ -85,7 +85,7 @@
         second='numeric'
       }}
     </Column>
-  </RoyalTable>
+  </SimpleTable>
 {{else}}
   No results found
 {{/if}}
