@@ -18,68 +18,24 @@
 
   {{! sort }}
   {{#if this.sortValues.length}}
-    <div class='relative mb-4 sm:ml-4 sm:flex-none'>
-      <Listbox @value={{this.sort}} @onChange={{set this 'sort'}} as |listbox|>
-        <listbox.Button
-          class='inline-flex items-center px-3 py-2 border rounded cursor-pointer'
-        >
-          {{! <Icons::Sort class='mr-1' /> }}
-          Sort:
-          {{if this.sort this.sort 'none'}}
-        </listbox.Button>
-        <listbox.Options
-          class='absolute z-dropdown right-0 w-28 min-w-min mt-2 py-1 origin-top-right bg-base-7 border rounded shadow-sm outline-none'
-          as |options|
-        >
-          {{#each this.sortValues as |item|}}
-            <options.Option @value={{item}} class='outline-none'>
-              <div
-                class='flex items-center px-4 py-2 text-sm hover:bg-base-6 hover:text-base-1 cursor-pointer'
-              >
-                {{item}}
-              </div>
-            </options.Option>
-          {{/each}}
-
-          <Divider class='my-1' />
-
-          <options.Option @value={{null}} class='outline-none'>
-            <div
-              class='flex items-center px-4 py-2 text-sm hover:bg-base-6 hover:text-base-1 cursor-pointer'
-            >
-              Clear
-            </div>
-          </options.Option>
-        </listbox.Options>
-      </Listbox>
-    </div>
+    <Form::Listbox
+      @listboxLabel={{'Sort: '}}
+      @value={{nu-co this.sort 'none'}}
+      @values={{this.sortValues}}
+      @onChange={{set this 'sort'}}
+      @allowClear={{true}}
+      class='sm:ml-4 sm:flex-none'
+    />
   {{/if}}
 
   {{! limit }}
-  <div class='relative mb-4 sm:ml-4 sm:flex-none'>
-    <Listbox @value={{this.limit}} @onChange={{set this 'limit'}} as |listbox|>
-      <listbox.Button
-        class='inline-flex items-center px-3 py-2 border rounded cursor-pointer'
-      >
-        Limit:
-        {{this.limit}}
-      </listbox.Button>
-      <listbox.Options
-        class='absolute z-dropdown right-0 w-28 min-w-min mt-2 py-1 origin-top-right bg-base-7 border rounded shadow-sm outline-none'
-        as |options|
-      >
-        {{#each (array 20 50 100 500) as |item|}}
-          <options.Option @value={{item}} class='outline-none'>
-            <div
-              class='flex items-center px-4 py-2 text-sm hover:bg-base-6 hover:text-base-1 cursor-pointer'
-            >
-              {{item}}
-            </div>
-          </options.Option>
-        {{/each}}
-      </listbox.Options>
-    </Listbox>
-  </div>
+  <Form::Listbox
+    @listboxLabel={{'Limit: '}}
+    @value={{nu-co this.limit 'none'}}
+    @values={{array 20 50 100 500}}
+    @onChange={{set this 'limit'}}
+    class='sm:ml-4 sm:flex-none'
+  />
 
   {{! table settings }}
   <div class='relative mb-4 sm:ml-4 sm:flex-none'>
