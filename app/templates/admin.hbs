@@ -28,7 +28,7 @@
         </div>
 
         <div class='mt-auto'>
-          <div class='mb-4'>
+          <div class='mb-3'>
             <a
               href='https://docs.meilisearch.com/'
               class='{{classLink}} mt-auto'
@@ -51,18 +51,34 @@
             </a>
           </div>
 
+          <div class='mb-4 p-4 bg-base-6 rounded'>
+            This application is currently in active development. If you have an
+            issue, please use GitHub
+            <a
+              href='https://github.com/kaermorchen/meiliadmin/issues'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              issues
+            </a>
+            to notify me.
+          </div>
+
           <ThemeToggler class='mb-6 mt-5' />
 
           <div class='flex items-center mb-4'>
-            <Icons::ServerNetwork @size={{40}} class='fill-base-3 mx-2' />
+            <Icons::ServerNetwork
+              @size={{40}}
+              class='fill-base-3 mx-2 flex-shrink-0'
+            />
 
-            <span class='font-semibold mr-2'>
+            <span class='font-semibold mr-2 truncate'>
               {{this.session.data.authenticated.url}}
             </span>
 
             <Icons::Logout
-              class='fill-base-3 ml-auto cursor-pointer'
-              title='Logout'
+              @title='Logout'
+              class='fill-base-3 ml-auto flex-shrink-0 cursor-pointer'
               {{on 'click' this.invalidateSession}}
             />
           </div>
