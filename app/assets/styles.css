@@ -95,6 +95,8 @@ body {
 }
 
 .sidenav {
+  display: flex;
+  flex-direction: column;
   grid-area: sidenav;
   position: fixed;
   z-index: var(--z-index-sidenav);
@@ -120,6 +122,10 @@ body {
 }
 
 .sidenav-sections {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  max-height: 100vh;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -127,12 +133,14 @@ body {
   width: var(--sidenav-width);
   transition-property: transform;
   transform: translate3d(-100%, 0, 0);
-  @apply bg-base-7 p-4 pt-0;
+  overflow-y: auto;
+  @apply bg-base-7 p-4;
 }
 
 .main {
   grid-area: main;
-  padding: calc(var(--spacing-4) + var(--header-height)) var(--spacing-4) var(--spacing-4);
+  padding: calc(var(--spacing-4) + var(--header-height)) var(--spacing-4)
+    var(--spacing-4);
   @apply bg-base-7;
 }
 
@@ -159,14 +167,16 @@ body {
   }
 }
 
-@media (min-width: theme("screens.lg")) {
+@media (min-width: theme('screens.lg')) {
   body.sidebar-is-opened {
     overflow: initial;
   }
 
   .app {
-    grid-template-columns: var(--sidenav-width) calc(100% - var(--sidenav-width));
-    grid-template-areas: "sidenav main";
+    grid-template-columns: var(--sidenav-width) calc(
+        100% - var(--sidenav-width)
+      );
+    grid-template-areas: 'sidenav main';
   }
 
   .sidenav {
@@ -180,11 +190,10 @@ body {
   }
 
   .sidenav-sections {
-    position: relative;
+    position: sticky;
     transform: none;
     transition-duration: none;
-    position: initial;
-    top: initial;
+    top: 0;
     bottom: initial;
     left: initial;
     width: auto;

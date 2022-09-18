@@ -3,75 +3,72 @@
 
   <aside class='sidenav'>
     <SidenavBackground />
-    <div class='sidenav-sections'>
-      <MobileBar class='relative flex mb-4' />
-      {{#let
-        'flex items-center px-4 py-2 font-semibold text-lg text-base-2'
-        as |classLink|
-      }}
-        <nav class='flex flex-col flex-1 mb-4'>
-          {{!-- <div class='px-4 py-2 text-sm text-base-3'>Indexes</div>
-          {{#each @model.results as |item|}}
-            <LinkTo
-              @route='admin.indexes.item'
-              @model={{item}}
-              class={{classLink}}
-            >
-              <Icons::CircleMedium class='mr-1' />
-              {{capitalize item.uid}}
+    {{#let
+      'flex items-center px-4 py-2 font-semibold text-lg text-base-2'
+      as |classLink|
+    }}
+      <div class='sidenav-sections'>
+        <div>
+          <MobileBar class='relative flex mb-3' />
+
+          <nav class='flex flex-col flex-1'>
+            <LinkTo @route='admin.indexes.index' class={{classLink}}>
+              <Icons::FolderMultipleOutline class='fill-base-3 mr-2' />
+              Indexes
             </LinkTo>
-          {{/each}} --}}
-          <LinkTo @route='admin.indexes.index' class={{classLink}}>
-            <Icons::FolderMultipleOutline class='fill-base-3 mr-2' />
-            Indexes
-          </LinkTo>
-          <LinkTo @route='admin.tasks.index' class={{classLink}}>
-            <Icons::FormatListChecks class='fill-base-3 mr-2' />
-            Tasks
-          </LinkTo>
-          <LinkTo @route='admin.keys.index' class={{classLink}}>
-            <Icons::KeyOutline class='fill-base-3 mr-2' />
-            Keys
-          </LinkTo>
+            <LinkTo @route='admin.tasks.index' class={{classLink}}>
+              <Icons::FormatListChecks class='fill-base-3 mr-2' />
+              Tasks
+            </LinkTo>
+            <LinkTo @route='admin.keys.index' class={{classLink}}>
+              <Icons::KeyOutline class='fill-base-3 mr-2' />
+              Keys
+            </LinkTo>
+          </nav>
+        </div>
 
-          <Divider />
+        <div class='mt-auto'>
+          <div class='mb-4'>
+            <a
+              href='https://docs.meilisearch.com/'
+              class='{{classLink}} mt-auto'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <Icons::Lifebuoy class='fill-base-3 mr-2' />
+              Documentation
+              <Icons::OpenInNew @size={{10}} class='mt-1 ml-0.5 self-start' />
+            </a>
+            <a
+              href='https://github.com/kaermorchen/meiliadmin'
+              class={{classLink}}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <Icons::Github class='fill-base-3 mr-2' />
+              MeiliAdmin
+              <Icons::OpenInNew @size={{10}} class='mt-1 ml-0.5 self-start' />
+            </a>
+          </div>
 
-          <a
-            href='https://docs.meilisearch.com/'
-            class={{classLink}}
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            <Icons::HelpCircleOutline class='fill-base-3 mr-2' />
-            Documentation
-            <Icons::OpenInNew @size={{12}} class='mt-1 self-start' />
-          </a>
-          <a
-            href='https://github.com/kaermorchen/meiliadmin'
-            class={{classLink}}
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            <Icons::Github class='fill-base-3 mr-2' />
-            MeiliAdmin
-            <Icons::OpenInNew @size={{12}} class='mt-1 self-start' />
-          </a>
+          <ThemeToggler class='mb-6 mt-5' />
 
-          <Divider />
+          <div class='flex items-center mb-4'>
+            <Icons::ServerNetwork @size={{40}} class='fill-base-3 mx-2' />
 
-          <button
-            type='button'
-            {{on 'click' this.invalidateSession}}
-            class={{classLink}}
-          >
-            <Icons::Logout class='fill-base-3 mr-2' />
-            Logout
-          </button>
-        </nav>
+            <span class='font-semibold mr-2'>
+              {{this.session.data.authenticated.url}}
+            </span>
 
-        <ThemeToggler />
-      {{/let}}
-    </div>
+            <Icons::Logout
+              class='fill-base-3 ml-auto cursor-pointer'
+              title='Logout'
+              {{on 'click' this.invalidateSession}}
+            />
+          </div>
+        </div>
+      </div>
+    {{/let}}
   </aside>
 
   <main class='main'>
