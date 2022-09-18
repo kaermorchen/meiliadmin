@@ -4,7 +4,7 @@
   <aside class='sidenav'>
     <SidenavBackground />
     {{#let
-      'flex items-center px-4 py-2 font-semibold text-lg text-base-2'
+      'flex items-center px-4 py-2 font-semibold rounded text-lg text-base-2 hover:text-base-1 hover:bg-base-6'
       as |classLink|
     }}
       <div class='sidenav-sections'>
@@ -12,15 +12,15 @@
           <MobileBar class='relative flex mb-3' />
 
           <nav class='flex flex-col flex-1'>
-            <LinkTo @route='admin.indexes.index' class={{classLink}}>
+            <LinkTo @route='admin.indexes' class={{classLink}} @activeClass="bg-base-6">
               <Icons::FolderMultipleOutline class='fill-base-3 mr-2' />
               Indexes
             </LinkTo>
-            <LinkTo @route='admin.tasks.index' class={{classLink}}>
+            <LinkTo @route='admin.tasks' class={{classLink}} @activeClass="bg-base-6">
               <Icons::FormatListChecks class='fill-base-3 mr-2' />
               Tasks
             </LinkTo>
-            <LinkTo @route='admin.keys.index' class={{classLink}}>
+            <LinkTo @route='admin.keys' class={{classLink}} @activeClass="bg-base-6">
               <Icons::KeyOutline class='fill-base-3 mr-2' />
               Keys
             </LinkTo>
