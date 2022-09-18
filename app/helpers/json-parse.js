@@ -1,5 +1,5 @@
 import { helper } from '@ember/component/helper';
 
-export default helper(function jsonParse() {
-  return (str) => JSON.parse(str);
+export default helper(function jsonParse([str]) {
+  return JSON.parse(str);
 });

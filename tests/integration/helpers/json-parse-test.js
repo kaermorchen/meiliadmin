@@ -8,10 +8,10 @@ module('Integration | Helper | json-parse', function (hooks) {
 
   // TODO: Replace this with your real tests.
   test('it renders', async function (assert) {
-    this.set('inputValue', '1234');
+    this.set('inputValue', '[1, 2, 3]');
 
     await render(hbs`{{json-parse this.inputValue}}`);
 
-    assert.dom(this.element).hasText('1234');
+    assert.dom(this.element).hasText('1,2,3');
   });
 });

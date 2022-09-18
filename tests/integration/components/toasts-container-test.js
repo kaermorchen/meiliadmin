@@ -7,20 +7,8 @@ module('Integration | Component | toasts-container', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
-
     await render(hbs`<ToastsContainer />`);
 
     assert.dom(this.element).hasText('');
-
-    // Template block usage:
-    await render(hbs`
-      <ToastsContainer>
-        template block text
-      </ToastsContainer>
-    `);
-
-    assert.dom(this.element).hasText('template block text');
   });
 });

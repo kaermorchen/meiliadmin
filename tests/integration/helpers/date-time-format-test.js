@@ -8,10 +8,10 @@ module('Integration | Helper | DateTimeFormat', function (hooks) {
 
   // TODO: Replace this with your real tests.
   test('it renders', async function (assert) {
-    this.set('inputValue', '1234');
+    this.set('inputValue', new Date(2000, 0, 1));
 
     await render(hbs`{{date-time-format this.inputValue}}`);
 
-    assert.dom(this.element).hasText('1234');
+    assert.dom(this.element).hasText('1/1/2000');
   });
 });

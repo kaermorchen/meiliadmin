@@ -6,12 +6,13 @@ import { hbs } from 'ember-cli-htmlbars';
 module('Integration | Helper | not-eq', function (hooks) {
   setupRenderingTest(hooks);
 
-  // TODO: Replace this with your real tests.
   test('it renders', async function (assert) {
-    this.set('inputValue', '1234');
+    await render(hbs`{{not-eq 1 2}}`);
 
-    await render(hbs`{{not-eq this.inputValue}}`);
+    assert.dom(this.element).hasText('true');
 
-    assert.dom(this.element).hasText('1234');
+    await render(hbs`{{not-eq 1 1}}`);
+
+    assert.dom(this.element).hasText('false');
   });
 });

@@ -12,6 +12,6 @@ module('Integration | Helper | formatBytes', function (hooks) {
 
     await render(hbs`{{format-bytes this.inputValue}}`);
 
-    assert.dom(this.element).hasText('1234');
+    assert.dom(this.element).hasText('1.21 KB');
   });
 });

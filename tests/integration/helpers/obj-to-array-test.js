@@ -8,10 +8,10 @@ module('Integration | Helper | obj-to-array', function (hooks) {
 
   // TODO: Replace this with your real tests.
   test('it renders', async function (assert) {
-    this.set('inputValue', '1234');
+    this.set('inputValue', { a: 1, b: 2 });
 
     await render(hbs`{{obj-to-array this.inputValue}}`);
 
-    assert.dom(this.element).hasText('1234');
+    assert.dom(this.element).hasText('[object Object],[object Object]');
   });
 });

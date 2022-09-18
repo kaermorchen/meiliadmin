@@ -12,6 +12,6 @@ module('Integration | Helper | type-of', function (hooks) {
 
     await render(hbs`{{type-of this.inputValue}}`);
 
-    assert.dom(this.element).hasText('1234');
+    assert.dom(this.element).hasText('string');
   });
 });

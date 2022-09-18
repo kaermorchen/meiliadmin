@@ -7,20 +7,8 @@ module('Integration | Component | simple-table/column', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
-
     await render(hbs`<SimpleTable::Column />`);
 
     assert.dom(this.element).hasText('');
-
-    // Template block usage:
-    await render(hbs`
-      <SimpleTable::Column>
-        template block text
-      </SimpleTable::Column>
-    `);
-
-    assert.dom(this.element).hasText('template block text');
   });
 });
