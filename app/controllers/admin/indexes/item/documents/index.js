@@ -41,6 +41,12 @@ export default class AdminIndexesItemDocumentsIndexController extends Controller
     }
   }
 
+  get allAttributes() {
+    return this.attributes.concat(
+      this.originalAttributes.filter((item) => !this.attributes.includes(item))
+    );
+  }
+
   get fromHits() {
     return 1 + this.model.data.offset;
   }
@@ -84,5 +90,15 @@ export default class AdminIndexesItemDocumentsIndexController extends Controller
     } else {
       this.sort = `${newSort}:asc`;
     }
+  }
+
+  @action
+  isItemChecked(item) {
+    return this.attributes.includes(item);
+  }
+
+  @action
+  sortAttibutes(items) {
+    this.attributesToRetrieve = items.filter(this.isItemChecked);
   }
 }

@@ -38,55 +38,13 @@
   />
 
   {{! table settings }}
-  <div class='relative mb-4 sm:ml-4 sm:flex-none'>
-    <Menu as |menu|>
-      <menu.Button as |menuButton|>
-        <Button @onClick={{menuButton.toggleMenu}} class='w-auto'>
-          <Icons::CogOutline />
-        </Button>
-      </menu.Button>
-
-      <menu.Items
-        class='absolute z-dropdown right-0 w-28 min-w-min mt-2 py-1 origin-top-right bg-base-7 border rounded shadow-sm outline-none'
-        {{sortable-group onChange=(set this 'attributesToRetrieve')}}
-      >
-        {{#each this.attributes as |item|}}
-          <div
-            class='flex items-center px-4 py-2 text-sm hover:bg-base-6 hover:text-base-1 cursor-pointer'
-            {{sortable-item model=item}}
-          >
-            <Icons::DragVertical
-              {{sortable-handle}}
-              class='mr-2 cursor-move'
-            />
-            <Form::Checkbox
-              @checked={{includes item this.attributes}}
-              @label={{namelize item}}
-              @onChange={{fn this.toggleAttribute item}}
-              class='w-full whitespace-nowrap'
-            />
-          </div>
-        {{/each}}
-        {{#each this.originalAttributes as |item|}}
-          {{#if (not (includes item this.attributes))}}
-            <div
-              class='flex items-center px-4 py-2 text-sm hover:bg-base-6 hover:text-base-1 cursor-pointer'
-            >
-              <Icons::DragVertical
-                class='mr-2 cursor-not-allowed'
-              />
-              <Form::Checkbox
-                @checked={{includes item this.attributes}}
-                @label={{namelize item}}
-                @onChange={{fn this.toggleAttribute item}}
-                class='w-full whitespace-nowrap'
-              />
-            </div>
-          {{/if}}
-        {{/each}}
-      </menu.Items>
-    </Menu>
-  </div>
+  <Form::TableSettings
+    @onChangeSort={{this.sortAttibutes}}
+    @items={{this.allAttributes}}
+    @isItemChecked={{this.isItemChecked}}
+    @onToggleItem={{this.toggleAttribute}}
+    class='sm:ml-4 sm:flex-none'
+  />
 </div>
 
 {{!-- <div class='flex items-center mb-4'>
