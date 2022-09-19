@@ -16,7 +16,9 @@ export default function query(path, options = {}) {
   );
 
   return fetch(req).then((response) => {
-    if (response.ok) {
+    if (response.status === 204) {
+      return;
+    } else if (response.ok) {
       return response.json();
     } else {
       throw new Error('Network response was not OK');

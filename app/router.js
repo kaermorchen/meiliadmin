@@ -27,6 +27,7 @@ Router.map(function () {
     this.route('keys', function () {
       this.route('key', { path: '/:uid' }, function () {
         this.route('edit');
+        this.route('delete');
       });
       this.route('new');
     });

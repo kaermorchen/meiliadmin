@@ -45,6 +45,12 @@ export default class MeilisearchService extends Service {
     return query(`keys/${uid}`).then((item) => new Key(item));
   }
 
+  deleteKey(uid) {
+    return query(`keys/${uid}`, {
+      method: 'DELETE',
+    });
+  }
+
   getTasks(params, options = {}) {
     // Clear from undefined fields
     Object.keys(params).forEach((key) => params[key] ?? delete params[key]);
