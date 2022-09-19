@@ -1,40 +1,9 @@
-<Headers::H1 @title={{@model.name}} />
+<Headers::H1 @title={{nu-co @model.name @model.uid}} />
 
-<Form::Element @label='description' @value={{@model.description}} />
-<Form::Element @label='key' @value={{@model.key}} />
-<Form::Element @label='uid' @value={{@model.uid}} />
-<Form::Element @label='actions' @value={{@model.actions}} />
-<Form::Element @label='indexes' @value={{@model.indexes}} />
-<Form::Element @label='expiresAt'>
-  {{date-time-format
-    @model.expiresAt
-    year='numeric'
-    month='numeric'
-    day='numeric'
-    hour='numeric'
-    minute='numeric'
-    second='numeric'
-  }}
-</Form::Element>
-<Form::Element @label='createdAt'>
-  {{date-time-format
-    @model.createdAt
-    year='numeric'
-    month='numeric'
-    day='numeric'
-    hour='numeric'
-    minute='numeric'
-    second='numeric'
-  }}
-</Form::Element>
-<Form::Element @label='updatedAt'>
-  {{date-time-format
-    @model.updatedAt
-    year='numeric'
-    month='numeric'
-    day='numeric'
-    hour='numeric'
-    minute='numeric'
-    second='numeric'
-  }}
-</Form::Element>
+<Tabs>
+  <Tab @route="admin.keys.key.index" @text="View" @model={{@model}} />
+  <Tab @route="admin.keys.key.edit" @text="Edit" @model={{@model}} />
+  <Tab @route="admin.keys.key.delete" @text="Delete" @model={{@model}} />
+</Tabs>
+
+{{outlet}}

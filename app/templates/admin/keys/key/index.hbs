@@ -1,0 +1,17 @@
+{{#each
+  (array
+    'description'
+    'key'
+    'uid'
+    'actions'
+    'indexes'
+    'expiresAt'
+    'createdAt'
+    'updatedAt'
+  )
+  as |key|
+}}
+  {{#if (get @model key)}}
+    <Form::Element @label={{key}} @value={{get @model key}} />
+  {{/if}}
+{{/each}}
