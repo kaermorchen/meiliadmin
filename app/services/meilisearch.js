@@ -1,5 +1,6 @@
 import Service from '@ember/service';
 import Index from '../models/index';
+import Key from '../models/key';
 import Task from '../models/task';
 import query from '../utils/query';
 
@@ -34,11 +35,14 @@ export default class MeilisearchService extends Service {
   }
 
   getKeys() {
-    return query('keys');
+    return query('keys').then((data) => {
+      data.results = data.results.map((item) => new Key(item));
+      return data;
+    });
   }
 
   getKey(uid) {
-    return query(`keys/${uid}`);
+    return query(`keys/${uid}`).then((item) => new Key(item));
   }
 
   getTasks(params, options = {}) {

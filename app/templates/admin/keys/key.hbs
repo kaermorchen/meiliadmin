@@ -1,25 +1,9 @@
 <Headers::H1 @title={{@model.name}} />
 
 <Tabs>
-  <Tab @route="admin.keys.key" @text="View" @model={{@model}} />
-  {{!-- <Tab @route="admin.indexes.item.info" @text="Edit" @model={{@model}} /> --}}
+  <Tab @route="admin.keys.key.index" @text="View" @model={{@model}} />
+  <Tab @route="admin.keys.key.edit" @text="Edit" @model={{@model}} />
   {{!-- <Tab @route="admin.indexes.item.settings" @text="Delete" @model={{@model}} /> --}}
 </Tabs>
 
-{{#each
-  (array
-    'description'
-    'key'
-    'uid'
-    'actions'
-    'indexes'
-    'expiresAt'
-    'createdAt'
-    'updatedAt'
-  )
-  as |key|
-}}
-  {{#if (get @model key)}}
-    <Form::Element @label={{key}} @value={{get @model key}} />
-  {{/if}}
-{{/each}}
+{{outlet}}
