@@ -65,6 +65,10 @@
   p {
     @apply mb-4;
   }
+
+  a {
+    @apply text-primary underline;
+  }
 }
 
 body {

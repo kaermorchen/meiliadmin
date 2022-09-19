@@ -83,7 +83,7 @@
     <Column class='relative'>
       {{#let
         (array @model.index.uid (get data @model.index.primaryKey))
-        'flex items-center px-4 py-2 text-sm hover:bg-base-6 hover:text-base-1'
+        'flex items-center px-4 py-2 text-inherit no-underline text-sm hover:bg-base-6 hover:text-base-1'
         as |models linkClasses|
       }}
         <Menu as |menu|>

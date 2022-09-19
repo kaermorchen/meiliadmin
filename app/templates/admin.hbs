@@ -4,7 +4,7 @@
   <aside class='sidenav'>
     <SidenavBackground />
     {{#let
-      'flex items-center px-4 py-2 font-semibold rounded text-lg text-base-2 hover:text-base-1 hover:bg-base-6'
+      'flex items-center px-4 py-2 font-semibold rounded text-lg text-base-2 no-underline hover:text-base-1 hover:bg-base-6'
       as |classLink|
     }}
       <div class='sidenav-sections'>
@@ -53,15 +53,11 @@
 
           <div class='mb-4 p-4 bg-base-6 rounded'>
             This application is currently in active development. If you have an
-            issue, please use GitHub
-            <a
+            issue, please use GitHub <a
               href='https://github.com/kaermorchen/meiliadmin/issues'
               target='_blank'
               rel='noopener noreferrer'
-            >
-              issues
-            </a>
-            to notify me.
+            >issues</a> to notify me.
           </div>
 
           <ThemeToggler class='mb-6 mt-5' />
