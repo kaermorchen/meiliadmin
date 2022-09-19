@@ -1,5 +1,12 @@
 <Headers::H1 @title='Keys' />
 
+<LinkTo
+  @route='admin.keys.new'
+  class='inline-block mb-4'
+>
+  Create new key
+</LinkTo>
+
 <SimpleTable @data={{@model.results}} class='w-full' as |Column data|>
   <Column @prop='name'>
     <LinkTo @route='admin.keys.key' @model={{data.uid}}>

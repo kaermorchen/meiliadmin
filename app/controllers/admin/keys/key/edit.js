@@ -26,7 +26,10 @@ export default class AdminKeysKeyEditController extends Controller {
     try {
       const key = await this.model.save(value);
 
-      await this.router.refresh('admin.keys.key', key.uid);
+      if (this.router.isActive('admin.keys.key')) {
+        await this.router.refresh('admin.keys.key', key.uid);
+      }
+
       await this.router.transitionTo('admin.keys.key.index', key.uid);
     } catch (error) {
       this.error = error.error || error;

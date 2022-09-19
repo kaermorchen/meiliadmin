@@ -1,3 +1,7 @@
+{{#if @model.isNew}}
+  <Headers::H1 @title='Create new key' />
+{{/if}}
+
 <div class='mb-4'>
   <Form::Element @errors={{array this.error}}>
     <MonacoEditor

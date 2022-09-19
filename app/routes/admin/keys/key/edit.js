@@ -4,7 +4,6 @@ import Route from '@ember/routing/route';
 export default class AdminKeysKeyEditRoute extends Route {
   // async model() {
   //   const key = this.modelFor('admin.admin.keys.key');
-
   //   return hash({
   //     key,
   //     // document:

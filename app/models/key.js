@@ -1,6 +1,12 @@
 import query from '../utils/query';
 
 export default class Key {
+  actions = ['*'];
+  indexes = ['*'];
+  expiresAt = null;
+  name = '';
+  description = '';
+
   constructor(data = {}) {
     for (const key in data) {
       this[key] = data[key];

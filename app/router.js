@@ -28,6 +28,7 @@ Router.map(function () {
       this.route('key', { path: '/:uid' }, function () {
         this.route('edit');
       });
+      this.route('new');
     });
     this.route('tasks', function () {
       this.route('task', { path: '/:uid' });
