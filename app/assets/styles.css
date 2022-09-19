@@ -71,6 +71,26 @@
   }
 }
 
+.loading-indicator {
+  display: flex;
+  min-height: 100vh;
+
+  svg {
+    @apply fill-base-2;
+    margin: auto;
+    animation: loading-indicator 0.45s infinite linear;
+
+    @keyframes loading-indicator {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(359deg);
+      }
+    }
+  }
+}
+
 body {
   &.sidebar-is-opened {
     overflow: hidden;
