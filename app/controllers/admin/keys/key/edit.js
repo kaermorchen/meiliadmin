@@ -6,7 +6,7 @@ import ActionInvoker from 'meiliadmin/lib/action-invoker';
 
 export default class AdminKeysKeyEditController extends Controller {
   @service router;
-  @service toasts;
+  @service toaster;
 
   @tracked error;
   @tracked isSaving;

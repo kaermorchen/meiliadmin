@@ -8,7 +8,7 @@ import { htmlSafe } from '@ember/template';
 const margin = 16;
 
 export default class ToastComponent extends Component {
-  @service toasts;
+  @service toaster;
 
   @tracked width;
   @tracked height;
@@ -18,7 +18,7 @@ export default class ToastComponent extends Component {
   }
 
   get top() {
-    const queue = this.toasts.queue;
+    const queue = this.toaster.queue;
 
     for (let i = 0, height = 0; i < queue.length; i++) {
       height += margin;
@@ -66,10 +66,10 @@ export default class ToastComponent extends Component {
   }
 
   registerInQueue() {
-    this.toasts.add(this);
+    this.toaster.add(this);
 
     registerDestructor(this, () => {
-      this.toasts.remove(this);
+      this.toaster.remove(this);
     });
   }
 }

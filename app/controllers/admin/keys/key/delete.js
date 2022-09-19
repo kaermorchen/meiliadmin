@@ -5,7 +5,7 @@ import { inject as service } from '@ember/service';
 export default class AdminKeysKeyDeleteController extends Controller {
   @service router;
   @service meilisearch;
-  @service toasts;
+  @service toaster;
 
   @action
   delete() {

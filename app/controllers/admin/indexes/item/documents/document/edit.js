@@ -6,7 +6,7 @@ import ActionInvoker from 'meiliadmin/lib/action-invoker';
 
 export default class AdminIndexesItemDocumentsDocumentEditController extends Controller {
   @service router;
-  @service toasts;
+  @service toaster;
 
   @tracked error;
   @tracked isSaving;
@@ -28,7 +28,7 @@ export default class AdminIndexesItemDocumentsDocumentEditController extends Con
 
       this.isSaving = false;
 
-      this.toasts.taskToast(task);
+      this.toaster.taskToast(task);
     } catch (error) {
       this.error = error.error || error;
     }

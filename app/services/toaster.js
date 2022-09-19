@@ -5,7 +5,7 @@ import { action } from '@ember/object';
 import SuccessToast from '../components/success-toast';
 import TaskToast from '../components/task-toast';
 
-export default class ToastsService extends Service {
+export default class ToasterService extends Service {
   @tracked container = [];
   @tracked queue = [];
 

@@ -5,7 +5,7 @@ import ActionInvoker from '../lib/action-invoker';
 import { inject as service } from '@ember/service';
 
 export default class FormIndexSettingComponent extends Component {
-  @service toasts;
+  @service toaster;
 
   @tracked value;
   @tracked error;
@@ -25,7 +25,7 @@ export default class FormIndexSettingComponent extends Component {
     try {
       return this.args.index
         .updateSetting(this.args.name, JSON.parse(newValue))
-        .then(this.toasts.taskToast);
+        .then(this.toaster.taskToast);
     } catch (error) {
       this.error = error.error || error;
     }
@@ -44,7 +44,7 @@ export default class FormIndexSettingComponent extends Component {
     try {
       return this.args.index
         .resetSetting(this.args.name)
-        .then(this.toasts.taskToast);
+        .then(this.toaster.taskToast);
     } catch (error) {
       this.error = error.error || error;
     }

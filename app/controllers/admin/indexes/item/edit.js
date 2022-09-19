@@ -5,7 +5,7 @@ import { tracked } from '@glimmer/tracking';
 
 export default class AdminIndexesItemEditController extends Controller {
   @service router;
-  @service toasts;
+  @service toaster;
 
   @tracked isSaving;
 
@@ -22,7 +22,7 @@ export default class AdminIndexesItemEditController extends Controller {
 
     this.isSaving = false;
 
-    this.toasts.taskToast(task);
+    this.toaster.taskToast(task);
   }
 
   @action
