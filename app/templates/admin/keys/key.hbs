@@ -1,40 +1,25 @@
 <Headers::H1 @title={{@model.name}} />
 
-<Form::Element @label='description' @value={{@model.description}} />
-<Form::Element @label='key' @value={{@model.key}} />
-<Form::Element @label='uid' @value={{@model.uid}} />
-<Form::Element @label='actions' @value={{@model.actions}} />
-<Form::Element @label='indexes' @value={{@model.indexes}} />
-<Form::Element @label='expiresAt'>
-  {{date-time-format
-    @model.expiresAt
-    year='numeric'
-    month='numeric'
-    day='numeric'
-    hour='numeric'
-    minute='numeric'
-    second='numeric'
-  }}
-</Form::Element>
-<Form::Element @label='createdAt'>
-  {{date-time-format
-    @model.createdAt
-    year='numeric'
-    month='numeric'
-    day='numeric'
-    hour='numeric'
-    minute='numeric'
-    second='numeric'
-  }}
-</Form::Element>
-<Form::Element @label='updatedAt'>
-  {{date-time-format
-    @model.updatedAt
-    year='numeric'
-    month='numeric'
-    day='numeric'
-    hour='numeric'
-    minute='numeric'
-    second='numeric'
-  }}
-</Form::Element>
+<Tabs>
+  <Tab @route="admin.keys.key" @text="View" @model={{@model}} />
+  {{!-- <Tab @route="admin.indexes.item.info" @text="Edit" @model={{@model}} /> --}}
+  {{!-- <Tab @route="admin.indexes.item.settings" @text="Delete" @model={{@model}} /> --}}
+</Tabs>
+
+{{#each
+  (array
+    'description'
+    'key'
+    'uid'
+    'actions'
+    'indexes'
+    'expiresAt'
+    'createdAt'
+    'updatedAt'
+  )
+  as |key|
+}}
+  {{#if (get @model key)}}
+    <Form::Element @label={{key}} @value={{get @model key}} />
+  {{/if}}
+{{/each}}
