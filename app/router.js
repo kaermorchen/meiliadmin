@@ -34,6 +34,7 @@ Router.map(function () {
     this.route('tasks', function () {
       this.route('task', { path: '/:uid' });
     });
+    this.route('dumps', function () {});
   });
   this.route('login');
   this.route('not-found', { path: '/*path' });

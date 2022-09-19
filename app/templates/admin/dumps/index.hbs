@@ -1,0 +1,64 @@
+<Headers::H1 @title="Dumps"/>
+
+<div class='mb-4'>
+  <Button @text='Create a dump' @style='primary' @onClick={{this.createDump}} />
+</div>
+
+{{#if @model.results.length}}
+  <SimpleTable @data={{@model.results}} class='w-full' as |Column data|>
+    <Column @prop='uid'>
+      <LinkTo
+        @route='admin.tasks.task'
+        @model={{data.uid}}
+      >{{data.uid}}</LinkTo>
+    </Column>
+    <Column @prop='indexUid'>
+      <LinkTo
+        @route='admin.indexes.item'
+        @model={{data.indexUid}}
+      >{{data.indexUid}}</LinkTo>
+    </Column>
+    <Column @prop='status'>
+      <Badge @label={{data.status}} @style={{data.style}} />
+    </Column>
+    <Column @prop='details'>
+      {{json-stringify data.details}}
+    </Column>
+    <Column @prop='duration' />
+    <Column @prop='enqueuedAt'>
+      {{date-time-format
+        data.enqueuedAt
+        year='numeric'
+        month='numeric'
+        day='numeric'
+        hour='numeric'
+        minute='numeric'
+        second='numeric'
+      }}
+    </Column>
+    <Column @prop='startedAt'>
+      {{date-time-format
+        data.startedAt
+        year='numeric'
+        month='numeric'
+        day='numeric'
+        hour='numeric'
+        minute='numeric'
+        second='numeric'
+      }}
+    </Column>
+    <Column @prop='finishedAt'>
+      {{date-time-format
+        data.finishedAt
+        year='numeric'
+        month='numeric'
+        day='numeric'
+        hour='numeric'
+        minute='numeric'
+        second='numeric'
+      }}
+    </Column>
+  </SimpleTable>
+{{else}}
+  No dumps found
+{{/if}}

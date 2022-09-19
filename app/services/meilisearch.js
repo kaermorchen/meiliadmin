@@ -66,4 +66,12 @@ export default class MeilisearchService extends Service {
   getTask(uid) {
     return query(`tasks/${uid}`).then((item) => new Task(item));
   }
+
+  getDumps() {
+    return this.getTasks({ type: 'dumpCreation' });
+  }
+
+  createDump() {
+    return query(`dumps`, { method: 'POST' });
+  }
 }
