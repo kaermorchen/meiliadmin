@@ -12,19 +12,35 @@
           <MobileBar class='relative flex mb-3' />
 
           <nav class='flex flex-col flex-1'>
-            <LinkTo @route='admin.indexes' class={{classLink}} @activeClass="bg-base-6">
+            <LinkTo
+              @route='admin.indexes'
+              class={{classLink}}
+              @activeClass='bg-base-6'
+            >
               <Icons::FolderMultipleOutline class='fill-base-3 mr-2' />
               Indexes
             </LinkTo>
-            <LinkTo @route='admin.tasks' class={{classLink}} @activeClass="bg-base-6">
+            <LinkTo
+              @route='admin.tasks'
+              class={{classLink}}
+              @activeClass='bg-base-6'
+            >
               <Icons::FormatListChecks class='fill-base-3 mr-2' />
               Tasks
             </LinkTo>
-            <LinkTo @route='admin.keys' class={{classLink}} @activeClass="bg-base-6">
+            <LinkTo
+              @route='admin.keys'
+              class={{classLink}}
+              @activeClass='bg-base-6'
+            >
               <Icons::KeyOutline class='fill-base-3 mr-2' />
               Keys
             </LinkTo>
-            <LinkTo @route='admin.dumps' class={{classLink}} @activeClass="bg-base-6">
+            <LinkTo
+              @route='admin.dumps'
+              class={{classLink}}
+              @activeClass='bg-base-6'
+            >
               <Icons::DatabaseCogOutline class='fill-base-3 mr-2' />
               Dumps
             </LinkTo>
@@ -56,12 +72,14 @@
           </div>
 
           <div class='mb-4 p-4 bg-base-6 rounded'>
-            This application is currently in active development. If you have an
-            issue, please use GitHub <a
+            This app is still a work in progress. If you have an issue, please
+            use GitHub
+            <a
               href='https://github.com/kaermorchen/meiliadmin/issues'
               target='_blank'
               rel='noopener noreferrer'
-            >issues</a> to notify me.
+            >issues</a>
+            to notify me.
           </div>
 
           <ThemeToggler class='mb-6 mt-5' />
