@@ -3,6 +3,7 @@ import { tracked } from '@glimmer/tracking';
 import { hbs } from 'ember-template-imports';
 import { action } from '@ember/object';
 import SuccessToast from '../components/toast/success';
+import DangerToast from '../components/toast/danger';
 import TaskToast from '../components/toast/task';
 
 export default class ToasterService extends Service {
@@ -18,12 +19,23 @@ export default class ToasterService extends Service {
   }
 
   @action
-  successToast({ text }) {
+  successToast({ text, header }) {
     const onClose = () => {
       this.container = this.container.filter((item) => item !== wrapper);
     };
 
-    const wrapper = hbs`<SuccessToast @text={{text}} @onClose={{onClose}} />`;
+    const wrapper = hbs`<SuccessToast @header={{header}} @text={{text}} @onClose={{onClose}} />`;
+
+    this.container = this.container.concat([wrapper]);
+  }
+
+  @action
+  dangerToast({ text, header }) {
+    const onClose = () => {
+      this.container = this.container.filter((item) => item !== wrapper);
+    };
+
+    const wrapper = hbs`<DangerToast @header={{header}} @text={{text}} @onClose={{onClose}} />`;
 
     this.container = this.container.concat([wrapper]);
   }

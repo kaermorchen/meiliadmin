@@ -1,0 +1,35 @@
+<Toast
+  @autoClose={{this.autoClose}}
+  @onClose={{@onClose}}
+  class='{{this.bg}} {{this.color}} {{this.borderColor}} {{this.width}}'
+  as |toast|
+>
+  <div class='flex items-center'>
+    {{#if this.icon}}
+      <div
+        class='inline-flex flex-shrink-0 justify-center items-center self-start'
+      >
+        <this.icon class='mr-4 {{this.color}}' />
+      </div>
+    {{/if}}
+
+    <div class='mr-4'>
+      {{#if @header}}
+        <div class='font-semibold mb-2'>{{@header}}</div>
+      {{/if}}
+      {{#if @text}}
+        {{@text}}
+      {{/if}}
+    </div>
+
+    <button
+      type='button'
+      class='ml-auto self-start'
+      {{! data-dismiss-target='#toast-default' }}
+      aria-label='Close'
+      {{on 'click' toast.invokeOnClose}}
+    >
+      <Icons::Close />
+    </button>
+  </div>
+</Toast>

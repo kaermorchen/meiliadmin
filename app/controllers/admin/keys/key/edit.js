@@ -26,6 +26,11 @@ export default class AdminKeysKeyEditController extends Controller {
     try {
       const key = await this.model.save(value);
 
+      this.toaster.successToast({
+        header: 'Success',
+        text: 'The key has been successfuly updated',
+      });
+
       if (this.router.isActive('admin.keys.key')) {
         await this.router.refresh('admin.keys.key', key.uid);
       }
