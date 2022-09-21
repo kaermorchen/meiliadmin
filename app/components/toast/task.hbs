@@ -9,7 +9,7 @@
       <div
         class='inline-flex flex-shrink-0 justify-center items-center self-start'
       >
-        <this.icon @spin={{this.isEnqueued}} class='mr-4 {{this.color}}' />
+        <this.icon @spin={{not this.isFulfilled}} class='mr-4 {{this.color}}' />
       </div>
     {{/if}}
 

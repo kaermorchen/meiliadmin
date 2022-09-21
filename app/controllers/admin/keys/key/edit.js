@@ -19,16 +19,16 @@ export default class AdminKeysKeyEditController extends Controller {
 
   @action
   async save(value) {
-    this.error = null;
+    const isNew = this.model.isNew;
 
+    this.error = null;
     this.isSaving = true;
 
     try {
       const key = await this.model.save(value);
 
       this.toaster.successToast({
-        header: 'Success',
-        text: 'The key has been successfuly updated',
+        header: `The key has been ${isNew ? 'created' : 'updated'}`,
       });
 
       if (this.router.isActive('admin.keys.key')) {

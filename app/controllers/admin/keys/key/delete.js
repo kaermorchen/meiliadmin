@@ -10,7 +10,8 @@ export default class AdminKeysKeyDeleteController extends Controller {
   @action
   delete() {
     return this.meilisearch.deleteKey(this.model.uid).then(() => {
-      // TODO: add toast
+      this.toaster.successToast({ header: 'The key has been deleted' });
+
       return this.router.transitionTo('admin.keys');
     });
   }

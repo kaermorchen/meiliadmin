@@ -24,6 +24,7 @@ export default class ToastTaskComponent extends Component {
   get icon() {
     switch (this.taskStatus) {
       case 'enqueued':
+      case 'processing':
         return Loading;
       case 'succeeded':
         return Check;
@@ -35,7 +36,7 @@ export default class ToastTaskComponent extends Component {
   }
 
   get status() {
-    if (this.isEnqueued) {
+    if (this.isEnqueued || this.isProcessing) {
       return 'info';
     } else if (this.isFailed) {
       return 'danger';
@@ -48,7 +49,7 @@ export default class ToastTaskComponent extends Component {
 
   get color() {
     // Current classes need for taiwind builder
-    if (this.isEnqueued) {
+    if (this.isEnqueued || this.isProcessing) {
       return 'text-info';
     } else if (this.isFailed) {
       return 'text-danger';
@@ -61,7 +62,7 @@ export default class ToastTaskComponent extends Component {
 
   get bg() {
     // Current classes need for taiwind builder
-    if (this.isEnqueued) {
+    if (this.isEnqueued || this.isProcessing) {
       return 'bg-info';
     } else if (this.isFailed) {
       return 'bg-danger';
@@ -76,12 +77,20 @@ export default class ToastTaskComponent extends Component {
     return this.taskStatus === 'enqueued';
   }
 
+  get isProcessing() {
+    return this.taskStatus === 'processing';
+  }
+
   get isFailed() {
     return this.taskStatus === 'failed';
   }
 
   get isSucceeded() {
     return this.taskStatus === 'succeeded';
+  }
+
+  get isFulfilled() {
+    return this.isSucceeded || this.isFailed;
   }
 
   get taskUid() {

@@ -7,7 +7,7 @@ export default class ToastSuccessComponent extends ToastThemeComponent {
   }
 
   get color() {
-    return null;
+    return 'text-success-dark';
   }
 
   get borderColor() {
