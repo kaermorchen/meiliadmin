@@ -2,8 +2,8 @@ import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { hbs } from 'ember-template-imports';
 import { action } from '@ember/object';
-import SuccessToast from '../components/success-toast';
-import TaskToast from '../components/task-toast';
+import SuccessToast from '../components/toast/success';
+import TaskToast from '../components/toast/task';
 
 export default class ToasterService extends Service {
   @tracked container = [];

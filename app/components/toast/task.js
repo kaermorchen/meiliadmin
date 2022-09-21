@@ -4,10 +4,10 @@ import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { Loading, Check, AlertOctagonOutline } from 'ember-mdi';
-import Task from '../models/task';
+import Task from 'meiliadmin/models/task';
 
 // TODO: refactor for using more inside Task logic
-export default class TaskToastComponent extends Component {
+export default class ToastTaskComponent extends Component {
   @service meilisearch;
 
   @tracked task;
