@@ -57,6 +57,7 @@
     "broccoli-asset-rev": "^3.0.0",
     "cssnano": "^5.1.12",
     "els-addon-typed-templates": "^4.2.4",
+    "ember-animation": "^0.1.0",
     "ember-auto-import": "^2.4.2",
     "ember-cli": "~4.7.0",
     "ember-cli-app-version": "^5.0.0",

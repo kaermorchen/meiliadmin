@@ -5653,6 +5653,14 @@ els-addon-typed-templates@^4.2.4:
     vscode-uri "^3.0.2"
     walk-sync "^2.2.0"
 
+ember-animation@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/ember-animation/-/ember-animation-0.1.0.tgz#082530d18f2add7d12e43f1b521337000adb7e39"
+  integrity sha512-8PI9cBhyUAQV4tYp9GrlLYyW59u/OP35QeDMXJ4tUTHBoaz8Kilc/q9kubHuOXuRMgOo4eXRvmkyX8iGtUVV4g==
+  dependencies:
+    "@embroider/addon-shim" "^1.0.0"
+    ember-modifier "4.0.0-beta.1"
+
 ember-auto-import@^1.11.3:
   version "1.12.2"
   resolved "https://registry.yarnpkg.com/ember-auto-import/-/ember-auto-import-1.12.2.tgz#cc7298ee5c0654b0249267de68fb27a2861c3579"
