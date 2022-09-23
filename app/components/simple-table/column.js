@@ -1,20 +1,7 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
-// import { registerDestructor } from '@ember/destroyable';
 
 export default class SimpleTableColumnComponent extends Component {
-  // constructor() {
-  //   super(...arguments);
-
-  //   if (this.isHead) {
-  //     this.args.parent?.registerColumn(this);
-
-  //     registerDestructor(this, () => {
-  //       this.args.parent?.unregisterColumn(this);
-  //     });
-  //   }
-  // }
-
   get isHead() {
     return this.args.place === 'head';
   }

@@ -13,11 +13,4 @@ export default class FormTableSettingsComponent extends Component {
   get id() {
     return this.args.id ?? this.guid;
   }
-
-  // @action
-  // onChange(event) {
-  //   if (this.args.onChange) {
-  //     this.args.onChange(event.target.value, event);
-  //   }
-  // }
 }
