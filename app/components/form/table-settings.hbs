@@ -27,6 +27,8 @@
             {{namelize item}}
           </span>
           {{! @ts-ignore }}
+          {{!-- template-lint-disable no-args-paths --}}
+          {{!-- argument action doesn't work like helper with @ --}}
           <Form::Checkbox
             @checked={{this.args.isItemChecked item}}
             @onChange={{fn @onToggleItem item}}
