@@ -23,7 +23,7 @@ module.exports = function (defaults) {
     // splitAtRoutes: [],
     packagerOptions: {
       // publicAssetURL is used similarly to Ember CLI's asset fingerprint prepend option.
-      publicAssetURL: '/',
+      publicAssetURL: isProduction() ? EmberApp.env().rootURL : '/',
       // Embroider lets us send our own options to the style-loader
       cssLoaderOptions: {
         // don't create source maps in production
