@@ -1,9 +1,0 @@
-{{#let (array @model.index.uid (get @model.document @model.index.primaryKey)) as |models|}}
-  <Tabs>
-    <Tab @route="admin.indexes.item.documents.document.index" @text="View" @models={{models}} />
-    <Tab @route="admin.indexes.item.documents.document.edit" @text="Edit" @models={{models}} />
-    <Tab @route="admin.indexes.item.documents.document.delete" @text="Delete" @models={{models}} />
-  </Tabs>
-{{/let}}
-
-{{outlet}}

@@ -1,7 +1,0 @@
-<Headers::H1>Task {{@model.uid}}</Headers::H1>
-
-{{#each-in @model as |key value|}}
-  <Form::Element @label={{key}}>
-    {{if (eq (type-of value) 'object') (json-stringify value) value}}
-  </Form::Element>
-{{/each-in}}
