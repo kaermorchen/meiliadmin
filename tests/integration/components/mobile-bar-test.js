@@ -9,6 +9,6 @@ module('Integration | Component | mobile-bar', function (hooks) {
   test('it renders', async function (assert) {
     await render(hbs`<MobileBar />`);
 
-    assert.dom(this.element).hasText('Menu MeiliAdmin');
+    assert.dom(this.element).hasText('Menu Meiliadmin');
   });
 });
