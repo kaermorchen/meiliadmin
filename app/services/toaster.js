@@ -24,7 +24,13 @@ export default class ToasterService extends Service {
       this.container = this.container.filter((item) => item !== wrapper);
     };
 
-    const wrapper = hbs`<SuccessToast @header={{header}} @text={{text}} @onClose={{onClose}} />`;
+    const wrapper = hbs(
+      `<SuccessToast @header={{header}} @text={{text}} @onClose={{onClose}} />`,
+      {
+        strictMode: true,
+        scope: () => ({ SuccessToast, header, text, onClose }),
+      }
+    );
 
     this.container = this.container.concat([wrapper]);
   }
@@ -35,7 +41,13 @@ export default class ToasterService extends Service {
       this.container = this.container.filter((item) => item !== wrapper);
     };
 
-    const wrapper = hbs`<DangerToast @header={{header}} @text={{text}} @onClose={{onClose}} />`;
+    const wrapper = hbs(
+      `<DangerToast @header={{header}} @text={{text}} @onClose={{onClose}} />`,
+      {
+        strictMode: true,
+        scope: () => ({ DangerToast, header, text, onClose }),
+      }
+    );
 
     this.container = this.container.concat([wrapper]);
   }
@@ -46,7 +58,10 @@ export default class ToasterService extends Service {
       this.container = this.container.filter((item) => item !== wrapper);
     };
 
-    const wrapper = hbs`<TaskToast @task={{task}} @onClose={{onClose}} />`;
+    const wrapper = hbs(`<TaskToast @task={{task}} @onClose={{onClose}} />`, {
+      strictMode: true,
+      scope: () => ({ TaskToast, task, onClose }),
+    });
 
     this.container = this.container.concat([wrapper]);
   }

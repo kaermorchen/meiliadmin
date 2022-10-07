@@ -1,4 +1,4 @@
-# MeiliAdmin
+# Meiliadmin
 
 Admin panel for [MeiliSearch](https://www.meilisearch.com/).
 

@@ -25,17 +25,16 @@ export const styles = {
 };
 
 export default class ButtonComponent extends Component {
-  static template = hbs`
-    <button
+  static template = hbs(
+    `<button
       disabled={{this.disabled}}
       type={{this.type}}
-      class="
-        inline-flex items-center justify-center min-w-min whitespace-nowrap
+      class="inline-flex items-center justify-center min-w-min whitespace-nowrap
         {{get sizes this.size}}
         {{get styles this.style}}
-      "
+        "
       ...attributes
-      {{on 'click' this.handleClick}}
+      {{on "click" this.handleClick}}
     >
       {{#if this.icon}}
         <this.icon
@@ -51,7 +50,12 @@ export default class ButtonComponent extends Component {
         {{this.text}}
       {{/if}}
     </button>
-  `;
+  `,
+    {
+      strictMode: true,
+      scope: () => ({ get, on, eq, sizes, styles, iconSizes }),
+    }
+  );
 
   @tracked _state = 'default';
 

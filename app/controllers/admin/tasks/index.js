@@ -1,5 +1,4 @@
 import Controller from '@ember/controller';
-import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import { taskStatuses, taskTypes } from 'meiliadmin/models/task';
 import { inject as service } from '@ember/service';
