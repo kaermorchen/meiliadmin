@@ -1,6 +1,6 @@
 # Meiliadmin
 
-Admin panel for [MeiliSearch](https://www.meilisearch.com/).
+[Meiliadmin](https://kaermorchen.github.io/meiliadmin/) is an admin panel for [Meilisearch](https://www.meilisearch.com/).
 
 ## Prerequisites
 
@@ -41,10 +41,6 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 * `ember build` (development)
 * `ember build --environment production` (production)
-
-### Deploying
-
-Specify what it takes to deploy your app.
 
 ## Further Reading / Useful Links
 

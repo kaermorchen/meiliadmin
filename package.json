@@ -3,12 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "description": "Admin panel for MeiliSearch",
+  "homepage": "https://kaermorchen.github.io/meiliadmin/",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/kaermorchen/meiliadmin.git"
   },
-  "author": {
-    "name": "Stanislav Romanov",
+  "author": "Stanislav Romanov <kaermorchen@gmail.com>",
+  "bugs": {
+    "url" : "https://github.com/kaermorchen/meiliadmin/issues",
     "email": "kaermorchen@gmail.com"
   },
   "directories": {
