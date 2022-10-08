@@ -49,3 +49,21 @@ Make use of the many generators for code, try `ember help generate` for more det
 * Development Browser Extensions
   * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
   * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
+
+## Install Meilisearch
+```bash
+# Create folder
+$ mkdir data && cd data
+
+# Install Meilisearch
+$ curl -L https://install.meilisearch.com | sh
+
+# Download a dataset
+$ curl https://docs.meilisearch.com/meteorites.json --output meteorites.json
+
+# Start Meilisearch
+$ ./meilisearch
+
+# Create a new index `meteorites` and push the dataset
+$ curl -X POST 'http://localhost:7700/indexes/meteorites/documents' -H 'Content-Type: application/json' --data-binary @meteorites.json
+```
