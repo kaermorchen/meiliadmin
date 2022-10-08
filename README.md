@@ -2,6 +2,8 @@
 
 [Meiliadmin](https://kaermorchen.github.io/meiliadmin/) is an admin panel for [Meilisearch](https://www.meilisearch.com/).
 
+[Demo](https://kaermorchen.github.io/meiliadmin/) | [Screenshots](public/screenshots/)
+
 ## Prerequisites
 
 You will need the following things properly installed on your computer.
