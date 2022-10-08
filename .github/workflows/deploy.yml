@@ -1,9 +1,8 @@
 name: Build and Deploy
 
 on:
-  push:
-    branches:
-      - master
+  release:
+    types: [published]
 
 permissions:
   contents: write
