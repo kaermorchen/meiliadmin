@@ -24,7 +24,7 @@ export default class FormIndexSettingComponent extends Component {
 
     try {
       return this.args.index
-        .updateSetting(this.args.name, JSON.parse(newValue))
+        .updateSetting(JSON.parse(newValue), this.args.name)
         .then(this.toaster.taskToast);
     } catch (error) {
       this.error = error.error || error;
