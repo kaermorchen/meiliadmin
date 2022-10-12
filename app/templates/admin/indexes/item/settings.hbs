@@ -1,3 +1,6 @@
-{{#each @model.settingNames as |name|}}
-  <IndexSetting @name={{name}} @index={{@model}} />
-{{/each}}
+<Tabs>
+  <Tab @route="admin.indexes.item.settings.index" @text="All" />
+  <Tab @route="admin.indexes.item.settings.specific" @text="Specific" />
+</Tabs>
+
+{{outlet}}

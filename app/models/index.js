@@ -86,22 +86,42 @@ export default class Index {
   }
 
   getSetting(name) {
-    return query(`${this.path}/settings/${dasherize(name)}`);
+    let url = `${this.path}/settings`;
+
+    if (name) {
+      url = `${url}/${dasherize(name)}`;
+    }
+
+    return query(url);
   }
 
-  updateSetting(name, value) {
-    const method = ['faceting', 'pagination', 'typo-tolerance'].includes(name)
-      ? 'PATCH'
-      : 'PUT';
+  updateSetting(value, name) {
+    const method =
+      name === undefined ||
+      ['faceting', 'pagination', 'typo-tolerance'].includes(name)
+        ? 'PATCH'
+        : 'PUT';
 
-    return query(`${this.path}/settings/${dasherize(name)}`, {
+    let url = `${this.path}/settings`;
+
+    if (name) {
+      url = `${url}/${dasherize(name)}`;
+    }
+
+    return query(url, {
       method: method,
       body: JSON.stringify(value),
     });
   }
 
   resetSetting(name) {
-    return query(`${this.path}/settings/${dasherize(name)}`, {
+    let url = `${this.path}/settings`;
+
+    if (name) {
+      url = `${url}/${dasherize(name)}`;
+    }
+
+    return query(url, {
       method: 'DELETE',
     });
   }

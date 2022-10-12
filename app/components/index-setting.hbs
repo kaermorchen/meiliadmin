@@ -1,5 +1,5 @@
 <div class='mb-4'>
-  <Form::Element @label={{namelize @name}} @errors={{array this.error}}>
+  <Form::Element @label={{@label}} @errors={{array this.error}}>
     <MonacoEditor
       @value={{json-stringify this.value}}
       @language='json'
