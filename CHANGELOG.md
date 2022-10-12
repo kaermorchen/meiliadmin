@@ -1,4 +1,16 @@
 
+
+## v0.2.0 (2022-10-12)
+
+#### :rocket: Enhancement
+* [#19](https://github.com/kaermorchen/meiliadmin/pull/19) Form for all settings of indexes ([@kaermorchen](https://github.com/kaermorchen))
+
+#### :bug: Bug Fix
+* [#20](https://github.com/kaermorchen/meiliadmin/pull/20) Fix toast's styles ([@kaermorchen](https://github.com/kaermorchen))
+
+#### Committers: 1
+- Stanislav Romanov ([@kaermorchen](https://github.com/kaermorchen))
+
 ## v0.1.0 (2022-10-08)
 
 #### :rocket: Enhancement
