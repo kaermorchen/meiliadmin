@@ -24,21 +24,30 @@ export default class MonacoEditorComponent extends Component {
 
   @action
   initEditor(el) {
-    // let codeModel = monaco.editor.createModel(this.args.code, this.args.language)
-    // let height = codeModel.getLineCount() * 20;
-    // el.style.height = height.toString() + "px";
+    const modelUri = monaco.Uri.parse(this.args.uri);
+    const model = monaco.editor.createModel(
+      this.args.value,
+      this.args.language,
+      modelUri
+    );
+
+    monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
+      validate: true,
+      schemas: [
+        {
+          uri: this.args.uri,
+          fileMatch: this.args.uri,
+          schema: this.args.schema,
+        },
+      ],
+    });
 
     this.editor = monaco.editor.create(el, {
-      // model: codeModel,
-      // theme: 'vs-dark',
-      // readOnly: this.readOnly,
-      // minimap: { enabled: false },
-      // wordWrap: "on",
-      // scrollBeyondLastLine: false,
-      // wrappingIndent: 'same'
-
-      value: this.args.value,
-      language: this.args.language,
+      model,
+      // theme: 'vs-dark', //TODO: add checking global theme
+      readOnly: this.args.readOnly ?? false,
+      // wordWrap: 'on',
+      // wrappingIndent: 'same',
       lineNumbers: 'off',
       roundedSelection: false,
       scrollBeyondLastLine: false,

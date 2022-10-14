@@ -1,7 +1,10 @@
 <div class='mb-4'>
-  <Form::Element @label={{@label}} @errors={{array this.error}}>
+  {{!-- TODO: add link to meilisearch's documentation --}}
+  <Form::Element @label={{namelize @setting.name}} @errors={{array this.error}}>
     <MonacoEditor
       @value={{json-stringify this.value}}
+      @schema={{@setting.schema}}
+      @uri={{@setting.uri}}
       @language='json'
       @sendValue={{this.save}}
       @invoker={{this.invoker}}

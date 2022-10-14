@@ -24,7 +24,7 @@ export default class FormIndexSettingComponent extends Component {
 
     try {
       return this.args.index
-        .updateSetting(JSON.parse(newValue), this.args.name)
+        .updateSetting(JSON.parse(newValue), this.args.setting.name)
         .then(this.toaster.taskToast);
     } catch (error) {
       this.error = error.error || error;
@@ -33,7 +33,7 @@ export default class FormIndexSettingComponent extends Component {
 
   @action
   async setInitialValue() {
-    this.value = await this.args.index.getSetting(this.args.name);
+    this.value = await this.args.index.getSetting(this.args.setting.name);
     this.error = null;
   }
 
@@ -43,7 +43,7 @@ export default class FormIndexSettingComponent extends Component {
 
     try {
       return this.args.index
-        .resetSetting(this.args.name)
+        .resetSetting(this.args.setting.name)
         .then(this.toaster.taskToast);
     } catch (error) {
       this.error = error.error || error;
