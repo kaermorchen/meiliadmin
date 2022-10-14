@@ -1,9 +1,10 @@
 import { action } from '@ember/object';
 import Component from '@glimmer/component';
-
-import 'monaco-editor/esm/vs/editor/browser/coreCommands.js';
-import 'monaco-editor/esm/vs/editor/contrib/find/browser/findController.js';
-import * as monaco from 'monaco-editor/esm/vs/editor/editor.api.js';
+import {
+  Uri,
+  editor,
+  languages,
+} from 'monaco-editor/esm/vs/editor/editor.api.js';
 
 // This is needed because the SimpleWorker.js in monaco-editor has the following code:
 // loaderConfiguration = self.requirejs.s.contexts._.config;
@@ -24,14 +25,14 @@ export default class MonacoEditorComponent extends Component {
 
   @action
   initEditor(el) {
-    const modelUri = monaco.Uri.parse(this.args.uri);
-    const model = monaco.editor.createModel(
+    const modelUri = Uri.parse(this.args.uri);
+    const model = editor.createModel(
       this.args.value,
       this.args.language,
       modelUri
     );
 
-    monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
+    languages.json.jsonDefaults.setDiagnosticsOptions({
       validate: true,
       schemas: [
         {
@@ -42,7 +43,7 @@ export default class MonacoEditorComponent extends Component {
       ],
     });
 
-    this.editor = monaco.editor.create(el, {
+    this.editor = editor.create(el, {
       model,
       // theme: 'vs-dark', //TODO: add checking global theme
       readOnly: this.args.readOnly ?? false,
