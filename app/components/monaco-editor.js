@@ -19,14 +19,21 @@ export default class MonacoEditorComponent extends Component {
     this.args.invoker?.subscribe(this);
   }
 
+  get modelUri() {
+    return Uri.parse(this.args.uri);
+  }
+
   @action
   initEditor(el) {
-    const modelUri = Uri.parse(this.args.uri);
-    const model = editor.createModel(
-      this.args.value,
-      this.args.language,
-      modelUri
-    );
+    let model = editor.getModel(this.modelUri);
+
+    if (model === null) {
+      model = editor.createModel(
+        this.args.value,
+        this.args.language,
+        this.modelUri
+      );
+    }
 
     this.editor = editor.create(el, {
       model,
@@ -74,9 +81,6 @@ export default class MonacoEditorComponent extends Component {
   }
 
   willDestroy() {
-    const modelUri = Uri.parse(this.args.uri);
-
-    this.editor?.getModel(modelUri)?.dispose();
     this.editor?.dispose();
 
     super.willDestroy(...arguments);
