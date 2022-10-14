@@ -1,20 +1,19 @@
 import { action } from '@ember/object';
 import Component from '@glimmer/component';
-// import 'monaco-editor/esm/vs/editor/browser/controller/coreCommands.js';
-// import 'monaco-editor/esm/vs/editor/contrib/find/findController.js';
-// import 'monaco-editor/esm/vs/language/json/monaco.contribution.js';
-// import * as monaco from 'monaco-editor/esm/vs/editor/editor.api.js';
-import * as monaco from 'monaco-editor';
 
-// self.MonacoEnvironment = {
-//   getWorkerUrl(_, label) {
-//     if (label === 'json') {
-//       return '/json.worker.js';
-//     }
+import 'monaco-editor/esm/vs/editor/browser/coreCommands.js';
+import 'monaco-editor/esm/vs/editor/contrib/find/browser/findController.js';
+import * as monaco from 'monaco-editor/esm/vs/editor/editor.api.js';
 
-//     return '/editor.worker.js';
-//   },
-// };
+// This is needed because the SimpleWorker.js in monaco-editor has the following code:
+// loaderConfiguration = self.requirejs.s.contexts._.config;
+window.requirejs.s = {
+  contexts: {
+    _: {
+      config: '',
+    },
+  },
+};
 
 export default class MonacoEditorComponent extends Component {
   constructor(owner, args) {
@@ -25,7 +24,19 @@ export default class MonacoEditorComponent extends Component {
 
   @action
   initEditor(el) {
+    // let codeModel = monaco.editor.createModel(this.args.code, this.args.language)
+    // let height = codeModel.getLineCount() * 20;
+    // el.style.height = height.toString() + "px";
+
     this.editor = monaco.editor.create(el, {
+      // model: codeModel,
+      // theme: 'vs-dark',
+      // readOnly: this.readOnly,
+      // minimap: { enabled: false },
+      // wordWrap: "on",
+      // scrollBeyondLastLine: false,
+      // wrappingIndent: 'same'
+
       value: this.args.value,
       language: this.args.language,
       lineNumbers: 'off',

@@ -2,7 +2,7 @@
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const { Webpack } = require('@embroider/webpack');
-const path = require('path');
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 function isProduction() {
   return EmberApp.env() === 'production';
@@ -41,15 +41,6 @@ module.exports = function (defaults) {
         },
       },
       webpackConfig: {
-        entry: {
-          'editor.worker': 'monaco-editor/esm/vs/editor/editor.worker.js',
-          'json.worker': 'monaco-editor/esm/vs/language/json/json.worker.js',
-        },
-        output: {
-          globalObject: 'self',
-          filename: '[name].js',
-          // path: path.resolve(__dirname, 'dist', 'assets'),
-        },
         module: {
           rules: [
             { test: /\.ttf$/, type: 'asset/resource' },
@@ -72,6 +63,11 @@ module.exports = function (defaults) {
             },
           ],
         },
+        plugins: [
+          new MonacoWebpackPlugin({
+            languages: ['json'],
+          }),
+        ],
       },
     },
     extraPublicTrees: [],
