@@ -151,7 +151,6 @@ export const indexSettings = [
 });
 
 export const allIndexSettings = {
-  name: '',
   uri: urlSettingsPrefix,
   fileMatch: [urlSettingsPrefix],
   schema: {
