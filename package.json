@@ -79,7 +79,7 @@
     "ember-resources": "^5.4.0",
     "ember-set-helper": "^2.0.1",
     "ember-simple-auth": "^4.2.2",
-    "ember-sortable": "^4.0.0",
+    "ember-sortable": "^4.0.2",
     "ember-source": "~4.7.0",
     "ember-template-imports": "^3.1.1",
     "ember-template-lint": "^4.14.0",
