@@ -1,48 +1,17 @@
 import query from '../utils/query';
 import Document from './document';
 import { dasherize } from '@ember/string';
-
-// const settingNames = [
-//   'displayedAttributes',
-//   'distinctAttribute',
-//   'faceting',
-//   'filterableAttributes',
-//   'pagination',
-//   'rankingRules',
-//   'searchableAttributes',
-//   'sortableAttributes',
-//   'stopWords',
-//   'synonyms',
-//   'typoTolerance',
-// ];
-
-const settings = [];
-const createSettingOption = (name, schema) => {
-  const uri = `https://docs.meilisearch.com/reference/api/settings/${dasherize(
-    name
-  )}`;
-
-  schema['$id'] = uri;
-
-  settings.push({ name, schema, uri });
-};
-
-createSettingOption('stopWords', {
-  type: 'array',
-  items: {
-    type: 'string',
-  },
-  uniqueItems: true,
-});
+import { indexSettings, allIndexSettings } from '../common';
 
 export default class Index {
+  settings = indexSettings;
+  allSettings = allIndexSettings;
+
   constructor(data = {}) {
     for (const key in data) {
       this[key] = data[key];
     }
   }
-
-  settings = settings;
 
   get path() {
     return `indexes/${this.uid}`;
@@ -52,6 +21,7 @@ export default class Index {
     return Boolean(!this.uid);
   }
 
+  // TODO: replace to getSetting
   getSortableAttributes() {
     return query(`${this.path}/settings/sortable-attributes`);
   }

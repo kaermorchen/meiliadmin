@@ -1,10 +1,6 @@
 import { action } from '@ember/object';
 import Component from '@glimmer/component';
-import {
-  Uri,
-  editor,
-  languages,
-} from 'monaco-editor/esm/vs/editor/editor.api.js';
+import { Uri, editor } from 'monaco-editor/esm/vs/editor/editor.api.js';
 
 // This is needed because the SimpleWorker.js in monaco-editor has the following code:
 // loaderConfiguration = self.requirejs.s.contexts._.config;
@@ -31,17 +27,6 @@ export default class MonacoEditorComponent extends Component {
       this.args.language,
       modelUri
     );
-
-    languages.json.jsonDefaults.setDiagnosticsOptions({
-      validate: true,
-      schemas: [
-        {
-          uri: this.args.uri,
-          fileMatch: this.args.uri,
-          schema: this.args.schema,
-        },
-      ],
-    });
 
     this.editor = editor.create(el, {
       model,
@@ -89,6 +74,9 @@ export default class MonacoEditorComponent extends Component {
   }
 
   willDestroy() {
+    const modelUri = Uri.parse(this.args.uri);
+
+    this.editor?.getModel(modelUri)?.dispose();
     this.editor?.dispose();
 
     super.willDestroy(...arguments);
