@@ -1,6 +1,20 @@
 import { action } from '@ember/object';
 import Component from '@glimmer/component';
-import * as monaco from 'monaco-editor/esm/vs/editor/editor.api.js';
+// import 'monaco-editor/esm/vs/editor/browser/controller/coreCommands.js';
+// import 'monaco-editor/esm/vs/editor/contrib/find/findController.js';
+// import 'monaco-editor/esm/vs/language/json/monaco.contribution.js';
+// import * as monaco from 'monaco-editor/esm/vs/editor/editor.api.js';
+import * as monaco from 'monaco-editor';
+
+// self.MonacoEnvironment = {
+//   getWorkerUrl(_, label) {
+//     if (label === 'json') {
+//       return '/json.worker.js';
+//     }
+
+//     return '/editor.worker.js';
+//   },
+// };
 
 export default class MonacoEditorComponent extends Component {
   constructor(owner, args) {
