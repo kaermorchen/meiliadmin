@@ -6750,10 +6750,10 @@ ember-simple-auth@^4.2.2:
     ember-cookies "^0.5.0"
     silent-error "^1.0.0"
 
-ember-sortable@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/ember-sortable/-/ember-sortable-4.0.0.tgz#32dec14110913d40840eb4defdf7bea082334a18"
-  integrity sha512-fRR7946IXwIt7SPMqRN2dJ3Gxaw6ioF/fzv/yzOPRBAaLMRRy3U8BGqCM0bNnE8IRuhRd63ox98Y0aFIkK43Hw==
+ember-sortable@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/ember-sortable/-/ember-sortable-4.0.2.tgz#acbae0f0fbd29f69271ded7cc4fc1fa0f620597f"
+  integrity sha512-zkgA7slpq9abiZ3WvYxklIAPOT/sm2qhRM2SGu5KwXdk7q5W88BOZunbGHPsAcSZQyQSuMpVyBHgBPfQS7b9gw==
   dependencies:
     "@ember/render-modifiers" "^1.0.2 || ^2.0.0"
     "@ember/test-waiters" "^3.0.1"
