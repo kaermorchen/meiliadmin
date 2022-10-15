@@ -17,6 +17,20 @@ export default class Index {
     return Boolean(!this.uid);
   }
 
+  get documentSetting() {
+    const uri = 'https://docs.meilisearch.com/reference/api/documents';
+
+    return {
+      uri: uri,
+      fileMatch: [uri],
+      schema: {
+        $id: uri,
+        type: 'object',
+        required: [this.primaryKey],
+      },
+    };
+  }
+
   // TODO: replace to getSetting
   getSortableAttributes() {
     return query(`${this.path}/settings/sortable-attributes`);

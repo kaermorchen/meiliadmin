@@ -82,6 +82,14 @@ export default class MonacoEditorComponent extends Component {
       }
     );
     registerDestructor(this, onDidContentSizeChangeHandler.dispose);
+
+    // Validation
+    const onDidChangeMarkersHandler = editor.onDidChangeMarkers(() => {
+      this.args.onDidValidation?.(
+        editor.getModelMarkers().map((item) => item.message)
+      );
+    });
+    registerDestructor(this, onDidChangeMarkersHandler.dispose);
   }
 
   @action

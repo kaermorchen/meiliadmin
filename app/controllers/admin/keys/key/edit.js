@@ -8,7 +8,7 @@ export default class AdminKeysKeyEditController extends Controller {
   @service router;
   @service toaster;
 
-  @tracked error;
+  @tracked errors;
   @tracked isSaving;
 
   constructor() {
@@ -21,7 +21,7 @@ export default class AdminKeysKeyEditController extends Controller {
   async save(value) {
     const isNew = this.model.isNew;
 
-    this.error = null;
+    this.errors = [];
     this.isSaving = true;
 
     try {
@@ -37,7 +37,7 @@ export default class AdminKeysKeyEditController extends Controller {
 
       await this.router.transitionTo('admin.keys.key.index', key.uid);
     } catch (error) {
-      this.error = error.error || error;
+      this.errors = [error.error || error];
     } finally {
       this.isSaving = false;
     }

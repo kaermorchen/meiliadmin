@@ -2,8 +2,7 @@ import Route from '@ember/routing/route';
 import { dasherize } from '@ember/string';
 
 const urlSettingsPrefix = 'https://docs.meilisearch.com/reference/api/settings';
-
-export const settings = [
+const settings = [
   {
     name: 'displayedAttributes',
     schema: {

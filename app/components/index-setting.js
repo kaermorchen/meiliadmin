@@ -3,8 +3,6 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import ActionInvoker from '../lib/action-invoker';
 import { inject as service } from '@ember/service';
-import { editor } from 'monaco-editor/esm/vs/editor/editor.api.js';
-import { registerDestructor } from '@ember/destroyable';
 
 export default class FormIndexSettingComponent extends Component {
   @service toaster;
@@ -16,12 +14,6 @@ export default class FormIndexSettingComponent extends Component {
     super(...arguments);
 
     this.invoker = new ActionInvoker();
-
-    // Checking errors
-    const onDidChangeMarkersHandler = editor.onDidChangeMarkers(() => {
-      this.errors = editor.getModelMarkers().map((item) => item.message);
-    });
-    registerDestructor(this, onDidChangeMarkersHandler.dispose);
   }
 
   @action
@@ -40,12 +32,12 @@ export default class FormIndexSettingComponent extends Component {
   @action
   async setValue() {
     this.value = await this.args.index.getSetting(this.args.setting.name);
-    this.error = [];
+    this.errors = [];
   }
 
   @action
   reset() {
-    this.error = [];
+    this.errors = [];
 
     try {
       return this.args.index
