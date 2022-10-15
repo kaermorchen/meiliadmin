@@ -3,12 +3,15 @@
 {{/if}}
 
 <div class='mb-4'>
-  <Form::Element @errors={{array this.error}}>
+  <Form::Element @errors={{this.errors}}>
     <MonacoEditor
       @value={{json-stringify @model.editablePayload}}
+      @uri={{@model.setting.uri}}
       @language='json'
+      @schema={{@model.setting}}
       @sendValue={{this.save}}
       @invoker={{this.invoker}}
+      @onDidValidation={{set this 'errors'}}
     />
   </Form::Element>
 

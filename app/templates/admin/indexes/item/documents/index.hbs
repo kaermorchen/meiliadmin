@@ -19,7 +19,7 @@
   {{! sort }}
   {{#if this.sortValues.length}}
     <Form::Listbox
-      @listboxLabel={{'Sort: '}}
+      @prefixValue={{'Sort: '}}
       @value={{nu-co this.sort 'none'}}
       @values={{this.sortValues}}
       @onChange={{set this 'sort'}}
@@ -30,7 +30,7 @@
 
   {{! limit }}
   <Form::Listbox
-    @listboxLabel={{'Limit: '}}
+    @prefixValue={{'Limit: '}}
     @value={{nu-co this.limit 'none'}}
     @values={{array 20 50 100 500}}
     @onChange={{set this 'limit'}}

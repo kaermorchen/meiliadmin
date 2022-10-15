@@ -8,7 +8,7 @@ export default class AdminIndexesItemDocumentsDocumentEditController extends Con
   @service router;
   @service toaster;
 
-  @tracked error;
+  @tracked errors = [];
   @tracked isSaving;
 
   constructor() {
@@ -19,7 +19,7 @@ export default class AdminIndexesItemDocumentsDocumentEditController extends Con
 
   @action
   async save(value) {
-    this.error = null;
+    this.errors = [];
 
     this.isSaving = true;
 
@@ -30,7 +30,7 @@ export default class AdminIndexesItemDocumentsDocumentEditController extends Con
 
       this.toaster.taskToast(task);
     } catch (error) {
-      this.error = error.error || error;
+      this.errors = [error.error || error];
     }
   }
 

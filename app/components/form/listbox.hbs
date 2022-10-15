@@ -7,21 +7,36 @@
 >
   <Listbox @value={{@value}} @onChange={{@onChange}} as |listbox|>
     <listbox.Button
-      class='inline-flex items-center px-3 py-2 border rounded cursor-pointer'
+      class='relative w-full inline-flex items-center py-2 pl-3 pr-10 border rounded cursor-pointer'
     >
-      {{@listboxLabel}}
-      {{@value}}
+      {{#if (has-block)}}
+        {{yield @value}}
+      {{else}}
+        {{@prefixValue}}
+        {{@value}}
+      {{/if}}
+
+      <span
+        class='absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none'
+      >
+        <Icons::MenuSwap class='fill-base-3' />
+      </span>
     </listbox.Button>
     <listbox.Options
-      class='absolute z-dropdown right-0 w-28 min-w-min mt-2 py-1 origin-top-right bg-base-7 border rounded shadow-sm outline-none'
+      class='absolute w-full z-dropdown right-0 min-w-min mt-2 py-1 origin-top-right bg-base-7 border rounded shadow-sm outline-none'
       as |options|
     >
       {{#each @values as |item|}}
         <options.Option @value={{item}} class='outline-none'>
           <div
-            class='flex items-center px-4 py-2 text-sm hover:bg-base-6 hover:text-base-1 cursor-pointer'
+            class='flex items-center px-4 py-2 text-sm hover:bg-base-6 hover:text-base-1 cursor-pointer
+              {{if (eq item @value) "bg-base-6 text-base-1"}}'
           >
-            {{item}}
+            {{#if (has-block)}}
+              {{yield item}}
+            {{else}}
+              {{item}}
+            {{/if}}
           </div>
         </options.Option>
       {{/each}}

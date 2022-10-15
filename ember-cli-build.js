@@ -2,6 +2,7 @@
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const { Webpack } = require('@embroider/webpack');
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 function isProduction() {
   return EmberApp.env() === 'production';
@@ -62,6 +63,11 @@ module.exports = function (defaults) {
             },
           ],
         },
+        plugins: [
+          new MonacoWebpackPlugin({
+            languages: ['json'],
+          }),
+        ],
       },
     },
     extraPublicTrees: [],

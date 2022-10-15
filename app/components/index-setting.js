@@ -8,45 +8,43 @@ export default class FormIndexSettingComponent extends Component {
   @service toaster;
 
   @tracked value;
-  @tracked error;
+  @tracked errors = [];
 
   constructor() {
     super(...arguments);
 
     this.invoker = new ActionInvoker();
-
-    this.setInitialValue();
   }
 
   @action
   save(newValue) {
-    this.error = null;
+    this.errors = [];
 
     try {
       return this.args.index
-        .updateSetting(JSON.parse(newValue), this.args.name)
+        .updateSetting(JSON.parse(newValue), this.args.setting.name)
         .then(this.toaster.taskToast);
     } catch (error) {
-      this.error = error.error || error;
+      this.errors = [error.error || error];
     }
   }
 
   @action
-  async setInitialValue() {
-    this.value = await this.args.index.getSetting(this.args.name);
-    this.error = null;
+  async setValue() {
+    this.value = await this.args.index.getSetting(this.args.setting.name);
+    this.errors = [];
   }
 
   @action
   reset() {
-    this.error = null;
+    this.errors = [];
 
     try {
       return this.args.index
-        .resetSetting(this.args.name)
+        .resetSetting(this.args.setting.name)
         .then(this.toaster.taskToast);
     } catch (error) {
-      this.error = error.error || error;
+      this.errors = [error.error || error];
     }
   }
 }

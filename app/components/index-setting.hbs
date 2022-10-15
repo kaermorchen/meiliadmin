@@ -1,10 +1,18 @@
-<div class='mb-4'>
-  <Form::Element @label={{@label}} @errors={{array this.error}}>
+<div
+  class='mb-4'
+  {{did-insert this.setValue}}
+  {{did-update this.setValue @setting}}
+>
+  {{! TODO: add link to meilisearch's documentation }}
+  <Form::Element @label={{@label}} @errors={{this.errors}}>
     <MonacoEditor
       @value={{json-stringify this.value}}
+      @uri={{@setting.uri}}
       @language='json'
+      @schema={{@setting}}
       @sendValue={{this.save}}
       @invoker={{this.invoker}}
+      @onDidValidation={{set this 'errors'}}
       class='h-40'
     />
   </Form::Element>
@@ -15,6 +23,6 @@
     @size='sm'
     @onClick={{fn this.invoker.invoke 'invokeSendValue'}}
   />
-  <Button @text='Cancel' @size='sm' @onClick={{this.setInitialValue}} />
+  <Button @text='Cancel' @size='sm' @onClick={{this.setValue}} />
   <Button @text='Reset' @size='sm' @onClick={{this.reset}} />
 </div>
