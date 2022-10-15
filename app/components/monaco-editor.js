@@ -1,6 +1,7 @@
 import { action } from '@ember/object';
 import Component from '@glimmer/component';
 import { Uri, editor } from 'monaco-editor/esm/vs/editor/editor.api.js';
+import { registerDestructor } from '@ember/destroyable';
 
 // This is needed because the SimpleWorker.js in monaco-editor has the following code:
 // loaderConfiguration = self.requirejs.s.contexts._.config;
@@ -57,15 +58,29 @@ export default class MonacoEditorComponent extends Component {
     // }
 
     // Autoresize height of element
-    this.editor.onDidContentSizeChange(() => {
-      const contentHeight = Math.min(
-        Math.max(this.editor.getContentHeight(), 160),
-        420
+    const onDidContentSizeChangeHandler = this.editor.onDidContentSizeChange(
+      () => {
+        const contentHeight = Math.min(
+          Math.max(this.editor.getContentHeight(), 160),
+          420
+        );
+
+        el.style.height = `${contentHeight + 1}px`;
+        this.editor.layout();
+      }
+    );
+    registerDestructor(this, onDidContentSizeChangeHandler.dispose);
+
+    const onDidChangeMarkersHandler = editor.onDidChangeMarkers((uris) => {
+      const error = uris.find(
+        (item) => item.toString() === this.modelUri.toString()
       );
 
-      el.style.height = `${contentHeight + 1}px`;
-      this.editor.layout();
+      this.args.onDidChangeValidation?.(
+        error ? 'Error: the value is invalid' : false
+      );
     });
+    registerDestructor(this, onDidChangeMarkersHandler.dispose);
   }
 
   @action

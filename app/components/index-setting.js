@@ -49,4 +49,9 @@ export default class FormIndexSettingComponent extends Component {
       this.error = error.error || error;
     }
   }
+
+  @action
+  onDidChangeValidation(error) {
+    this.error = error;
+  }
 }
