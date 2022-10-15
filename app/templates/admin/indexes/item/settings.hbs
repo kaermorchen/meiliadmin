@@ -3,9 +3,9 @@
   @values={{this.model.settings}}
   @onChange={{set this.model 'currentSetting'}}
   class="w-72"
-  as |setting|
+  as |item|
 >
-  {{if setting.name (namelize setting.name) 'All settings'}}
+  {{if item.name (namelize item.name) 'All settings'}}
 </Form::Listbox>
 
 <IndexSetting
