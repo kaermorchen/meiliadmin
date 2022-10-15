@@ -1,6 +1,10 @@
 import { action } from '@ember/object';
 import Component from '@glimmer/component';
-import { Uri, editor } from 'monaco-editor/esm/vs/editor/editor.api.js';
+import {
+  Uri,
+  editor,
+  languages,
+} from 'monaco-editor/esm/vs/editor/editor.api.js';
 import { registerDestructor } from '@ember/destroyable';
 
 // This is needed because the SimpleWorker.js in monaco-editor has the following code:
@@ -13,6 +17,28 @@ window.requirejs.s = {
   },
 };
 
+function getModelUri(uri) {
+  return Uri.parse(uri);
+}
+
+function getModel(value, language, uri, schema) {
+  const modelUri = getModelUri(uri);
+  let model = editor.getModel(modelUri);
+
+  if (model === null) {
+    model = editor.createModel(value, language, modelUri);
+
+    if (language === 'json' && schema) {
+      languages.json.jsonDefaults.setDiagnosticsOptions({
+        validate: true,
+        schemas: [schema],
+      });
+    }
+  }
+
+  return model;
+}
+
 export default class MonacoEditorComponent extends Component {
   constructor(owner, args) {
     super(owner, args);
@@ -20,21 +46,14 @@ export default class MonacoEditorComponent extends Component {
     this.args.invoker?.subscribe(this);
   }
 
-  get modelUri() {
-    return Uri.parse(this.args.uri);
-  }
-
   @action
   initEditor(el) {
-    let model = editor.getModel(this.modelUri);
-
-    if (model === null) {
-      model = editor.createModel(
-        this.args.value,
-        this.args.language,
-        this.modelUri
-      );
-    }
+    const model = getModel(
+      this.args.value,
+      this.args.language,
+      this.args.uri,
+      this.args.schema
+    );
 
     this.editor = editor.create(el, {
       model,
@@ -50,13 +69,6 @@ export default class MonacoEditorComponent extends Component {
       },
     });
 
-    // Add onChange event
-    // if (this.args.onChange) {
-    //   this.editor.onDidChangeModelContent(() => {
-    //     this.args.onChange(this.editor.getValue());
-    //   });
-    // }
-
     // Autoresize height of element
     const onDidContentSizeChangeHandler = this.editor.onDidContentSizeChange(
       () => {
@@ -71,22 +83,32 @@ export default class MonacoEditorComponent extends Component {
     );
     registerDestructor(this, onDidContentSizeChangeHandler.dispose);
 
-    const onDidChangeMarkersHandler = editor.onDidChangeMarkers((uris) => {
-      const error = uris.find(
-        (item) => item.toString() === this.modelUri.toString()
-      );
+    // const onDidChangeMarkersHandler = editor.onDidChangeMarkers((uris) => {
+    //   const error = uris.find((item) => item.toString() === this.args.uri);
 
-      this.args.onDidChangeValidation?.(
-        error ? 'Error: the value is invalid' : false
-      );
-    });
-    registerDestructor(this, onDidChangeMarkersHandler.dispose);
+    //   this.args.onDidChangeValidation?.(
+    //     error ? 'Error: the value is invalid' : false
+    //   );
+    // });
+    // registerDestructor(this, onDidChangeMarkersHandler.dispose);
   }
 
   @action
-  updateValue(el, [value]) {
-    if (value !== this.editor.getValue()) {
-      this.editor?.setValue(value);
+  updateValue() {
+    const model = this.editor.getModel();
+
+    if (model.uri.toString() !== this.args.uri) {
+      const newModel = getModel(
+        this.args.value,
+        this.args.language,
+        this.args.uri,
+        this.args.schema
+      );
+
+      this.editor.setModel(newModel);
+      model.dispose();
+    } else {
+      this.editor.setValue(this.args.value);
     }
   }
 
@@ -96,7 +118,8 @@ export default class MonacoEditorComponent extends Component {
   }
 
   willDestroy() {
-    this.editor?.dispose();
+    this.editor.getModel()?.dispose();
+    this.editor.dispose();
 
     super.willDestroy(...arguments);
   }

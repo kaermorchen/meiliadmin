@@ -14,8 +14,6 @@ export default class FormIndexSettingComponent extends Component {
     super(...arguments);
 
     this.invoker = new ActionInvoker();
-
-    this.setInitialValue();
   }
 
   @action
@@ -32,7 +30,7 @@ export default class FormIndexSettingComponent extends Component {
   }
 
   @action
-  async setInitialValue() {
+  async setValue() {
     this.value = await this.args.index.getSetting(this.args.setting.name);
     this.error = null;
   }
