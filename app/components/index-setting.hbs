@@ -4,7 +4,7 @@
   {{did-update this.setValue @setting}}
 >
   {{! TODO: add link to meilisearch's documentation }}
-  <Form::Element @label={{@label}} @errors={{array this.error}}>
+  <Form::Element @label={{@label}} @errors={{this.errors}}>
     <MonacoEditor
       @value={{json-stringify this.value}}
       @uri={{@setting.uri}}
@@ -12,7 +12,6 @@
       @schema={{@setting}}
       @sendValue={{this.save}}
       @invoker={{this.invoker}}
-      @onDidChangeValidation={{this.onDidChangeValidation}}
       class='h-40'
     />
   </Form::Element>

@@ -1,12 +1,8 @@
 import query from '../utils/query';
 import Document from './document';
 import { dasherize } from '@ember/string';
-import { indexSettings, allIndexSettings } from '../common';
 
 export default class Index {
-  settings = indexSettings;
-  allSettings = allIndexSettings;
-
   constructor(data = {}) {
     for (const key in data) {
       this[key] = data[key];

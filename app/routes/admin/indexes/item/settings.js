@@ -143,18 +143,11 @@ export const settings = [
       additionalProperties: false,
     },
   },
-].map((item) => {
-  item.uri = item.schema.$id = `${urlSettingsPrefix}/${dasherize(item.name)}`;
-  item.fileMatch = [item.uri];
+];
 
-  return item;
-});
-
+// All settings
 settings.unshift({
-  uri: urlSettingsPrefix,
-  fileMatch: [urlSettingsPrefix],
   schema: {
-    $id: urlSettingsPrefix,
     type: 'object',
     properties: settings.reduce((properties, item) => {
       properties[item.name] = item.schema;
@@ -163,6 +156,19 @@ settings.unshift({
     }, {}),
     additionalProperties: false,
   },
+});
+
+settings.forEach((item) => {
+  let uri = urlSettingsPrefix;
+
+  if (item.name) {
+    uri += `/${dasherize(item.name)}`;
+  }
+
+  item.uri = item.schema.$id = uri;
+  item.fileMatch = [uri];
+
+  return item;
 });
 
 export default class AdminIndexesItemSettingsRoute extends Route {

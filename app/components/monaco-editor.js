@@ -82,15 +82,6 @@ export default class MonacoEditorComponent extends Component {
       }
     );
     registerDestructor(this, onDidContentSizeChangeHandler.dispose);
-
-    // const onDidChangeMarkersHandler = editor.onDidChangeMarkers((uris) => {
-    //   const error = uris.find((item) => item.toString() === this.args.uri);
-
-    //   this.args.onDidChangeValidation?.(
-    //     error ? 'Error: the value is invalid' : false
-    //   );
-    // });
-    // registerDestructor(this, onDidChangeMarkersHandler.dispose);
   }
 
   @action
