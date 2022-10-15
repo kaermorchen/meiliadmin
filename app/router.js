@@ -10,7 +10,7 @@ Router.map(function () {
   this.route('admin', function () {
     this.route('indexes', function () {
       this.route('item', { path: '/:index_uid' }, function () {
-        this.route('settings', function () {});
+        this.route('settings');
         this.route('info');
         this.route('edit');
         this.route('documents', function () {

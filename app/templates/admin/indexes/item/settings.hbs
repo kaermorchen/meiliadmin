@@ -1,6 +1,14 @@
-{{!-- <Tabs>
-  <Tab @route="admin.indexes.item.settings.index" @text="All" />
-  <Tab @route="admin.indexes.item.settings.specific" @text="Specific" />
-</Tabs> --}}
+<Form::Listbox
+  @value={{this.model.currentSetting}}
+  @values={{this.model.settings}}
+  @onChange={{set this.model 'currentSetting'}}
+  class="w-72"
+  as |setting|
+>
+  {{if setting.name (namelize setting.name) 'All settings'}}
+</Form::Listbox>
 
-{{outlet}}
+<IndexSetting
+  @setting={{this.model.currentSetting}}
+  @index={{this.model.index}}
+/>

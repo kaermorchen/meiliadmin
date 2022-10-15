@@ -150,7 +150,7 @@ export const settings = [
   return item;
 });
 
-const allSettings = {
+settings.unshift({
   uri: urlSettingsPrefix,
   fileMatch: [urlSettingsPrefix],
   schema: {
@@ -163,17 +163,9 @@ const allSettings = {
     }, {}),
     additionalProperties: false,
   },
-};
+});
 
-settings.unshift(allSettings);
-
-// TODO: do it async, not in main stream
-// languages.json.jsonDefaults.setDiagnosticsOptions({
-//   validate: true,
-//   schemas: indexSettings,
-// });
-
-export default class AdminIndexesItemSettingsIndexRoute extends Route {
+export default class AdminIndexesItemSettingsRoute extends Route {
   model() {
     const index = this.modelFor('admin.indexes.item');
 
