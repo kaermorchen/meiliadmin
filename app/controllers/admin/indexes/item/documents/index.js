@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
-import { Magnify, Table, MapOutline } from 'ember-mdi';
+import { Magnify, Table, /* MapOutline, */ CodeJson } from 'ember-mdi';
 
 export default class AdminIndexesItemDocumentsIndexController extends Controller {
   @tracked q = null;
@@ -19,7 +19,7 @@ export default class AdminIndexesItemDocumentsIndexController extends Controller
   // key: view name, value: icon
   views = {
     table: Table,
-    map: MapOutline,
+    json: CodeJson,
   };
 
   get attributes() {

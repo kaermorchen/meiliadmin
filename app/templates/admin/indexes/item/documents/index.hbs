@@ -60,81 +60,103 @@
 </div> --}}
 
 {{#if (gt @model.data.estimatedTotalHits 0)}}
-  <SimpleTable
-    @data={{@model.data.hits}}
-    @sortingProp={{this.sort}}
-    @onSort={{this.onSort}}
-    class='w-full'
-    as |Column data|
-  >
-    {{#let
-      (array @model.index.uid (get data @model.index.primaryKey))
-      as |models|
-    }}
-      {{#each this.attributes as |field|}}
-        {{#if (not (includes field this.hiddenFields))}}
-          <Column
-            @name={{capitalize field}}
-            @prop={{field}}
-            @sortable={{includes field @model.sortableAttributes}}
-          >
-            {{#let (get data field) as |value|}}
-              {{#if (eq @model.index.primaryKey field)}}
+  <div class='mb-4'>
+    {{#each-in this.views as |key icon|}}
+      <Button
+        @icon={{icon}}
+        class='w-auto'
+        @onClick={{set this 'dataView'}}
+        @value={{key}}
+      />
+    {{/each-in}}
+  </div>
+
+  {{#if (eq this.dataView 'table')}}
+    <SimpleTable
+      @data={{@model.data.hits}}
+      @sortingProp={{this.sort}}
+      @onSort={{this.onSort}}
+      class='w-full'
+      as |Column data|
+    >
+      {{#let
+        (array @model.index.uid (get data @model.index.primaryKey))
+        as |models|
+      }}
+        {{#each this.attributes as |field|}}
+          {{#if (not (includes field this.hiddenFields))}}
+            <Column
+              @name={{capitalize field}}
+              @prop={{field}}
+              @sortable={{includes field @model.sortableAttributes}}
+            >
+              {{#let (get data field) as |value|}}
+                {{#if (eq @model.index.primaryKey field)}}
+                  <LinkTo
+                    @route='admin.indexes.item.documents.document'
+                    @models={{models}}
+                  >{{value}}</LinkTo>
+                {{else if (eq (type-of value) 'object')}}
+                  {{json-stringify value}}
+                {{else}}
+                  {{value}}
+                {{/if}}
+              {{/let}}
+            </Column>
+          {{/if}}
+        {{/each}}
+        <Column class='relative'>
+          {{#let
+            'flex items-center px-4 py-2 text-inherit no-underline text-sm hover:bg-base-6 hover:text-base-1'
+            as |linkClasses|
+          }}
+            <Menu as |menu|>
+              <menu.Button class='inline-flex items-center'>
+                <Icons::DotsHorizontal />
+              </menu.Button>
+              <menu.Items
+                class='absolute z-dropdown right-0 w-28 mt-2 py-1 origin-top-right bg-base-7 border rounded shadow-sm outline-none'
+              >
                 <LinkTo
                   @route='admin.indexes.item.documents.document'
                   @models={{models}}
-                >{{value}}</LinkTo>
-              {{else if (eq (type-of value) 'object')}}
-                {{json-stringify value}}
-              {{else}}
-                {{value}}
-              {{/if}}
-            {{/let}}
-          </Column>
-        {{/if}}
-      {{/each}}
-      <Column class='relative'>
-        {{#let
-          'flex items-center px-4 py-2 text-inherit no-underline text-sm hover:bg-base-6 hover:text-base-1'
-          as |linkClasses|
-        }}
-          <Menu as |menu|>
-            <menu.Button class='inline-flex items-center'>
-              <Icons::DotsHorizontal />
-            </menu.Button>
-            <menu.Items
-              class='absolute z-dropdown right-0 w-28 mt-2 py-1 origin-top-right bg-base-7 border rounded shadow-sm outline-none'
-            >
-              <LinkTo
-                @route='admin.indexes.item.documents.document'
-                @models={{models}}
-                class={{linkClasses}}
-              >
-                <Icons::FileDocumentOutline @size={{18}} class='mr-1' />
-                View
-              </LinkTo>
-              <LinkTo
-                @route='admin.indexes.item.documents.document.edit'
-                @models={{models}}
-                class={{linkClasses}}
-              >
-                <Icons::PencilOutline @size={{18}} class='mr-1' />
-                Edit
-              </LinkTo>
-              <LinkTo
-                @route='admin.indexes.item.documents.document.delete'
-                @models={{models}}
-                class={{linkClasses}}
-              >
-                <Icons::TrashCanOutline @size={{18}} class='mr-1' />
-                Delete
-              </LinkTo>
-            </menu.Items>
-          </Menu>
-        {{/let}}
-      </Column>
-    {{/let}}
-  </SimpleTable>
+                  class={{linkClasses}}
+                >
+                  <Icons::FileDocumentOutline @size={{18}} class='mr-1' />
+                  View
+                </LinkTo>
+                <LinkTo
+                  @route='admin.indexes.item.documents.document.edit'
+                  @models={{models}}
+                  class={{linkClasses}}
+                >
+                  <Icons::PencilOutline @size={{18}} class='mr-1' />
+                  Edit
+                </LinkTo>
+                <LinkTo
+                  @route='admin.indexes.item.documents.document.delete'
+                  @models={{models}}
+                  class={{linkClasses}}
+                >
+                  <Icons::TrashCanOutline @size={{18}} class='mr-1' />
+                  Delete
+                </LinkTo>
+              </menu.Items>
+            </Menu>
+          {{/let}}
+        </Column>
+      {{/let}}
+    </SimpleTable>
+  {{else if (eq this.dataView 'json')}}
+    {{#each @model.data.hits as |item|}}
+      <MonacoEditor
+        @value={{json-stringify item}}
+        @language='json'
+        @readOnly={{true}}
+        class='mb-4'
+      />
+    {{/each}}
+  {{/if}}
 
   <div class='flex items-center'>
     {{this.fromHits}}

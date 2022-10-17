@@ -40,7 +40,7 @@ export default class ButtonComponent extends Component {
         <this.icon
           @spin={{this.isPending}}
           @size={{get iconSizes this.size}}
-          class="mr-1"
+          class={{if this.text "mr-1"}}
         />
       {{/if}}
 
