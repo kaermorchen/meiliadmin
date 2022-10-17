@@ -6,6 +6,7 @@ import {
   languages,
 } from 'monaco-editor/esm/vs/editor/editor.api.js';
 import { registerDestructor } from '@ember/destroyable';
+import { inject as service } from '@ember/service';
 
 // This is needed because the SimpleWorker.js in monaco-editor has the following code:
 // loaderConfiguration = self.requirejs.s.contexts._.config;
@@ -40,16 +41,39 @@ function getModel(value, language, uri, schema) {
 }
 
 export default class MonacoEditorComponent extends Component {
+  @service session;
+
   constructor(owner, args) {
     super(owner, args);
 
     this.args.invoker?.subscribe(this);
   }
 
+  get theme() {
+    if (this.args.theme) {
+      return this.args.theme;
+    } else if (this.session.data.theme === 'dark') {
+      return 'vs-dark';
+    } else if (this.session.data.theme === 'light') {
+      return 'vs-light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      return 'vs-dark';
+    } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+      return 'vs-light';
+    }
+
+    return null;
+  }
+
+  @action
+  themeDidChange() {
+    editor.setTheme(this.theme);
+  }
+
   @action
   initEditor(el) {
     const options = {
-      // theme: 'vs-dark', //TODO: add checking global theme
+      theme: this.theme,
       readOnly: this.args.readOnly ?? false,
       language: this.args.language,
       // wordWrap: 'on',

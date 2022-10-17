@@ -1,6 +1,7 @@
 <div
   {{did-insert this.initEditor}}
   {{did-update this.updateValue @value @uri}}
+  {{did-update this.themeDidChange this.session.data.theme}}
   class='border'
   ...attributes
 ></div>

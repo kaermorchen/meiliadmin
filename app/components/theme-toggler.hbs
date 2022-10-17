@@ -1,10 +1,16 @@
-<div class='grid grid-cols-3 gap-1 p-1 rounded bg-base-6' ...attributes>
+<div
+  class='grid grid-cols-3 gap-1 p-1 rounded bg-base-6'
+  {{did-insert this.themeDidChange this.session.data.theme}}
+  {{did-update this.themeDidChange this.session.data.theme}}
+  ...attributes
+>
   {{#each this.themes as |item|}}
-    {{#let (eq item.id this.theme) as |selected|}}
+    {{#let (eq item.id this.session.data.theme) as |selected|}}
       <Button
         @text={{item.name}}
         @icon={{item.icon}}
-        @onClick={{fn this.changeTheme item.id}}
+        @value={{item.id}}
+        @onClick={{this.changeTheme}}
         @size='sm'
         class='border-none {{if selected "bg-base-7 shadow-sm"}}'
       />
