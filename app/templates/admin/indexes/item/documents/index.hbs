@@ -66,7 +66,8 @@
         @icon={{icon}}
         @onClick={{set this 'dataView'}}
         @value={{key}}
-        class='w-auto rounded-none first:rounded-l last:rounded-r {{if (eq this.dataView key) "text-primary"}}'
+        class='w-auto rounded-none first:rounded-l last:rounded-r
+          {{if (eq this.dataView key) "text-primary"}}'
       />
     {{/each-in}}
   </div>
@@ -118,7 +119,7 @@
                 class='absolute z-dropdown right-0 w-28 mt-2 py-1 origin-top-right bg-base-7 border rounded shadow-sm outline-none'
               >
                 <LinkTo
-                  @route='admin.indexes.item.documents.document'
+                  @route='admin.indexes.item.documents.document.index'
                   @models={{models}}
                   class={{linkClasses}}
                 >
@@ -148,12 +149,51 @@
       {{/let}}
     </SimpleTable>
   {{else if (eq this.dataView 'json')}}
-    {{#each @model.data.hits as |item|}}
+
+    {{#each @model.data.hits as |data|}}
       <MonacoEditor
-        @value={{json-stringify item}}
+        @value={{json-stringify data}}
         @language='json'
         @readOnly={{true}}
         @minHeight={{0}}
+        @actions={{array
+          (hash
+            label='Go to View page'
+            id='go-to-view-page'
+            contextMenuGroupId='navigation'
+            contextMenuOrder=1
+            run=(fn
+              this.goToPage
+              'admin.indexes.item.documents.document.index'
+              @model.index
+              data
+            )
+          )
+          (hash
+            label='Go to Edit page'
+            id='go-to-edit-page'
+            contextMenuGroupId='navigation'
+            contextMenuOrder=2
+            run=(fn
+              this.goToPage
+              'admin.indexes.item.documents.document.edit'
+              @model.index
+              data
+            )
+          )
+          (hash
+            label='Go to Delete page'
+            id='go-to-delete-page'
+            contextMenuGroupId='navigation'
+            contextMenuOrder=3
+            run=(fn
+              this.goToPage
+              'admin.indexes.item.documents.document.delete'
+              @model.index
+              data
+            )
+          )
+        }}
         class='mb-4'
       />
     {{/each}}

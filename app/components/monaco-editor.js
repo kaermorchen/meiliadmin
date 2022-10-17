@@ -78,6 +78,13 @@ export default class MonacoEditorComponent extends Component {
 
     this.editor = editor.create(el, options);
 
+    if (Array.isArray(this.args.actions)) {
+      this.args.actions.forEach((item) => {
+        // assign because item can be a proxy object
+        this.editor.addAction(Object.assign({}, item));
+      });
+    }
+
     const minHeight = this.args.minHeight ?? 160;
     const maxHeight = this.args.maxHeight ?? 420;
     // Autoresize height of element
