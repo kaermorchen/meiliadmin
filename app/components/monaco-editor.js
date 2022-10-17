@@ -48,17 +48,10 @@ export default class MonacoEditorComponent extends Component {
 
   @action
   initEditor(el) {
-    const model = getModel(
-      this.args.value,
-      this.args.language,
-      this.args.uri,
-      this.args.schema
-    );
-
-    this.editor = editor.create(el, {
-      model,
+    const options = {
       // theme: 'vs-dark', //TODO: add checking global theme
       readOnly: this.args.readOnly ?? false,
+      language: this.args.language,
       // wordWrap: 'on',
       // wrappingIndent: 'same',
       lineNumbers: 'off',
@@ -67,14 +60,39 @@ export default class MonacoEditorComponent extends Component {
       minimap: {
         enabled: false,
       },
-    });
+      scrollbar: {
+        alwaysConsumeMouseWheel: false,
+      },
+    };
 
+    if (this.args.uri) {
+      options.model = getModel(
+        this.args.value,
+        this.args.language,
+        this.args.uri,
+        this.args.schema
+      );
+    } else if (this.args.value) {
+      options.value = this.args.value;
+    }
+
+    this.editor = editor.create(el, options);
+
+    if (Array.isArray(this.args.actions)) {
+      this.args.actions.forEach((item) => {
+        // assign because item can be a proxy object
+        this.editor.addAction(Object.assign({}, item));
+      });
+    }
+
+    const minHeight = this.args.minHeight ?? 160;
+    const maxHeight = this.args.maxHeight ?? 420;
     // Autoresize height of element
     const onDidContentSizeChangeHandler = this.editor.onDidContentSizeChange(
       () => {
         const contentHeight = Math.min(
-          Math.max(this.editor.getContentHeight(), 160),
-          420
+          Math.max(this.editor.getContentHeight(), minHeight),
+          maxHeight
         );
 
         el.style.height = `${contentHeight + 1}px`;

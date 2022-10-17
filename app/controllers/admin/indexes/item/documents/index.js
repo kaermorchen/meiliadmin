@@ -1,9 +1,12 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
-import { Magnify, Table, MapOutline } from 'ember-mdi';
+import { Magnify, Table, /* MapOutline, */ CodeJson } from 'ember-mdi';
+import { inject as service } from '@ember/service';
 
 export default class AdminIndexesItemDocumentsIndexController extends Controller {
+  @service router;
+
   @tracked q = null;
   @tracked limit = 20;
   @tracked page = 1;
@@ -19,7 +22,7 @@ export default class AdminIndexesItemDocumentsIndexController extends Controller
   // key: view name, value: icon
   views = {
     table: Table,
-    map: MapOutline,
+    json: CodeJson,
   };
 
   get attributes() {
@@ -63,6 +66,11 @@ export default class AdminIndexesItemDocumentsIndexController extends Controller
     });
 
     return result;
+  }
+
+  @action
+  goToPage(route, index, id) {
+    this.router.transitionTo(route, index, id);
   }
 
   @action

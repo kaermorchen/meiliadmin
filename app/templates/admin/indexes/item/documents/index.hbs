@@ -60,81 +60,144 @@
 </div> --}}
 
 {{#if (gt @model.data.estimatedTotalHits 0)}}
-  <SimpleTable
-    @data={{@model.data.hits}}
-    @sortingProp={{this.sort}}
-    @onSort={{this.onSort}}
-    class='w-full'
-    as |Column data|
-  >
-    {{#let
-      (array @model.index.uid (get data @model.index.primaryKey))
-      as |models|
-    }}
-      {{#each this.attributes as |field|}}
-        {{#if (not (includes field this.hiddenFields))}}
-          <Column
-            @name={{capitalize field}}
-            @prop={{field}}
-            @sortable={{includes field @model.sortableAttributes}}
-          >
-            {{#let (get data field) as |value|}}
-              {{#if (eq @model.index.primaryKey field)}}
-                <LinkTo
-                  @route='admin.indexes.item.documents.document'
-                  @models={{models}}
-                >{{value}}</LinkTo>
-              {{else if (eq (type-of value) 'object')}}
-                {{json-stringify value}}
-              {{else}}
-                {{value}}
-              {{/if}}
-            {{/let}}
-          </Column>
-        {{/if}}
-      {{/each}}
-      <Column class='relative'>
-        {{#let
-          'flex items-center px-4 py-2 text-inherit no-underline text-sm hover:bg-base-6 hover:text-base-1'
-          as |linkClasses|
-        }}
-          <Menu as |menu|>
-            <menu.Button class='inline-flex items-center'>
-              <Icons::DotsHorizontal />
-            </menu.Button>
-            <menu.Items
-              class='absolute z-dropdown right-0 w-28 mt-2 py-1 origin-top-right bg-base-7 border rounded shadow-sm outline-none'
+  <div class='flex items-center -space-x-px mb-4' role='group'>
+    {{#each-in this.views as |key icon|}}
+      <Button
+        @icon={{icon}}
+        @onClick={{set this 'dataView'}}
+        @value={{key}}
+        class='w-auto rounded-none first:rounded-l last:rounded-r
+          {{if (eq this.dataView key) "text-primary"}}'
+      />
+    {{/each-in}}
+  </div>
+
+  {{#if (eq this.dataView 'table')}}
+    <SimpleTable
+      @data={{@model.data.hits}}
+      @sortingProp={{this.sort}}
+      @onSort={{this.onSort}}
+      class='w-full'
+      as |Column data|
+    >
+      {{#let
+        (array @model.index.uid (get data @model.index.primaryKey))
+        as |models|
+      }}
+        {{#each this.attributes as |field|}}
+          {{#if (not (includes field this.hiddenFields))}}
+            <Column
+              @name={{capitalize field}}
+              @prop={{field}}
+              @sortable={{includes field @model.sortableAttributes}}
             >
-              <LinkTo
-                @route='admin.indexes.item.documents.document'
-                @models={{models}}
-                class={{linkClasses}}
+              {{#let (get data field) as |value|}}
+                {{#if (eq @model.index.primaryKey field)}}
+                  <LinkTo
+                    @route='admin.indexes.item.documents.document'
+                    @models={{models}}
+                  >{{value}}</LinkTo>
+                {{else if (eq (type-of value) 'object')}}
+                  {{json-stringify value}}
+                {{else}}
+                  {{value}}
+                {{/if}}
+              {{/let}}
+            </Column>
+          {{/if}}
+        {{/each}}
+        <Column class='relative'>
+          {{#let
+            'flex items-center px-4 py-2 text-inherit no-underline text-sm hover:bg-base-6 hover:text-base-1'
+            as |linkClasses|
+          }}
+            <Menu as |menu|>
+              <menu.Button class='inline-flex items-center'>
+                <Icons::DotsHorizontal />
+              </menu.Button>
+              <menu.Items
+                class='absolute z-dropdown right-0 w-28 mt-2 py-1 origin-top-right bg-base-7 border rounded shadow-sm outline-none'
               >
-                <Icons::FileDocumentOutline @size={{18}} class='mr-1' />
-                View
-              </LinkTo>
-              <LinkTo
-                @route='admin.indexes.item.documents.document.edit'
-                @models={{models}}
-                class={{linkClasses}}
-              >
-                <Icons::PencilOutline @size={{18}} class='mr-1' />
-                Edit
-              </LinkTo>
-              <LinkTo
-                @route='admin.indexes.item.documents.document.delete'
-                @models={{models}}
-                class={{linkClasses}}
-              >
-                <Icons::TrashCanOutline @size={{18}} class='mr-1' />
-                Delete
-              </LinkTo>
-            </menu.Items>
-          </Menu>
-        {{/let}}
-      </Column>
-    {{/let}}
-  </SimpleTable>
+                <LinkTo
+                  @route='admin.indexes.item.documents.document.index'
+                  @models={{models}}
+                  class={{linkClasses}}
+                >
+                  <Icons::FileDocumentOutline @size={{18}} class='mr-1' />
+                  View
+                </LinkTo>
+                <LinkTo
+                  @route='admin.indexes.item.documents.document.edit'
+                  @models={{models}}
+                  class={{linkClasses}}
+                >
+                  <Icons::PencilOutline @size={{18}} class='mr-1' />
+                  Edit
+                </LinkTo>
+                <LinkTo
+                  @route='admin.indexes.item.documents.document.delete'
+                  @models={{models}}
+                  class={{linkClasses}}
+                >
+                  <Icons::TrashCanOutline @size={{18}} class='mr-1' />
+                  Delete
+                </LinkTo>
+              </menu.Items>
+            </Menu>
+          {{/let}}
+        </Column>
+      {{/let}}
+    </SimpleTable>
+  {{else if (eq this.dataView 'json')}}
+
+    {{#each @model.data.hits as |data|}}
+      <MonacoEditor
+        @value={{json-stringify data}}
+        @language='json'
+        @readOnly={{true}}
+        @minHeight={{0}}
+        @actions={{array
+          (hash
+            label='Go to View page'
+            id='go-to-view-page'
+            contextMenuGroupId='navigation'
+            contextMenuOrder=1
+            run=(fn
+              this.goToPage
+              'admin.indexes.item.documents.document.index'
+              @model.index
+              (get data @model.index.primaryKey)
+            )
+          )
+          (hash
+            label='Go to Edit page'
+            id='go-to-edit-page'
+            contextMenuGroupId='navigation'
+            contextMenuOrder=2
+            run=(fn
+              this.goToPage
+              'admin.indexes.item.documents.document.edit'
+              @model.index
+              (get data @model.index.primaryKey)
+            )
+          )
+          (hash
+            label='Go to Delete page'
+            id='go-to-delete-page'
+            contextMenuGroupId='navigation'
+            contextMenuOrder=3
+            run=(fn
+              this.goToPage
+              'admin.indexes.item.documents.document.delete'
+              @model.index
+              (get data @model.index.primaryKey)
+            )
+          )
+        }}
+        class='mb-4'
+      />
+    {{/each}}
+  {{/if}}
 
   <div class='flex items-center'>
     {{this.fromHits}}
