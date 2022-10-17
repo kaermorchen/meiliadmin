@@ -4,20 +4,31 @@
 
 [Demo](https://kaermorchen.github.io/meiliadmin/) | [Screenshots](public/screenshots/)
 
+## Features
+
+- Search documents
+- Indexes management
+- Documents management
+- Keys management
+- Dumps management
+- Document's views: table, json
+- Validation for json settings
+- Dark mode
+
 ## Prerequisites
 
 You will need the following things properly installed on your computer.
 
 * [Git](https://git-scm.com/)
-* [Node.js](https://nodejs.org/) (with npm)
+* [Volta](https://volta.sh/) or [Node.js](https://nodejs.org/) (with `yarn`)
 * [Ember CLI](https://cli.emberjs.com/release/)
-* [Google Chrome](https://google.com/chrome/)
+* `Firefox` or `Google Chrome` (`Firefox` is better 😛)
 
 ## Installation
 
 * `git clone <repository-url>` this repository
 * `cd meiliadmin`
-* `npm install`
+* `yarn install`
 
 ## Running / Development
 
@@ -36,8 +47,8 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Linting
 
-* `npm run lint`
-* `npm run lint:fix`
+* `yarn lint`
+* `yarn lint:fix`
 
 ### Building
 
@@ -52,7 +63,7 @@ Make use of the many generators for code, try `ember help generate` for more det
   * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
   * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
 
-## Install Meilisearch
+## Install dummy Meilisearch instance
 ```bash
 # Create folder
 $ mkdir data && cd data
