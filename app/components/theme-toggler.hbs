@@ -1,7 +1,7 @@
 <div
   class='grid grid-cols-3 gap-1 p-1 rounded bg-base-6'
-  {{did-insert this.didChangeTheme this.session.data.theme}}
-  {{did-update this.didChangeTheme this.session.data.theme}}
+  {{did-insert this.themeDidChange this.session.data.theme}}
+  {{did-update this.themeDidChange this.session.data.theme}}
   ...attributes
 >
   {{#each this.themes as |item|}}

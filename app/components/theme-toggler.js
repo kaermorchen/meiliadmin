@@ -20,7 +20,7 @@ export default class ThemeTogglerComponent extends Component {
   }
 
   @action
-  didChangeTheme(el, [theme]) {
+  themeDidChange(el, [theme]) {
     if (theme) {
       document.documentElement.dataset.theme = theme;
     } else {
