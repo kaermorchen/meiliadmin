@@ -60,6 +60,9 @@ export default class MonacoEditorComponent extends Component {
       minimap: {
         enabled: false,
       },
+      scrollbar: {
+        alwaysConsumeMouseWheel: false,
+      },
     };
 
     if (this.args.uri) {
@@ -75,12 +78,14 @@ export default class MonacoEditorComponent extends Component {
 
     this.editor = editor.create(el, options);
 
+    const minHeight = this.args.minHeight ?? 160;
+    const maxHeight = this.args.maxHeight ?? 420;
     // Autoresize height of element
     const onDidContentSizeChangeHandler = this.editor.onDidContentSizeChange(
       () => {
         const contentHeight = Math.min(
-          Math.max(this.editor.getContentHeight(), 160),
-          420
+          Math.max(this.editor.getContentHeight(), minHeight),
+          maxHeight
         );
 
         el.style.height = `${contentHeight + 1}px`;
