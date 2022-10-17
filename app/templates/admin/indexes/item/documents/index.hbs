@@ -166,7 +166,7 @@
               this.goToPage
               'admin.indexes.item.documents.document.index'
               @model.index
-              data
+              (get data @model.index.primaryKey)
             )
           )
           (hash
@@ -178,7 +178,7 @@
               this.goToPage
               'admin.indexes.item.documents.document.edit'
               @model.index
-              data
+              (get data @model.index.primaryKey)
             )
           )
           (hash
@@ -190,7 +190,7 @@
               this.goToPage
               'admin.indexes.item.documents.document.delete'
               @model.index
-              data
+              (get data @model.index.primaryKey)
             )
           )
         }}
