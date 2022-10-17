@@ -60,13 +60,13 @@
 </div> --}}
 
 {{#if (gt @model.data.estimatedTotalHits 0)}}
-  <div class='mb-4'>
+  <div class='flex items-center -space-x-px mb-4' role='group'>
     {{#each-in this.views as |key icon|}}
       <Button
         @icon={{icon}}
-        class='w-auto'
         @onClick={{set this 'dataView'}}
         @value={{key}}
+        class='w-auto rounded-none first:rounded-l last:rounded-r {{if (eq this.dataView key) "text-primary"}}'
       />
     {{/each-in}}
   </div>
