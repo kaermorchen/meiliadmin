@@ -1,5 +1,22 @@
 
 
+
+## v0.3.0 (2022-10-17)
+
+#### :rocket: Enhancement
+* [#24](https://github.com/kaermorchen/meiliadmin/pull/24) Added dark mode for monaco editors ([@kaermorchen](https://github.com/kaermorchen))
+* [#23](https://github.com/kaermorchen/meiliadmin/pull/23) Add JSON view for documents ([@kaermorchen](https://github.com/kaermorchen))
+* [#22](https://github.com/kaermorchen/meiliadmin/pull/22) Added validations for json settings ([@kaermorchen](https://github.com/kaermorchen))
+
+#### :memo: Documentation
+* [#25](https://github.com/kaermorchen/meiliadmin/pull/25) Add features to README ([@kaermorchen](https://github.com/kaermorchen))
+
+#### :house: Internal
+* [#21](https://github.com/kaermorchen/meiliadmin/pull/21) Bump ember-sortable ([@kaermorchen](https://github.com/kaermorchen))
+
+#### Committers: 1
+- Stanislav Romanov ([@kaermorchen](https://github.com/kaermorchen))
+
 ## v0.2.0 (2022-10-12)
 
 #### :rocket: Enhancement
