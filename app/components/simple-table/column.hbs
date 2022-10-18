@@ -9,8 +9,8 @@
     {{on 'click' this.handleSort}}
   >
     <span class='inline-flex items-center'>
-      {{#if (has-block 'name')}}
-        {{yield to='name'}}
+      {{#if (has-block 'head')}}
+        {{yield to='head'}}
       {{else if @headComponent}}
         <@headComponent @data={{@data}} />
       {{else if @name}}

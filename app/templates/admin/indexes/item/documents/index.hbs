@@ -36,15 +36,6 @@
     @onChange={{set this 'limit'}}
     class='sm:ml-4 sm:flex-none'
   />
-
-  {{! table settings }}
-  <Form::TableSettings
-    @onChangeSort={{this.sortAttibutes}}
-    @items={{this.allAttributes}}
-    @isItemChecked={{this.isItemChecked}}
-    @onToggleItem={{this.toggleAttribute}}
-    class='sm:ml-4 sm:flex-none'
-  />
 </div>
 
 {{!-- <div class='flex items-center mb-4'>
@@ -107,44 +98,54 @@
           {{/if}}
         {{/each}}
         <Column class='relative'>
-          {{#let
-            'flex items-center px-4 py-2 text-inherit no-underline text-sm hover:bg-base-6 hover:text-base-1'
-            as |linkClasses|
-          }}
-            <Menu as |menu|>
-              <menu.Button class='inline-flex items-center'>
-                <Icons::DotsHorizontal />
-              </menu.Button>
-              <menu.Items
-                class='absolute z-dropdown right-0 w-28 mt-2 py-1 origin-top-right bg-base-7 border rounded shadow-sm outline-none'
-              >
-                <LinkTo
-                  @route='admin.indexes.item.documents.document.index'
-                  @models={{models}}
-                  class={{linkClasses}}
+          <:head>
+            <Form::TableSettings
+              @onChangeSort={{this.sortAttibutes}}
+              @items={{this.allAttributes}}
+              @isItemChecked={{this.isItemChecked}}
+              @onToggleItem={{this.toggleAttribute}}
+            />
+          </:head>
+          <:default>
+            {{#let
+              'flex items-center px-4 py-2 text-inherit no-underline text-sm hover:bg-base-6 hover:text-base-1'
+              as |linkClasses|
+            }}
+              <Menu as |menu|>
+                <menu.Button class='inline-flex items-center'>
+                  <Icons::DotsHorizontal />
+                </menu.Button>
+                <menu.Items
+                  class='absolute z-dropdown right-0 w-28 mt-2 py-1 origin-top-right bg-base-7 border rounded shadow-sm outline-none'
                 >
-                  <Icons::FileDocumentOutline @size={{18}} class='mr-1' />
-                  View
-                </LinkTo>
-                <LinkTo
-                  @route='admin.indexes.item.documents.document.edit'
-                  @models={{models}}
-                  class={{linkClasses}}
-                >
-                  <Icons::PencilOutline @size={{18}} class='mr-1' />
-                  Edit
-                </LinkTo>
-                <LinkTo
-                  @route='admin.indexes.item.documents.document.delete'
-                  @models={{models}}
-                  class={{linkClasses}}
-                >
-                  <Icons::TrashCanOutline @size={{18}} class='mr-1' />
-                  Delete
-                </LinkTo>
-              </menu.Items>
-            </Menu>
-          {{/let}}
+                  <LinkTo
+                    @route='admin.indexes.item.documents.document.index'
+                    @models={{models}}
+                    class={{linkClasses}}
+                  >
+                    <Icons::FileDocumentOutline @size={{18}} class='mr-1' />
+                    View
+                  </LinkTo>
+                  <LinkTo
+                    @route='admin.indexes.item.documents.document.edit'
+                    @models={{models}}
+                    class={{linkClasses}}
+                  >
+                    <Icons::PencilOutline @size={{18}} class='mr-1' />
+                    Edit
+                  </LinkTo>
+                  <LinkTo
+                    @route='admin.indexes.item.documents.document.delete'
+                    @models={{models}}
+                    class={{linkClasses}}
+                  >
+                    <Icons::TrashCanOutline @size={{18}} class='mr-1' />
+                    Delete
+                  </LinkTo>
+                </menu.Items>
+              </Menu>
+            {{/let}}
+          </:default>
         </Column>
       {{/let}}
     </SimpleTable>
