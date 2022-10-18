@@ -1,6 +1,46 @@
 import Route from '@ember/routing/route';
 import { hash } from 'rsvp';
 
+const uri = 'https://docs.meilisearch.com/reference/api/search';
+const searchSchema = {
+  name: 'search',
+  uri,
+  fileMatch: [uri],
+  schema: {
+    $id: uri,
+    type: 'object',
+    properties: {
+      q: {
+        type: 'string',
+      },
+      // minWordSizeForTypos: {
+      //   type: 'object',
+      //   properties: {
+      //     oneTypo: { type: 'integer' },
+      //     twoTypos: { type: 'integer' },
+      //   },
+      //   additionalProperties: false,
+      // },
+      // disableOnWords: {
+      //   type: 'array',
+      //   items: {
+      //     type: 'string',
+      //   },
+      //   uniqueItems: true,
+      // },
+      // disableOnAttributes: {
+      //   type: 'array',
+      //   items: {
+      //     type: 'string',
+      //   },
+      //   uniqueItems: true,
+      // },
+    },
+    additionalProperties: false,
+    required: ['q'],
+  },
+};
+
 export default class AdminIndexesItemDocumentsIndexRoute extends Route {
   queryParams = {
     q: { refreshModel: true },
@@ -25,6 +65,8 @@ export default class AdminIndexesItemDocumentsIndexRoute extends Route {
 
     return hash({
       index,
+      searchSchema,
+      search: { q: '' },
       data: index.search(q, options),
       sortableAttributes: index.getSortableAttributes(),
       displayedAttributes: index.getSetting('displayed-attributes'),

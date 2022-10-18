@@ -11,6 +11,7 @@ export default class AdminIndexesItemDocumentsIndexController extends Controller
   @tracked limit = 20;
   @tracked page = 1;
   @tracked dataView = 'table';
+  @tracked isAdvancedSearch = false;
   @tracked sort;
   @tracked hiddenFields = [];
   @tracked attributesToRetrieve = [];

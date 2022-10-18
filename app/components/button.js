@@ -14,8 +14,8 @@ export const sizes = {
 
 export const iconSizes = {
   sm: 18,
-  md: 20,
-  lg: 22,
+  md: 24,
+  lg: 26,
 };
 
 export const styles = {

@@ -1,34 +1,70 @@
-<div class='sm:flex sm:flex-nowrap'>
-  {{! q }}
-  <Form::Input
-    @placeholder='Search'
-    @prefixIcon={{this.Magnify}}
-    @value={{this.q}}
-    @onChange={{this.searchTextChanged}}
-    class='sm:grow'
-  />
+<div class='flex items-center'>
+  <ButtonGroup>
+    {{#each-in this.views as |key icon|}}
+      <Button
+        @icon={{icon}}
+        @onClick={{set this 'dataView'}}
+        @value={{key}}
+        class='w-auto rounded-none first:rounded-l last:rounded-r
+          {{if (eq this.dataView key) "text-primary"}}'
+      />
+    {{/each-in}}
+  </ButtonGroup>
 
-  {{! sort }}
-  {{#if this.sortValues.length}}
+  <Button
+    class='mb-4 ml-4 {{if this.isAdvancedSearch "text-primary"}}'
+    @onClick={{toggle-action 'isAdvancedSearch' this}}
+  >
+    Advanced search
+  </Button>
+</div>
+
+{{#if this.isAdvancedSearch}}
+  <Form::Element @errors={{this.errors}}>
+    <MonacoEditor
+      @value={{json-stringify @model.search}}
+      @language='json'
+      @uri={{@model.searchSchema.uri}}
+      @schema={{@model.searchSchema}}
+      {{!-- @sendValue={{this.save}} --}}
+      {{!-- @invoker={{this.invoker}} --}}
+      @onDidValidation={{set this 'errors'}}
+      class='mb-4'
+    />
+  </Form::Element>
+{{else}}
+  <div class='sm:flex sm:flex-nowrap'>
+    {{! q }}
+    <Form::Input
+      @placeholder='Search'
+      @prefixIcon={{this.Magnify}}
+      @value={{this.q}}
+      @onChange={{this.searchTextChanged}}
+      class='sm:grow'
+    />
+
+    {{! sort }}
+    {{#if this.sortValues.length}}
+      <Form::Listbox
+        @prefixValue={{'Sort: '}}
+        @value={{nu-co this.sort 'none'}}
+        @values={{this.sortValues}}
+        @onChange={{set this 'sort'}}
+        @allowClear={{true}}
+        class='sm:ml-4 sm:flex-none'
+      />
+    {{/if}}
+
+    {{! limit }}
     <Form::Listbox
-      @prefixValue={{'Sort: '}}
-      @value={{nu-co this.sort 'none'}}
-      @values={{this.sortValues}}
-      @onChange={{set this 'sort'}}
-      @allowClear={{true}}
+      @prefixValue={{'Limit: '}}
+      @value={{nu-co this.limit 'none'}}
+      @values={{array 20 50 100 500}}
+      @onChange={{set this 'limit'}}
       class='sm:ml-4 sm:flex-none'
     />
-  {{/if}}
-
-  {{! limit }}
-  <Form::Listbox
-    @prefixValue={{'Limit: '}}
-    @value={{nu-co this.limit 'none'}}
-    @values={{array 20 50 100 500}}
-    @onChange={{set this 'limit'}}
-    class='sm:ml-4 sm:flex-none'
-  />
-</div>
+  </div>
+{{/if}}
 
 {{!-- <div class='flex items-center mb-4'>
   <div class='flex items-center ml-auto'>
@@ -43,18 +79,6 @@
 </div> --}}
 
 {{#if (gt @model.data.estimatedTotalHits 0)}}
-  <div class='flex items-center -space-x-px mb-4' role='group'>
-    {{#each-in this.views as |key icon|}}
-      <Button
-        @icon={{icon}}
-        @onClick={{set this 'dataView'}}
-        @value={{key}}
-        class='w-auto rounded-none first:rounded-l last:rounded-r
-          {{if (eq this.dataView key) "text-primary"}}'
-      />
-    {{/each-in}}
-  </div>
-
   {{#if (eq this.dataView 'table')}}
     <SimpleTable
       @data={{@model.data.hits}}
@@ -142,7 +166,6 @@
       {{/let}}
     </SimpleTable>
   {{else if (eq this.dataView 'json')}}
-
     {{#each @model.data.hits as |data|}}
       <MonacoEditor
         @value={{json-stringify data}}
