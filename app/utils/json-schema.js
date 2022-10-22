@@ -17,3 +17,5 @@ class Property {
 export const type = (type) => {
   return new Property(type);
 };
+
+export default { type };

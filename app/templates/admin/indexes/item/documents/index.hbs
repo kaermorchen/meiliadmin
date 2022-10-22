@@ -22,16 +22,23 @@
 {{#if this.isAdvancedSearch}}
   <Form::Element @errors={{this.errors}}>
     <MonacoEditor
-      @value={{json-stringify this.search}}
+      @value={{json-stringify this.searchObject}}
       @language='json'
       @uri={{@model.searchSchema.uri}}
       @schema={{@model.searchSchema}}
-      {{!-- @sendValue={{this.save}} --}}
-      {{!-- @invoker={{this.invoker}} --}}
+      @sendValue={{this.search}}
+      @invoker={{this.invoker}}
       @onDidValidation={{set this 'errors'}}
-      class='mb-4'
     />
   </Form::Element>
+
+  <Button
+    @text='Search'
+    @style='primary'
+    @onClick={{fn this.invoker.invoke 'invokeSendValue'}}
+    class='mb-4'
+    disabled={{or this.isValidating this.errors.length}}
+  />
 {{else}}
   <div class='sm:flex sm:flex-nowrap'>
     {{! q }}

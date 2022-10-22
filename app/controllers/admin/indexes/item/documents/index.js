@@ -3,6 +3,7 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import { Magnify, Table, /* MapOutline, */ CodeJson } from 'ember-mdi';
 import { inject as service } from '@ember/service';
+import ActionInvoker from 'meiliadmin/lib/action-invoker';
 
 export default class AdminIndexesItemDocumentsIndexController extends Controller {
   @service router;
@@ -16,6 +17,7 @@ export default class AdminIndexesItemDocumentsIndexController extends Controller
   @tracked hiddenFields = [];
   @tracked dataView = 'table';
   @tracked isAdvancedSearch = false;
+  @tracked errors;
 
   queryParams = ['q', 'limit', 'offset', 'sort', 'attributesToRetrieve'];
 
@@ -27,7 +29,13 @@ export default class AdminIndexesItemDocumentsIndexController extends Controller
     json: CodeJson,
   };
 
-  get search() {
+  constructor() {
+    super(...arguments);
+
+    this.invoker = new ActionInvoker();
+  }
+
+  get searchObject() {
     return this.queryParams.reduce((properties, item) => {
       properties[item] = this[item];
 
@@ -118,5 +126,14 @@ export default class AdminIndexesItemDocumentsIndexController extends Controller
   @action
   sortAttibutes(items) {
     this.attributesToRetrieve = items.filter(this.isItemChecked);
+  }
+
+  @action
+  search(value) {
+    const obj = JSON.parse(value);
+
+    this.queryParams.forEach((item) => {
+      this[item] = obj[item];
+    });
   }
 }
