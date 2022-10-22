@@ -65,9 +65,7 @@ export default class Index {
     });
   }
 
-  search(q, options = {}) {
-    options.q = q;
-
+  search(options) {
     return query(`${this.path}/search`, {
       method: 'POST',
       body: JSON.stringify(options),

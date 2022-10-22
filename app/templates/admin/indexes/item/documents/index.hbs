@@ -22,7 +22,7 @@
 {{#if this.isAdvancedSearch}}
   <Form::Element @errors={{this.errors}}>
     <MonacoEditor
-      @value={{json-stringify @model.search}}
+      @value={{json-stringify this.search}}
       @language='json'
       @uri={{@model.searchSchema.uri}}
       @schema={{@model.searchSchema}}

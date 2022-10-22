@@ -7,16 +7,17 @@ import { inject as service } from '@ember/service';
 export default class AdminIndexesItemDocumentsIndexController extends Controller {
   @service router;
 
-  @tracked q = null;
+  @tracked q = '';
   @tracked limit = 20;
-  @tracked page = 1;
-  @tracked dataView = 'table';
-  @tracked isAdvancedSearch = false;
-  @tracked sort;
-  @tracked hiddenFields = [];
+  @tracked offset = 0;
+  @tracked sort = null;
   @tracked attributesToRetrieve = [];
 
-  queryParams = ['q', 'page', 'limit', 'sort'];
+  @tracked hiddenFields = [];
+  @tracked dataView = 'table';
+  @tracked isAdvancedSearch = false;
+
+  queryParams = ['q', 'limit', 'offset', 'sort', 'attributesToRetrieve'];
 
   Magnify = Magnify;
 
@@ -25,6 +26,14 @@ export default class AdminIndexesItemDocumentsIndexController extends Controller
     table: Table,
     json: CodeJson,
   };
+
+  get search() {
+    return this.queryParams.reduce((properties, item) => {
+      properties[item] = this[item];
+
+      return properties;
+    }, {});
+  }
 
   get attributes() {
     if (this.attributesToRetrieve.length > 0) {
