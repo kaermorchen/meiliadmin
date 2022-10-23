@@ -27,25 +27,27 @@
 </div>
 
 {{#if (eq this.mode 'advanced')}}
-  <Form::Element @errors={{this.errors}}>
-    <MonacoEditor
-      @value={{json-stringify this.searchObject}}
-      @language='json'
-      @uri={{@model.searchSchema.uri}}
-      @schema={{@model.searchSchema}}
-      @sendValue={{this.search}}
-      @invoker={{this.invoker}}
-      @onDidValidation={{set this 'errors'}}
-    />
-  </Form::Element>
+  <div>
+    <Form::Element @errors={{this.errors}}>
+      <MonacoEditor
+        @value={{json-stringify this.searchObject}}
+        @language='json'
+        @uri={{@model.searchSchema.uri}}
+        @schema={{@model.searchSchema}}
+        @sendValue={{this.search}}
+        @invoker={{this.invoker}}
+        @onDidValidation={{set this 'errors'}}
+      />
+    </Form::Element>
 
-  <Button
-    @text='Search'
-    @style='primary'
-    @onClick={{fn this.invoker.invoke 'invokeSendValue'}}
-    class='mb-4'
-    disabled={{or this.isValidating this.errors.length}}
-  />
+    <Button
+      @text='Search'
+      @style='primary'
+      @onClick={{fn this.invoker.invoke 'invokeSendValue'}}
+      class='mb-4'
+      disabled={{this.errors.length}}
+    />
+  </div>
 {{else if (eq this.mode 'simple')}}
   <div class='sm:flex sm:flex-nowrap'>
     {{! q }}

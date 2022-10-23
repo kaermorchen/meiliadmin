@@ -9,10 +9,20 @@ export default class AdminIndexesItemDocumentsIndexController extends Controller
   @service router;
 
   @tracked q = '';
-  @tracked limit = 20;
   @tracked offset = 0;
+  @tracked limit = 20;
+  @tracked filter = null;
+  @tracked facets = null;
+  @tracked attributesToRetrieve = ['*'];
+  @tracked attributesToCrop = null;
+  @tracked cropLength = 10;
+  @tracked cropMarker = '…';
+  @tracked attributesToHighlight = null;
+  @tracked highlightPreTag = '<em>';
+  @tracked highlightPostTag = '</em>';
+  @tracked showMatchesPosition = false;
   @tracked sort = null;
-  @tracked attributesToRetrieve = [];
+  @tracked matchingStrategy = 'last';
 
   @tracked hiddenFields = [];
   @tracked dataView = 'table';
@@ -20,7 +30,23 @@ export default class AdminIndexesItemDocumentsIndexController extends Controller
   @tracked isAdvancedSearch = false;
   @tracked errors;
 
-  queryParams = ['q', 'limit', 'offset', 'sort', 'attributesToRetrieve'];
+  queryParams = [
+    'q',
+    'offset',
+    'limit',
+    'filter',
+    'facets',
+    'attributesToRetrieve',
+    'attributesToCrop',
+    'cropLength',
+    'cropMarker',
+    'attributesToHighlight',
+    'highlightPreTag',
+    'highlightPostTag',
+    'showMatchesPosition',
+    'sort',
+    'matchingStrategy',
+  ];
 
   Magnify = Magnify;
 

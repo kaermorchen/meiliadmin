@@ -35,7 +35,7 @@ const searchSchema = {
       sort: {
         oneOf: [type('array').items('string'), type('null')],
       },
-      matchingStrategy: type('string'),
+      matchingStrategy: { enum: ['last', 'all'] },
     },
     additionalProperties: false,
     required: ['q'],
