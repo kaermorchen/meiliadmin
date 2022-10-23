@@ -16,6 +16,7 @@ export default class AdminIndexesItemDocumentsIndexController extends Controller
 
   @tracked hiddenFields = [];
   @tracked dataView = 'table';
+  @tracked mode = 'simple';
   @tracked isAdvancedSearch = false;
   @tracked errors;
 
@@ -28,6 +29,8 @@ export default class AdminIndexesItemDocumentsIndexController extends Controller
     table: Table,
     json: CodeJson,
   };
+
+  modes = ['simple', 'advanced'];
 
   constructor() {
     super(...arguments);

@@ -1,5 +1,6 @@
-<div class='flex items-center'>
-  <ButtonGroup>
+<div class='flex items-center mb-4'>
+  View:
+  <ButtonGroup class='mb-0 ml-2 mr-4'>
     {{#each-in this.views as |key icon|}}
       <Button
         @icon={{icon}}
@@ -11,15 +12,21 @@
     {{/each-in}}
   </ButtonGroup>
 
-  <Button
-    class='mb-4 ml-4 {{if this.isAdvancedSearch "text-primary"}}'
-    @onClick={{toggle-action 'isAdvancedSearch' this}}
-  >
-    Advanced search
-  </Button>
+  Mode:
+  <ButtonGroup class='mb-0 ml-2 mr-4'>
+    {{#each this.modes as |item|}}
+      <Button
+        class='rounded-none first:rounded-l last:rounded-r
+          {{if (eq this.mode item) "text-primary"}}'
+        @onClick={{fn (set this 'mode') item}}
+      >
+        {{namelize item}}
+      </Button>
+    {{/each}}
+  </ButtonGroup>
 </div>
 
-{{#if this.isAdvancedSearch}}
+{{#if (eq this.mode 'advanced')}}
   <Form::Element @errors={{this.errors}}>
     <MonacoEditor
       @value={{json-stringify this.searchObject}}
@@ -39,7 +46,7 @@
     class='mb-4'
     disabled={{or this.isValidating this.errors.length}}
   />
-{{else}}
+{{else if (eq this.mode 'simple')}}
   <div class='sm:flex sm:flex-nowrap'>
     {{! q }}
     <Form::Input
@@ -72,18 +79,6 @@
     />
   </div>
 {{/if}}
-
-{{!-- <div class='flex items-center mb-4'>
-  <div class='flex items-center ml-auto'>
-    <Icons::Check class='mr-1' @size='18' />
-    Hits:
-    {{@model.data.estimatedTotalHits}}
-    <Icons::ClockOutline class='ml-6 mr-1' @size='18' />
-    Time spent:
-    {{@model.data.processingTimeMs}}
-    ms
-  </div>
-</div> --}}
 
 {{#if (gt @model.data.estimatedTotalHits 0)}}
   {{#if (eq this.dataView 'table')}}
@@ -120,7 +115,7 @@
             </Column>
           {{/if}}
         {{/each}}
-        <Column class='relative'>
+        <Column class='relative text-right'>
           <:head>
             <Form::TableSettings
               @onChangeSort={{this.sortAttibutes}}
