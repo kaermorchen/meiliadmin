@@ -6,6 +6,7 @@
         @icon={{icon}}
         @onClick={{set this 'dataView'}}
         @value={{key}}
+        title={{namelize key}}
         class='w-auto rounded-none first:rounded-l last:rounded-r
           {{if (eq this.dataView key) "text-primary"}}'
       />
