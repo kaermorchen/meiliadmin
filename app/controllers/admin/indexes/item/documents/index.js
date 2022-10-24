@@ -73,7 +73,10 @@ export default class AdminIndexesItemDocumentsIndexController extends Controller
   }
 
   get attributes() {
-    if (this.attributesToRetrieve.length > 0) {
+    if (
+      this.attributesToRetrieve.length > 0 &&
+      this.attributesToRetrieve[0] !== '*'
+    ) {
       return this.attributesToRetrieve;
     } else {
       return this.originalAttributes;

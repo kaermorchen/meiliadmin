@@ -64,11 +64,7 @@ export default class AdminIndexesItemDocumentsIndexRoute extends Route {
     });
   }
 
-  resetController(controller, isExiting) {
-    if (isExiting) {
-      // controller.q = '';
-    }
-
+  resetController() {
     window.scrollTo(0, 0);
   }
 }
