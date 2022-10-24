@@ -1,77 +1,89 @@
-<LinkTo
-  @route='admin.indexes.item.documents.new'
-  @model={{@model.index}}
-  class='inline-block mb-4'
->
-  Create new document
-</LinkTo>
-
-<div class='sm:flex sm:flex-nowrap'>
-  {{! q }}
-  <Form::Input
-    @placeholder='Search'
-    @prefixIcon={{this.Magnify}}
-    @value={{this.q}}
-    @onChange={{this.searchTextChanged}}
-    class='sm:grow'
-  />
-
-  {{! sort }}
-  {{#if this.sortValues.length}}
-    <Form::Listbox
-      @prefixValue={{'Sort: '}}
-      @value={{nu-co this.sort 'none'}}
-      @values={{this.sortValues}}
-      @onChange={{set this 'sort'}}
-      @allowClear={{true}}
-      class='sm:ml-4 sm:flex-none'
-    />
-  {{/if}}
-
-  {{! limit }}
-  <Form::Listbox
-    @prefixValue={{'Limit: '}}
-    @value={{nu-co this.limit 'none'}}
-    @values={{array 20 50 100 500}}
-    @onChange={{set this 'limit'}}
-    class='sm:ml-4 sm:flex-none'
-  />
-
-  {{! table settings }}
-  <Form::TableSettings
-    @onChangeSort={{this.sortAttibutes}}
-    @items={{this.allAttributes}}
-    @isItemChecked={{this.isItemChecked}}
-    @onToggleItem={{this.toggleAttribute}}
-    class='sm:ml-4 sm:flex-none'
-  />
-</div>
-
-{{!-- <div class='flex items-center mb-4'>
-  <div class='flex items-center ml-auto'>
-    <Icons::Check class='mr-1' @size='18' />
-    Hits:
-    {{@model.data.estimatedTotalHits}}
-    <Icons::ClockOutline class='ml-6 mr-1' @size='18' />
-    Time spent:
-    {{@model.data.processingTimeMs}}
-    ms
-  </div>
-</div> --}}
-
-{{#if (gt @model.data.estimatedTotalHits 0)}}
-  <div class='flex items-center -space-x-px mb-4' role='group'>
+<div class='flex items-center mb-4'>
+  View:
+  <ButtonGroup class='mb-0 ml-2 mr-4'>
     {{#each-in this.views as |key icon|}}
       <Button
         @icon={{icon}}
         @onClick={{set this 'dataView'}}
         @value={{key}}
+        title={{namelize key}}
         class='w-auto rounded-none first:rounded-l last:rounded-r
           {{if (eq this.dataView key) "text-primary"}}'
       />
     {{/each-in}}
-  </div>
+  </ButtonGroup>
 
+  Filters:
+  <ButtonGroup class='mb-0 ml-2 mr-4'>
+    {{#each this.modes as |item|}}
+      <Button
+        class='rounded-none first:rounded-l last:rounded-r
+          {{if (eq this.mode item) "text-primary"}}'
+        @onClick={{fn (set this 'mode') item}}
+      >
+        {{namelize item}}
+      </Button>
+    {{/each}}
+  </ButtonGroup>
+</div>
+
+{{#if (eq this.mode 'advanced')}}
+  <div>
+    <Form::Element @errors={{this.errors}}>
+      <MonacoEditor
+        @value={{json-stringify this.searchObject}}
+        @language='json'
+        @uri={{@model.searchSchema.uri}}
+        @schema={{@model.searchSchema}}
+        @sendValue={{this.search}}
+        @invoker={{this.invoker}}
+        @onDidValidation={{set this 'errors'}}
+      />
+    </Form::Element>
+
+    <Button
+      @text='Search'
+      @style='primary'
+      @onClick={{fn this.invoker.invoke 'invokeSendValue'}}
+      class='mb-4'
+      disabled={{this.errors.length}}
+    />
+  </div>
+{{else if (eq this.mode 'simple')}}
+  <div class='sm:flex sm:flex-nowrap'>
+    {{! q }}
+    <Form::Input
+      @placeholder='Search'
+      @prefixIcon={{this.Magnify}}
+      @value={{this.q}}
+      @onChange={{this.searchTextChanged}}
+      class='sm:grow'
+    />
+
+    {{! sort }}
+    {{#if this.sortValues.length}}
+      <Form::Listbox
+        @prefixValue={{'Sort: '}}
+        @value={{nu-co this.sort 'none'}}
+        @values={{this.sortValues}}
+        @onChange={{set this 'sort'}}
+        @allowClear={{true}}
+        class='sm:ml-4 sm:flex-none'
+      />
+    {{/if}}
+
+    {{! limit }}
+    <Form::Listbox
+      @prefixValue={{'Limit: '}}
+      @value={{nu-co this.limit 'none'}}
+      @values={{array 20 50 100 500}}
+      @onChange={{set this 'limit'}}
+      class='sm:ml-4 sm:flex-none'
+    />
+  </div>
+{{/if}}
+
+{{#if (gt @model.data.estimatedTotalHits 0)}}
   {{#if (eq this.dataView 'table')}}
     <SimpleTable
       @data={{@model.data.hits}}
@@ -106,50 +118,59 @@
             </Column>
           {{/if}}
         {{/each}}
-        <Column class='relative'>
-          {{#let
-            'flex items-center px-4 py-2 text-inherit no-underline text-sm hover:bg-base-6 hover:text-base-1'
-            as |linkClasses|
-          }}
-            <Menu as |menu|>
-              <menu.Button class='inline-flex items-center'>
-                <Icons::DotsHorizontal />
-              </menu.Button>
-              <menu.Items
-                class='absolute z-dropdown right-0 w-28 mt-2 py-1 origin-top-right bg-base-7 border rounded shadow-sm outline-none'
-              >
-                <LinkTo
-                  @route='admin.indexes.item.documents.document.index'
-                  @models={{models}}
-                  class={{linkClasses}}
+        <Column class='relative text-right'>
+          <:head>
+            <Form::TableSettings
+              @onChangeSort={{this.sortAttibutes}}
+              @items={{this.allAttributes}}
+              @isItemChecked={{this.isItemChecked}}
+              @onToggleItem={{this.toggleAttribute}}
+            />
+          </:head>
+          <:default>
+            {{#let
+              'flex items-center px-4 py-2 text-inherit no-underline text-sm hover:bg-base-6 hover:text-base-1'
+              as |linkClasses|
+            }}
+              <Menu as |menu|>
+                <menu.Button class='inline-flex items-center'>
+                  <Icons::DotsHorizontal />
+                </menu.Button>
+                <menu.Items
+                  class='absolute z-dropdown right-0 w-28 mt-2 py-1 origin-top-right bg-base-7 border rounded shadow-sm outline-none'
                 >
-                  <Icons::FileDocumentOutline @size={{18}} class='mr-1' />
-                  View
-                </LinkTo>
-                <LinkTo
-                  @route='admin.indexes.item.documents.document.edit'
-                  @models={{models}}
-                  class={{linkClasses}}
-                >
-                  <Icons::PencilOutline @size={{18}} class='mr-1' />
-                  Edit
-                </LinkTo>
-                <LinkTo
-                  @route='admin.indexes.item.documents.document.delete'
-                  @models={{models}}
-                  class={{linkClasses}}
-                >
-                  <Icons::TrashCanOutline @size={{18}} class='mr-1' />
-                  Delete
-                </LinkTo>
-              </menu.Items>
-            </Menu>
-          {{/let}}
+                  <LinkTo
+                    @route='admin.indexes.item.documents.document.index'
+                    @models={{models}}
+                    class={{linkClasses}}
+                  >
+                    <Icons::FileDocumentOutline @size={{18}} class='mr-1' />
+                    View
+                  </LinkTo>
+                  <LinkTo
+                    @route='admin.indexes.item.documents.document.edit'
+                    @models={{models}}
+                    class={{linkClasses}}
+                  >
+                    <Icons::PencilOutline @size={{18}} class='mr-1' />
+                    Edit
+                  </LinkTo>
+                  <LinkTo
+                    @route='admin.indexes.item.documents.document.delete'
+                    @models={{models}}
+                    class={{linkClasses}}
+                  >
+                    <Icons::TrashCanOutline @size={{18}} class='mr-1' />
+                    Delete
+                  </LinkTo>
+                </menu.Items>
+              </Menu>
+            {{/let}}
+          </:default>
         </Column>
       {{/let}}
     </SimpleTable>
   {{else if (eq this.dataView 'json')}}
-
     {{#each @model.data.hits as |data|}}
       <MonacoEditor
         @value={{json-stringify data}}
@@ -207,9 +228,9 @@
     {{@model.data.estimatedTotalHits}}
 
     <Pagination
-      @count={{@model.data.estimatedTotalHits}}
-      @current={{this.page}}
-      @perPage={{@model.data.limit}}
+      @total={{@model.data.estimatedTotalHits}}
+      @offset={{this.offset}}
+      @limit={{this.limit}}
       class='ml-auto'
     />
   </div>

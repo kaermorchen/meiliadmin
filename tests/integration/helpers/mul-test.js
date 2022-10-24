@@ -3,15 +3,15 @@ import { setupRenderingTest } from 'meiliadmin/tests/helpers';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
-module('Integration | Helper | DateTimeFormat', function (hooks) {
+module('Integration | Helper | mul', function (hooks) {
   setupRenderingTest(hooks);
 
   // TODO: Replace this with your real tests.
   test('it renders', async function (assert) {
-    this.set('inputValue', new Date(2000, 0, 1));
+    this.set('inputValue', 2);
 
-    await render(hbs`{{date-time-format this.inputValue}}`);
+    await render(hbs`{{mul this.inputValue 3}}`);
 
-    assert.dom(this.element).hasText('1/1/2000');
+    assert.dom(this.element).hasText('6');
   });
 });

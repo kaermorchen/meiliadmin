@@ -1,60 +1,80 @@
 import Route from '@ember/routing/route';
 import { hash } from 'rsvp';
+import { type } from 'meiliadmin/utils/json-schema';
+
+const uri = 'https://docs.meilisearch.com/reference/api/search';
+const searchSchema = {
+  name: 'search',
+  uri,
+  fileMatch: [uri],
+  schema: {
+    $id: uri,
+    type: 'object',
+    properties: {
+      q: type('string'),
+      offset: type('integer'),
+      limit: type('integer'),
+      filter: {
+        oneOf: [type('array').items('string'), type('null')],
+      },
+      facets: {
+        oneOf: [type('array').items('string'), type('null')],
+      },
+      attributesToRetrieve: type('array').items('string'),
+      attributesToCrop: {
+        oneOf: [type('array').items('string'), type('null')],
+      },
+      cropLength: type('integer'),
+      cropMarker: type('string'),
+      attributesToHighlight: {
+        oneOf: [type('array').items('string'), type('null')],
+      },
+      highlightPreTag: type('string'),
+      highlightPostTag: type('string'),
+      showMatchesPosition: type('boolean'),
+      sort: {
+        oneOf: [type('array').items('string'), type('null')],
+      },
+      matchingStrategy: { enum: ['last', 'all'] },
+    },
+    additionalProperties: false,
+    required: ['q'],
+  },
+};
 
 export default class AdminIndexesItemDocumentsIndexRoute extends Route {
   queryParams = {
     q: { refreshModel: true },
+    offset: { refreshModel: true },
     limit: { refreshModel: true },
-    page: { refreshModel: true },
-    sort: { refreshModel: true },
+    filter: { refreshModel: true },
+    facets: { refreshModel: true },
     attributesToRetrieve: { refreshModel: true },
+    attributesToCrop: { refreshModel: true },
+    cropLength: { refreshModel: true },
+    cropMarker: { refreshModel: true },
+    attributesToHighlight: { refreshModel: true },
+    highlightPreTag: { refreshModel: true },
+    highlightPostTag: { refreshModel: true },
+    showMatchesPosition: { refreshModel: true },
+    sort: { refreshModel: true },
+    matchingStrategy: { refreshModel: true },
   };
 
-  async model({ q, page, limit, sort, attributesToRetrieve }) {
-    const offset = limit * --page;
+  async model(options) {
     const index = this.modelFor('admin.indexes.item');
-    const options = { offset, limit };
-
-    if (sort) {
-      options.sort = [sort];
-    }
-
-    if (attributesToRetrieve.length > 0) {
-      options.attributesToRetrieve = attributesToRetrieve;
-    }
 
     return hash({
       index,
-      data: index.search(q, options),
+      searchSchema,
+      data: index.search(options),
       sortableAttributes: index.getSortableAttributes(),
       displayedAttributes: index.getSetting('displayed-attributes'),
       stats: index.getStats(),
     });
   }
 
-  // setupController(controller, model) {
-  //   super.setupController(controller, model);
-
-  // if (controller.attributesToRetrieve.length === 0) {
-  //   if (
-  //     model.displayedAttributes.length > 1 &&
-  //     model.displayedAttributes[0] !== '*'
-  //   ) {
-  //     controller.attributes = model.displayedAttributes;
-  //   } else {
-  //     controller.attributes = Object.keys(model.stats.fieldDistribution);
-  //   }
-  // }
-  // }
-
-  resetController(controller, isExiting) {
-    // console.log('resetController', isExiting);
-    if (isExiting) {
-      controller.q = null;
-      controller.page = 1;
-      // controller.attributes = [];
-    }
-
+  resetController() {
     window.scrollTo(0, 0);
   }
 }

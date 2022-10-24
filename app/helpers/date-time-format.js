@@ -1,11 +1,11 @@
 import { helper } from '@ember/component/helper';
 
-export default helper(function dateTimeFormat([date], named) {
+export default helper(function dateTimeFormat([date], options) {
   if (typeof date === 'string') {
     date = new Date(date);
   }
 
-  const formatter = new Intl.DateTimeFormat(window.navigator.language, named);
+  const formatter = new Intl.DateTimeFormat('default', options);
 
   return formatter.format(date);
 });

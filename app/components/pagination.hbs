@@ -11,8 +11,7 @@
       {{#if this.previousPage}}
         <LinkTo
           @route={{this.router.currentRouteName}}
-          @models={{if @model (array @model) (array)}}
-          @query={{hash page=this.previousPage}}
+          @query={{hash offset=(dec @limit @offset)}}
           class={{commonClasses}}
           title='Previous page'
         >
@@ -20,7 +19,7 @@
         </LinkTo>
       {{/if}}
       {{#each this.availablePages as |i|}}
-        {{#if (eq @current i)}}
+        {{#if (eq this.current i)}}
           <span class='{{commonClasses}} border rounded'>
             {{i}}
           </span>
@@ -31,8 +30,7 @@
         {{else}}
           <LinkTo
             @route={{this.router.currentRouteName}}
-            @models={{if @model (array @model) (array)}}
-            @query={{hash page=i}}
+            @query={{hash offset=(mul @limit (dec i))}}
             class={{commonClasses}}
           >
             {{i}}
@@ -42,8 +40,7 @@
       {{#if this.nextPage}}
         <LinkTo
           @route={{this.router.currentRouteName}}
-          @models={{if @model (array @model) (array)}}
-          @query={{hash page=this.nextPage}}
+          @query={{hash offset=(inc @limit @offset)}}
           class={{commonClasses}}
           title='Next page'
         >

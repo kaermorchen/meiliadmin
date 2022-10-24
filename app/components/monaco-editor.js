@@ -33,6 +33,8 @@ function getModel(value, language, uri, schema) {
       languages.json.jsonDefaults.setDiagnosticsOptions({
         validate: true,
         schemas: [schema],
+        schemaRequest: 'error',
+        schemaValidation: 'error',
       });
     }
   }
@@ -109,9 +111,9 @@ export default class MonacoEditorComponent extends Component {
       });
     }
 
+    // Autoresize height of element
     const minHeight = this.args.minHeight ?? 160;
     const maxHeight = this.args.maxHeight ?? 420;
-    // Autoresize height of element
     const onDidContentSizeChangeHandler = this.editor.onDidContentSizeChange(
       () => {
         const contentHeight = Math.min(
@@ -125,13 +127,33 @@ export default class MonacoEditorComponent extends Component {
     );
     registerDestructor(this, onDidContentSizeChangeHandler.dispose);
 
-    // Validation
-    const onDidChangeMarkersHandler = editor.onDidChangeMarkers(() => {
-      this.args.onDidValidation?.(
-        editor.getModelMarkers().map((item) => item.message)
+    // onDidChangeModelContent
+    if (this.args.onDidChangeModelContent) {
+      const onDidChangeModelContent = this.editor.onDidChangeModelContent(
+        () => {
+          this.args.onDidChangeModelContent(
+            this.editor.getValue(),
+            this.editor
+          );
+        }
       );
-    });
-    registerDestructor(this, onDidChangeMarkersHandler.dispose);
+      registerDestructor(this, onDidChangeModelContent.dispose);
+    }
+
+    // Validation
+    if (this.args.onDidValidation) {
+      const onDidChangeMarkersHandler = editor.onDidChangeMarkers(() => {
+        const model = this.editor.getModel();
+
+        this.args.onDidValidation(
+          editor
+            .getModelMarkers({ resource: model.uri })
+            .map((item) => item.message),
+          this.editor
+        );
+      });
+      registerDestructor(this, onDidChangeMarkersHandler.dispose);
+    }
   }
 
   @action
@@ -155,7 +177,7 @@ export default class MonacoEditorComponent extends Component {
 
   @action
   invokeSendValue() {
-    this.args.sendValue?.(this.editor.getValue());
+    this.args.sendValue?.(this.editor.getValue(), this.editor);
   }
 
   willDestroy() {

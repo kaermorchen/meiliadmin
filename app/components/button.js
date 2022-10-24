@@ -14,8 +14,8 @@ export const sizes = {
 
 export const iconSizes = {
   sm: 18,
-  md: 20,
-  lg: 22,
+  md: 24,
+  lg: 26,
 };
 
 export const styles = {
@@ -30,6 +30,7 @@ export default class ButtonComponent extends Component {
       disabled={{this.disabled}}
       type={{this.type}}
       class="inline-flex items-center justify-center min-w-min whitespace-nowrap
+      disabled:opacity-75 disabled:cursor-not-allowed
         {{get sizes this.size}}
         {{get styles this.style}}
         "

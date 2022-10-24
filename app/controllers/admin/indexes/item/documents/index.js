@@ -3,19 +3,50 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import { Magnify, Table, /* MapOutline, */ CodeJson } from 'ember-mdi';
 import { inject as service } from '@ember/service';
+import ActionInvoker from 'meiliadmin/lib/action-invoker';
 
 export default class AdminIndexesItemDocumentsIndexController extends Controller {
   @service router;
 
-  @tracked q = null;
+  @tracked q = '';
+  @tracked offset = 0;
   @tracked limit = 20;
-  @tracked page = 1;
-  @tracked dataView = 'table';
-  @tracked sort;
-  @tracked hiddenFields = [];
-  @tracked attributesToRetrieve = [];
+  @tracked filter = null;
+  @tracked facets = null;
+  @tracked attributesToRetrieve = ['*'];
+  @tracked attributesToCrop = null;
+  @tracked cropLength = 10;
+  @tracked cropMarker = '…';
+  @tracked attributesToHighlight = null;
+  @tracked highlightPreTag = '<em>';
+  @tracked highlightPostTag = '</em>';
+  @tracked showMatchesPosition = false;
+  @tracked sort = null;
+  @tracked matchingStrategy = 'last';
 
-  queryParams = ['q', 'page', 'limit', 'sort'];
+  @tracked hiddenFields = [];
+  @tracked dataView = 'table';
+  @tracked mode = 'simple';
+  @tracked isAdvancedSearch = false;
+  @tracked errors;
+
+  queryParams = [
+    'q',
+    'offset',
+    'limit',
+    'filter',
+    'facets',
+    'attributesToRetrieve',
+    'attributesToCrop',
+    'cropLength',
+    'cropMarker',
+    'attributesToHighlight',
+    'highlightPreTag',
+    'highlightPostTag',
+    'showMatchesPosition',
+    'sort',
+    'matchingStrategy',
+  ];
 
   Magnify = Magnify;
 
@@ -25,8 +56,27 @@ export default class AdminIndexesItemDocumentsIndexController extends Controller
     json: CodeJson,
   };
 
+  modes = ['simple', 'advanced'];
+
+  constructor() {
+    super(...arguments);
+
+    this.invoker = new ActionInvoker();
+  }
+
+  get searchObject() {
+    return this.queryParams.reduce((properties, item) => {
+      properties[item] = this[item];
+
+      return properties;
+    }, {});
+  }
+
   get attributes() {
-    if (this.attributesToRetrieve.length > 0) {
+    if (
+      this.attributesToRetrieve.length > 0 &&
+      this.attributesToRetrieve[0] !== '*'
+    ) {
       return this.attributesToRetrieve;
     } else {
       return this.originalAttributes;
@@ -108,5 +158,14 @@ export default class AdminIndexesItemDocumentsIndexController extends Controller
   @action
   sortAttibutes(items) {
     this.attributesToRetrieve = items.filter(this.isItemChecked);
+  }
+
+  @action
+  search(value) {
+    const obj = JSON.parse(value);
+
+    this.queryParams.forEach((item) => {
+      this[item] = obj[item];
+    });
   }
 }

@@ -1,7 +1,7 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
-import ActionInvoker from '../lib/action-invoker';
+import ActionInvoker from 'meiliadmin/lib/action-invoker';
 import { inject as service } from '@ember/service';
 
 export default class FormIndexSettingComponent extends Component {
