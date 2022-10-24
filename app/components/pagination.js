@@ -4,28 +4,16 @@ import { inject as service } from '@ember/service';
 export default class PaginationComponent extends Component {
   @service router;
 
-  numberPagesToShow = 2;
-
   get availablePages() {
     const availablePages = [];
+    const numberPagesToShow = 2;
 
     for (let i = 1; i <= this.totalPages; i++) {
-      if (i === this.args.current) {
+      if (i === this.current) {
         availablePages.push(i);
-      } else if (
-        i < this.args.current &&
-        i >= this.args.current - this.numberPagesToShow
-      ) {
+      } else if (i < this.current && i >= this.current - numberPagesToShow) {
         availablePages.push(i);
-      } else if (
-        i > this.args.current &&
-        i <= this.args.current + this.numberPagesToShow
-      ) {
-        availablePages.push(i);
-      } else if (
-        this.args.current > this.totalPages &&
-        i <= this.args.current + this.numberPagesToShow
-      ) {
+      } else if (i > this.current && i <= this.current + numberPagesToShow) {
         availablePages.push(i);
       }
     }
@@ -52,14 +40,18 @@ export default class PaginationComponent extends Component {
   }
 
   get totalPages() {
-    return Math.ceil(this.args.count / this.args.perPage);
+    return Math.ceil(this.args.total / this.args.limit);
   }
 
   get previousPage() {
-    return this.args.current > 1 ? this.args.current - 1 : null;
+    return this.args.offset - this.args.limit >= 0;
   }
 
   get nextPage() {
-    return this.args.current < this.totalPages ? this.args.current + 1 : null;
+    return this.args.offset + this.args.limit < this.args.total;
+  }
+
+  get current() {
+    return Math.ceil(this.args.offset / this.args.limit) + 1;
   }
 }

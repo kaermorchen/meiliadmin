@@ -45,10 +45,20 @@ const searchSchema = {
 export default class AdminIndexesItemDocumentsIndexRoute extends Route {
   queryParams = {
     q: { refreshModel: true },
-    limit: { refreshModel: true },
     offset: { refreshModel: true },
-    sort: { refreshModel: true },
+    limit: { refreshModel: true },
+    filter: { refreshModel: true },
+    facets: { refreshModel: true },
     attributesToRetrieve: { refreshModel: true },
+    attributesToCrop: { refreshModel: true },
+    cropLength: { refreshModel: true },
+    cropMarker: { refreshModel: true },
+    attributesToHighlight: { refreshModel: true },
+    highlightPreTag: { refreshModel: true },
+    highlightPostTag: { refreshModel: true },
+    showMatchesPosition: { refreshModel: true },
+    sort: { refreshModel: true },
+    matchingStrategy: { refreshModel: true },
   };
 
   async model(options) {

@@ -228,9 +228,9 @@
     {{@model.data.estimatedTotalHits}}
 
     <Pagination
-      @count={{@model.data.estimatedTotalHits}}
-      @current={{this.page}}
-      @perPage={{@model.data.limit}}
+      @total={{@model.data.estimatedTotalHits}}
+      @offset={{this.offset}}
+      @limit={{this.limit}}
       class='ml-auto'
     />
   </div>
