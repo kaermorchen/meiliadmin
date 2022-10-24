@@ -11,7 +11,6 @@
       {{#if this.previousPage}}
         <LinkTo
           @route={{this.router.currentRouteName}}
-          @models={{if @model (array @model) (array)}}
           @query={{hash offset=(dec @limit @offset)}}
           class={{commonClasses}}
           title='Previous page'
@@ -31,7 +30,6 @@
         {{else}}
           <LinkTo
             @route={{this.router.currentRouteName}}
-            @models={{if @model (array @model) (array)}}
             @query={{hash offset=(mul @limit (dec i))}}
             class={{commonClasses}}
           >
@@ -42,7 +40,6 @@
       {{#if this.nextPage}}
         <LinkTo
           @route={{this.router.currentRouteName}}
-          @models={{if @model (array @model) (array)}}
           @query={{hash offset=(inc @limit @offset)}}
           class={{commonClasses}}
           title='Next page'
