@@ -11,17 +11,17 @@ export default class AdminIndexesItemDocumentsIndexController extends Controller
   @tracked q = '';
   @tracked offset = 0;
   @tracked limit = 20;
-  @tracked filter = null;
-  @tracked facets = null;
+  @tracked filter = [];
+  @tracked facets = [];
   @tracked attributesToRetrieve = ['*'];
-  @tracked attributesToCrop = null;
+  @tracked attributesToCrop = [];
   @tracked cropLength = 10;
   @tracked cropMarker = '…';
-  @tracked attributesToHighlight = null;
+  @tracked attributesToHighlight = [];
   @tracked highlightPreTag = '<em>';
   @tracked highlightPostTag = '</em>';
   @tracked showMatchesPosition = false;
-  @tracked sort = null;
+  @tracked sort = [];
   @tracked matchingStrategy = 'last';
 
   @tracked hiddenFields = [];
@@ -141,13 +141,20 @@ export default class AdminIndexesItemDocumentsIndexController extends Controller
 
   @action
   onSort(newSort) {
-    if (`${newSort}:desc` === this.sort) {
-      this.sort = null;
-    } else if (`${newSort}:asc` === this.sort) {
-      this.sort = `${newSort}:desc`;
+    if (!Array.isArray(this.sort)) {
+      this.sort = [`${newSort}:asc`];
+    } else if (this.sort.includes(`${newSort}:desc`)) {
+      this.sort = [];
+    } else if (this.sort.includes(`${newSort}:asc`)) {
+      this.sort = [`${newSort}:desc`];
     } else {
-      this.sort = `${newSort}:asc`;
+      this.sort = [`${newSort}:asc`];
     }
+  }
+
+  @action
+  setSort(newSort) {
+    this.sort = [newSort];
   }
 
   @action

@@ -15,11 +15,11 @@ export default class SimpleTableColumnComponent extends Component {
   }
 
   get isAscSorted() {
-    return this.args.sortingProp === `${this.args.prop}:asc`;
+    return this.args.sortingProp.includes(`${this.args.prop}:asc`);
   }
 
   get isDescSorted() {
-    return this.args.sortingProp === `${this.args.prop}:desc`;
+    return this.args.sortingProp.includes(`${this.args.prop}:desc`);
   }
 
   @action
