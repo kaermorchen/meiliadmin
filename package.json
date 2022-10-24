@@ -122,10 +122,13 @@
     "edition": "octane"
   },
   "release-it": {
+    "hooks": {
+      "after:bump": "yarn build && cd dist/ && tar -zcf dist.tgz *"
+    },
     "plugins": {
       "release-it-lerna-changelog": {
         "infile": "CHANGELOG.md",
-        "launchEditor": true
+        "launchEditor": false
       }
     },
     "git": {
@@ -133,7 +136,10 @@
     },
     "github": {
       "release": true,
-      "tokenRef": "GITHUB_AUTH"
+      "tokenRef": "GITHUB_AUTH",
+      "assets": [
+        "dist/dist.tgz"
+      ]
     },
     "npm": false
   }

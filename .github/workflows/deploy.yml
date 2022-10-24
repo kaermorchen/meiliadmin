@@ -27,6 +27,7 @@ jobs:
       - name: Build
         run: yarn build
 
+      # TODO: replace to https://github.com/actions/upload-pages-artifact
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
