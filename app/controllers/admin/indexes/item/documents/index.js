@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
-import { Magnify, Table, /* MapOutline, */ CodeJson } from 'ember-mdi';
+import { Magnify, Table, MapOutline, CodeJson } from 'ember-mdi';
 import { inject as service } from '@ember/service';
 import ActionInvoker from 'meiliadmin/lib/action-invoker';
 
@@ -54,6 +54,7 @@ export default class AdminIndexesItemDocumentsIndexController extends Controller
   views = {
     table: Table,
     json: CodeJson,
+    map: MapOutline,
   };
 
   modes = ['simple', 'advanced'];

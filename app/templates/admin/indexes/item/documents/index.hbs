@@ -170,6 +170,22 @@
         </Column>
       {{/let}}
     </SimpleTable>
+  {{else if (eq this.dataView 'map')}}
+    <LeafletMap @lat={{40}} @lng={{40}} @zoom={{10}} as |layers|>
+      <layers.tile
+        @url='https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png'
+      />
+
+      {{#each @model.data.hits as |data|}}
+        {{#if data._geo}}
+          <layers.marker @location={{data._geo}} as |marker|>
+            <marker.popup>
+              {{json-stringify data}}
+            </marker.popup>
+          </layers.marker>
+        {{/if}}
+      {{/each}}
+    </LeafletMap>
   {{else if (eq this.dataView 'json')}}
     {{#each @model.data.hits as |data|}}
       <MonacoEditor
