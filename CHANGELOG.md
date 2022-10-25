@@ -1,5 +1,15 @@
+# Changelog
 
+## v0.4.0 (2022-10-25)
 
+#### :rocket: Enhancement
+* [#26](https://github.com/kaermorchen/meiliadmin/pull/26) Advanced search filters ([@kaermorchen](https://github.com/kaermorchen))
+
+#### :bug: Bug Fix
+* [#27](https://github.com/kaermorchen/meiliadmin/pull/27) Fix search argument `sort` ([@kaermorchen](https://github.com/kaermorchen))
+
+#### Committers: 1
+- Stanislav Romanov ([@kaermorchen](https://github.com/kaermorchen))
 
 ## v0.3.0 (2022-10-17)
 
@@ -48,5 +58,3 @@
 
 #### Committers: 1
 - Stanislav Romanov ([@kaermorchen](https://github.com/kaermorchen))
-
-# Changelog
