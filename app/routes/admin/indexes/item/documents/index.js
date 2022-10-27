@@ -68,7 +68,7 @@ export default class AdminIndexesItemDocumentsIndexRoute extends Route {
       index,
       searchSchema,
       data: index.search(options),
-      sortableAttributes: index.getSortableAttributes(),
+      sortableAttributes: index.getSetting('sortable-attributes'),
       displayedAttributes: index.getSetting('displayed-attributes'),
       stats: index.getStats(),
     });
