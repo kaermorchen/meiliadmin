@@ -31,11 +31,6 @@ export default class Index {
     };
   }
 
-  // TODO: replace to getSetting
-  getSortableAttributes() {
-    return query(`${this.path}/settings/sortable-attributes`);
-  }
-
   getStats() {
     return query(`${this.path}/stats`);
   }
