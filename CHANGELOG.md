@@ -1,5 +1,17 @@
 # Changelog
 
+
+## v0.4.1 (2022-10-28)
+
+#### :bug: Bug Fix
+* [#30](https://github.com/kaermorchen/meiliadmin/pull/30) Fix empty sort value ([@kaermorchen](https://github.com/kaermorchen))
+
+#### :house: Internal
+* [#29](https://github.com/kaermorchen/meiliadmin/pull/29) Removed getSortableAttributes ([@kaermorchen](https://github.com/kaermorchen))
+
+#### Committers: 1
+- Stanislav Romanov ([@kaermorchen](https://github.com/kaermorchen))
+
 ## v0.4.0 (2022-10-25)
 
 #### :rocket: Enhancement
