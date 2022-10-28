@@ -154,7 +154,7 @@ export default class AdminIndexesItemDocumentsIndexController extends Controller
 
   @action
   setSort(newSort) {
-    this.sort = [newSort];
+    this.sort = newSort ? [newSort] : [];
   }
 
   @action
