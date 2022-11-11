@@ -1,6 +1,18 @@
 # Changelog
 
 
+
+## v0.4.2 (2022-11-11)
+
+#### :rocket: Enhancement
+* [#32](https://github.com/kaermorchen/meiliadmin/pull/32) Add text about CORS restrictions ([@kaermorchen](https://github.com/kaermorchen))
+
+#### :memo: Documentation
+* [#31](https://github.com/kaermorchen/meiliadmin/pull/31) Add image preview into README ([@kaermorchen](https://github.com/kaermorchen))
+
+#### Committers: 1
+- Stanislav Romanov ([@kaermorchen](https://github.com/kaermorchen))
+
 ## v0.4.1 (2022-10-28)
 
 #### :bug: Bug Fix
