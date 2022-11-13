@@ -2,6 +2,15 @@
 
 
 
+
+## v0.4.3 (2022-11-13)
+
+#### :rocket: Enhancement
+* [#34](https://github.com/kaermorchen/meiliadmin/pull/34) Add empty primary key in new document ([@kaermorchen](https://github.com/kaermorchen))
+
+#### Committers: 1
+- Stanislav Romanov ([@kaermorchen](https://github.com/kaermorchen))
+
 ## v0.4.2 (2022-11-11)
 
 #### :rocket: Enhancement
