@@ -8,10 +8,8 @@ export default class AdminIndexesItemDocumentsNewRoute extends Route {
 
   model() {
     const index = this.modelFor('admin.indexes.item');
+    const document = new Document({ [index.primaryKey]: '' });
 
-    return hash({
-      index,
-      document: new Document(),
-    });
+    return hash({ index, document });
   }
 }
