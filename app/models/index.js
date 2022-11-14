@@ -2,6 +2,8 @@ import query from '../utils/query';
 import Document from './document';
 import { dasherize } from '@ember/string';
 
+const uri = 'https://docs.meilisearch.com/reference/api/document';
+
 export default class Index {
   constructor(data = {}) {
     for (const key in data) {
@@ -18,16 +20,18 @@ export default class Index {
   }
 
   get documentSetting() {
-    const uri = 'https://docs.meilisearch.com/reference/api/documents';
-
     return {
-      uri: uri,
+      uri,
       fileMatch: [uri],
-      schema: {
-        $id: uri,
-        type: 'object',
-        required: [this.primaryKey],
-      },
+      schema: this.schema,
+    };
+  }
+
+  get schema() {
+    return {
+      $id: uri,
+      type: 'object',
+      required: [this.primaryKey],
     };
   }
 
@@ -49,6 +53,17 @@ export default class Index {
     return query(`${this.path}/documents`, {
       method: 'POST',
       body: JSON.stringify([document]),
+    });
+  }
+
+  saveDocuments(documents) {
+    if (typeof documents === 'string') {
+      documents = JSON.parse(documents);
+    }
+
+    return query(`${this.path}/documents`, {
+      method: 'POST',
+      body: JSON.stringify(documents),
     });
   }
 

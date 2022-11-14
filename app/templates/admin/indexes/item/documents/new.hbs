@@ -1,0 +1,22 @@
+<div class='mb-4'>
+  <Form::Element @errors={{this.errors}}>
+    <MonacoEditor
+      @value={{json-stringify @model.documents}}
+      @uri={{@model.schema.uri}}
+      @language='json'
+      @schema={{@model.schema}}
+      @sendValue={{this.save}}
+      @invoker={{this.invoker}}
+      @onDidValidation={{set this 'errors'}}
+    />
+  </Form::Element>
+
+  <Button
+    type='submit'
+    @text='Save'
+    @style='primary'
+    @onClick={{fn this.invoker.invoke 'invokeSendValue'}}
+    @state={{if this.isSaving 'pending'}}
+  />
+  <Button @text='Cancel' @onClick={{this.cancel}} />
+</div>
