@@ -3,6 +3,15 @@
 
 
 
+
+## v0.5.0 (2022-11-17)
+
+#### :rocket: Enhancement
+* [#35](https://github.com/kaermorchen/meiliadmin/pull/35) Add uploading many documents ([@kaermorchen](https://github.com/kaermorchen))
+
+#### Committers: 1
+- Stanislav Romanov ([@kaermorchen](https://github.com/kaermorchen))
+
 ## v0.4.3 (2022-11-13)
 
 #### :rocket: Enhancement
