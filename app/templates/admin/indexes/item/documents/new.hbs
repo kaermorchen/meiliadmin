@@ -1,0 +1,45 @@
+<form class='mb-4' {{on 'submit' this.readFile}}>
+  <Form::Element
+    @errors={{this.errors}}
+    @label='Upload file'
+    @helper='JSON format. The file must contains an array of documents.'
+    @for={{this.fileInputId}}
+  >
+    <input
+      type='file'
+      accept='application/json'
+      id={{this.fileInputId}}
+      name={{this.fileInputId}}
+    />
+  </Form::Element>
+
+  <Button
+    type='submit'
+    @text='Upload'
+    @style='primary'
+    @state={{if this.isSaving 'pending'}}
+  />
+</form>
+
+<div class='mb-4'>
+  <Form::Element @errors={{this.errors}} @label='Form'>
+    <MonacoEditor
+      @value={{json-stringify @model.documents}}
+      @uri={{@model.schema.uri}}
+      @language='json'
+      @schema={{@model.schema}}
+      @sendValue={{this.save}}
+      @invoker={{this.invoker}}
+      @onDidValidation={{set this 'errors'}}
+    />
+  </Form::Element>
+
+  <Button
+    type='submit'
+    @text='Save'
+    @style='primary'
+    @onClick={{fn this.invoker.invoke 'invokeSendValue'}}
+    @state={{if this.isSaving 'pending'}}
+  />
+  <Button @text='Cancel' @onClick={{this.cancel}} />
+</div>

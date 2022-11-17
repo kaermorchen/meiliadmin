@@ -23,18 +23,18 @@ export default function query(path, options = {}) {
       } else if (response.ok) {
         return response.json();
       } else {
-        response.json().then((reason) => {
+        return response.json().then((reason) => {
           toaster.dangerToast({
             header: reason.type,
             text: reason.message,
           });
 
-          throw new Error('Network response was not OK');
+          // throw new Error('Network response was not OK');
         });
       }
     })
     .catch((response) => {
-      response.json().then((reason) => {
+      return response.json().then((reason) => {
         toaster.dangerToast({
           header: reason.type,
           text: reason.message,

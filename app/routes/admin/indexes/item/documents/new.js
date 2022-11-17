@@ -1,15 +1,22 @@
 import Route from '@ember/routing/route';
-import Document from '../../../../../models/document';
 import { hash } from 'rsvp';
 
 export default class AdminIndexesItemDocumentsNewRoute extends Route {
-  templateName = 'admin.indexes.item.documents.document.edit';
-  controllerName = 'admin.indexes.item.documents.document.edit';
-
   model() {
     const index = this.modelFor('admin.indexes.item');
-    const document = new Document({ [index.primaryKey]: '' });
+    const documents = [{ [index.primaryKey]: '' }];
+    const uri = 'https://docs.meilisearch.com/reference/api/documents';
+    const schema = {
+      uri,
+      fileMatch: [uri],
+      schema: {
+        $id: uri,
+        type: 'array',
+        items: index.schema,
+        minItems: 1,
+      },
+    };
 
-    return hash({ index, document });
+    return hash({ index, documents, schema });
   }
 }
