@@ -28,7 +28,9 @@ export default class AdminIndexesItemDocumentsDocumentEditController extends Con
 
       this.isSaving = false;
 
-      this.toaster.taskToast(task);
+      if (task) {
+        this.toaster.taskToast(task);
+      }
     } catch (error) {
       this.errors = [error.error || error];
     }

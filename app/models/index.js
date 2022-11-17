@@ -56,15 +56,8 @@ export default class Index {
     });
   }
 
-  saveDocuments(documents) {
-    if (typeof documents === 'string') {
-      documents = JSON.parse(documents);
-    }
-
-    return query(`${this.path}/documents`, {
-      method: 'POST',
-      body: JSON.stringify(documents),
-    });
+  saveDocuments(body) {
+    return query(`${this.path}/documents`, { method: 'POST', body });
   }
 
   deleteDocument(document) {
