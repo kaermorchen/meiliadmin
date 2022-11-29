@@ -6207,10 +6207,10 @@ ember-load-initializers@^2.1.2:
     ember-cli-babel "^7.13.0"
     ember-cli-typescript "^2.0.2"
 
-ember-mdi@2.0.0-beta.1:
-  version "2.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/ember-mdi/-/ember-mdi-2.0.0-beta.1.tgz#b566f1c16f573355d3fe9d56d21373fd7c2329e7"
-  integrity sha512-Dy0i/7MyYujqJZI0PTRgJAwLA8miaI0u4gBr6SS3l9xggmuIVdmTxsJU/EnTyAhNGMKNxnBrw1hgAxC1YpNP2Q==
+ember-mdi@2.0.0-beta.2:
+  version "2.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/ember-mdi/-/ember-mdi-2.0.0-beta.2.tgz#81cb818e58cabd3192345b1b9e7c83218097b6db"
+  integrity sha512-ECDGac1b1pug29i8v06SsZ6ABXYZL2gqPeRfrjpfVIu8WnoJ77oySoqbXhBhZAlwAXkf4lWt4pX2rACuYbBDTg==
   dependencies:
     "@embroider/addon-shim" "^1.0.0"
     "@glimmer/component" "^1.1.2"
