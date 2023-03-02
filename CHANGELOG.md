@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.6.1 (2023-03-02)
+
+#### :bug: Bug Fix
+* [#39](https://github.com/kaermorchen/meiliadmin/pull/39) Fix task api ([@kaermorchen](https://github.com/kaermorchen))
+
+#### Committers: 1
+- Stanislav Romanov ([@kaermorchen](https://github.com/kaermorchen))
+
 ## v0.6.0 (2023-03-02)
 
 #### :rocket: Enhancement
