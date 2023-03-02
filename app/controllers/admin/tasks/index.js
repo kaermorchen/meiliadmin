@@ -10,13 +10,13 @@ export default class AdminTasksIndexController extends Controller {
   taskStatuses = taskStatuses;
   taskTypes = taskTypes;
 
-  queryParams = ['limit', 'status', 'type', 'indexUid'];
+  queryParams = ['limit', 'statuses', 'types', 'indexUids'];
 
   @tracked limit = 20;
   @tracked from;
-  @tracked status;
-  @tracked type;
-  @tracked indexUid;
+  @tracked statuses;
+  @tracked types;
+  @tracked indexUids;
 
   @use
   tasks = resource(() => {
@@ -25,9 +25,9 @@ export default class AdminTasksIndexController extends Controller {
     const params = {
       limit: this.limit,
       from: this.from,
-      status: this.status,
-      type: this.type,
-      indexUid: this.indexUid,
+      statuses: this.statuses,
+      types: this.types,
+      indexUids: this.indexUids,
     };
 
     this.meilisearch.getTasks(params).then((data) => {

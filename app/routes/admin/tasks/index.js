@@ -8,9 +8,9 @@ export default class AdminTasksIndexRoute extends Route {
 
   queryParams = {
     limit: { refreshModel: true },
-    status: { refreshModel: true },
-    type: { refreshModel: true },
-    indexUid: { refreshModel: true },
+    statuses: { refreshModel: true },
+    types: { refreshModel: true },
+    indexUids: { refreshModel: true },
   };
 
   model() {
