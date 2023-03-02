@@ -68,7 +68,7 @@ export default class MeilisearchService extends Service {
   }
 
   getDumps() {
-    return this.getTasks({ type: 'dumpCreation' });
+    return this.getTasks({ types: 'dumpCreation' });
   }
 
   createDump() {

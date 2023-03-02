@@ -1,31 +1,31 @@
 <Headers::H1 @title='Tasks' />
 
 <div class='sm:flex sm:flex-nowrap'>
-  {{! indexUid }}
+  {{! indexUids }}
   <Form::Listbox
     @prefixValue={{'Index: '}}
-    @value={{nu-co this.indexUid 'none'}}
+    @value={{nu-co this.indexUids 'none'}}
     @values={{map-by 'uid' @model.indexes.results}}
-    @onChange={{set this 'indexUid'}}
+    @onChange={{set this 'indexUids'}}
     @allowClear={{true}}
   />
 
-  {{! status }}
+  {{! statuses }}
   <Form::Listbox
     @prefixValue={{'Status: '}}
-    @value={{nu-co this.status 'none'}}
+    @value={{nu-co this.statuses 'none'}}
     @values={{this.taskStatuses}}
-    @onChange={{set this 'status'}}
+    @onChange={{set this 'statuses'}}
     @allowClear={{true}}
     class='sm:ml-4 sm:flex-none'
   />
 
-  {{! status }}
+  {{! types }}
   <Form::Listbox
     @prefixValue={{'Type: '}}
-    @value={{nu-co this.type 'none'}}
+    @value={{nu-co this.types 'none'}}
     @values={{this.taskTypes}}
-    @onChange={{set this 'type'}}
+    @onChange={{set this 'types'}}
     @allowClear={{true}}
     class='sm:ml-4 sm:flex-none'
   />
@@ -49,10 +49,7 @@
       >{{data.uid}}</LinkTo>
     </Column>
     <Column @prop='indexUid'>
-      <LinkTo
-        @route='admin.indexes.item'
-        @model={{data.indexUid}}
-      >{{data.indexUid}}</LinkTo>
+      {{data.indexUid}}
     </Column>
     <Column @prop='status'>
       <Badge @label={{data.status}} @style={{data.style}} />
