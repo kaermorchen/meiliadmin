@@ -19,9 +19,10 @@ export default class AdminTasksIndexController extends Controller {
   @tracked indexUids;
 
   @use
-  tasks = resource(() => {
+  tasks = resource(({ on }) => {
     this.tasksHolder.isLoading = true;
 
+    const controller = new AbortController();
     const params = {
       limit: this.limit,
       from: this.from,
@@ -30,11 +31,17 @@ export default class AdminTasksIndexController extends Controller {
       indexUids: this.indexUids,
     };
 
-    this.meilisearch.getTasks(params).then((data) => {
-      this.tasksHolder.results = this.tasksHolder.results.concat(data.results);
-      this.tasksHolder.next = data.next;
-      this.tasksHolder.isLoading = false;
-    });
+    on.cleanup(() => controller.abort());
+
+    this.meilisearch
+      .getTasks(params, { signal: controller.signal })
+      .then((data) => {
+        this.tasksHolder.results = this.tasksHolder.results.concat(
+          data.results
+        );
+        this.tasksHolder.next = data.next;
+        this.tasksHolder.isLoading = false;
+      });
 
     return this.tasksHolder;
   });

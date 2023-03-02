@@ -16,29 +16,19 @@ export default function query(path, options = {}) {
     Object.assign(options, { headers })
   );
 
-  return fetch(req)
-    .then((response) => {
-      if (response.status === 204) {
-        return;
-      } else if (response.ok) {
-        return response.json();
-      } else {
-        return response.json().then((reason) => {
-          toaster.dangerToast({
-            header: reason.type,
-            text: reason.message,
-          });
-
-          // throw new Error('Network response was not OK');
-        });
-      }
-    })
-    .catch((response) => {
+  return fetch(req).then((response) => {
+    if (response.status === 204) {
+      return;
+    } else if (response.ok) {
+      return response.json();
+    } else {
       return response.json().then((reason) => {
         toaster.dangerToast({
           header: reason.type,
           text: reason.message,
         });
+        // throw new Error('Network response was not OK');
       });
-    });
+    }
+  });
 }
