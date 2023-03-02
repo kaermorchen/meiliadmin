@@ -1,8 +1,16 @@
 # Changelog
 
+## v0.6.0 (2023-03-02)
 
+#### :rocket: Enhancement
+* [#38](https://github.com/kaermorchen/meiliadmin/pull/38) Added MIT license ([@kaermorchen](https://github.com/kaermorchen))
+* [#36](https://github.com/kaermorchen/meiliadmin/pull/36) Update to Ember v4.8.0 ([@kaermorchen](https://github.com/kaermorchen))
 
+#### :house: Internal
+* [#37](https://github.com/kaermorchen/meiliadmin/pull/37) Bump ember-mdi ([@kaermorchen](https://github.com/kaermorchen))
 
+#### Committers: 1
+- Stanislav Romanov ([@kaermorchen](https://github.com/kaermorchen))
 
 ## v0.5.0 (2022-11-17)
 
