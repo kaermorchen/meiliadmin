@@ -4,6 +4,7 @@
   "private": true,
   "description": "Admin panel for MeiliSearch",
   "homepage": "https://kaermorchen.github.io/meiliadmin/",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/kaermorchen/meiliadmin/issues"
   },
