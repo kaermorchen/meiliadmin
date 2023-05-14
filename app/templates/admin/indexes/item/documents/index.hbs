@@ -221,11 +221,12 @@
   {{else if (eq this.dataView 'map')}}
     <LeafletMap
       @bounds={{this.mapBounds}}
-      class="h-48 mb-4"
+      @scrollWheelZoom={{false}}
+      class='h-80 mb-4'
       as |layers|
     >
       <layers.tile
-        @url='http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png'
+        @url='https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png'
       />
 
       {{#each @model.data.hits as |data|}}
@@ -235,7 +236,18 @@
           as |marker|
         >
           <marker.popup>
-            <h3>Hotel</h3>
+            {{#each-in data as |key value|}}
+              <div class='mb-2'>
+                <label for={{@for}} class='block mb-1'>
+                  {{capitalize key}}
+                </label>
+                {{if
+                  (eq (type-of value) 'object')
+                  (json-stringify value)
+                  value
+                }}
+              </div>
+            {{/each-in}}
           </marker.popup>
         </layers.marker>
       {{/each}}
