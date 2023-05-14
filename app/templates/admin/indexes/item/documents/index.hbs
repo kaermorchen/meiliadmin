@@ -219,39 +219,43 @@
       />
     {{/each}}
   {{else if (eq this.dataView 'map')}}
-    <LeafletMap
-      @bounds={{this.mapBounds}}
-      @scrollWheelZoom={{false}}
-      class='h-80 mb-4'
-      as |layers|
-    >
-      <layers.tile
-        @url='https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png'
-      />
+    {{#if this.mapBoundsIsValid}}
+      <LeafletMap
+        @bounds={{this.mapBounds}}
+        @scrollWheelZoom={{false}}
+        class='h-96 mb-4'
+        as |layers|
+      >
+        <layers.tile
+          @url='https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png'
+        />
 
-      {{#each @model.data.hits as |data|}}
-        <layers.marker
-          @lat={{data._geo.lat}}
-          @lng={{data._geo.lng}}
-          as |marker|
-        >
-          <marker.popup>
-            {{#each-in data as |key value|}}
-              <div class='mb-2'>
-                <label for={{@for}} class='block mb-1'>
-                  {{capitalize key}}
-                </label>
-                {{if
-                  (eq (type-of value) 'object')
-                  (json-stringify value)
-                  value
-                }}
-              </div>
-            {{/each-in}}
-          </marker.popup>
-        </layers.marker>
-      {{/each}}
-    </LeafletMap>
+        {{#each @model.data.hits as |data|}}
+          <layers.marker
+            @lat={{data._geo.lat}}
+            @lng={{data._geo.lng}}
+            as |marker|
+          >
+            <marker.popup>
+              {{#each-in data as |key value|}}
+                <div class='mb-2'>
+                  <label for={{@for}} class='block mb-1'>
+                    {{capitalize key}}
+                  </label>
+                  {{if
+                    (eq (type-of value) 'object')
+                    (json-stringify value)
+                    value
+                  }}
+                </div>
+              {{/each-in}}
+            </marker.popup>
+          </layers.marker>
+        {{/each}}
+      </LeafletMap>
+    {{else}}
+      <div class='mb-4'>Geodate not found.</div>
+    {{/if}}
   {{/if}}
 
   <div class='flex items-center'>

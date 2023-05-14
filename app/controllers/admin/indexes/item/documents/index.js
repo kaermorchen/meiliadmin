@@ -83,6 +83,10 @@ export default class AdminIndexesItemDocumentsIndexController extends Controller
     return this.markers.getBounds();
   }
 
+  get mapBoundsIsValid() {
+    return this.mapBounds.isValid();
+  }
+
   get searchObject() {
     return this.queryParams.reduce((properties, item) => {
       properties[item] = this[item];
