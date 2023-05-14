@@ -1,9 +1,11 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
-import { Magnify, Table, /* MapOutline, */ CodeJson } from 'ember-mdi';
+import { Magnify, Table, MapOutline, CodeJson } from 'ember-mdi';
 import { inject as service } from '@ember/service';
 import ActionInvoker from 'meiliadmin/lib/action-invoker';
+import { FeatureGroup } from 'leaflet';
+import { Marker } from 'leaflet';
 
 export default class AdminIndexesItemDocumentsIndexController extends Controller {
   @service router;
@@ -54,6 +56,7 @@ export default class AdminIndexesItemDocumentsIndexController extends Controller
   views = {
     table: Table,
     json: CodeJson,
+    map: MapOutline,
   };
 
   modes = ['simple', 'advanced'];
@@ -62,6 +65,22 @@ export default class AdminIndexesItemDocumentsIndexController extends Controller
     super(...arguments);
 
     this.invoker = new ActionInvoker();
+  }
+
+  get markers() {
+    const markers = [];
+
+    for (const item of this.model.data.hits) {
+      if (item._geo) {
+        markers.push(new Marker([item._geo.lat, item._geo.lng]));
+      }
+    }
+
+    return new FeatureGroup(markers);
+  }
+
+  get mapBounds() {
+    return this.markers.getBounds();
   }
 
   get searchObject() {

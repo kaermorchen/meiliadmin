@@ -218,6 +218,28 @@
         class='mb-4'
       />
     {{/each}}
+  {{else if (eq this.dataView 'map')}}
+    <LeafletMap
+      @bounds={{this.mapBounds}}
+      class="h-48 mb-4"
+      as |layers|
+    >
+      <layers.tile
+        @url='http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png'
+      />
+
+      {{#each @model.data.hits as |data|}}
+        <layers.marker
+          @lat={{data._geo.lat}}
+          @lng={{data._geo.lng}}
+          as |marker|
+        >
+          <marker.popup>
+            <h3>Hotel</h3>
+          </marker.popup>
+        </layers.marker>
+      {{/each}}
+    </LeafletMap>
   {{/if}}
 
   <div class='flex items-center'>
