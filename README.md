@@ -14,6 +14,7 @@
 - Keys management
 - Dumps management
 - Document's views: table, json
+- Map view for geodata
 - Validation for json settings
 - Dark mode
 
@@ -81,4 +82,9 @@ $ ./meilisearch
 
 # Create a new index `meteorites` and push the dataset
 $ curl -X POST 'http://localhost:7700/indexes/meteorites/documents' -H 'Content-Type: application/json' --data-binary @meteorites.json
+```
+
+## Start Meilisearch instance
+```bash
+$ cd data && ./meilisearch --master-key="MASTER_KEY"
 ```
