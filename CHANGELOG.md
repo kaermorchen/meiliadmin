@@ -1,5 +1,27 @@
 # Changelog
 
+
+## v1.0.0 (2023-05-18)
+
+#### :boom: Breaking Change
+* [#46](https://github.com/kaermorchen/meiliadmin/pull/46) Drop Node 14 ([@kaermorchen](https://github.com/kaermorchen))
+* [#47](https://github.com/kaermorchen/meiliadmin/pull/47) Set license as Mozilla Public License Version 2.0 ([@kaermorchen](https://github.com/kaermorchen))
+
+#### :rocket: Enhancement
+* [#40](https://github.com/kaermorchen/meiliadmin/pull/40) Add map view for geodata ([@kaermorchen](https://github.com/kaermorchen))
+
+#### :memo: Documentation
+* [#42](https://github.com/kaermorchen/meiliadmin/pull/42) Move the develpment guide to an external file ([@kaermorchen](https://github.com/kaermorchen))
+* [#41](https://github.com/kaermorchen/meiliadmin/pull/41) Update README ([@kaermorchen](https://github.com/kaermorchen))
+
+#### :house: Internal
+* [#45](https://github.com/kaermorchen/meiliadmin/pull/45) Moved from yarn to npm ([@kaermorchen](https://github.com/kaermorchen))
+* [#44](https://github.com/kaermorchen/meiliadmin/pull/44) Update packages from beta to stable ([@kaermorchen](https://github.com/kaermorchen))
+* [#43](https://github.com/kaermorchen/meiliadmin/pull/43) Remove screenshots from repo ([@kaermorchen](https://github.com/kaermorchen))
+
+#### Committers: 1
+- Stanislav Romanov ([@kaermorchen](https://github.com/kaermorchen))
+
 ## v0.6.1 (2023-03-02)
 
 #### :bug: Bug Fix
