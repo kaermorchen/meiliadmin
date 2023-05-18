@@ -4,7 +4,7 @@
   "private": true,
   "description": "Admin panel for MeiliSearch",
   "homepage": "https://kaermorchen.github.io/meiliadmin/",
-  "license": "MIT",
+  "license": "Mozilla Public License 2.0",
   "bugs": {
     "url": "https://github.com/kaermorchen/meiliadmin/issues"
   },
