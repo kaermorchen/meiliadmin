@@ -114,8 +114,7 @@
     "node": "14.* || 16.* || >= 18"
   },
   "volta": {
-    "node": "16.16.0",
-    "yarn": "1.22.19"
+    "node": "16.16.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
@@ -125,7 +124,7 @@
   },
   "release-it": {
     "hooks": {
-      "after:bump": "yarn build && cd dist/ && tar -zcf dist.tgz *"
+      "after:bump": "npm run build && cd dist/ && tar -zcf dist.tgz *"
     },
     "plugins": {
       "release-it-lerna-changelog": {

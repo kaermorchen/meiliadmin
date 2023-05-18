@@ -19,13 +19,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 14.x
-          cache: yarn
+          cache: npm
 
       - name: Install Dependencies
-        run: yarn install --frozen-lockfile
+        run: npm ci -ws
 
       - name: Build
-        run: yarn build
+        run: npm run build
 
       # TODO: replace to https://github.com/actions/upload-pages-artifact
       - name: Deploy 🚀

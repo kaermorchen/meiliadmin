@@ -3,7 +3,7 @@
 You will need the following things properly installed on your computer.
 
 * [Git](https://git-scm.com/)
-* [Volta](https://volta.sh/) or [Node.js](https://nodejs.org/) (with `yarn`)
+* [Volta](https://volta.sh/) or [Node.js](https://nodejs.org/)
 * [Ember CLI](https://cli.emberjs.com/release/)
 * `Firefox` or `Google Chrome` (`Firefox` is better 😛)
 
@@ -11,7 +11,7 @@ You will need the following things properly installed on your computer.
 
 * `git clone <repository-url>` this repository
 * `cd meiliadmin`
-* `yarn install`
+* `npm install`
 
 ## Running / Development
 
@@ -30,8 +30,8 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Linting
 
-* `yarn lint`
-* `yarn lint:fix`
+* `npm run lint`
+* `npm run lint:fix`
 
 ### Building
 
