@@ -1,5 +1,14 @@
 # Changelog
 
+
+## v1.1.1 (2023-05-19)
+
+#### :bug: Bug Fix
+* [#49](https://github.com/kaermorchen/meiliadmin/pull/49) Remove wrong argument in job step ([@kaermorchen](https://github.com/kaermorchen))
+
+#### Committers: 1
+- Stanislav Romanov ([@kaermorchen](https://github.com/kaermorchen))
+
 ## v1.1.0 (2023-05-19)
 
 #### :rocket: Enhancement
