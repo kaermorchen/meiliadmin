@@ -1,6 +1,15 @@
 # Changelog
 
 
+
+## v1.1.2 (2023-05-19)
+
+#### :bug: Bug Fix
+* [#50](https://github.com/kaermorchen/meiliadmin/pull/50) Fix build setting ([@kaermorchen](https://github.com/kaermorchen))
+
+#### Committers: 1
+- Stanislav Romanov ([@kaermorchen](https://github.com/kaermorchen))
+
 ## v1.1.1 (2023-05-19)
 
 #### :bug: Bug Fix
