@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.1.0 (2023-05-19)
+
+#### :rocket: Enhancement
+* [#48](https://github.com/kaermorchen/meiliadmin/pull/48) Getting rootURL from system environment ([@kaermorchen](https://github.com/kaermorchen))
+
+#### Committers: 1
+- Stanislav Romanov ([@kaermorchen](https://github.com/kaermorchen))
 
 ## v1.0.0 (2023-05-18)
 
