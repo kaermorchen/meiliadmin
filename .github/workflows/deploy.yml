@@ -25,7 +25,7 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run build
+        run: ROOTURL=/meiliadmin/ npm run build
 
       # TODO: replace to https://github.com/actions/upload-pages-artifact
       - name: Deploy 🚀
