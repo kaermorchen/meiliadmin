@@ -40,7 +40,13 @@ module.exports = function (environment) {
   }
 
   if (environment === 'production') {
-    ENV.rootURL = '/meiliadmin/';
+    // here you can enable a production-specific feature
+
+    // Getting rootURL from system environment. For example:
+    // ROOTURL=/meiliadmin/ ember build --environment=production
+    if (process.env.ROOTURL) {
+      ENV.rootURL = process.env.ROOTURL;
+    }
   }
 
   return ENV;
