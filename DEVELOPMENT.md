@@ -35,8 +35,9 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Building
 
-* `ember build` (development)
-* `ember build --environment production` (production)
+* `npm start` (development and watch)
+* `npm run build` (production)
+* `ROOTURL=/admin/ npm run build` (production build with rooturl, example: https://example.com/admin/)
 
 ## Further Reading / Useful Links
 

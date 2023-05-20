@@ -15,6 +15,12 @@
 - ✅ Validation for json settings
 - 🌙 Dark mode
 
+## How to use it
+Meiliadmin is an [Ember](https://emberjs.com/) application. There are some way for use it:
+1. Just use the [demo](https://kaermorchen.github.io/meiliadmin/) page with your meilisearch instance.
+1. Install it in you domain, extract the asset `dist.tgz` from the [latest realese](https://github.com/kaermorchen/meiliadmin/releases/latest).
+1. For custom building the app, see the [development page](DEVELOPMENT.md#building).
+
 ## Screenshots
 
 ![start](https://github.com/kaermorchen/meiliadmin/assets/11972062/29507812-d9d9-4cc0-8f9c-400c98fdd064)
