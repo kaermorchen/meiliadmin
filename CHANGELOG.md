@@ -2,6 +2,18 @@
 
 
 
+
+## v1.2.0 (2023-05-21)
+
+#### :rocket: Enhancement
+* [#54](https://github.com/kaermorchen/meiliadmin/pull/54) Add default auth from config settings ([@kaermorchen](https://github.com/kaermorchen))
+
+#### :memo: Documentation
+* [#52](https://github.com/kaermorchen/meiliadmin/pull/52) Add "How to use it" ([@kaermorchen](https://github.com/kaermorchen))
+
+#### Committers: 1
+- Stanislav Romanov ([@kaermorchen](https://github.com/kaermorchen))
+
 ## v1.1.2 (2023-05-19)
 
 #### :bug: Bug Fix
