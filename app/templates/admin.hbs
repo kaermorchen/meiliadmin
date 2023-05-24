@@ -69,6 +69,19 @@
               Meiliadmin
               <Icons::OpenInNew @size={{10}} class='mt-1 ml-0.5 self-start' />
             </a>
+
+            <div
+              class='{{classLink}} cursor-pointer'
+              role='button'
+              {{on 'click' this.invalidateSession}}
+            >
+              <Icons::Logout
+                role='presentation'
+                class='fill-base-3 mr-2'
+                @title='Logout'
+              />
+              Logout
+            </div>
           </div>
 
           <div class='mb-4 p-4 bg-base-6 rounded'>
@@ -84,21 +97,8 @@
 
           <ThemeToggler class='mb-6 mt-5' />
 
-          <div class='flex items-center mb-4'>
-            <Icons::ServerNetwork
-              @size={{40}}
-              class='fill-base-3 mx-2 flex-shrink-0'
-            />
-
-            <span class='font-semibold mr-2 truncate'>
-              {{this.session.data.authenticated.url}}
-            </span>
-
-            <Icons::Logout
-              @title='Logout'
-              class='fill-base-3 ml-auto flex-shrink-0 cursor-pointer'
-              {{on 'click' this.invalidateSession}}
-            />
+          <div class='text-center text-sm'>
+            {{this.config.APP.version}}
           </div>
         </div>
       </div>
