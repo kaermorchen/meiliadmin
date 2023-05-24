@@ -3,6 +3,15 @@
 
 
 
+
+## v1.3.0 (2023-05-24)
+
+#### :rocket: Enhancement
+* [#56](https://github.com/kaermorchen/meiliadmin/pull/56) Added application version to sidebar ([@kaermorchen](https://github.com/kaermorchen))
+
+#### Committers: 1
+- Stanislav Romanov ([@kaermorchen](https://github.com/kaermorchen))
+
 ## v1.2.0 (2023-05-21)
 
 #### :rocket: Enhancement
