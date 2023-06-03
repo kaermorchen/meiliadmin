@@ -28,12 +28,10 @@
 
     --sidenav-width: 300px;
     --header-height: 3.5rem;
-
     --spacing-1: 0.25rem;
     --spacing-2: 0.5rem;
     --spacing-3: 0.75rem;
     --spacing-4: 1rem;
-
     --z-index-scroll-link: 10;
     --z-index-mobile-bar: 20;
     --z-index-sidenav: 30;
@@ -49,11 +47,11 @@
     }
   }
 
-  :root[data-theme='light'] {
+  :root[data-theme="light"] {
     @mixin light-vars;
   }
 
-  :root[data-theme='dark'] {
+  :root[data-theme="dark"] {
     @mixin dark-vars;
   }
 
@@ -77,6 +75,7 @@
 
   svg {
     @apply fill-base-2;
+
     margin: auto;
     animation: loading-indicator 0.45s infinite linear;
 
@@ -84,11 +83,51 @@
       0% {
         transform: rotate(0deg);
       }
+
       100% {
         transform: rotate(359deg);
       }
     }
   }
+}
+
+.sidenav {
+  display: flex;
+  flex-direction: column;
+  grid-area: sidenav;
+  position: fixed;
+  z-index: var(--z-index-sidenav);
+  inset: 0;
+  visibility: hidden;
+  transition-property: visibility;
+
+  @apply border-r;
+}
+
+.sidenav-background {
+  position: absolute;
+  inset: 0;
+  transition-property: opacity;
+  transform: translateZ(0);
+  opacity: 0;
+  background: rgb(0 0 0 / 50%);
+}
+
+.sidenav-sections {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  max-height: 100vh;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: var(--sidenav-width);
+  transition-property: transform;
+  transform: translate3d(-100%, 0, 0);
+  overflow-y: auto;
+
+  @apply bg-base-7 p-4;
 }
 
 body {
@@ -111,60 +150,15 @@ body {
 
 .app {
   display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: 1fr auto;
-  grid-template-areas: 'main';
-
+  grid-template: "main" 1fr auto / 100%;
   min-height: 100vh;
-}
-
-.sidenav {
-  display: flex;
-  flex-direction: column;
-  grid-area: sidenav;
-  position: fixed;
-  z-index: var(--z-index-sidenav);
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  visibility: hidden;
-  transition-property: visibility;
-  @apply border-r;
-}
-
-.sidenav-background {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  transition-property: opacity;
-  transform: translateZ(0);
-  opacity: 0;
-  background: rgba(0, 0, 0, 0.5);
-}
-
-.sidenav-sections {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  max-height: 100vh;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: var(--sidenav-width);
-  transition-property: transform;
-  transform: translate3d(-100%, 0, 0);
-  overflow-y: auto;
-  @apply bg-base-7 p-4;
 }
 
 .main {
   grid-area: main;
   padding: calc(var(--spacing-4) + var(--header-height)) var(--spacing-4)
     var(--spacing-4);
+
   @apply bg-base-7;
 }
 
@@ -176,6 +170,7 @@ body {
   z-index: var(--z-index-mobile-bar);
   align-items: center;
   overflow: hidden;
+
   @apply bg-base-7;
 
   & > button {
@@ -191,7 +186,7 @@ body {
   }
 }
 
-@media (min-width: theme('screens.lg')) {
+@media (min-width: theme("screens.lg")) {
   body.sidebar-is-opened {
     overflow: initial;
   }
@@ -200,7 +195,7 @@ body {
     grid-template-columns: var(--sidenav-width) calc(
         100% - var(--sidenav-width)
       );
-    grid-template-areas: 'sidenav main';
+    grid-template-areas: "sidenav main";
   }
 
   .sidenav {
@@ -239,7 +234,7 @@ body {
         @apply first:rounded-l last:rounded-r;
         @apply px-4 py-4 text-base-2 font-normal whitespace-nowrap;
 
-        &[type='button'] {
+        &[type="button"] {
           @apply cursor-pointer select-none;
         }
       }
