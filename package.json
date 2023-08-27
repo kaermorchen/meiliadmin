@@ -149,6 +149,8 @@
         "dist/dist.tgz"
       ]
     },
-    "npm": false
+    "npm": {
+      "publish": false
+    }
   }
 }
