@@ -99,7 +99,7 @@
         {{#each this.attributes as |field|}}
           {{#if (not (includes field this.hiddenFields))}}
             <Column
-              @name={{capitalize field}}
+              @name={{field}}
               @prop={{field}}
               @sortable={{includes field @model.sortableAttributes}}
             >
