@@ -56,7 +56,7 @@ $ mkdir data && cd data
 $ curl -L https://install.meilisearch.com | sh
 
 # Download a dataset
-$ curl https://docs.meilisearch.com/meteorites.json --output meteorites.json
+$ curl https://raw.githubusercontent.com/meilisearch/documentation/main/assets/datasets/meteorites.json --output meteorites.json
 
 # Start Meilisearch
 $ ./meilisearch
