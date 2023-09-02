@@ -1,8 +1,24 @@
 # Changelog
 
+## v1.4.0 (2023-09-02)
 
+#### :rocket: Enhancement
+* [#64](https://github.com/kaermorchen/meiliadmin/pull/64) Remove capitalize titles from table head ([@kaermorchen](https://github.com/kaermorchen))
+* [#63](https://github.com/kaermorchen/meiliadmin/pull/63) Add redirect for github pages ([@kaermorchen](https://github.com/kaermorchen))
+* [#57](https://github.com/kaermorchen/meiliadmin/pull/57) Ember version has updated to 4.12 ([@kaermorchen](https://github.com/kaermorchen))
 
+#### :bug: Bug Fix
+* [#65](https://github.com/kaermorchen/meiliadmin/pull/65) Fix ButtonGroup style ([@kaermorchen](https://github.com/kaermorchen))
+* [#62](https://github.com/kaermorchen/meiliadmin/pull/62) Fix version updating ([@kaermorchen](https://github.com/kaermorchen))
 
+#### :memo: Documentation
+* [#66](https://github.com/kaermorchen/meiliadmin/pull/66) Fix link of meteorites.json ([@kaermorchen](https://github.com/kaermorchen))
+
+#### :house: Internal
+* [#58](https://github.com/kaermorchen/meiliadmin/pull/58) Stylelint fixes ([@kaermorchen](https://github.com/kaermorchen))
+
+#### Committers: 1
+- Stanislav Romanov ([@kaermorchen](https://github.com/kaermorchen))
 
 ## v1.3.0 (2023-05-24)
 
