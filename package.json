@@ -102,7 +102,7 @@
     "loader.js": "^4.7.0",
     "monaco-editor": "^0.34.0",
     "monaco-editor-webpack-plugin": "^7.0.1",
-    "postcss": "^8.4.16",
+    "postcss": "^8.4.31",
     "postcss-loader": "^7.0.1",
     "postcss-mixins": "^9.0.4",
     "prettier": "^2.8.7",
