@@ -17,6 +17,7 @@
 
 ## How to use it
 Meiliadmin is an [Ember](https://emberjs.com/) application. There are some way for use it:
+1. [Image](https://hub.docker.com/r/kaermorchen/meiliadmin) on DockerHub
 1. Just use the [demo](https://kaermorchen.github.io/meiliadmin/) page with your meilisearch instance.
 1. Install it in you domain, extract the asset `dist.tgz` from the [latest release](https://github.com/kaermorchen/meiliadmin/releases/latest).
 1. For custom building the app, see the [development page](DEVELOPMENT.md#building).
